@@ -1,0 +1,345 @@
+{
+  "generated_at": "2026-09-11",
+  "schema": "commitment-ledger/1",
+  "note": "Announced commitments tied to the September 11th records program (spec 09, Phase 1). Each row is an announcement with captured evidence. Later stages are evidenced independently or marked not_linked. Rows are never summed: their fiscal periods differ and none of them is expenditure. An unknown payment is unknown. An observation beside a row carries its own claim and never replaces the announced amount.",
+  "stages": [
+    "announcement",
+    "adopted_line",
+    "contract",
+    "payment",
+    "delivery"
+  ],
+  "stage_labels": {
+    "announcement": "Announcement",
+    "adopted_line": "Adopted budget line",
+    "contract": "Contract",
+    "payment": "Payments",
+    "delivery": "Delivery"
+  },
+  "stage_states": [
+    "located",
+    "not_linked",
+    "observed",
+    "partially_observed",
+    "not_observed",
+    "unable_to_check",
+    "upcoming"
+  ],
+  "commitments": [
+    {
+      "id": "portal-fy27",
+      "topic": "portal",
+      "title": "Records access through the September 11th Document Portal",
+      "agency": "Announced by the Mayor's Office; the adopted unit of appropriation is unresolved",
+      "description": "Portal creation, maintenance and Law Department document review.",
+      "amount_decimal": "34200000",
+      "currency": "USD",
+      "amount_unit": "dollars",
+      "amount_display": "$34.2 million",
+      "fiscal_periods": [
+        "FY2027"
+      ],
+      "basis": "announcement",
+      "source_id": "fy27-handshake-2026-06-30",
+      "claim_id": "handshake-34-2-million",
+      "related_claims": [
+        "mayor-34-million-portal"
+      ],
+      "locator": "Mayor's Office handshake release, 2026-06-30, list headed 'Improving New Yorkers' Health, Safety & Well-Being'",
+      "captured_at": "2026-09-09",
+      "review": {
+        "status": "unreviewed",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stages": {
+        "announcement": {
+          "state": "located",
+          "title": "Announcement located",
+          "note": "The handshake release of June 30, 2026 names $34.2 million in FY27 for the portal. An announcement records the promise. Appropriation, contracting and payment are separate stages.",
+          "claim_id": "handshake-34-2-million",
+          "url": "https://www.nyc.gov/mayors-office/news/2026/06/mayor-mamdani--speaker-menin-reach-handshake-agreement-on-balanc",
+          "label": "Mayor’s budget announcement"
+        },
+        "adopted_line": {
+          "state": "not_linked",
+          "title": "Adopted line not linked yet",
+          "note": "The OMB Adopted Budget FY2027 (Expense, Revenue, Contract; 845 pages, captured 2026-09-11) contains no line naming the portal. The terms “September 11”, “9/11”, “portal” and “World Trade” do not occur in it, and the Law Department and Department of Investigation entries are agency totals. The amount remains an announced commitment.",
+          "next": "Search the Supporting Schedules and the Law Department’s units of appropriation in the adopted expense schedules, or ask OMB which unit of appropriation carries the $34.2 million.",
+          "checked": "2026-09-11",
+          "searched": {
+            "source_id": "omb-adopted-fy2027-erc",
+            "terms": [
+              "September 11",
+              "9/11",
+              "portal",
+              "World Trade"
+            ],
+            "pages_examined": 845,
+            "result": "no matching line"
+          }
+        },
+        "contract": {
+          "state": "not_linked",
+          "title": "Contract not linked yet",
+          "note": "No registered contract has been confirmed as delivering this work. A vendor name matched by keyword is only a candidate. The portal’s software fingerprint does not identify a procurement.",
+          "next": "Query Checkbook NYC by agency and period for review, redaction, scanning and hosting scopes; promote a candidate only with reviewed scope evidence."
+        },
+        "payment": {
+          "state": "not_linked",
+          "title": "Payments not checked",
+          "note": "No payment records have been checked. Spending is unknown. It must not appear as zero or as the announced amount. Fiscal-year cash payments are separate from lifetime contract totals.",
+          "next": "Obtain payments and amendments for any confirmed contract and reconcile them on a matching period basis."
+        },
+        "delivery": {
+          "state": "observed",
+          "title": "Delivery observed on the portal",
+          "note": "The portal launched September 8, 2026. The catalog capture of September 9, 2026 holds 24,441 documents and 173,299 pages. Observation of the portal establishes nothing about the money.",
+          "claim_id": "portal-catalog-size",
+          "evidence_ref": "docs/data/watchdog/latest.json",
+          "obligation_ids": [
+            "portal-launch",
+            "search-terms-posted",
+            "privilege-log"
+          ]
+        }
+      },
+      "questions": [
+        "Which adopted unit of appropriation carries the $34.2 million, and in which agency?",
+        "Which registered contracts deliver document review, redaction and hosting?",
+        "What has been paid to date in each fiscal year?"
+      ],
+      "short": "Records access"
+    },
+    {
+      "id": "doi-investigation",
+      "topic": "doi",
+      "title": "The Department of Investigation inquiry under Resolution 560-A",
+      "agency": "Department of Investigation (outside firm)",
+      "description": "Funding for DOI to complete and release its report on 9/11 environmental toxins, which the Council announced on September 3, 2026.",
+      "amount_decimal": "4000000",
+      "currency": "USD",
+      "amount_unit": "dollars",
+      "amount_display": "$4 million",
+      "fiscal_periods": [
+        "unresolved"
+      ],
+      "period_note": "The Council release does not allocate the $4 million between fiscal years. DOI’s own page says the City allocated $3.81 million over fiscal years 2026 and 2027; DOI’s June 29, 2026 letter says it requested $4 million over two fiscal years. The figures are listed beside each other; none is substituted for another.",
+      "basis": "announcement",
+      "source_id": "council-911-education-2026",
+      "claim_id": "council-doi-4-million",
+      "related_claims": [
+        "council-doi-report-purpose",
+        "hw-doi-4-million-two-years"
+      ],
+      "locator": "Council press release 3231, 2026-09-03, paragraph on the Department of Investigation",
+      "captured_at": "2026-09-09",
+      "review": {
+        "status": "unreviewed",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stages": {
+        "announcement": {
+          "state": "located",
+          "title": "Announcement located",
+          "note": "The Council's September 3, 2026 release records $4 million in additional funding for DOI to complete and release its report. The annual split is not stated there.",
+          "claim_id": "council-doi-4-million",
+          "url": "https://council.nyc.gov/press/2026/09/03/3231/",
+          "label": "Council announcement"
+        },
+        "adopted_line": {
+          "state": "partially_observed",
+          "title": "Allocation stated by DOI; no line identifier",
+          "note": "DOI’s investigation page states that in June 2026 the City allocated $3.81 million over fiscal years 2026 and 2027 for the investigative firm. No unit of appropriation or budget code has been located: the OMB Adopted Budget FY2027 names no such line (845 pages searched 2026-09-11), and the DOI entries there are agency totals.",
+          "next": "Locate the DOI unit of appropriation that carries the FY2026 and FY2027 amounts, or a budget modification naming it.",
+          "claim_id": "doi-page-3-81-million",
+          "checked": "2026-09-11"
+        },
+        "contract": {
+          "state": "not_observed",
+          "title": "DOI reports no contract yet",
+          "note": "DOI’s June 29, 2026 letter says a team of two firms was selected after a Request for Information to six firms. DOI will enter a contract once funding is secured from OMB. DOI’s page, read September 11, 2026, says DOI is in the procurement process. No registered contract has been located.",
+          "next": "Query Checkbook NYC for a DOI contract with an investigation or public-health scope registered after June 2026.",
+          "claim_id": "doi-2026-06-two-firms",
+          "checked": "2026-09-11"
+        },
+        "payment": {
+          "state": "not_linked",
+          "title": "Payments not checked",
+          "note": "No payment records have been checked. Spending is unknown.",
+          "next": "Obtain payments for any confirmed contract by fiscal year."
+        },
+        "delivery": {
+          "state": "partially_observed",
+          "title": "Two written updates observed; the report is dated",
+          "note": "DOI’s written updates for December 31, 2025 and June 30, 2026 are posted on DOI’s page as letters dated December 31, 2025 and June 29, 2026. A video update from the Commissioner is dated September 1, 2026. The next updates are due December 31, 2026 and June 30, 2027; the report is due by July 14, 2027. Nothing is inferred as delivered before it is published.",
+          "obligation_ids": [
+            "doi-update-2025-12-31",
+            "doi-update-2026-06-30",
+            "doi-update-2026-12-31",
+            "doi-update-2027-06-30",
+            "doi-report-2027-07-14",
+            "doi-cooperation"
+          ],
+          "claim_id": "doi-update-2026-06-30-served",
+          "checked": "2026-09-11"
+        }
+      },
+      "questions": [
+        "Which unit of appropriation carries the $3.81 million, and how is it split between FY2026 and FY2027?",
+        "Which two firms were selected, and when is the contract registered?",
+        "What does the December 31, 2026 update say?"
+      ],
+      "short": "DOI investigation",
+      "observations": [
+        {
+          "date": "2026-03-18",
+          "text": "DOI has requested $3 million in funding in FY27 to hire an outside firm",
+          "claim_id": "doi-testimony-3-million-fy27",
+          "label": "DOI testimony, March 18, 2026"
+        },
+        {
+          "date": "2026-03-18",
+          "text": "DOI now estimates that the cost of the overall investigation will total between $4 and $5 million",
+          "claim_id": "doi-testimony-4-to-5-million",
+          "label": "DOI testimony, March 18, 2026"
+        },
+        {
+          "date": "2025-12-31",
+          "text": "a total of over $3 million over two fiscal years",
+          "claim_id": "doi-2025-12-request-over-3-million",
+          "label": "DOI letter, December 31, 2025",
+          "lead": "DOI requested"
+        },
+        {
+          "date": "2026-06-29",
+          "text": "DOI requested a total of $4 million over the course of two fiscal years to hire a third-party firm",
+          "claim_id": "doi-2026-06-request-4-million",
+          "label": "DOI letter, June 29, 2026"
+        },
+        {
+          "date": "2026-06-29",
+          "text": "has not yet approved DOI’s request",
+          "claim_id": "doi-2026-06-omb-not-approved",
+          "label": "DOI letter, June 29, 2026",
+          "lead": "OMB"
+        },
+        {
+          "date": "2026-09-11",
+          "text": "In June 2026, the City allocated $3.81 million over fiscal years 2026 and 2027 to fund this investigative firm",
+          "claim_id": "doi-page-3-81-million",
+          "label": "DOI investigation page, read 2026-09-11"
+        }
+      ]
+    },
+    {
+      "id": "memorial-education-fy27",
+      "topic": "education",
+      "title": "Memorial education and free student field trips",
+      "agency": "Council funding to the 9/11 Memorial & Museum",
+      "description": "Free field trips for New York City students, with a focus on eighth graders, and expanded educational programming.",
+      "amount_decimal": "1000000",
+      "currency": "USD",
+      "amount_unit": "dollars",
+      "amount_display": "$1 million",
+      "fiscal_periods": [
+        "FY2027"
+      ],
+      "basis": "announcement",
+      "source_id": "council-911-education-2026",
+      "claim_id": "council-memorial-education-announcement",
+      "related_claims": [
+        "council-memorial-field-trips"
+      ],
+      "locator": "Council press release 3231, 2026-09-03, headline and first paragraph",
+      "captured_at": "2026-09-09",
+      "review": {
+        "status": "unreviewed",
+        "reviewed_by": null,
+        "reviewed_at": null
+      },
+      "stages": {
+        "announcement": {
+          "state": "located",
+          "title": "Announcement located",
+          "note": "The Council's September 3, 2026 release announces $1 million for the 9/11 Memorial & Museum for free student field trips and educational programming.",
+          "claim_id": "council-memorial-education-announcement",
+          "url": "https://council.nyc.gov/press/2026/09/03/3231/",
+          "label": "Council announcement"
+        },
+        "adopted_line": {
+          "state": "located",
+          "title": "Adopted lines located in the Council’s Schedule C",
+          "note": "The Council’s Fiscal 2027 Schedule C (June 30, 2026) lists two DYCD lines to the National September 11 Memorial and Museum. Page 281: $750,000 for museum field trips, stated as funding for 8th grade students to visit free of charge. Page 280: $250,000 for 9/11 Memorial Museum programming, covering in-person and virtual field trips. The two lines add to $1,000,000, the amount the Council announced; the sum is arithmetic and the lines stay separate. Smaller member and delegation items to the same organization in Schedule C ($50,000 p.134, $12,000 p.28, $10,000 p.110) are outside this commitment.",
+          "next": "Confirm the DYCD contract registrations that carry the two lines.",
+          "claim_id": "schedule-c-memorial-field-trips-750000",
+          "checked": "2026-09-11",
+          "derived": {
+            "inputs": [
+              "750000",
+              "250000"
+            ],
+            "arithmetic": "750000 + 250000",
+            "result": "1000000",
+            "unit": "USD",
+            "note": "two Schedule C lines with the announced purpose; a derived figure, labelled as such"
+          }
+        },
+        "contract": {
+          "state": "not_linked",
+          "title": "Grant or contract not linked yet",
+          "note": "No DYCD contract or grant registration to the Memorial has been located for FY2027.",
+          "next": "Query Checkbook NYC for DYCD contracts with the National September 11 Memorial and Museum (Tax ID 611745872) registered in FY2027.",
+          "checked": "2026-09-11"
+        },
+        "payment": {
+          "state": "not_linked",
+          "title": "Payments not checked",
+          "note": "No payment records have been checked. Spending is unknown.",
+          "next": "Record any FY27 disbursement with its transaction identifier."
+        },
+        "delivery": {
+          "state": "not_linked",
+          "title": "Delivery not linked yet",
+          "note": "No participation report has been published. The count of student visits, the period and the population definition are unknown. Unknown service output is not zero delivery. Student records stay aggregate.",
+          "measure": "student field trips (count, period, population definition)"
+        }
+      },
+      "questions": [
+        "Which DYCD contracts carry the $750,000 and $250,000 lines?",
+        "How many students visited under the program, over what period, and how is the population defined?",
+        "What was paid in FY27?"
+      ],
+      "short": "Memorial education",
+      "observations": [
+        {
+          "date": "2026-06-30",
+          "text": "Museum Field Trips 611745872 $750,000 DYCD",
+          "claim_id": "schedule-c-memorial-field-trips-750000",
+          "label": "Council Fiscal 2027 Schedule C, p.281",
+          "lead": "National September 11 Memorial and Museum at the World Trade Center –"
+        },
+        {
+          "date": "2026-06-30",
+          "text": "To provide funding support for 8th grade students to visit the museum free of charge.",
+          "claim_id": "schedule-c-memorial-8th-grade",
+          "label": "Council Fiscal 2027 Schedule C, p.281"
+        },
+        {
+          "date": "2026-06-30",
+          "text": "9/11 Memorial Museum Programming 611745872 $250,000 DYCD",
+          "claim_id": "schedule-c-memorial-programming-250000",
+          "label": "Council Fiscal 2027 Schedule C, p.280",
+          "lead": "National September 11 Memorial and Museum at the World Trade Center –"
+        },
+        {
+          "date": "2026-06-30",
+          "text": "Funds will be used to cover the costs of in-person and virtual field trips",
+          "claim_id": "schedule-c-memorial-programming-purpose",
+          "label": "Council Fiscal 2027 Schedule C, p.280"
+        }
+      ]
+    }
+  ]
+}

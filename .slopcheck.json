@@ -1,0 +1,21 @@
+{
+  "exclude": [
+    "data",
+    "research/raw",
+    "research/agent",
+    "base-files",
+    ".venv",
+    "build",
+    "sept11_mcp.egg-info",
+    "docs/data/folders.json",
+    "docs/data/catalog-summary.json",
+    "docs/data/watchdog",
+    "uv.lock"
+  ],
+  "quote_keys": {
+    "quote": "the registered verbatim quote of a claim; the build refuses a displayed quote that differs from it, so it is the source's text, never ours",
+    "variants": "alternate verbatim wordings of a registered quote, accepted only when located in the captured source",
+    "text": "a quoted rule or statement in the help directory and commitments data, verified against its claim at build time; also search terms in recorded tool calls",
+    "snippet": "inert snippet text returned by the portal, quoted as evidence"
+  }
+}

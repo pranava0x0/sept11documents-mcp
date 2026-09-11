@@ -1,0 +1,33 @@
+base-files/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+.env
+.env.*
+!.env.example
+/data/
+/build/
+*.egg-info/
+evidence-bundle*.tgz
+snapshots.tgz
+
+# Kept out of the public repository: specifications, research notes and captures, working logs,
+# and agent files. The two research files the MCP server and the site build read stay in.
+/spec/
+/research/*
+!/research/sources_manifest.json
+!/research/claims/
+/research/claims/*
+!/research/claims/claims.json
+/CLAUDE.md
+/AGENTS.md
+/backlog.md
+/issues.md
+/design.md
+/.claude/
+/scripts/prompts/
+/scripts/research_agent.sh
+/scripts/build_research_index.py

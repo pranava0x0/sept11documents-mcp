@@ -1,0 +1,33 @@
+{
+  "accepted_snapshots": 2,
+  "added_by_box": {},
+  "captured_at": "2026-09-11T12:57:00+00:00",
+  "counts": {
+    "metadata_changed": 0,
+    "observed_absent": 4,
+    "observed_added": 0,
+    "pages_absent": 755,
+    "pages_added": 0
+  },
+  "csv_sha256": "26f24148f19971988a3fa033b0f82cc68b8801db6d8b40bbced2ff2528e1173e",
+  "documents": 24437,
+  "generated_from": "20260911T125700Z-26f24148f199",
+  "interval": {
+    "from": "2026-09-09T15:30:00Z",
+    "from_snapshot": "20260909T153000Z-687a0c6688da",
+    "to": "2026-09-11T12:57:00+00:00",
+    "to_snapshot": "20260911T125700Z-26f24148f199"
+  },
+  "lists_truncated": false,
+  "metadata_changed": [],
+  "note": "Document-level record of what the City's catalog showed at each capture. A document missing from a later capture is recorded as observed_absent; only the City can say whether it was removed, replaced or withheld.",
+  "observed_absent": [
+    "NYC-WTC_000103034",
+    "NYC-WTC_000106890",
+    "NYC-WTC_000129388",
+    "NYC-WTC_000165865"
+  ],
+  "observed_added": [],
+  "pages": 172544,
+  "query": "ALL extension:pdf"
+}

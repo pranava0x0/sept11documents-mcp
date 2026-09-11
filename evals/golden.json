@@ -1,0 +1,119 @@
+{
+  "generated_from": "review/anchors.json",
+  "anchors_seen": 14,
+  "note": "Golden anchors: each quote was located by a person and by verify_claims.py. Regenerate with `scripts/mcp_evals.py --seed`; a drifted quote fails the drift check.",
+  "rows": [
+    {
+      "id": "harding-memo",
+      "bates": "NYC-WTC_000138296",
+      "page": 1,
+      "quote": "there are approximately 35,000 potential plaintiffs...and it is estimate that 10,000 would file a claim",
+      "stamp": "NYC-WTC_000138296",
+      "search": "\"Legislative Alternatives to Limit the City\" extension:pdf"
+    },
+    {
+      "id": "fuchs-memo",
+      "bates": "NYC-WTC_000147320",
+      "page": 2,
+      "quote": "if Nadler\u2019s concerns are justified, we are not Infonning people of the real health risks in lower Manhattan",
+      "stamp": "NYC-WTC_000147321",
+      "search": "\"Congressman Nadler's concerns\" extension:pdf"
+    },
+    {
+      "id": "clean-up-initiative",
+      "bates": "NYC-WTC_000153130",
+      "page": 1,
+      "quote": "we would not use the word 'risk' in any letters as it would defeat the purpose of creating public confidence",
+      "stamp": "NYC-WTC_000153130",
+      "search": "\"Clean Up Initiative\" extension:pdf"
+    },
+    {
+      "id": "sia14-audit",
+      "bates": "NYC-WTC_000130438",
+      "page": 1,
+      "quote": "SPECIAL INVESTIGATIVE AUDIT #14",
+      "stamp": "NYC-WTC_000130438",
+      "search": "\"benzene\" audit extension:pdf"
+    },
+    {
+      "id": "sia14-benzene",
+      "bates": "NYC-WTC_000130438",
+      "page": 7,
+      "quote": "The recent high value for benzene of 180,000 ppb on November 8th",
+      "stamp": "NYC-WTC_000130444",
+      "search": null
+    },
+    {
+      "id": "sia14-dust-sept11",
+      "bates": "NYC-WTC_000130438",
+      "page": 22,
+      "quote": "The highest result, 4.5% Chrysotile, was reported from a sample collected at Murray Street and West Side Highway",
+      "stamp": "NYC-WTC_000130459",
+      "search": null
+    },
+    {
+      "id": "sia14-dust-sept19",
+      "bates": "NYC-WTC_000130438",
+      "page": 22,
+      "quote": "38% Chrysotile from Ground Zero",
+      "stamp": "NYC-WTC_000130459",
+      "search": null
+    },
+    {
+      "id": "sia14-fresh-kills",
+      "bates": "NYC-WTC_000130438",
+      "page": 21,
+      "quote": "were measured at the Screening Operations",
+      "stamp": "NYC-WTC_000130458",
+      "search": null
+    },
+    {
+      "id": "sitrep-2001-10-20",
+      "bates": "NYC-WTC_000154488",
+      "page": 3,
+      "quote": "Exceedances occurred at Sift Location ~9C (97.78 S/mm^)",
+      "stamp": "NYC-WTC_000154490",
+      "search": null
+    },
+    {
+      "id": "15-john-street",
+      "bates": "NYC-WTC_000094256",
+      "page": 1,
+      "quote": "Asbestos Present: Yes",
+      "stamp": "NYC-WTC_000094256",
+      "search": "\"WTC071302\" AND \"WEST FACADE LEDGE\" extension:pdf"
+    },
+    {
+      "id": "stuyvesant-parents-release",
+      "bates": "NYC-WTC_000144518",
+      "page": 2,
+      "quote": "asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample",
+      "stamp": "NYC-WTC_000144519",
+      "search": null
+    },
+    {
+      "id": "stuyvesant-uft-memo",
+      "bates": "NYC-WTC_000106411",
+      "page": 1,
+      "quote": "Re-Occupying Stuyvesant High School",
+      "stamp": "NYC-WTC_000106411",
+      "search": null
+    },
+    {
+      "id": "preservation-directive",
+      "bates": "NYC-WTC_000148621",
+      "page": 80,
+      "quote": "DO NOT DISPOSE OF THESE DOCUMENTS",
+      "stamp": "NYC-WTC_000148700",
+      "search": null
+    },
+    {
+      "id": "frieden-to-whitman",
+      "bates": "NYC-WTC_000151604",
+      "page": 1,
+      "quote": "disseminated by Ms. Cate Jenkins publicly criticizing this Departmeni and contradicting other EPA communications",
+      "stamp": "NYC-WTC_000151604",
+      "search": null
+    }
+  ]
+}

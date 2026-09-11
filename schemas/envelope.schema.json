@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sept11Envelope",
+  "$comment": "generated from sept11.core.evidence.envelope_schema(); edit the model, not this file",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "retrieved_at",
+    "source_snapshot",
+    "coverage",
+    "retrieval",
+    "review_status",
+    "freshness",
+    "warnings",
+    "data",
+    "next_cursor"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "retrieved_at": {
+      "type": "string",
+      "description": "the time these bytes were observed; a captured answer keeps its capture time"
+    },
+    "source_snapshot": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "coverage": {
+      "enum": [
+        "complete_for_query",
+        "partial",
+        "unknown"
+      ]
+    },
+    "retrieval": {
+      "enum": [
+        "captured",
+        "blocked",
+        "failed",
+        "not_checked"
+      ]
+    },
+    "review_status": {
+      "enum": [
+        "unreviewed",
+        "approved",
+        "disputed",
+        "withdrawn"
+      ]
+    },
+    "freshness": {
+      "enum": [
+        "current",
+        "stale",
+        "unknown"
+      ]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "enum": [
+              "live_query_sent_upstream",
+              "snippet_not_citable",
+              "estimate_not_archive_size",
+              "fuzzy_single_term",
+              "pii_withheld",
+              "cached_bytes_timestamp",
+              "untrusted_source_text",
+              "stamp_unverified",
+              "truncated_inline",
+              "no_document_date_field",
+              "local_snapshot_only",
+              "interval_actually_compared",
+              "coverage_gap",
+              "no_compliance_determination",
+              "match_is_not_review",
+              "physical_labels",
+              "observation_not_removal",
+              "unreviewed_artifact",
+              "history_is_local_only",
+              "announcement_not_expenditure",
+              "periods_not_comparable",
+              "directory_not_advice"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "data": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "next_cursor": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

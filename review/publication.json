@@ -1,0 +1,86 @@
+{
+  "generated_at": "2026-09-09",
+  "note": "Files a public surface may serve. review_status is 'unreviewed' until a named person records their review here; automated matching cannot fill in reviewed_by (spec 08).",
+  "artifacts": [
+    {
+      "path": "docs/data/anchors.json",
+      "resource": "sept11://anchors",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "5c5c0fd8b1a427f11290282fc7ca4770174de209a8998aff00160e10c389d44b",
+      "freshness_policy": "on-change",
+      "notes": "Anchor documents located by research agent 02; quotes verbatim from the text layer (ellipsis marks omitted words), located by verify_claims.py and mcp_evals.py, not semantically reviewed."
+    },
+    {
+      "path": "docs/data/catalog-summary.json",
+      "resource": "sept11://catalog/summary",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "e30fd353a280639bc560b2ffcb404e2bac36d475a5660e69e4bdf1099d9cb9cc",
+      "freshness_policy": "daily",
+      "notes": "Totals recomputed from the SHA-256-pinned catalog CSV of 2026-09-09."
+    },
+    {
+      "path": "docs/data/commitments.json",
+      "resource": "sept11://commitments",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "c77eb62beda32e13d3ab515271cc4b2b2a75b12fe20d03231e79e7d9715995fe",
+      "freshness_policy": "monthly",
+      "notes": "Commitment ledger (spec 09 Phase 1): announced amounts with claim ids, observations on record, and five independently evidenced stages; never summed."
+    },
+    {
+      "path": "docs/data/folders.json",
+      "resource": "sept11://catalog/folders",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "cf3afa33cc58a0f2a9d48e6fbac57cdd8bb060b046cf5373d261d37bb976b704",
+      "freshness_policy": "daily",
+      "notes": "Folder-label index from the accepted catalog snapshot: one row per collection/box/folder with counts and first Bates; labels PII-screened."
+    },
+    {
+      "path": "docs/data/help-directory.json",
+      "resource": "sept11://help-directory",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "46104af0d0bf2a1e80ab3b7305742928ec38072c59d406285c55c5d9b0b6c17d",
+      "freshness_policy": "monthly",
+      "notes": "Official program and records-request directory: rules quoted from captured official pages via claim ids; NYCPS records route; not personalized."
+    },
+    {
+      "path": "docs/data/mcp-examples.json",
+      "resource": "sept11://examples",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "f3f95aba6dd7cecc3c536e623727620cd240eacb52b306e4159c1ba9231aeb36",
+      "freshness_policy": "on-change",
+      "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
+    },
+    {
+      "path": "docs/data/scorecard.json",
+      "resource": "sept11://scorecard",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "bac5cfa2d0e379b09d1e4b61e430adb830d7b26cad071581c8880eca1ee7702b",
+      "freshness_policy": "monthly",
+      "notes": "Settlement and Res. 560-A obligation rows with observation vocabulary and structured due dates; DOI updates of 2025-12-31 and 2026-06-30 observed; no compliance score."
+    },
+    {
+      "path": "docs/data/watchdog/latest.json",
+      "resource": "sept11://watchdog/latest",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "cd8a382bfaab9770b75f7f5564652b881d20f23d13aeb164fd7dcec83cf082ea",
+      "freshness_policy": "daily",
+      "notes": "Watchdog output: catalog-level observations between accepted snapshots."
+    }
+  ]
+}

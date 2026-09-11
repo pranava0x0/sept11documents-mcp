@@ -1,0 +1,422 @@
+[
+  {
+    "id": "settlement-2026-09-08",
+    "kind": "pdf",
+    "filename": "2026-09-08-911healthwatch-settlement-agreement.pdf",
+    "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+    "notes": "Stipulation and Order of Settlement, Chevat v. DEP 155678/2024 and Chevat v. CNY 153916/2026 (7 pp)"
+  },
+  {
+    "id": "harding-memo-court-submission",
+    "kind": "pdf",
+    "filename": "2026-02-05-harding-memo-court-submission.pdf",
+    "url": "https://www.911healthwatch.org/files/Court-Submission-20260205.pdf",
+    "notes": "Carboy supplemental affirmation with the Harding memo as Exhibit 1 (18 pp)"
+  },
+  {
+    "id": "law-dept-preservation-directive-2002",
+    "kind": "pdf",
+    "filename": "2002-law-dept-wtc-preservation-directive.pdf",
+    "url": "https://www.911healthwatch.org/files/Document-3-Law-Dept-Preservation-Directive.pdf",
+    "notes": "Law Department WTC Unit letter: DO NOT DISPOSE OF THESE DOCUMENTS"
+  },
+  {
+    "id": "clynes-decision-2026-05-28",
+    "kind": "pdf",
+    "filename": "2026-05-28-clynes-decision-order-155678-2024.pdf",
+    "url": "https://www.911healthwatch.org/files/155678_2024_Benjamin_Chevat_v_Benjamin_Chevat_DECISION___ORDER_ON_72.pdf",
+    "notes": "Decision & Order, NYSCEF doc 72 (scanned, no text layer; needs OCR)"
+  },
+  {
+    "id": "pecunies-deposition-2026-07-01",
+    "kind": "pdf",
+    "filename": "2026-07-01-pecunies-deposition-exhibit-1.pdf",
+    "url": "https://www.911healthwatch.org/files/Filed-Exhibit-1.pdf",
+    "notes": "Deposition transcript of DEP Records Appeal Officer Russell Pecunies (113 pp)"
+  },
+  {
+    "id": "foil-request-2023-09-08",
+    "kind": "pdf",
+    "filename": "2023-09-08-911hw-foil-request.pdf",
+    "url": "https://www.911healthwatch.org/files/2023-0908-FOIL-Request.pdf",
+    "notes": "The original FOIL request (7 pp)"
+  },
+  {
+    "id": "nadler-goldman-letter-2024-04",
+    "kind": "pdf",
+    "filename": "2024-04-nadler-goldman-letter-to-adams.pdf",
+    "url": "https://nadler.house.gov/uploadedfiles/april_2024_rep._nadler_and_rep._goldman_letter_to_mayor_adams_with_enclosures.pdf",
+    "notes": "Congressional letter with enclosures (15 pp)"
+  },
+  {
+    "id": "epa-oig-2003-p-00012",
+    "kind": "pdf",
+    "filename": "2003-08-21-epa-oig-wtc-report-2003-P-00012.pdf",
+    "url": "https://19january2021snapshot.epa.gov/sites/static/files/2015-10/documents/wtc_report_20030821.pdf",
+    "notes": "EPA OIG, EPA's Response to the World Trade Center Collapse (165 pp); epa.gov current path 403s to plain clients"
+  },
+  {
+    "id": "wtchp-quarterly-2026-06-30",
+    "kind": "pdf",
+    "filename": "2026-06-30-wtchp-quarterly-program-summary.pdf",
+    "url": "https://www.cdc.gov/wtc/pdfs/statistics/20260630_External_QuarterlyProgramSummary.pdf",
+    "notes": "CDC blocks plain clients (403); captured via browser-class fetch on 2026-09-09"
+  },
+  {
+    "id": "brewer-transparency-release-2024-09-12",
+    "kind": "pdf",
+    "filename": "2024-09-12-brewer-911-transparency-release.pdf",
+    "url": "http://council.nyc.gov/gale-brewer/wp-content/uploads/sites/90/2024/09/09.12.24-911-Transparency-Release-FINAL.pdf",
+    "notes": "Council Member Brewer press release introducing Res. 560"
+  },
+  {
+    "id": "exhibit-3-brewer-statement",
+    "kind": "pdf",
+    "filename": "exhibit-3-cm-brewer-statement.pdf",
+    "url": "https://www.911healthwatch.org/files/Exhibit-3-CM-Brewer-Statement.pdf",
+    "notes": "Court exhibit: CM Brewer statement (4 pp)"
+  },
+  {
+    "id": "mayor-press-release-2026-09-08",
+    "kind": "html",
+    "filename": "2026-09-08-mayor-press-release.html",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+    "notes": "Mayor's Office press release"
+  },
+  {
+    "id": "mayor-transcript-2026-09-08",
+    "kind": "html",
+    "filename": "2026-09-08-mayor-transcript.html",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+    "notes": "Press-conference transcript"
+  },
+  {
+    "id": "911hw-settlement-statement",
+    "kind": "html",
+    "filename": "2026-09-08-911hw-settlement-statement.html",
+    "url": "https://www.911healthwatch.org/press/statement-on-historic-settlement-with-nyc-of-911-health-watchs-freedom-of-information-request-for-the-release-of-9-11-records/",
+    "notes": "9/11 Health Watch statement with settlement terms and dockets"
+  },
+  {
+    "id": "911hw-effort-chronology",
+    "kind": "html",
+    "filename": "911hw-effort-chronology.html",
+    "url": "https://www.911healthwatch.org/effort-to-get-new-york-city-to-release-9-11-documents/",
+    "notes": "Dated chronology of the records fight with document links"
+  },
+  {
+    "id": "council-press-2026-03-16",
+    "kind": "html",
+    "filename": "2026-03-16-council-press-3088.html",
+    "url": "https://council.nyc.gov/press/2026/03/16/3088/",
+    "notes": "Council secures Corporation Counsel commitment"
+  },
+  {
+    "id": "fy27-handshake-2026-06-30",
+    "kind": "html",
+    "filename": "2026-06-30-fy27-handshake.html",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/06/mayor-mamdani--speaker-menin-reach-handshake-agreement-on-balanc",
+    "notes": "FY27 budget handshake: $34.2M portal line"
+  },
+  {
+    "id": "res-0560-2024-legistar",
+    "kind": "html",
+    "filename": "res-0560-2024-legistar.html",
+    "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206&Options=&Search=",
+    "notes": "Res 0560-2024(A) directing the DOI investigation"
+  },
+  {
+    "id": "vcf-policy-eligibility",
+    "kind": "html",
+    "filename": "vcf-policy-eligibility-criteria-and-deadlines.html",
+    "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+    "notes": "VCF Policies & Procedures section 1 (presence rules)"
+  },
+  {
+    "id": "wtchp-documentation",
+    "kind": "html",
+    "filename": "cdc-wtc-documentation.html",
+    "url": "https://www.cdc.gov/wtc/documentation.html",
+    "notes": "WTCHP acceptable supporting documentation"
+  },
+  {
+    "id": "nyc-designsystem-typography",
+    "kind": "html",
+    "filename": "nyc-designsystem-typography.html",
+    "url": "https://designsystem.nyc.gov/brand/typography.html",
+    "notes": "NYC brand typography scale"
+  },
+  {
+    "id": "nyc-designsystem-color",
+    "kind": "html",
+    "filename": "nyc-designsystem-color.html",
+    "url": "https://designsystem.nyc.gov/brand/color.html",
+    "notes": "NYC brand color palette"
+  },
+  {
+    "id": "mindbreeze-api-v2-search",
+    "kind": "html",
+    "filename": "mindbreeze-apiv2search.html",
+    "url": "https://help.mindbreeze.com/en/doc/apiv2search-Interface-Description/index.htm",
+    "notes": "Vendor API docs for the portal backend"
+  },
+  {
+    "id": "mindbreeze-api-v2-export",
+    "kind": "html",
+    "filename": "mindbreeze-apiv2export.html",
+    "url": "https://help.mindbreeze.com/en/index.php?topic=doc/apiv2export-Interface-Description/index.htm",
+    "notes": "Vendor export API docs"
+  },
+  {
+    "id": "epa-release-2001-09-13",
+    "kind": "html",
+    "filename": "epa-release-2001-09-13.html",
+    "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/d7ada9cf2d39c0a185256acc007c097f.html",
+    "notes": "EPA press release, Sept 13, 2001 (Whitman: no significant asbestos in NYC air)"
+  },
+  {
+    "id": "epa-release-2001-09-18",
+    "kind": "html",
+    "filename": "epa-release-2001-09-18.html",
+    "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/ed368f43303656488525744e00039488.html",
+    "notes": "EPA press release, Sept 18, 2001 (Whitman: air is safe to breathe)"
+  },
+  {
+    "id": "epa-release-2001-09-21",
+    "kind": "html",
+    "filename": "epa-release-2001-09-21.html",
+    "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/1dcfffa0c895910885256ace0082cdeb.html",
+    "notes": "EPA press release, Sept 21, 2001"
+  },
+  {
+    "id": "epa-osha-release-2001-10-03",
+    "kind": "html",
+    "filename": "epa-osha-release-2001-10-03.html",
+    "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/a58e3e62ff609f5185256ada00729977.html",
+    "notes": "Joint EPA/OSHA release, Oct 3, 2001"
+  },
+  {
+    "id": "giuliani-release-2001-09-16",
+    "kind": "html",
+    "filename": "giuliani-release-2001-09-16.html",
+    "url": "https://www.nyc.gov/html/om/html/2001b/pr315-01b.html",
+    "notes": "Mayor Giuliani press release, Sept 16, 2001 (nyc.gov 403s bare clients)"
+  },
+  {
+    "id": "senate-hearing-2002-02-11-part1",
+    "kind": "html",
+    "filename": "senate-hearing-2002-02-11-part1.html",
+    "url": "https://www.govinfo.gov/content/pkg/CHRG-107shrg80397/html/CHRG-107shrg80397.htm",
+    "notes": "S. Hrg. 107-524 Part I, Feb 11, 2002 field hearing"
+  },
+  {
+    "id": "comptroller-fy27-adopted",
+    "url": "https://comptroller.nyc.gov/reports/comments-on-new-york-citys-fiscal-year-2027-adopted-budget/",
+    "kind": "html",
+    "filename": "comptroller-fy27-adopted.html",
+    "notes": "Wave 5 source refresh; see research/raw/2026-09-09-w5-research-audit.md"
+  },
+  {
+    "id": "council-911-education-2026",
+    "url": "https://council.nyc.gov/press/2026/09/03/3231/",
+    "kind": "html",
+    "filename": "council-911-education-2026.html",
+    "notes": "Wave 5 source refresh; see research/raw/2026-09-09-w5-research-audit.md"
+  },
+  {
+    "id": "memorial-25-family",
+    "url": "https://www.911memorial.org/connect/commemoration/25th-anniversary-commemoration",
+    "kind": "html",
+    "filename": "memorial-25-family.html",
+    "notes": "Wave 5 source refresh; see research/raw/2026-09-09-w5-research-audit.md"
+  },
+  {
+    "id": "memorial-25-event",
+    "url": "https://911memorial.org/events/25th-anniversary-commemoration-ceremony",
+    "kind": "html",
+    "filename": "memorial-25-event.html",
+    "notes": "Wave 5 source refresh; see research/raw/2026-09-09-w5-research-audit.md"
+  },
+  {
+    "id": "wtchp-about-current",
+    "url": "https://www.cdc.gov/wtc/about.html",
+    "kind": "html",
+    "filename": "wtchp-about-current.html",
+    "notes": "Wave 5 source refresh; see research/raw/2026-09-09-w5-research-audit.md"
+  },
+  {
+    "id": "mcp-tools-2025-11-25",
+    "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+    "kind": "html",
+    "filename": "mcp-tools-2025-11-25.html",
+    "notes": "Wave 5 source refresh; see research/raw/2026-09-09-w5-research-audit.md"
+  },
+  {
+    "id": "w6-memory-markers",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/09/mayor-mamdani-launches-citywide-digital-tribute-to-new-yorkers-w",
+    "kind": "html",
+    "filename": "w6-memory-markers.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-nypd-memorial",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--mayor-mamdani-joins-nypd-commissioner-jessica-s--tis0",
+    "kind": "html",
+    "filename": "w6-nypd-memorial.html",
+    "notes": "Wave 6 current-week official 9/11 release"
+  },
+  {
+    "id": "w6-security-briefing",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--mayor-mamdani-joins-nypd-commissioner-jessica-s--tis1",
+    "kind": "html",
+    "filename": "w6-security-briefing.html",
+    "notes": "Wave 6 current-week official 9/11 security briefing"
+  },
+  {
+    "id": "w6-executive-orders",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--mayor-mamdani-signs-executive-orders-related-to-sept",
+    "kind": "html",
+    "filename": "w6-executive-orders.html",
+    "notes": "Wave 6 current-week official preparedness and remembrance orders"
+  },
+  {
+    "id": "w6-fdny-events",
+    "url": "https://www.nyc.gov/site/fdny/about/resources/calendar/september-11th-remembrance.page",
+    "kind": "html",
+    "filename": "w6-fdny-events.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-community-day",
+    "url": "https://www.911memorial.org/events/2026-community-day",
+    "kind": "html",
+    "filename": "w6-community-day.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-voices-symposium",
+    "url": "https://voicesofsept11.org/events/nyc-symposium/2026",
+    "kind": "html",
+    "filename": "w6-voices-symposium.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-mcp-security",
+    "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+    "kind": "html",
+    "filename": "w6-mcp-security.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-mcp-transports",
+    "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/transports",
+    "kind": "html",
+    "filename": "w6-mcp-transports.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-GHSA-vj7q-gjh5-988w",
+    "url": "https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-vj7q-gjh5-988w",
+    "kind": "html",
+    "filename": "w6-GHSA-vj7q-gjh5-988w.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-GHSA-jpw9-pfvf-9f58",
+    "url": "https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-jpw9-pfvf-9f58",
+    "kind": "html",
+    "filename": "w6-GHSA-jpw9-pfvf-9f58.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-GHSA-hvrp-rf83-w775",
+    "url": "https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-hvrp-rf83-w775",
+    "kind": "html",
+    "filename": "w6-GHSA-hvrp-rf83-w775.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "w6-GHSA-9h52-p55h-vw2f",
+    "url": "https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-9h52-p55h-vw2f",
+    "kind": "html",
+    "filename": "w6-GHSA-9h52-p55h-vw2f.html",
+    "notes": "Wave 6 architecture, security and current-week audit"
+  },
+  {
+    "id": "doi-911-investigation-page",
+    "kind": "html",
+    "filename": "doi-911-investigation-2026-09-11.html",
+    "url": "https://www.nyc.gov/site/doi/newsroom/9-11-investigation.page",
+    "notes": "DOI's page on the Res. 560-A investigation: funding ($3.81 million over FY2026 and FY2027), procurement status, the status-update letters, the Commissioner's video of 2026-09-01 (https://www.nyc.gov/assets/doi/videos/September11InvestigationVideo.mp4, not captured)"
+  },
+  {
+    "id": "doi-res-560a-pdf",
+    "kind": "pdf",
+    "filename": "2025-07-14-res-560-a-doi-copy.pdf",
+    "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/NYCCouncilRes560A.pdf",
+    "notes": "Resolution 560-A as posted by DOI"
+  },
+  {
+    "id": "doi-update-2025-12-31",
+    "kind": "pdf",
+    "filename": "2025-12-31-doi-council-update.pdf",
+    "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/12_31_2025Councilupdate.pdf",
+    "notes": "DOI written status update to the Council, December 31, 2025 (Res. 560-A §1)"
+  },
+  {
+    "id": "doi-update-2026-06-29",
+    "kind": "pdf",
+    "filename": "2026-06-29-doi-council-update.pdf",
+    "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf",
+    "notes": "DOI written status update to the Council, June 29, 2026 (Res. 560-A §1)"
+  },
+  {
+    "id": "doi-testimony-2026-03-18",
+    "kind": "pdf",
+    "filename": "2026-03-18-doi-preliminary-budget-testimony.pdf",
+    "url": "https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf",
+    "notes": "DOI preliminary budget testimony, March 18, 2026; the DOI page cites page 4 on the investigation"
+  },
+  {
+    "id": "council-schedule-c-fy2027",
+    "kind": "pdf",
+    "filename": "2026-06-30-council-fiscal-2027-schedule-c.pdf",
+    "url": "https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf",
+    "notes": "Council Fiscal 2027 Schedule C (adopted expense budget adjustments): searched for the $1 million Memorial education line"
+  },
+  {
+    "id": "omb-adopted-fy2027-erc",
+    "kind": "pdf",
+    "filename": "2026-06-30-omb-adopted-budget-fy2027-erc6-26.pdf",
+    "url": "https://www.nyc.gov/assets/omb/downloads/pdf/adopt26/erc6-26.pdf",
+    "notes": "OMB Adopted Budget FY2027, Expense Revenue Contract: searched for the portal and DOI lines"
+  },
+  {
+    "id": "nycps-records-request",
+    "kind": "html",
+    "filename": "nycps-requesting-student-records.html",
+    "url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts",
+    "notes": "NYCPS: how former students request records and transcripts (the route the directory names for the school lane)"
+  },
+  {
+    "id": "nyc311-school-records",
+    "kind": "html",
+    "filename": "nyc311-school-records-ka-03033.html",
+    "url": "https://portal.311.nyc.gov/article/?kanumber=KA-03033",
+    "notes": "NYC311 article on school records"
+  },
+  {
+    "id": "mayor-video-2026-09-08",
+    "kind": "html",
+    "filename": "2026-09-08-mayor-video-youtube-YMe2Rf09Sic.html",
+    "url": "https://www.youtube.com/watch?v=YMe2Rf09Sic",
+    "notes": "The Mayor's Office video of the September 8, 2026 announcement, embedded in the press release (youtubeVideoId YMe2Rf09Sic); statements are quoted from the nyc.gov transcript"
+  },
+  {
+    "id": "dcas-home-2026-09-11",
+    "kind": "html",
+    "filename": "dcas-home-2026-09-11.html",
+    "url": "https://www.nyc.gov/site/dcas/index.page",
+    "notes": "DCAS home page as of 2026-09-11, checked for a presence-records contact path (none found)"
+  }
+]

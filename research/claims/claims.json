@@ -1,0 +1,1391 @@
+[
+  {
+    "id": "harding-35000-plaintiffs",
+    "claim": "The Harding memo says the Law Department estimated approximately 35,000 potential plaintiffs.",
+    "quote": "approximately 35,000 potential plaintiffs",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000138296",
+      "page": 1
+    }
+  },
+  {
+    "id": "harding-10000-claims",
+    "claim": "The Harding memo estimated 10,000 would file a claim.",
+    "quote": "it is estimate that 10,000 would file a claim",
+    "variants": [
+      "10,000 would file a claim"
+    ],
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000138296",
+      "page": 1
+    }
+  },
+  {
+    "id": "harding-health-advisories",
+    "claim": "The Harding memo lists health advisories causing people to return too soon as a potential lawsuit ground.",
+    "quote": "Health advisories caused individuals either to return to the area too soon",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000138296",
+      "page": 1
+    }
+  },
+  {
+    "id": "harding-respirators",
+    "claim": "The Harding memo lists faulty or missing respirators for rescue workers as a potential lawsuit ground.",
+    "quote": "Rescue workers were provided with faulty equipment or no equipment",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000138296",
+      "page": 1
+    }
+  },
+  {
+    "id": "harding-tort-cost-fy2000",
+    "claim": "The memo states tort claims cost the City about $308 million in FY 2000.",
+    "quote": "Tort claims against the City cost about $308 million in FY 2000",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000138296",
+      "page": 1
+    }
+  },
+  {
+    "id": "settlement-monthly-meetings",
+    "claim": "Under the settlement the Law Department meets monthly with 9/11 Health Watch from September 2026 through August 2027.",
+    "quote": "the City's Law Department agrees to meet monthly with Petitioner and his attorneys",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt"
+    }
+  },
+  {
+    "id": "settlement-privilege-log",
+    "claim": "The settlement requires a privilege log of located-but-withheld documents, posted on the portal.",
+    "quote": "which log shall also be posted on the portal",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt"
+    }
+  },
+  {
+    "id": "settlement-documents-of-interest-tab",
+    "claim": "The settlement requires a link to the Harding Memo under a 'Documents of Interest' tab and an FAQ explanation of how it was identified.",
+    "quote": "under a tab entitled \"Documents of Interest\"",
+    "variants": [
+      "underatabentitled“DocumentsofInterest”"
+    ],
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt"
+    }
+  },
+  {
+    "id": "settlement-lobbyist-documents",
+    "claim": "The City must search for documents shared with its lobbyists in Sept–Nov 2001 seeking immunity or liability caps.",
+    "quote": "seeking immunity or liability caps in federal legislation",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt"
+    }
+  },
+  {
+    "id": "settlement-index-numbers",
+    "claim": "The two proceedings are Index No. 155678/2024 (v. DEP) and 153916/2026 (v. City).",
+    "quote": "Index No. 153916/2026",
+    "variants": [
+      "IndexNo.153916/2026"
+    ],
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt"
+    }
+  },
+  {
+    "id": "preservation-directive",
+    "claim": "A Law Department WTC Unit letter told employees not to dispose of WTC documents.",
+    "quote": "DO NOT DISPOSE OF THESE DOCUMENTS",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/Document-3-Law-Dept-Preservation-Directive.pdf",
+      "local_text": "research/raw/sources/2002-law-dept-wtc-preservation-directive.txt"
+    }
+  },
+  {
+    "id": "wtchp-lifetime-cancer-certifications",
+    "claim": "WTCHP lifetime cancer certifications total 57,044 (data through 2026-06-30).",
+    "quote": "Cancer 28,131 28,913 57,044",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/pdfs/statistics/20260630_External_QuarterlyProgramSummary.pdf",
+      "local_text": "research/raw/sources/2026-06-30-wtchp-quarterly-program-summary.txt"
+    }
+  },
+  {
+    "id": "wtchp-cancer-certifications-total",
+    "claim": "WTCHP lifetime cancer certifications total 57,044 (data through 2026-06-30): the total column of the Cancer row registered as wtchp-lifetime-cancer-certifications, kept as its own claim so the figure can be displayed alone.",
+    "quote": "57,044",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/pdfs/statistics/20260630_External_QuarterlyProgramSummary.pdf",
+      "local_text": "research/raw/sources/2026-06-30-wtchp-quarterly-program-summary.txt",
+      "page": 23
+    }
+  },
+  {
+    "id": "wtchp-current-enrollment",
+    "claim": "145,275 members were enrolled in the WTC Health Program as of 2026-06-30.",
+    "quote": "145,275",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/pdfs/statistics/20260630_External_QuarterlyProgramSummary.pdf",
+      "local_text": "research/raw/sources/2026-06-30-wtchp-quarterly-program-summary.txt",
+      "page": 5
+    }
+  },
+  {
+    "id": "foil-request-date-scope",
+    "claim": "9/11 Health Watch's FOIL request was dated September 8, 2023 and sought the October 2001 Harding memo.",
+    "quote": "October 2001 memorandum from Deputy Mayor Robert M. Harding",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/2023-0908-FOIL-Request.pdf",
+      "local_text": "research/raw/sources/2023-09-08-911hw-foil-request.txt"
+    }
+  },
+  {
+    "id": "portal-catalog-size",
+    "claim": "The initial release is 24,441 documents totaling 173,299 pages and 36,568,326,274 bytes of PDFs, in 3 collections and 4,173 distinct folder labels (catalog export 2026-09-09).",
+    "source": {
+      "type": "catalog",
+      "local_csv": "research/raw/portal-recon/catalog_2026-09-09_pdf.csv",
+      "sha256": "687a0c6688dabd6c6f75f47c40ce089bd0929122f6ffaa33d3fc7fa86a7bbc91",
+      "url": "https://sept11documents.cityofnewyork.us/api/v2/export"
+    },
+    "expected": {
+      "documents": 24441,
+      "pages": 173299,
+      "pdf_bytes": 36568326274,
+      "folders": 4173,
+      "collections": 3
+    }
+  },
+  {
+    "id": "epa-2001-09-13-no-significant-asbestos",
+    "claim": "On Sept 13, 2001 EPA said there appeared to be no significant levels of asbestos dust in NYC air.",
+    "quote": "there appears to be no significant levels of asbestos dust in the air in New York City",
+    "source": {
+      "type": "url",
+      "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/d7ada9cf2d39c0a185256acc007c097f.html",
+      "local_text": "research/raw/sources/html/epa-release-2001-09-13.html"
+    }
+  },
+  {
+    "id": "epa-2001-09-18-safe-to-breathe",
+    "claim": "On Sept 18, 2001 Administrator Whitman said the air was safe to breathe and the water safe to drink.",
+    "quote": "their air is safe to breath",
+    "variants": [
+      "air is safe to breathe"
+    ],
+    "source": {
+      "type": "url",
+      "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/ed368f43303656488525744e00039488.html",
+      "local_text": "research/raw/sources/html/epa-release-2001-09-18.html"
+    }
+  },
+  {
+    "id": "oig-2003-sept18-insufficient-data",
+    "claim": "The EPA OIG found the Sept 18 'safe to breathe' statement lacked sufficient data and analyses.",
+    "quote": "the Agency did not have sufficient data and analyses to make the statement",
+    "source": {
+      "type": "url",
+      "url": "https://19january2021snapshot.epa.gov/sites/static/files/2015-10/documents/wtc_report_20030821.pdf",
+      "local_text": "research/raw/sources/2003-08-21-epa-oig-wtc-report-2003-P-00012.txt"
+    }
+  },
+  {
+    "id": "portal-documents-of-interest-fuchs",
+    "claim": "The portal's Documents of Interest tab lists the Feb 28, 2002 Fuchs memo on Congressman Nadler's concerns about indoor air quality.",
+    "quote": "Congressman Nadler's concerns about indoor air quality in Lower Manhattan",
+    "source": {
+      "type": "url",
+      "url": "https://sept11documents.cityofnewyork.us/",
+      "local_text": "research/raw/2026-09-09-w4-portal-technical-recon.md"
+    }
+  },
+  {
+    "id": "transcript-173000-documents",
+    "claim": "Corporation Counsel Banks referred to 173,000 documents at the Sept 8, 2026 press conference.",
+    "quote": "173,000",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "handshake-34-2-million",
+    "claim": "The FY27 handshake budget allocated $34.2 million in FY27 for the portal.",
+    "quote": "$34.2 million in FY27",
+    "variants": [
+      "34.2 million"
+    ],
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/06/mayor-mamdani--speaker-menin-reach-handshake-agreement-on-balanc",
+      "local_text": "research/raw/sources/html/2026-06-30-fy27-handshake.html"
+    }
+  },
+  {
+    "id": "fuchs-wet-mops",
+    "claim": "The Feb 28, 2002 Fuchs memo recommended no longer telling people to clean apartments with wet mops and rags.",
+    "quote": "discontinue telling people to clean their apartments with wet mops and rags",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000147320"
+    }
+  },
+  {
+    "id": "fuchs-nadler-concerns-justified",
+    "claim": "The Fuchs memo says that if Nadler's concerns are justified the City is not informing people of the real health risks.",
+    "quote": "if Nadler's concerns are justified",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000147320",
+      "page": 2
+    }
+  },
+  {
+    "id": "fuchs-real-health-risks",
+    "claim": "The Fuchs memo refers to 'the real health risks in lower Manhattan'.",
+    "quote": "real health risks in lower Manhattan",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000147320",
+      "page": 2
+    }
+  },
+  {
+    "id": "cleanup-initiative-risk-word",
+    "claim": "The May 16, 2002 Clean Up Initiative note says the word 'risk' would not be used in letters.",
+    "quote": "we would not use the word 'risk' in any letters as it would defeat the purpose of creating public confidence",
+    "variants": [
+      "would not use the word",
+      "defeat the purpose of creating public confidence"
+    ],
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000153130",
+      "page": 1
+    }
+  },
+  {
+    "id": "audit-sia14-title",
+    "claim": "An EPA-commissioned Special Investigative Audit #14 environmental data trend report is dated November 20, 2001.",
+    "quote": "SPECIAL INVESTIGATIVE AUDIT #14",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000130438",
+      "page": 1
+    }
+  },
+  {
+    "id": "audit-benzene-180000-ppb",
+    "claim": "The Nov 20, 2001 audit reports a high benzene value of 180,000 ppb on November 8.",
+    "quote": "The recent high value for benzene of 180,000 ppb on November 8th",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000130438",
+      "page": 7
+    }
+  },
+  {
+    "id": "audit-dust-4-5-chrysotile-sept11",
+    "claim": "The audit reports a 4.5% chrysotile bulk dust sample collected at Murray Street and West Side Highway on September 11.",
+    "quote": "The highest result, 4.5% Chrysotile, was reported from a sample collected at Murray Street and West Side Highway",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000130438",
+      "page": 22
+    }
+  },
+  {
+    "id": "audit-dust-38-chrysotile-sept19",
+    "claim": "The audit reports 38% chrysotile from a Ground Zero sample collected September 19.",
+    "quote": "38% Chrysotile from Ground Zero",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000130438",
+      "page": 22
+    }
+  },
+  {
+    "id": "audit-fresh-kills-tem",
+    "claim": "The audit reports Fresh Kills TEM results of 88 to 128 S/mm2 at screening operations.",
+    "quote": "were measured at the Screening Operations",
+    "variants": [
+      "88 to128 S/mm2",
+      "88 to 128 S/mm2"
+    ],
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000130438",
+      "page": 21
+    }
+  },
+  {
+    "id": "fresh-kills-sitrep-exceedances",
+    "claim": "An EPA sampling situation report dated Oct 20, 2001 records 2 of 19 samples exceeding the TEM AHERA standard.",
+    "quote": "Exceedances occurred at Sift Location",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000154488"
+    },
+    "variants": [
+      "Sift Location ~9C (97.78 S/mm^)"
+    ]
+  },
+  {
+    "id": "15-john-chrysotile-1pct",
+    "claim": "A DEP Asbestos Control Program report records asbestos present (1% chrysotile) on the west facade ledge of 15 John Street.",
+    "quote": "Asbestos Present: Yes",
+    "variants": [
+      "Chrysotile 1"
+    ],
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000094256",
+      "page": 1
+    }
+  },
+  {
+    "id": "15-john-date-collected",
+    "claim": "The 15 John Street sample was collected July 13, 2002.",
+    "quote": "Date Collected: 07/13/02",
+    "variants": [
+      "07/13/02"
+    ],
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000094256",
+      "page": 1
+    }
+  },
+  {
+    "id": "stuyvesant-2-5-million",
+    "claim": "A parents' press release faxed via DEP Public Affairs reports asbestos of as much as 2.5 million structures per square centimeter in one Stuyvesant sample.",
+    "quote": "asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000144518",
+      "page": 2
+    }
+  },
+  {
+    "id": "stuyvesant-uft-reoccupying",
+    "claim": "A UFT memo dated October 9, 2001 concerns re-occupying Stuyvesant High School.",
+    "quote": "Re-Occupying Stuyvesant High School",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000106411",
+      "page": 1
+    }
+  },
+  {
+    "id": "stuyvesant-roof-sample-positive",
+    "claim": "The UFT memo reports one of three roof debris samples tested positive for asbestos (greater than 1%).",
+    "quote": "1 sample tested positive for asbestos",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000106411",
+      "page": 2
+    }
+  },
+  {
+    "id": "preservation-directive-on-portal",
+    "claim": "The Law Department preservation directive appears in the portal at NYC-WTC_000148621 page 80.",
+    "quote": "DO NOT DISPOSE OF THESE DOCUMENTS",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000148621",
+      "page": 80
+    }
+  },
+  {
+    "id": "frieden-to-whitman-2002-02-14",
+    "claim": "Health Commissioner Frieden wrote to Administrator Whitman about Cate Jenkins's public criticism (Feb 14, 2002).",
+    "quote": "disseminated by Ms. Cate Jenkins publicly criticizing",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000151604"
+    }
+  },
+  {
+    "id": "epa-2001-09-21-not-exposed",
+    "claim": "On Sept 21, 2001 EPA said residents and workers were not being exposed to contaminants such as asbestos, radiation, mercury and other metals.",
+    "quote": "are not being exposed to contaminants such as asbestos, radiation, mercury and other metals",
+    "source": {
+      "type": "url",
+      "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/1dcfffa0c895910885256ace0082cdeb.html",
+      "local_text": "research/raw/sources/html/epa-release-2001-09-21.html"
+    }
+  },
+  {
+    "id": "clinton-2002-02-11-meeting-standards",
+    "claim": "At the Feb 11, 2002 Senate field hearing Sen. Clinton said outdoor air quality around the WTC site was generally meeting standards and had improved.",
+    "quote": "is generally meeting standards and has improved",
+    "source": {
+      "type": "url",
+      "url": "https://www.govinfo.gov/content/pkg/CHRG-107shrg80397/html/CHRG-107shrg80397.htm",
+      "local_text": "research/raw/sources/html/senate-hearing-2002-02-11-part1.html"
+    }
+  },
+  {
+    "id": "giuliani-2001-09-16-deemed-safe",
+    "claim": "A Sept 16, 2001 mayoral release said ventilation systems had been cleaned and air quality tested and deemed safe.",
+    "quote": "air quality has been tested and deemed safe",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/html/om/html/2001b/pr315-01b.html",
+      "local_text": "research/raw/sources/html/giuliani-release-2001-09-16.html"
+    }
+  },
+  {
+    "id": "osha-2001-10-03-no-evidence-beyond-site",
+    "claim": "On Oct 3, 2001 OSHA said its samples showed no evidence of significant airborne asbestos beyond the disaster site.",
+    "quote": "no evidence of significant levels of airborne asbestos or other contaminants beyond the disaster site itself",
+    "source": {
+      "type": "url",
+      "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/a58e3e62ff609f5185256ada00729977.html",
+      "local_text": "research/raw/sources/html/epa-osha-release-2001-10-03.html"
+    }
+  },
+  {
+    "id": "harding-memo-clean-up-initiative-callahan",
+    "claim": "The Clean-up Initiative note records a conversation with Kathy Callahan.",
+    "quote": "Conversation with Kathy Callahan",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000153130",
+      "page": 1
+    }
+  },
+  {
+    "id": "fy27-adopted-total-comptroller",
+    "claim": "The Comptroller reports the FY27 adopted budget total as $125.84 billion.",
+    "quote": "The Adopted Budget for FY 2027 totals $125.84 billion",
+    "source": {
+      "type": "url",
+      "url": "https://comptroller.nyc.gov/reports/comments-on-new-york-citys-fiscal-year-2027-adopted-budget/",
+      "local_text": "research/raw/sources/html/comptroller-fy27-adopted.html"
+    }
+  },
+  {
+    "id": "council-memorial-education-announcement",
+    "claim": "Council announced $1 million for Memorial education and outreach in the FY27 budget.",
+    "quote": "Speaker Menin and the Council secured $1 million in funding",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/press/2026/09/03/3231/",
+      "local_text": "research/raw/sources/html/council-911-education-2026.html"
+    }
+  },
+  {
+    "id": "council-doi-4-million",
+    "claim": "Council announced $4 million in additional funding for the Department of Investigation to complete and release its report on 9/11 environmental toxins (release of 2026-09-03).",
+    "quote": "secured $4 million in additional funding for the Department of Investigation",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/press/2026/09/03/3231/",
+      "local_text": "research/raw/sources/html/council-911-education-2026.html"
+    }
+  },
+  {
+    "id": "council-doi-report-purpose",
+    "claim": "The Council describes the $4 million as funding for DOI to complete and release its report on 9/11 environmental toxins.",
+    "quote": "to complete and release its long-delayed report on 9/11 environmental toxins",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/press/2026/09/03/3231/",
+      "local_text": "research/raw/sources/html/council-911-education-2026.html"
+    }
+  },
+  {
+    "id": "council-memorial-field-trips",
+    "claim": "The Council's $1 million for the 9/11 Memorial & Museum funds free field trips for New York City students, with a focus on eighth graders.",
+    "quote": "will fund free field trips for New York City students, with a focus on eighth graders",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/press/2026/09/03/3231/",
+      "local_text": "research/raw/sources/html/council-911-education-2026.html"
+    }
+  },
+  {
+    "id": "hw-doi-4-million-two-years",
+    "claim": "9/11 Health Watch's settlement statement describes the DOI investigation as fully funded with $4 million and spanning the next two years.",
+    "quote": "The DOI investigation is now fully funded, with $4 million, will span the next two years",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/press/statement-on-historic-settlement-with-nyc-of-911-health-watchs-freedom-of-information-request-for-the-release-of-9-11-records/",
+      "local_text": "research/raw/sources/html/2026-09-08-911hw-settlement-statement.html"
+    }
+  },
+  {
+    "id": "mayor-dcas-nycps-personnel",
+    "claim": "The Mayor's Office release of 2026-09-08 says the administration will appoint dedicated personnel at DCAS and NYCPS to coordinate retrieval of presence records.",
+    "quote": "appoint dedicated personnel at the Department of Citywide Administrative Services (DCAS) and New York City Public Schools (NYCPS) to coordinate the retrieval of records",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-press-release.html"
+    }
+  },
+  {
+    "id": "mayor-34-million-portal",
+    "claim": "The Mayor's Office release of 2026-09-08 says the FY27 budget includes $34 million to create and maintain the portal (the handshake release says $34.2 million).",
+    "quote": "Mayor Mamdani’s FY27 budget includes $34 million to create and maintain the public records portal",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-press-release.html"
+    }
+  },
+  {
+    "id": "settlement-dcas-doe-personnel",
+    "claim": "The settlement records the City's intent to designate DCAS and DOE personnel to coordinate gathering documents for proof of presence.",
+    "quote": "designating personnel at the Department of Citywide Administrative Services",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt",
+      "page": 3
+    }
+  },
+  {
+    "id": "settlement-dcas-doe-beneficiaries",
+    "claim": "The settlement's DCAS/DOE designation is to assist City employees and individuals who attended New York City public schools.",
+    "quote": "to assist City employees and individuals who attended the New York City Public Schools",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt",
+      "page": 3
+    }
+  },
+  {
+    "id": "vcf-nyc-window",
+    "claim": "VCF presence at the WTC site or in the NYC Exposure Zone must fall between September 11, 2001 and May 30, 2002.",
+    "quote": "between September 11, 2001, and May 30, 2002",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-zone-canal-street",
+    "claim": "The VCF NYC Exposure Zone runs south of Canal Street, river to river, and from the Hudson River to Canal Street and East Broadway.",
+    "quote": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-zone-clinton-street",
+    "claim": "The VCF zone boundary continues north on East Broadway to Clinton Street and east on Clinton Street to the East River.",
+    "quote": "north on East Broadway to Clinton Street, and east on Clinton Street to the East River",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-no-minimum-time",
+    "claim": "The VCF sets no minimum amount of time at a site for purposes of confirming presence.",
+    "quote": "There are no requirements for the minimum amount of time an individual needed to be at a site",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-debris-routes",
+    "claim": "VCF debris-removal routes apply only to those who loaded, unloaded or drove debris trucks, worked the barges, or worked at Fresh Kills.",
+    "quote": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-third-party-verification",
+    "claim": "Third-party verification sent directly to the VCF from an employer or other third party, with specific dates and locations, is often sufficient to verify presence.",
+    "quote": "to the VCF from the employer or other third party, with specific dates and locations, is often sufficient to verify presence",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-listed-employer-first",
+    "claim": "A claimant employed by a listed employer, entity or union must show they sought presence information there before the VCF relies on witness statements.",
+    "quote": "must demonstrate that he/she sought to obtain presence information from the listed",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-two-documents",
+    "claim": "The VCF requires at least two contemporaneous documents when they are used as proof of presence.",
+    "quote": "documents, whether from the list below or otherwise, are required",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-personnel-roster",
+    "claim": "An official personnel roster is a VCF example of an employment document that supports presence.",
+    "quote": "Official personnel roster.",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-police-memo-book",
+    "claim": "A police memo book with its front cover, supervisory signature and opening and closing dates is a VCF example document.",
+    "quote": "Police memo book submitted with the front cover including supervisory signature and opening and closing dates",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-residence-not-sufficient-alone",
+    "claim": "VCF residence documents are not sufficient on their own and are reviewed with other documents.",
+    "quote": "The documents listed below are not sufficient on their own, but will be reviewed in conjunction with other documents",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-school-records-sufficient",
+    "claim": "A certified transcript or school record removes the need for additional VCF proof of presence.",
+    "quote": "If you submit a certified transcript or school record as explained below, you do not need to submit any additional proof of presence",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-stuyhealth",
+    "claim": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email StuyHealth for help acquiring proof of attendance.",
+    "quote": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-witness-minimum-two",
+    "claim": "When witness statements are the only proof of presence, the VCF requires statements from a minimum of two people.",
+    "quote": "minimum of two people",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-witness-non-relative",
+    "claim": "At least one witness statement must come from someone not related to the claimant or the Personal Representative or Guardian.",
+    "quote": "be from an individual who is not related to you or to the Personal Representative or Guardian",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-affidavits-not-accepted",
+    "claim": "Since February 1, 2023 the VCF no longer accepts affidavits as proof of presence.",
+    "quote": "Effective February 1, 2023, the VCF will no longer accept affidavits as proof of presence.",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-comptroller-direct",
+    "claim": "The VCF gets presence information directly from the Office of the New York City Comptroller.",
+    "quote": "The VCF gets the information directly from the Office of the New York City Comptroller.",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-helpline",
+    "claim": "The VCF Helpline is 1-855-885-1555.",
+    "quote": "Call the VCF Helpline at 1-855-885-1555 to register by phone.",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-registration-separate-from-wtchp",
+    "claim": "Enrollment in the WTC Health Program does not automatically register a person with the VCF.",
+    "quote": "Enrollment in the WTC Health Program does not automatically register you with the VCF",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-registration-not-claim",
+    "claim": "VCF registration is not the same as filing a claim.",
+    "quote": "Registration is not the same as filing a claim.",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-claim-deadline-2090",
+    "claim": "The VCF claim filing deadline is October 1, 2090.",
+    "quote": "submit your complete claim no later than October 1, 2090",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "vcf-registration-deadline-individual",
+    "claim": "VCF registration deadlines depend on individual circumstances.",
+    "quote": "deadline applicable to your individual circumstances",
+    "source": {
+      "type": "url",
+      "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines",
+      "local_text": "research/raw/sources/html/vcf-policy-eligibility-criteria-and-deadlines.html"
+    }
+  },
+  {
+    "id": "wtchp-survivor-window",
+    "claim": "WTCHP survivor documentation must show presence in the NYC Disaster Area between September 11, 2001 and July 31, 2002.",
+    "quote": "between September 11, 2001 and July 31, 2002",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-lease-utility-bill",
+    "claim": "A lease or utility bill showing residence in the window is a WTCHP survivor example document.",
+    "quote": "A lease or utility bill with your name showing your residence between September 11, 2001 and July 31, 2002",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-pay-stub",
+    "claim": "A pay stub showing the work location in the window is a WTCHP survivor example document.",
+    "quote": "A pay stub if it shows your work location between September 11, 2001 and July 31, 2002",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-school-transcript",
+    "claim": "A school transcript from Fall 2001 or Spring 2002 is a WTCHP survivor example document.",
+    "quote": "A School Transcript from the Fall 2001 or Spring 2002 semester (or both)",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-responder-employer-letter",
+    "claim": "An employer or union letter stating activities, location, days and hours is a WTCHP responder example document.",
+    "quote": "Letter from your employer or union stating your activities, location, days, and hours performing 9/11-related activities",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-police-memo-book",
+    "claim": "A police memo book including the cover page showing days, times and hours is a WTCHP responder example document.",
+    "quote": "Police memo book(including a copy of the cover page) that shows the days, times, and hours worked at a 9/11-related site.",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-third-party-attestation",
+    "claim": "When official documents cannot be found, WTCHP accepts a letter from someone who can confirm eligibility details (a third-party attestation).",
+    "quote": "you can submit a letter written by someone who can confirm your eligibility details",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-documentation-delays",
+    "claim": "CDC says incomplete or insufficient supporting documentation is the top reason for WTCHP application processing delays.",
+    "quote": "Incomplete or insufficient supporting documentation is the top reason for application processing delays.",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-name-and-period",
+    "claim": "WTCHP supporting documentation must show the applicant's full name and the time period of the covered activity.",
+    "quote": "must show your full name and the time period for your covered activity",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/documentation.html",
+      "local_text": "research/raw/sources/html/cdc-wtc-documentation.html"
+    }
+  },
+  {
+    "id": "wtchp-helpline",
+    "claim": "The WTC Health Program help line is 1-888-982-4748.",
+    "quote": "1-888-982-4748",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/about.html",
+      "local_text": "research/raw/sources/html/wtchp-about-current.html"
+    }
+  },
+  {
+    "id": "wtchp-no-enrollment-deadline",
+    "claim": "The WTC Health Program has no deadline to enroll.",
+    "quote": "There is no deadline to enroll.",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/about.html",
+      "local_text": "research/raw/sources/html/wtchp-about-current.html"
+    }
+  },
+  {
+    "id": "wtchp-separate-from-vcf",
+    "claim": "CDC describes the WTC Health Program as a separate 9/11 assistance program from the VCF.",
+    "quote": "Is a separate 9/11 assistance program from the September 11th Victim Compensation Fund (VCF).",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/about.html",
+      "local_text": "research/raw/sources/html/wtchp-about-current.html"
+    }
+  },
+  {
+    "id": "wtchp-monitoring-treatment",
+    "claim": "The WTC Health Program provides medical monitoring and treatment for WTC-related conditions.",
+    "quote": "medical monitoring and treatment for WTC-related conditions",
+    "source": {
+      "type": "url",
+      "url": "https://www.cdc.gov/wtc/about.html",
+      "local_text": "research/raw/sources/html/wtchp-about-current.html"
+    }
+  },
+  {
+    "id": "settlement-portal-goal",
+    "claim": "The settlement records the City's intent to launch the September 11th Public Records Portal with the goal of making records publicly available.",
+    "quote": "the City intends to launch the September 11th Public Records Portal with the goal of making publicly available",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt",
+      "page": 3
+    }
+  },
+  {
+    "id": "settlement-records-of-public-interest",
+    "claim": "The portal's stated scope includes other records of public interest and importance beyond the FOIL requests.",
+    "quote": "as many other records of public interest and importance",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt",
+      "page": 3
+    }
+  },
+  {
+    "id": "settlement-doi-independence",
+    "claim": "The settlement records the City's intent to honor the independence of the DOI inquiry and cooperate with it fully and transparently.",
+    "quote": "honoring the independence of the DOI’s inquiry under Resolution 560-A, cooperating with it fully and transparently",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt",
+      "page": 3
+    }
+  },
+  {
+    "id": "settlement-dismissed-with-prejudice",
+    "claim": "The proceedings are to be dismissed with prejudice under the settlement.",
+    "quote": "dismissed with prejudice",
+    "source": {
+      "type": "url",
+      "url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf",
+      "local_text": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt",
+      "page": 5
+    }
+  },
+  {
+    "id": "res-560a-purpose",
+    "claim": "Resolution 560-A directs DOI to ascertain the knowledge possessed by mayoral administrations on environmental toxins produced by the September 11, 2001 attacks.",
+    "quote": "to ascertain the knowledge possessed by mayoral administrations on environmental toxins produced by the September 11, 2001 terrorist attacks",
+    "source": {
+      "type": "url",
+      "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206",
+      "local_text": "research/raw/sources/html/res-0560-2024-legistar.html"
+    }
+  },
+  {
+    "id": "res-560a-charter-803",
+    "claim": "Resolution 560-A invokes section 803 of the New York City Charter.",
+    "quote": "pursuant to section 803 of the New York City Charter",
+    "source": {
+      "type": "url",
+      "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206",
+      "local_text": "research/raw/sources/html/res-0560-2024-legistar.html"
+    }
+  },
+  {
+    "id": "res-560a-update-dates",
+    "claim": "Resolution 560-A requires DOI written updates no later than June 30 and December 31 of each year until the report.",
+    "quote": "No later than June 30 and December 31 of each year",
+    "source": {
+      "type": "url",
+      "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206",
+      "local_text": "research/raw/sources/html/res-0560-2024-legistar.html"
+    }
+  },
+  {
+    "id": "res-560a-timeline",
+    "claim": "The DOI report must include a timeline of when mayoral administrations became aware of the toxins.",
+    "quote": "A timeline of when mayoral administrations became aware of these toxins",
+    "source": {
+      "type": "url",
+      "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206",
+      "local_text": "research/raw/sources/html/res-0560-2024-legistar.html"
+    }
+  },
+  {
+    "id": "res-560a-contrast-analysis",
+    "claim": "The DOI report must analyze the contrast between what administrations knew and what they conveyed to the public.",
+    "quote": "An analysis of the contrast between the knowledge mayoral administrations possessed on these toxins and the information the administrations conveyed to the public",
+    "source": {
+      "type": "url",
+      "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206",
+      "local_text": "research/raw/sources/html/res-0560-2024-legistar.html"
+    }
+  },
+  {
+    "id": "banks-for-too-long",
+    "claim": "Corporation Counsel Banks said on September 8, 2026 that information about the aftermath of September 11 had for too long not been provided to the public.",
+    "quote": "For too long, information about the aftermath of Sept. 11 has not been provided to the public.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "banks-right-to-know",
+    "claim": "Corporation Counsel Banks said New Yorkers have a right to know what is in the 68 boxes.",
+    "quote": "New Yorkers have a right to know what is in those boxes",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "banks-rolling-releases",
+    "claim": "Corporation Counsel Banks said documents would roll out over the next 12 months.",
+    "quote": "documents rolling out over the course of the next 12 months",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "banks-search-terms",
+    "claim": "Corporation Counsel Banks said agreed-upon search terms would be posted on the portal.",
+    "quote": "be posting what those terms are on the portal",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "banks-agreed-search-terms",
+    "claim": "The City and 9/11 Health Watch agreed on search terms.",
+    "quote": "agreed-upon search terms",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "mamdani-34-million-commitment",
+    "claim": "Mayor Mamdani described a more than $34 million commitment to create the portal at the September 8, 2026 press conference.",
+    "quote": "City Hall has made a more than $34 million commitment to create a new public portal",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "mamdani-more-over-12-months",
+    "claim": "Mayor Mamdani said more records would be shared over the next 12 months.",
+    "quote": "More will be shared over the next 12 months.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "mamdani-omissions",
+    "claim": "Mayor Mamdani said the only information omitted would be personally identifiable information and security evaluations of Lower Manhattan buildings.",
+    "quote": "The only information omitted will be personally identifiable information and security evaluations of Lower Manhattan buildings",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "mamdani-nothing-else-redacted",
+    "claim": "Mayor Mamdani said nothing else would be redacted.",
+    "quote": "Nothing else will be redacted.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/transcript--25-years-later--mamdani-adminstrtation-opens-city-s-",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-transcript.html"
+    }
+  },
+  {
+    "id": "mayor-release-settlement-two-lawsuits",
+    "claim": "The Mayor's release describes the portal as part of a settlement of two lawsuits brought by 9/11 Health Watch.",
+    "quote": "settlement of two lawsuits",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-press-release.html"
+    }
+  },
+  {
+    "id": "mayor-release-redactions",
+    "claim": "The Mayor's release says omissions were limited to those necessary, including redaction of personally identifiable information.",
+    "quote": "while limiting omissions to those necessary, including the redaction of personally identifiable information",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-press-release.html"
+    }
+  },
+  {
+    "id": "mayor-release-updated-regularly",
+    "claim": "The Mayor's release says the portal will be updated regularly over the next 12 months as the Law Department reviews additional records.",
+    "quote": "The portal will be updated regularly as the Law Department reviews additional City records over the next 12 months",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-press-release.html"
+    }
+  },
+  {
+    "id": "doi-page-3-81-million",
+    "claim": "DOI's investigation page says the City allocated $3.81 million over fiscal years 2026 and 2027 in June 2026 to fund the investigative firm.",
+    "quote": "In June 2026, the City allocated $3.81 million over fiscal years 2026 and 2027 to fund this investigative firm",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/site/doi/newsroom/9-11-investigation.page",
+      "local_text": "research/raw/sources/html/doi-911-investigation-2026-09-11.html"
+    }
+  },
+  {
+    "id": "doi-page-procurement",
+    "claim": "DOI's page says DOI is in the procurement process to hire the firm.",
+    "quote": "DOI is currently in the procurement process to hire that firm.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/site/doi/newsroom/9-11-investigation.page",
+      "local_text": "research/raw/sources/html/doi-911-investigation-2026-09-11.html"
+    }
+  },
+  {
+    "id": "doi-page-public-report",
+    "claim": "DOI's page says DOI will produce a public report at the conclusion of its investigation.",
+    "quote": "DOI will also produce a public report at the conclusion of its investigation.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/site/doi/newsroom/9-11-investigation.page",
+      "local_text": "research/raw/sources/html/doi-911-investigation-2026-09-11.html"
+    }
+  },
+  {
+    "id": "doi-page-video-2026-09-01",
+    "claim": "DOI's page links a video update from Commissioner Shihata dated September 1, 2026.",
+    "quote": "DOI Commissioner Shihata updates on the investigation: September 1, 2026",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/site/doi/newsroom/9-11-investigation.page",
+      "local_text": "research/raw/sources/html/doi-911-investigation-2026-09-11.html"
+    }
+  },
+  {
+    "id": "doi-update-2025-12-31-served",
+    "claim": "DOI's letter of December 31, 2025 is its Res. 560-A status update for that date.",
+    "quote": "This letter serves as an update for December 31, 2025.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/12_31_2025Councilupdate.pdf",
+      "local_text": "research/raw/sources/2025-12-31-doi-council-update.txt",
+      "page": 1
+    }
+  },
+  {
+    "id": "doi-2025-12-request-over-3-million",
+    "claim": "In December 2025 DOI reported requesting a total of over $3 million over two fiscal years for the investigation.",
+    "quote": "a total of over $3 million over two fiscal years",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/12_31_2025Councilupdate.pdf",
+      "local_text": "research/raw/sources/2025-12-31-doi-council-update.txt",
+      "page": 2
+    }
+  },
+  {
+    "id": "doi-2025-12-not-yet-approved",
+    "claim": "In December 2025 DOI reported the funding request was not yet approved.",
+    "quote": "the request is not yet approved",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/12_31_2025Councilupdate.pdf",
+      "local_text": "research/raw/sources/2025-12-31-doi-council-update.txt",
+      "page": 2
+    }
+  },
+  {
+    "id": "doi-update-2026-06-30-served",
+    "claim": "DOI's letter of June 29, 2026 is its Res. 560-A status update for June 30, 2026.",
+    "quote": "This letter serves as an update for June 30, 2026.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf",
+      "local_text": "research/raw/sources/2026-06-29-doi-council-update.txt",
+      "page": 1
+    }
+  },
+  {
+    "id": "doi-2026-06-request-4-million",
+    "claim": "In June 2026 DOI reported requesting a total of $4 million over two fiscal years to hire a third-party firm.",
+    "quote": "DOI requested a total of $4 million over the course of two fiscal years to hire a third-party firm",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf",
+      "local_text": "research/raw/sources/2026-06-29-doi-council-update.txt",
+      "page": 2
+    }
+  },
+  {
+    "id": "doi-2026-06-omb-not-approved",
+    "claim": "As of June 29, 2026, OMB had not yet approved DOI's request.",
+    "quote": "has not yet approved DOI’s request",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf",
+      "local_text": "research/raw/sources/2026-06-29-doi-council-update.txt",
+      "page": 2
+    }
+  },
+  {
+    "id": "doi-2026-06-two-firms",
+    "claim": "By June 29, 2026 DOI had selected a team of two firms to assist the investigation.",
+    "quote": "has selected a team consisting of two firms to assist in the Investigation",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf",
+      "local_text": "research/raw/sources/2026-06-29-doi-council-update.txt",
+      "page": 2
+    }
+  },
+  {
+    "id": "doi-2026-06-contract-after-funding",
+    "claim": "DOI will enter a contract with the selected firms once funding is secured from OMB.",
+    "quote": "Once DOI has secured funding from OMB, DOI will enter a contract with the selected firms.",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf",
+      "local_text": "research/raw/sources/2026-06-29-doi-council-update.txt",
+      "page": 2
+    }
+  },
+  {
+    "id": "schedule-c-memorial-field-trips-750000",
+    "claim": "The Council's Fiscal 2027 Schedule C lists $750,000 through DYCD for National September 11 Memorial and Museum field trips.",
+    "quote": "Museum Field Trips 611745872 $750,000 DYCD",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf",
+      "local_text": "research/raw/sources/2026-06-30-council-fiscal-2027-schedule-c.txt",
+      "page": 281
+    }
+  },
+  {
+    "id": "schedule-c-memorial-8th-grade",
+    "claim": "The Fiscal 2027 Schedule C states the $750,000 supports 8th grade students visiting the museum free of charge.",
+    "quote": "To provide funding support for 8th grade students to visit the museum free of charge.",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf",
+      "local_text": "research/raw/sources/2026-06-30-council-fiscal-2027-schedule-c.txt",
+      "page": 281
+    }
+  },
+  {
+    "id": "schedule-c-memorial-programming-250000",
+    "claim": "The Council's Fiscal 2027 Schedule C lists $250,000 through DYCD for 9/11 Memorial Museum programming.",
+    "quote": "9/11 Memorial Museum Programming 611745872 $250,000 DYCD",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf",
+      "local_text": "research/raw/sources/2026-06-30-council-fiscal-2027-schedule-c.txt",
+      "page": 280
+    }
+  },
+  {
+    "id": "schedule-c-memorial-programming-purpose",
+    "claim": "The Schedule C $250,000 line covers in-person and virtual field trips to the Memorial & Museum.",
+    "quote": "Funds will be used to cover the costs of in-person and virtual field trips",
+    "source": {
+      "type": "url",
+      "url": "https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf",
+      "local_text": "research/raw/sources/2026-06-30-council-fiscal-2027-schedule-c.txt",
+      "page": 280
+    }
+  },
+  {
+    "id": "nycps-former-students-form",
+    "claim": "NYCPS says former students must complete the Student Records Request Form to request records, including transcripts.",
+    "quote": "Former students must print and fill out the Student Records Request Form",
+    "source": {
+      "type": "url",
+      "url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts",
+      "local_text": "research/raw/sources/html/nycps-requesting-student-records.html"
+    }
+  },
+  {
+    "id": "nycps-18-or-older",
+    "claim": "NYCPS honors transcript requests only from the student once the student is 18 or older.",
+    "quote": "When a student is 18 or older, the DOE will only honor transcript requests from the student.",
+    "source": {
+      "type": "url",
+      "url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts",
+      "local_text": "research/raw/sources/html/nycps-requesting-student-records.html"
+    }
+  },
+  {
+    "id": "nycps-closed-school",
+    "claim": "If a former high school has closed, another school holds the transcript and can provide a copy.",
+    "quote": "If your former high school has closed, another school now has your transcript and can provide you with a copy.",
+    "source": {
+      "type": "url",
+      "url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts",
+      "local_text": "research/raw/sources/html/nycps-requesting-student-records.html"
+    }
+  },
+  {
+    "id": "mayor-video-title",
+    "claim": "The Mayor's Office video of the September 8, 2026 announcement is titled as a press conference to make a 9/11-related announcement.",
+    "quote": "Mayor Mamdani Holds Press Conference to Make a 9/11-Related Announcement",
+    "source": {
+      "type": "url",
+      "url": "https://www.youtube.com/watch?v=YMe2Rf09Sic",
+      "local_text": "research/raw/sources/html/2026-09-08-mayor-video-youtube-YMe2Rf09Sic.html"
+    }
+  },
+  {
+    "id": "doi-testimony-3-million-fy27",
+    "claim": "In March 2026 testimony DOI said it had requested $3 million in FY27 to hire an outside firm for the investigation.",
+    "quote": "DOI has requested $3 million in funding in FY27 to hire an outside firm",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf",
+      "local_text": "research/raw/sources/2026-03-18-doi-preliminary-budget-testimony.txt",
+      "page": 5
+    }
+  },
+  {
+    "id": "doi-testimony-4-to-5-million",
+    "claim": "In March 2026 testimony DOI estimated the overall investigation would cost between $4 and $5 million.",
+    "quote": "DOI now estimates that the cost of the overall investigation will total between $4 and $5 million",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf",
+      "local_text": "research/raw/sources/2026-03-18-doi-preliminary-budget-testimony.txt",
+      "page": 5
+    }
+  },
+  {
+    "id": "doi-testimony-report-july-2027",
+    "claim": "DOI's March 2026 testimony describes the report as due to the Council by July 2027.",
+    "quote": "submit a report to Council by July 2027",
+    "source": {
+      "type": "url",
+      "url": "https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf",
+      "local_text": "research/raw/sources/2026-03-18-doi-preliminary-budget-testimony.txt",
+      "page": 5
+    }
+  }
+]

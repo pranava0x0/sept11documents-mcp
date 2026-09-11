@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sept11-mcp"
+version = "0.2.0"
+description = "Read-only MCP server and research tools over New York City's September 11th Document Portal: page-exact citations, a release watchdog, a commitment ledger, and no invented facts."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "Proprietary; license decision pending"}
+authors = [{name = "Pranava Raparla"}]
+keywords = ["mcp", "model-context-protocol", "nyc", "public-records", "september-11", "foil"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: Sociology :: History",
+]
+# Standard library only: the server has no runtime dependency to pin or to audit.
+dependencies = []
+
+[project.optional-dependencies]
+pdf = ["pypdf>=4"]
+
+[project.scripts]
+sept11-mcp = "sept11.cli:main"
+
+[project.urls]
+Homepage = "https://pranava0x0.github.io/sept11documents-mcp/"
+Source = "https://github.com/pranava0x0/sept11documents-mcp"
+
+[tool.setuptools.packages.find]
+include = ["sept11*"]

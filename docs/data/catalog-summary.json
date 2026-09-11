@@ -1,0 +1,35 @@
+{
+  "documents": 24441,
+  "pages": 173299,
+  "pdf_bytes": 36568326274,
+  "by_source": {
+    "DEP Hard Copies (68 Boxes)": 21395,
+    "WTC 7": 3025,
+    "DORIS Giuliani": 21
+  },
+  "by_agency": {
+    "Environmental Protection, Dept. of": 21395,
+    "Citywide Administrative Services, Dept. of": 2915,
+    "Fire Department": 96,
+    "Records and Information Services, Dept. of": 21,
+    "Design and Construction, Dept. of": 11,
+    "Buildings, Dept. of": 3
+  },
+  "by_production_volume": {
+    "NYC-WTC0001": 133,
+    "NYC-WTC0002": 4998,
+    "NYC-WTC0003": 3355,
+    "NYC-WTC0004": 7562,
+    "NYC-WTC0005": 21,
+    "NYC-WTC0006": 5347,
+    "NYC-WTC0007": 3025
+  },
+  "boxes": 74,
+  "folders": 4173,
+  "largest_document": "NYC-WTC_000146129",
+  "captured_at": "2026-09-09T15:30:00Z (manual curl export; see w4 recon)",
+  "csv_sha256": "687a0c6688dabd6c6f75f47c40ce089bd0929122f6ffaa33d3fc7fa86a7bbc91",
+  "csv_file": "catalog_2026-09-09_pdf.csv",
+  "api_base": "https://nyc.mindbreeze.com/search/september-11",
+  "csv_sha256_note": "SHA-256 of the captured CSV file as stored; the same digest appears in research/claims/claims.json and the snapshot manifest."
+}

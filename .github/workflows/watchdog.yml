@@ -1,0 +1,55 @@
+# Daily: one catalog export, stored as an immutable snapshot, compared with the previous accepted
+# one, and published as docs/data/watchdog/latest.json. The snapshot store travels as a release
+# asset (each run downloads the current store, adds one snapshot, uploads the new store), and
+# the published record is committed on the default branch by this trusted, scheduled job only.
+# Etiquette: one export per day, the toolkit's own User-Agent, nothing else fetched.
+name: watchdog
+on:
+  schedule:
+    - cron: "17 9 * * *"  # 09:17 UTC daily
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: watchdog
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SNAPSHOT_RELEASE: watchdog-snapshots
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683  # v4.2.2
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065  # v5.6.0
+        with:
+          python-version: "3.12"
+      - name: Restore the snapshot store
+        run: |
+          mkdir -p data/watchdog
+          if gh release view "$SNAPSHOT_RELEASE" >/dev/null 2>&1; then
+            gh release download "$SNAPSHOT_RELEASE" --pattern "snapshots.tgz" --output snapshots.tgz
+            python3 scripts/evidence_bundle.py restore snapshots.tgz
+          else
+            echo "no snapshot release yet; this run records the baseline"
+          fi
+      - name: Capture, compare, publish
+        run: python3 scripts/watchdog.py run
+      - name: Upload the snapshot store
+        run: |
+          python3 scripts/evidence_bundle.py pack --out snapshots.tgz
+          if gh release view "$SNAPSHOT_RELEASE" >/dev/null 2>&1; then
+            gh release upload "$SNAPSHOT_RELEASE" snapshots.tgz --clobber
+          else
+            gh release create "$SNAPSHOT_RELEASE" snapshots.tgz --title "Watchdog snapshot store" \
+              --notes "Immutable catalog snapshots packed by scripts/evidence_bundle.py; replaced daily."
+          fi
+      - name: Commit the published record
+        run: |
+          git config user.name "watchdog"
+          git config user.email "watchdog@users.noreply.github.com"
+          git add docs/data/watchdog/latest.json review/publication.json
+          git diff --cached --quiet && { echo "nothing changed"; exit 0; }
+          git commit -m "watchdog: catalog capture $(date -u +%Y-%m-%d)"
+          git push

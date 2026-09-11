@@ -1,0 +1,158 @@
+{
+  "generated_at": "2026-09-11",
+  "basis": "Stipulation and Order of Settlement (Index 155678/2024, 153916/2026), so-ordered September 2026; Council Res. 0560-2024(A) adopted 2025-07-14; portal captures 2026-09-09 and 2026-09-11; DOI investigation page and letters captured 2026-09-11",
+  "statuses": [
+    "observed",
+    "partially_observed",
+    "not_observed",
+    "unable_to_check",
+    "upcoming",
+    "disputed"
+  ],
+  "rows": [
+    {
+      "id": "portal-launch",
+      "obligation": "Launch the September 11th Public Records Portal with records sought in the FOIL requests plus other records of public interest",
+      "source": "Settlement recitals; ¶ (1)–(3)",
+      "status": "observed",
+      "evidence": "Portal live 2026-09-08; catalog export 2026-09-09: 24,441 documents / 173,299 pages",
+      "evidence_ref": "research/raw/portal-recon/catalog_2026-09-09_summary.json",
+      "checked": "2026-09-09"
+    },
+    {
+      "id": "harding-documents-of-interest",
+      "obligation": "Link the Harding Memo under a 'Documents of Interest' tab; FAQ explains how it was identified",
+      "source": "Settlement ¶ (Harding Memo)",
+      "status": "partially_observed",
+      "evidence": "Documents of Interest previously observed; Harding FAQ answer read in browser September 9. Combined obligation requires independent review.",
+      "evidence_ref": "research/raw/portal-pages/2026-09-09-w6-observation.md",
+      "checked": "2026-09-09"
+    },
+    {
+      "id": "monthly-meetings",
+      "obligation": "Monthly Law Department meetings with 9/11 Health Watch, Sept 2026 – Aug 2027 (documents, pages, sources, subjects)",
+      "source": "Settlement ¶ 1",
+      "status": "upcoming",
+      "evidence": "First meeting window: September 2026",
+      "evidence_ref": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt p.4",
+      "checked": "2026-09-09",
+      "due": "monthly through 2027-08"
+    },
+    {
+      "id": "search-terms-posted",
+      "obligation": "Agreed search terms posted on the portal",
+      "source": "Transcript 2026-09-08 (Corporation Counsel Banks)",
+      "status": "not_observed",
+      "evidence": "FAQ provides examples; complete agreed list not observed in inspected navigation.",
+      "evidence_ref": "research/raw/portal-pages/2026-09-09-w6-observation.md",
+      "checked": "2026-09-09"
+    },
+    {
+      "id": "privilege-log",
+      "obligation": "Privilege log of located-but-withheld documents, provided to counsel and posted on the portal",
+      "source": "Settlement ¶ 7",
+      "status": "not_observed",
+      "evidence": "No dedicated navigation item observed; no claim of absence elsewhere.",
+      "evidence_ref": "research/raw/portal-pages/2026-09-09-w6-observation.md",
+      "checked": "2026-09-09"
+    },
+    {
+      "id": "lobbying-documents-search",
+      "obligation": "Diligent search for documents shared with lobbyists/government liaisons in Sept–Nov 2001 seeking immunity or liability caps; post if found",
+      "source": "Settlement ¶ (lobbyists)",
+      "status": "upcoming",
+      "evidence": "No posting yet",
+      "evidence_ref": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt p.5",
+      "checked": "2026-09-09"
+    },
+    {
+      "id": "dcas-doe-personnel",
+      "obligation": "Designate DCAS and DOE personnel to gather documents for proof of presence (City employees; NYC public-school attendees)",
+      "source": "Settlement ¶ (b); Mayor's press release",
+      "status": "partially_observed",
+      "evidence": "Commitment announced 2026-09-08 (settlement p.3; Mayor’s release). No contact path published: DCAS home page captured 2026-09-11 has no mention; the portal’s Programs and Forms page was not re-checked.",
+      "evidence_ref": "research/raw/sources/html/dcas-home-2026-09-11.html",
+      "checked": "2026-09-11"
+    },
+    {
+      "id": "yrc-promotion",
+      "obligation": "Use City social media to promote the WTCHP Youth Research Cohort once enrollment opens",
+      "source": "Settlement ¶ (c)",
+      "status": "upcoming",
+      "evidence": "YRC enrollment not yet open (CDC phase 1 community engagement)",
+      "evidence_ref": "research/raw/2026-09-09-w3-federal-programs-zones-forms.md",
+      "checked": "2026-09-09"
+    },
+    {
+      "id": "doi-cooperation",
+      "obligation": "Honor the independence of the DOI inquiry under Res. 560-A; cooperate fully; do not impede",
+      "source": "Settlement ¶ (a)",
+      "status": "unable_to_check",
+      "evidence": "DOI’s letters of 2025-12-31 and 2026-06-29 report agency responses and follow-up meetings; funding was reported unapproved on 2026-06-29 and allocated ($3.81 million, FY2026–FY2027) on DOI’s page read 2026-09-11. Cooperation and independence are not established by these documents.",
+      "evidence_ref": "research/raw/sources/html/doi-911-investigation-2026-09-11.html",
+      "checked": "2026-09-11"
+    },
+    {
+      "id": "doi-update-2025-12-31",
+      "obligation": "DOI written status update to the Speaker",
+      "source": "Res. 560-A §1",
+      "status": "observed",
+      "due": "2025-12-31",
+      "evidence": "Letter of December 31, 2025 from Commissioner Strauber to Speaker Adams, posted on DOI’s investigation page: agencies contacted in July 2025; funding of over $3 million over two fiscal years requested and not yet approved; RFI issued.",
+      "evidence_ref": "research/raw/sources/2025-12-31-doi-council-update.txt p.1",
+      "checked": "2026-09-11"
+    },
+    {
+      "id": "doi-update-2026-06-30",
+      "obligation": "DOI written status update to the Speaker",
+      "source": "Res. 560-A §1",
+      "status": "observed",
+      "due": "2026-06-30",
+      "evidence": "Letter of June 29, 2026 from Commissioner Shihata to Speaker Menin, posted on DOI’s investigation page: $4 million over two fiscal years requested and not yet approved by OMB; a team of two firms selected; contract to follow funding.",
+      "evidence_ref": "research/raw/sources/2026-06-29-doi-council-update.txt p.1",
+      "checked": "2026-09-11"
+    },
+    {
+      "id": "doi-update-2026-12-31",
+      "obligation": "DOI written status update to the Speaker",
+      "source": "Res. 560-A §1",
+      "status": "upcoming",
+      "evidence": "Due 2026-12-31",
+      "evidence_ref": "research/raw/2026-09-09-w4-transcript-resolution-eo-docs.md",
+      "checked": "2026-09-09",
+      "due": "2026-12-31"
+    },
+    {
+      "id": "doi-update-2027-06-30",
+      "obligation": "DOI written status update to the Speaker",
+      "source": "Res. 560-A §1",
+      "status": "upcoming",
+      "evidence": "Due 2027-06-30",
+      "evidence_ref": "research/raw/2026-09-09-w4-transcript-resolution-eo-docs.md",
+      "checked": "2026-09-09",
+      "due": "2027-06-30"
+    },
+    {
+      "id": "doi-report-2027-07-14",
+      "obligation": "DOI report: knowledge assessment, timeline of awareness, public-vs-internal contrast analysis",
+      "source": "Res. 560-A §2",
+      "status": "upcoming",
+      "evidence": "Due no later than 2 years after adoption (2025-07-14)",
+      "evidence_ref": "research/raw/2026-09-09-w4-transcript-resolution-eo-docs.md",
+      "checked": "2026-09-09",
+      "due": "2027-07-14"
+    },
+    {
+      "id": "twelve-month-mark",
+      "obligation": "Twelve months of good-faith performance; then dismissal with prejudice",
+      "source": "Settlement ¶ 7–8",
+      "status": "upcoming",
+      "evidence": "2027-09-08",
+      "evidence_ref": "research/raw/sources/2026-09-08-911healthwatch-settlement-agreement.txt p.5",
+      "checked": "2026-09-09",
+      "due": "2027-09-08"
+    }
+  ],
+  "method": "Manual observations of specified surfaces; not a legal compliance determination.",
+  "note_due": "`due` is the date basis stated in the source; rows without one are rolling or already dated by observation."
+}

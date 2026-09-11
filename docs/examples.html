@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Examples built on the MCP · September 11th Documents Toolkit</title>
+<meta name="description" content="Four examples built on the MCP server's data: find a cited record, see which official records prove presence and their issuers, follow a budget commitment stage by stage, and inspect an archive capture.">
+<link rel="canonical" href="https://pranava0x0.github.io/sept11documents-mcp/examples.html">
+<link rel="stylesheet" href="assets/site.css?v=d8587092">
+</head>
+<body class="demo-home">
+<a class="skip" href="#main">Skip to main content</a>
+<!-- BUILD:mast -->
+<header class="mast"><div class="in"><a class="word" href="index.html">September 11th Documents Toolkit</a><span class="note">Independent project. Not an official City of New York website. Not legal advice.</span></div></header>
+<nav class="top" aria-label="Pages"><div class="in"><ul>
+<li><a href="index.html">Overview</a></li><li><a href="toolkit.html">The MCP</a></li><li><a href="examples.html" aria-current="page">Examples</a></li><li><a href="records.html">Records</a></li>
+</ul></div></nav>
+<!-- /BUILD:mast -->
+<main id="main">
+<header class="workspace-intro">
+<p class="eyebrow">Built on the MCP</p>
+<h1 id="top">Examples</h1>
+<p>Four examples use the data the <a href="toolkit.html">MCP server</a> serves, and each names the tools an assistant would call.</p>
+</header>
+<div class="workspace">
+<nav class="demo-tabs" aria-label="Choose a demo">
+<a id="tab-records" href="#demo-records">Find a record</a>
+<a id="tab-help" href="#demo-help">Get official help</a>
+<a id="tab-budget" href="#demo-budget">Follow the money</a>
+<a id="tab-releases" href="#demo-releases">Check releases</a>
+</nav>
+<section id="demo-records" class="demo-panel" aria-labelledby="tab-records">
+<div class="demo-heading"><h2>A saved record and the page it comes from</h2><span class="demo-label">Saved examples</span></div>
+<div class="demo-grid">
+<div class="demo-primary">
+<!-- BUILD:record-demo -->
+<label for="record-choice">Choose a record</label>
+<select id="record-choice"><option value="harding-memo">Harding memo</option><option value="clean-up-initiative">Clean Up Initiative</option><option value="15-john-street">15 John Street lab report</option></select>
+<article class="record-result" data-record="harding-memo">
+<p class="eyebrow">DORIS Giuliani · research example</p>
+<h3>Harding memo</h3>
+<blockquote>there are approximately 35,000 potential plaintiffs...and it is estimate that 10,000 would file a claim</blockquote>
+<div class="result-actions"><a class="btn" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1">Open source · p.1</a>
+<button type="button" class="quiet copy-citation" data-copy="NYC-WTC_000138296 p.1 — https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1" hidden>Copy citation</button></div>
+<p class="source-id"><a href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1">NYC-WTC_000138296 · p.1</a></p>
+</article>
+<article class="record-result" data-record="clean-up-initiative">
+<p class="eyebrow">DEP Hard Copies (68 Boxes) · research example</p>
+<h3>Clean Up Initiative</h3>
+<blockquote>we would not use the word &#x27;risk&#x27; in any letters as it would defeat the purpose of creating public confidence</blockquote>
+<div class="result-actions"><a class="btn" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf#page=1">Open source · p.1</a>
+<button type="button" class="quiet copy-citation" data-copy="NYC-WTC_000153130 p.1 — https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf#page=1" hidden>Copy citation</button></div>
+<p class="source-id"><a href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf#page=1">NYC-WTC_000153130 · p.1</a></p>
+</article>
+<article class="record-result" data-record="15-john-street">
+<p class="eyebrow">DEP Hard Copies (68 Boxes) · research example</p>
+<h3>15 John Street lab report</h3>
+<blockquote>Asbestos Present: Yes</blockquote>
+<div class="result-actions"><a class="btn" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1">Open source · p.1</a>
+<button type="button" class="quiet copy-citation" data-copy="NYC-WTC_000094256 p.1 — https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1" hidden>Copy citation</button></div>
+<p class="source-id"><a href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1">NYC-WTC_000094256 · p.1</a></p>
+</article>
+<!-- /BUILD:record-demo -->
+<p class="result-note">Excerpt; an ellipsis marks omitted words.</p>
+<p id="copy-status" class="result-note" role="status"></p>
+<h3>Search the archive's folder labels</h3>
+<form class="folder-search" id="folder-search" role="search">
+<label for="folder-query">Address, box or folder label</label>
+<div class="search-row"><input id="folder-query" type="search" autocomplete="off" spellcheck="false" placeholder="John Street, Stuyvesant, DEP Box 31" maxlength="80"><button type="submit" class="btn">Search</button></div>
+</form>
+<p id="folder-status" class="result-note" role="status">Searches the <b data-metric="folders">4,173</b> folder labels in the saved catalog capture, in your browser. Nothing is sent to the City.</p>
+<ol id="folder-results" class="folder-results" hidden></ol>
+<noscript><p class="result-note">Folder search needs JavaScript. The labels are in <a href="data/folders.json">folders.json</a>.</p></noscript>
+</div>
+<aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>catalog_search</code> → <code>portal_get_page_text</code> → <code>citations_verify</code></p>
+<p><a href="toolkit.html#example-catalog_search">See what the tool returns ↗</a></p>
+<a href="records.html">More research examples ↗</a></aside>
+</div>
+</section>
+<section id="demo-help" class="demo-panel" aria-labelledby="tab-help">
+<div class="demo-heading"><h2>Records that prove presence, and their issuers</h2><span class="demo-label">Official directory</span></div>
+<div class="demo-grid">
+<div class="demo-primary">
+<!-- BUILD:help-demo -->
+<label for="help-choice">Choose a program</label>
+<select id="help-choice"><option value="wtchp">World Trade Center Health Program</option><option value="vcf">September 11th Victim Compensation Fund</option></select>
+<article class="help-result" data-help="wtchp">
+<p class="eyebrow">Centers for Disease Control and Prevention (NIOSH), federal</p>
+<h3>World Trade Center Health Program</h3>
+<dl class="facts"><div><dt>Contact</dt><dd><a href="https://www.cdc.gov/wtc/">www.cdc.gov/wtc</a> · 1-888-982-4748 <a class="cite" href="https://www.cdc.gov/wtc/about.html">CDC, about the Program</a></dd></div><div><dt>Provides</dt><dd><q>medical monitoring and treatment for WTC-related conditions</q> <a class="cite" href="https://www.cdc.gov/wtc/about.html">CDC, about the Program</a></dd></div><div><dt>Deadline</dt><dd><q>There is no deadline to enroll.</q> <a class="cite" href="https://www.cdc.gov/wtc/about.html">CDC, about the Program</a></dd></div><div><dt>Time window</dt><dd><q>between September 11, 2001 and July 31, 2002</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a> <span class="muted">Survivors: lived, worked, or attended school, daycare or adult daycare in the NYC Disaster Area</span></dd></div><div><dt>Zone</dt><dd>NYC Disaster Area, <a href="https://www.cdc.gov/wtc/eligiblegroups.html">defined on the CDC page ↗</a> <span class="muted">The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.</span></dd></div><div><dt>Separate program</dt><dd><q>Is a separate 9/11 assistance program from the September 11th Victim Compensation Fund (VCF).</q> <a class="cite" href="https://www.cdc.gov/wtc/about.html">CDC, about the Program</a></dd></div></dl>
+<h4>Rules the program states</h4>
+<ul class="rules"><li>Supporting documentation <q>must show your full name and the time period for your covered activity</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a></li><li><q>Incomplete or insufficient supporting documentation is the top reason for application processing delays.</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a></li></ul>
+<h4>Records that prove presence</h4>
+<ul class="lanes"><li><b>Employment</b><ul><li><q>Letter from your employer or union stating your activities, location, days, and hours performing 9/11-related activities</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a> <span class="muted">responders</span></li><li><q>A pay stub if it shows your work location between September 11, 2001 and July 31, 2002</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a> <span class="muted">survivors</span></li><li><q>Police memo book(including a copy of the cover page) that shows the days, times, and hours worked at a 9/11-related site.</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a> <span class="muted">responders</span></li></ul></li><li><b>Residence</b><ul><li><q>A lease or utility bill with your name showing your residence between September 11, 2001 and July 31, 2002</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a> <span class="muted">survivors</span></li></ul></li><li><b>School</b><ul><li><q>A School Transcript from the Fall 2001 or Spring 2002 semester (or both)</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a> <span class="muted">survivors</span></li></ul></li><li><b>If no official document can be found</b><ul><li><q>you can submit a letter written by someone who can confirm your eligibility details</q> <a class="cite" href="https://www.cdc.gov/wtc/documentation.html">CDC, supporting documentation</a> <span class="muted">(the CDC page calls this a third-party attestation)</span></li></ul></li></ul>
+<p class="official">Official pages: <a href="https://www.cdc.gov/wtc/documentation.html">Supporting documentation</a> · <a href="https://www.cdc.gov/wtc/eligiblegroups.html">Eligible groups and the NYC Disaster Area</a> · <a href="https://www.cdc.gov/wtc/about.html">About the Program</a></p>
+</article>
+<article class="help-result" data-help="vcf">
+<p class="eyebrow">U.S. Department of Justice</p>
+<h3>September 11th Victim Compensation Fund</h3>
+<dl class="facts"><div><dt>Contact</dt><dd><a href="https://www.vcf.gov/">www.vcf.gov</a> · 1-855-885-1555 <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></dd></div><div><dt>Deadline</dt><dd><q>submit your complete claim no later than October 1, 2090</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> Registration has its own <q>deadline applicable to your individual circumstances</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></dd></div><div><dt>Time window</dt><dd><q>between September 11, 2001, and May 30, 2002</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> <span class="muted">The World Trade Center site or the NYC Exposure Zone</span></dd></div><div><dt>Zone</dt><dd>VCF NYC Exposure Zone: <q>runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> <q>north on East Broadway to Clinton Street, and east on Clinton Street to the East River</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> <q>The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> <a href="https://www.vcf.gov/nyc-map-exposure-zone">Map ↗</a></dd></div><div><dt>Separate program</dt><dd><q>Enrollment in the WTC Health Program does not automatically register you with the VCF</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></dd></div></dl>
+<h4>Rules the program states</h4>
+<ul class="rules"><li><q>Registration is not the same as filing a claim.</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li><li><q>There are no requirements for the minimum amount of time an individual needed to be at a site</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li></ul>
+<h4>Records that prove presence</h4>
+<ul class="lanes"><li><b>Third-party verification (primary)</b><ul><li>Sent directly <q>to the VCF from the employer or other third party, with specific dates and locations, is often sufficient to verify presence</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li><li>A claimant with a listed employer, entity or union <q>must demonstrate that he/she sought to obtain presence information from the listed</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> <span class="muted">(before the VCF relies on witness statements)</span></li></ul></li><li><b>Contemporaneous documents (primary)</b><ul><li>At least two <q>documents, whether from the list below or otherwise, are required</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li><li><q>Official personnel roster.</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li><li><q>Police memo book submitted with the front cover including supervisory signature and opening and closing dates</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li></ul></li><li><b>Residence documents (corroborating)</b><ul><li><q>The documents listed below are not sufficient on their own, but will be reviewed in conjunction with other documents</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li></ul></li><li><b>School or daycare records</b><ul><li><q>If you submit a certified transcript or school record as explained below, you do not need to submit any additional proof of presence</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li><li><q>Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> <a href="mailto:info@stuyhealth.org">info@stuyhealth.org</a></li></ul></li><li><b>Witness statements (secondary)</b><ul><li>Statements as the only proof need a <q>minimum of two people</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li><li>At least one must <q>be from an individual who is not related to you or to the Personal Representative or Guardian</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li><li><q>Effective February 1, 2023, the VCF will no longer accept affidavits as proof of presence.</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a></li></ul></li></ul>
+<p class="official">Official pages: <a href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">Eligibility criteria and deadlines (Policies and Procedures, section 1)</a> · <a href="https://www.vcf.gov/how-prove-presence">How to prove presence (Interactive Presence Guide)</a> · <a href="https://www.vcf.gov/nyc-map-exposure-zone">NYC Exposure Zone map</a></p>
+</article>
+<h3>New York City issuers of records</h3>
+<div class="tw"><table>
+<colgroup><col class="w30"><col class="w30"><col class="w40"></colgroup>
+<thead><tr><th>Applicant</th><th>Issuer</th><th>Basis and status</th></tr></thead>
+<tbody>
+<tr><td data-label="Applicant">Current and former City employees</td><td data-label="Issuer">Department of Citywide Administrative Services (DCAS)</td><td data-label="Basis and status"><q>designating personnel at the Department of Citywide Administrative Services</q> <a class="cite" href="https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf">Stipulation and Order, p.3</a> <span class="badge partial">partially observed</span><span class="cellnote">Announced in the settlement and the Mayor’s release. No contact path had been published as of September 11, 2026: the DCAS home page, captured that day, does not mention September 11, the programs or an exposure zone.</span></td></tr>
+<tr><td data-label="Applicant">People who attended New York City public schools</td><td data-label="Issuer">New York City Public Schools (the settlement names the Department of Education)</td><td data-label="Basis and status"><q>to assist City employees and individuals who attended the New York City Public Schools</q> <a class="cite" href="https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf">Stipulation and Order, p.3</a> <q>Former students must print and fill out the Student Records Request Form</q> <a class="cite" href="https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts">NYC Public Schools</a> <q>When a student is 18 or older, the DOE will only honor transcript requests from the student.</q> <a class="cite" href="https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts">NYC Public Schools</a> <q>If your former high school has closed, another school now has your transcript and can provide you with a copy.</q> <a class="cite" href="https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts">NYC Public Schools</a> <span class="badge partial">partially observed</span><span class="cellnote">The settlement’s designated personnel are announced; no contact path had been published as of September 11, 2026. The standing route is the school itself: NYC Public Schools’ records request page (quoted here).</span></td></tr>
+<tr><td data-label="Applicant">City employees whose payroll records the Comptroller holds</td><td data-label="Issuer">Office of the New York City Comptroller</td><td data-label="Basis and status"><q>The VCF gets the information directly from the Office of the New York City Comptroller.</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a><span class="cellnote">Listed by the VCF as an entity it obtains presence information from directly.</span></td></tr>
+<tr><td data-label="Applicant">Alumni of Stuyvesant or any area school in the NYC Exposure Zone</td><td data-label="Issuer">StuyHealth (an alumni organization)</td><td data-label="Basis and status"><q>Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email</q> <a class="cite" href="https://www.vcf.gov/policy/eligibility-criteria-and-deadlines">VCF Policies and Procedures</a> <a href="mailto:info@stuyhealth.org">info@stuyhealth.org</a><span class="cellnote">Named on the VCF’s policy page for help acquiring proof of attendance. It is a private organization, without a City role.</span></td></tr>
+</tbody></table></div>
+<p class="result-note">The Mayor’s Office release says the administration will <q>appoint dedicated personnel at the Department of Citywide Administrative Services (DCAS) and New York City Public Schools (NYCPS) to coordinate the retrieval of records</q>. <a class="cite" href="https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records">Mayor’s Office release</a></p>
+<p class="result-note">This directory quotes official rules with their sources. It does not decide eligibility, calculate a deadline or file anything. Rules change; read the linked official page before acting. Not legal advice.</p>
+<!-- /BUILD:help-demo -->
+</div>
+<aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path">resource <code>sept11://help-directory</code> · <code>citations_verify</code></p>
+<p class="tool-path"><code>evidence.checklist</code> · interactive routing held for practitioner review</p>
+<a href="index.html#obligations">Settlement commitments ↗</a></aside>
+</div>
+</section>
+<section id="demo-budget" class="demo-panel" aria-labelledby="tab-budget">
+<div class="demo-heading"><h2>Each commitment through five evidence stages</h2><span class="demo-label">Commitment ledger</span></div>
+<div class="demo-grid">
+<div class="demo-primary">
+<!-- BUILD:budget-demo -->
+<label for="budget-choice">Choose a commitment</label>
+<select id="budget-choice"><option value="portal">Records access · $34.2 million</option><option value="doi">DOI investigation · $4 million</option><option value="education">Memorial education · $1 million</option></select>
+<article class="budget-result" data-budget="portal" data-claim="handshake-34-2-million">
+<p class="eyebrow">FY 2027 · announced commitment</p><h3>Records access through the September 11th Document Portal</h3>
+<p class="amount">$34.2 million</p><p>Portal creation, maintenance and Law Department document review.</p>
+<a class="source-link" href="https://www.nyc.gov/mayors-office/news/2026/06/mayor-mamdani--speaker-menin-reach-handshake-agreement-on-balanc">Mayor’s budget announcement ↗</a>
+
+<h4>Evidence by stage</h4>
+<div class="evidence-stages" role="group" aria-label="Evidence stages"><button type="button" data-stage="announcement" aria-pressed="true">Announcement<span class="state">located</span></button><button type="button" data-stage="adopted_line" aria-pressed="false">Adopted budget line<span class="state">not linked</span></button><button type="button" data-stage="contract" aria-pressed="false">Contract<span class="state">not linked</span></button><button type="button" data-stage="payment" aria-pressed="false">Payments<span class="state">not linked</span></button><button type="button" data-stage="delivery" aria-pressed="false">Delivery<span class="state">observed</span></button></div>
+<dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The handshake release of June 30, 2026 names $34.2 million in FY27 for the portal. An announcement records the promise. Appropriation, contracting and payment are separate stages.</dd></div><div data-stage="adopted_line"><dt>Adopted line not linked yet</dt><dd>The OMB Adopted Budget FY2027 (Expense, Revenue, Contract; 845 pages, captured 2026-09-11) contains no line naming the portal. The terms “September 11”, “9/11”, “portal” and “World Trade” do not occur in it, and the Law Department and Department of Investigation entries are agency totals. The amount remains an announced commitment. <span class="next">Next: Search the Supporting Schedules and the Law Department’s units of appropriation in the adopted expense schedules, or ask OMB which unit of appropriation carries the $34.2 million.</span></dd></div><div data-stage="contract"><dt>Contract not linked yet</dt><dd>No registered contract has been confirmed as delivering this work. A vendor name matched by keyword is only a candidate. The portal’s software fingerprint does not identify a procurement. <span class="next">Next: Query Checkbook NYC by agency and period for review, redaction, scanning and hosting scopes; promote a candidate only with reviewed scope evidence.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. It must not appear as zero or as the announced amount. Fiscal-year cash payments are separate from lifetime contract totals. <span class="next">Next: Obtain payments and amendments for any confirmed contract and reconcile them on a matching period basis.</span></dd></div><div data-stage="delivery"><dt>Delivery observed on the portal</dt><dd>The portal launched September 8, 2026. The catalog capture of September 9, 2026 holds 24,441 documents and 173,299 pages. Observation of the portal establishes nothing about the money. <a href="index.html#obligations">Obligation rows ↗</a></dd></div></dl>
+
+<h4>Open questions</h4>
+<ul class="plain"><li>Which adopted unit of appropriation carries the $34.2 million, and in which agency?</li><li>Which registered contracts deliver document review, redaction and hosting?</li><li>What has been paid to date in each fiscal year?</li></ul>
+</article>
+<article class="budget-result" data-budget="doi" data-claim="council-doi-4-million">
+<p class="eyebrow">fiscal period unresolved · announced commitment</p><h3>The Department of Investigation inquiry under Resolution 560-A</h3>
+<p class="amount">$4 million</p><p>Funding for DOI to complete and release its report on 9/11 environmental toxins, which the Council announced on September 3, 2026.</p>
+<a class="source-link" href="https://council.nyc.gov/press/2026/09/03/3231/">Council announcement ↗</a>
+<p class="result-note">The Council release does not allocate the $4 million between fiscal years. DOI’s own page says the City allocated $3.81 million over fiscal years 2026 and 2027; DOI’s June 29, 2026 letter says it requested $4 million over two fiscal years. The figures are listed beside each other; none is substituted for another.</p>
+<h4>Evidence by stage</h4>
+<div class="evidence-stages" role="group" aria-label="Evidence stages"><button type="button" data-stage="announcement" aria-pressed="true">Announcement<span class="state">located</span></button><button type="button" data-stage="adopted_line" aria-pressed="false">Adopted budget line<span class="state">partially observed</span></button><button type="button" data-stage="contract" aria-pressed="false">Contract<span class="state">not observed</span></button><button type="button" data-stage="payment" aria-pressed="false">Payments<span class="state">not linked</span></button><button type="button" data-stage="delivery" aria-pressed="false">Delivery<span class="state">partially observed</span></button></div>
+<dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The Council&#x27;s September 3, 2026 release records $4 million in additional funding for DOI to complete and release its report. The annual split is not stated there.</dd></div><div data-stage="adopted_line"><dt>Allocation stated by DOI; no line identifier</dt><dd>DOI’s investigation page states that in June 2026 the City allocated $3.81 million over fiscal years 2026 and 2027 for the investigative firm. No unit of appropriation or budget code has been located: the OMB Adopted Budget FY2027 names no such line (845 pages searched 2026-09-11), and the DOI entries there are agency totals. <span class="next">Next: Locate the DOI unit of appropriation that carries the FY2026 and FY2027 amounts, or a budget modification naming it.</span></dd></div><div data-stage="contract"><dt>DOI reports no contract yet</dt><dd>DOI’s June 29, 2026 letter says a team of two firms was selected after a Request for Information to six firms. DOI will enter a contract once funding is secured from OMB. DOI’s page, read September 11, 2026, says DOI is in the procurement process. No registered contract has been located. <span class="next">Next: Query Checkbook NYC for a DOI contract with an investigation or public-health scope registered after June 2026.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. <span class="next">Next: Obtain payments for any confirmed contract by fiscal year.</span></dd></div><div data-stage="delivery"><dt>Two written updates observed; the report is dated</dt><dd>DOI’s written updates for December 31, 2025 and June 30, 2026 are posted on DOI’s page as letters dated December 31, 2025 and June 29, 2026. A video update from the Commissioner is dated September 1, 2026. The next updates are due December 31, 2026 and June 30, 2027; the report is due by July 14, 2027. Nothing is inferred as delivered before it is published. <a href="index.html#obligations">Obligation rows ↗</a></dd></div></dl>
+<h4>Also on record</h4><ul class="statements"><li><b>2026-03-18</b> <q>DOI has requested $3 million in funding in FY27 to hire an outside firm</q> <a class="cite" href="https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf">DOI testimony, March 18, 2026, p.5</a></li><li><b>2026-03-18</b> <q>DOI now estimates that the cost of the overall investigation will total between $4 and $5 million</q> <a class="cite" href="https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf">DOI testimony, March 18, 2026, p.5</a></li><li><b>2025-12-31</b> DOI requested <q>a total of over $3 million over two fiscal years</q> <a class="cite" href="https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/12_31_2025Councilupdate.pdf">DOI letter, December 31, 2025, p.2</a></li><li><b>2026-06-29</b> <q>DOI requested a total of $4 million over the course of two fiscal years to hire a third-party firm</q> <a class="cite" href="https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf">DOI letter, June 29, 2026, p.2</a></li><li><b>2026-06-29</b> OMB <q>has not yet approved DOI’s request</q> <a class="cite" href="https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf">DOI letter, June 29, 2026, p.2</a></li><li><b>2026-09-11</b> <q>In June 2026, the City allocated $3.81 million over fiscal years 2026 and 2027 to fund this investigative firm</q> <a class="cite" href="https://www.nyc.gov/site/doi/newsroom/9-11-investigation.page">DOI investigation page, read 2026-09-11</a></li></ul>
+<h4>Open questions</h4>
+<ul class="plain"><li>Which unit of appropriation carries the $3.81 million, and how is it split between FY2026 and FY2027?</li><li>Which two firms were selected, and when is the contract registered?</li><li>What does the December 31, 2026 update say?</li></ul>
+</article>
+<article class="budget-result" data-budget="education" data-claim="council-memorial-education-announcement">
+<p class="eyebrow">FY 2027 · announced commitment</p><h3>Memorial education and free student field trips</h3>
+<p class="amount">$1 million</p><p>Free field trips for New York City students, with a focus on eighth graders, and expanded educational programming.</p>
+<a class="source-link" href="https://council.nyc.gov/press/2026/09/03/3231/">Council announcement ↗</a>
+
+<h4>Evidence by stage</h4>
+<div class="evidence-stages" role="group" aria-label="Evidence stages"><button type="button" data-stage="announcement" aria-pressed="true">Announcement<span class="state">located</span></button><button type="button" data-stage="adopted_line" aria-pressed="false">Adopted budget line<span class="state">located</span></button><button type="button" data-stage="contract" aria-pressed="false">Contract<span class="state">not linked</span></button><button type="button" data-stage="payment" aria-pressed="false">Payments<span class="state">not linked</span></button><button type="button" data-stage="delivery" aria-pressed="false">Delivery<span class="state">not linked</span></button></div>
+<dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The Council&#x27;s September 3, 2026 release announces $1 million for the 9/11 Memorial &amp; Museum for free student field trips and educational programming.</dd></div><div data-stage="adopted_line"><dt>Adopted lines located in the Council’s Schedule C</dt><dd>The Council’s Fiscal 2027 Schedule C (June 30, 2026) lists two DYCD lines to the National September 11 Memorial and Museum. Page 281: $750,000 for museum field trips, stated as funding for 8th grade students to visit free of charge. Page 280: $250,000 for 9/11 Memorial Museum programming, covering in-person and virtual field trips. The two lines add to $1,000,000, the amount the Council announced; the sum is arithmetic and the lines stay separate. Smaller member and delegation items to the same organization in Schedule C ($50,000 p.134, $12,000 p.28, $10,000 p.110) are outside this commitment. <span class="next">Next: Confirm the DYCD contract registrations that carry the two lines.</span></dd></div><div data-stage="contract"><dt>Grant or contract not linked yet</dt><dd>No DYCD contract or grant registration to the Memorial has been located for FY2027. <span class="next">Next: Query Checkbook NYC for DYCD contracts with the National September 11 Memorial and Museum (Tax ID 611745872) registered in FY2027.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. <span class="next">Next: Record any FY27 disbursement with its transaction identifier.</span></dd></div><div data-stage="delivery"><dt>Delivery not linked yet</dt><dd>No participation report has been published. The count of student visits, the period and the population definition are unknown. Unknown service output is not zero delivery. Student records stay aggregate.</dd></div></dl>
+<h4>Also on record</h4><ul class="statements"><li><b>2026-06-30</b> National September 11 Memorial and Museum at the World Trade Center – <q>Museum Field Trips 611745872 $750,000 DYCD</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.281, p.281</a></li><li><b>2026-06-30</b> <q>To provide funding support for 8th grade students to visit the museum free of charge.</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.281, p.281</a></li><li><b>2026-06-30</b> National September 11 Memorial and Museum at the World Trade Center – <q>9/11 Memorial Museum Programming 611745872 $250,000 DYCD</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.280, p.280</a></li><li><b>2026-06-30</b> <q>Funds will be used to cover the costs of in-person and virtual field trips</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.280, p.280</a></li></ul>
+<h4>Open questions</h4>
+<ul class="plain"><li>Which DYCD contracts carry the $750,000 and $250,000 lines?</li><li>How many students visited under the program, over what period, and how is the population defined?</li><li>What was paid in FY27?</li></ul>
+</article>
+<!-- /BUILD:budget-demo -->
+<noscript><p class="result-note">Every stage is shown. The adopted line, contract and payment stages are unresolved; an unknown amount is not zero.</p></noscript>
+</div>
+<aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>budget_lookup</code> → <code>doi_milestones</code></p>
+<p><a href="toolkit.html#example-budget_lookup">See what the tool returns ↗</a></p>
+<a href="index.html#obligations">View related obligations ↗</a></aside>
+</div>
+</section>
+<section id="demo-releases" class="demo-panel" aria-labelledby="tab-releases">
+<div class="demo-heading"><h2>The latest catalog capture</h2><span class="demo-label">Saved capture</span></div>
+<div class="demo-grid">
+<div class="demo-primary">
+<div id="watchdog-live" class="ledger"><p>Loading the saved capture. <a href="data/watchdog/latest.json">Open the source data</a>.</p></div>
+<p id="watchdog-note" class="result-note">A comparison needs two accepted captures.</p>
+<p><a class="source-link" href="data/watchdog/latest.json">Inspect capture and provenance ↗</a></p>
+<noscript><p>JavaScript is off. The source data link includes the capture time, totals and comparison status.</p></noscript>
+<h3>Dated obligations ahead</h3>
+<!-- BUILD:due-next -->
+<ul class="plain due-list"><li><b>2026-12-31</b> <span>DOI written status update to the Speaker</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Res. 560-A §1</a></li><li><b>2027-06-30</b> <span>DOI written status update to the Speaker</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Res. 560-A §1</a></li><li><b>2027-07-14</b> <span>DOI report: knowledge assessment, timeline of awareness, public-vs-internal contrast analysis</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Res. 560-A §2</a></li><li><b>2027-09-08</b> <span>Twelve months of good-faith performance; then dismissal with prejudice</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Settlement ¶ 7–8</a></li><li><b>monthly through 2027-08</b> <span>Monthly Law Department meetings with 9/11 Health Watch, Sept 2026 – Aug 2027 (documents, pages, sources, subjects)</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Settlement ¶ 1</a></li></ul>
+<!-- /BUILD:due-next -->
+</div>
+<aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>portal_catalog_stats</code> → <code>portal_changes_since</code></p>
+<p><a href="toolkit.html#example-portal_changes_since">See what the tool returns ↗</a></p>
+<a href="index.html#watchdog">Watchdog methods ↗</a></aside>
+</div>
+</section>
+</div>
+<div class="help-strip"><p><strong>Official programs for care and compensation</strong> <a href="https://www.cdc.gov/wtc/">WTC Health Program</a> · <a href="https://www.vcf.gov/">Victim Compensation Fund</a></p><p><a href="https://sept11documents.cityofnewyork.us/">Search the full City portal ↗</a> · <a href="toolkit.html#quickstart">Run the local MCP ↗</a></p></div>
+</main>
+<!-- BUILD:footer -->
+<footer><div class="in">
+<p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot catalog_2026-09-09_pdf.csv. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · <a href="llms.txt">For agents</a></p>
+</div></footer>
+<!-- /BUILD:footer -->
+<script src="assets/site.js?v=68349ee7" defer></script>
+</body>
+</html>

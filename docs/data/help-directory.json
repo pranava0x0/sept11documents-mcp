@@ -1,0 +1,340 @@
+{
+  "generated_at": "2026-09-11",
+  "schema": "help-directory/1",
+  "note": "Official program and records-request directory (spec 09, Phase 1 help directory). Every rule is quoted from the captured official page named by its claim id in research/claims/claims.json; the quote must be found there by scripts/verify_claims.py before it can appear on a public surface. This file describes programs and issuers. It stores nothing about any person and calculates no deadline.",
+  "not_personalized": true,
+  "disclaimer": "This directory quotes official rules with their sources. It does not decide eligibility, calculate a deadline or file anything. Rules change; read the linked official page before acting. Not legal advice.",
+  "programs": [
+    {
+      "id": "wtchp",
+      "name": "World Trade Center Health Program",
+      "short": "WTC Health Program",
+      "administered_by": "Centers for Disease Control and Prevention (NIOSH), federal",
+      "what_it_is": {
+        "text": "medical monitoring and treatment for WTC-related conditions",
+        "claim_id": "wtchp-monitoring-treatment"
+      },
+      "contact": {
+        "phone": "1-888-982-4748",
+        "url": "https://www.cdc.gov/wtc/",
+        "claim_id": "wtchp-helpline"
+      },
+      "deadline": {
+        "text": "There is no deadline to enroll.",
+        "claim_id": "wtchp-no-enrollment-deadline"
+      },
+      "window": {
+        "text": "between September 11, 2001 and July 31, 2002",
+        "applies_to": "Survivors: lived, worked, or attended school, daycare or adult daycare in the NYC Disaster Area",
+        "claim_id": "wtchp-survivor-window"
+      },
+      "zone": {
+        "name": "NYC Disaster Area",
+        "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
+        "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted."
+      },
+      "separate_from": {
+        "text": "Is a separate 9/11 assistance program from the September 11th Victim Compensation Fund (VCF).",
+        "claim_id": "wtchp-separate-from-vcf"
+      },
+      "rules": [
+        {
+          "text": "must show your full name and the time period for your covered activity",
+          "claim_id": "wtchp-name-and-period",
+          "lead": "Supporting documentation"
+        },
+        {
+          "text": "Incomplete or insufficient supporting documentation is the top reason for application processing delays.",
+          "claim_id": "wtchp-documentation-delays"
+        }
+      ],
+      "evidence": [
+        {
+          "lane": "Employment",
+          "examples": [
+            {
+              "text": "Letter from your employer or union stating your activities, location, days, and hours performing 9/11-related activities",
+              "claim_id": "wtchp-responder-employer-letter",
+              "who": "responders"
+            },
+            {
+              "text": "A pay stub if it shows your work location between September 11, 2001 and July 31, 2002",
+              "claim_id": "wtchp-pay-stub",
+              "who": "survivors"
+            },
+            {
+              "text": "Police memo book(including a copy of the cover page) that shows the days, times, and hours worked at a 9/11-related site.",
+              "claim_id": "wtchp-police-memo-book",
+              "who": "responders"
+            }
+          ]
+        },
+        {
+          "lane": "Residence",
+          "examples": [
+            {
+              "text": "A lease or utility bill with your name showing your residence between September 11, 2001 and July 31, 2002",
+              "claim_id": "wtchp-lease-utility-bill",
+              "who": "survivors"
+            }
+          ]
+        },
+        {
+          "lane": "School",
+          "examples": [
+            {
+              "text": "A School Transcript from the Fall 2001 or Spring 2002 semester (or both)",
+              "claim_id": "wtchp-school-transcript",
+              "who": "survivors"
+            }
+          ]
+        },
+        {
+          "lane": "If no official document can be found",
+          "examples": [
+            {
+              "text": "you can submit a letter written by someone who can confirm your eligibility details",
+              "claim_id": "wtchp-third-party-attestation",
+              "note": "the CDC page calls this a third-party attestation"
+            }
+          ]
+        }
+      ],
+      "official_pages": [
+        {
+          "label": "Supporting documentation",
+          "url": "https://www.cdc.gov/wtc/documentation.html"
+        },
+        {
+          "label": "Eligible groups and the NYC Disaster Area",
+          "url": "https://www.cdc.gov/wtc/eligiblegroups.html"
+        },
+        {
+          "label": "About the Program",
+          "url": "https://www.cdc.gov/wtc/about.html"
+        }
+      ]
+    },
+    {
+      "id": "vcf",
+      "name": "September 11th Victim Compensation Fund",
+      "short": "VCF",
+      "administered_by": "U.S. Department of Justice",
+      "what_it_is": null,
+      "contact": {
+        "phone": "1-855-885-1555",
+        "url": "https://www.vcf.gov/",
+        "claim_id": "vcf-helpline"
+      },
+      "deadline": {
+        "text": "submit your complete claim no later than October 1, 2090",
+        "claim_id": "vcf-claim-deadline-2090",
+        "caveat": {
+          "text": "deadline applicable to your individual circumstances",
+          "claim_id": "vcf-registration-deadline-individual",
+          "lead": "Registration has its own"
+        }
+      },
+      "window": {
+        "text": "between September 11, 2001, and May 30, 2002",
+        "applies_to": "The World Trade Center site or the NYC Exposure Zone",
+        "claim_id": "vcf-nyc-window"
+      },
+      "zone": {
+        "name": "VCF NYC Exposure Zone",
+        "definition": [
+          {
+            "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
+            "claim_id": "vcf-zone-canal-street"
+          },
+          {
+            "text": "north on East Broadway to Clinton Street, and east on Clinton Street to the East River",
+            "claim_id": "vcf-zone-clinton-street"
+          }
+        ],
+        "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+        "also": {
+          "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+          "claim_id": "vcf-debris-routes"
+        }
+      },
+      "separate_from": {
+        "text": "Enrollment in the WTC Health Program does not automatically register you with the VCF",
+        "claim_id": "vcf-registration-separate-from-wtchp"
+      },
+      "rules": [
+        {
+          "text": "Registration is not the same as filing a claim.",
+          "claim_id": "vcf-registration-not-claim"
+        },
+        {
+          "text": "There are no requirements for the minimum amount of time an individual needed to be at a site",
+          "claim_id": "vcf-no-minimum-time"
+        }
+      ],
+      "evidence": [
+        {
+          "lane": "Third-party verification (primary)",
+          "examples": [
+            {
+              "text": "to the VCF from the employer or other third party, with specific dates and locations, is often sufficient to verify presence",
+              "claim_id": "vcf-third-party-verification",
+              "lead": "Sent directly"
+            },
+            {
+              "text": "must demonstrate that he/she sought to obtain presence information from the listed",
+              "claim_id": "vcf-listed-employer-first",
+              "lead": "A claimant with a listed employer, entity or union",
+              "note": "before the VCF relies on witness statements"
+            }
+          ]
+        },
+        {
+          "lane": "Contemporaneous documents (primary)",
+          "examples": [
+            {
+              "text": "documents, whether from the list below or otherwise, are required",
+              "claim_id": "vcf-two-documents",
+              "lead": "At least two"
+            },
+            {
+              "text": "Official personnel roster.",
+              "claim_id": "vcf-personnel-roster"
+            },
+            {
+              "text": "Police memo book submitted with the front cover including supervisory signature and opening and closing dates",
+              "claim_id": "vcf-police-memo-book"
+            }
+          ]
+        },
+        {
+          "lane": "Residence documents (corroborating)",
+          "examples": [
+            {
+              "text": "The documents listed below are not sufficient on their own, but will be reviewed in conjunction with other documents",
+              "claim_id": "vcf-residence-not-sufficient-alone"
+            }
+          ]
+        },
+        {
+          "lane": "School or daycare records",
+          "examples": [
+            {
+              "text": "If you submit a certified transcript or school record as explained below, you do not need to submit any additional proof of presence",
+              "claim_id": "vcf-school-records-sufficient"
+            },
+            {
+              "text": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email",
+              "claim_id": "vcf-stuyhealth",
+              "note": "info@stuyhealth.org",
+              "contact_url": "mailto:info@stuyhealth.org"
+            }
+          ]
+        },
+        {
+          "lane": "Witness statements (secondary)",
+          "examples": [
+            {
+              "text": "minimum of two people",
+              "claim_id": "vcf-witness-minimum-two",
+              "lead": "Statements as the only proof need a"
+            },
+            {
+              "text": "be from an individual who is not related to you or to the Personal Representative or Guardian",
+              "claim_id": "vcf-witness-non-relative",
+              "lead": "At least one must"
+            },
+            {
+              "text": "Effective February 1, 2023, the VCF will no longer accept affidavits as proof of presence.",
+              "claim_id": "vcf-affidavits-not-accepted"
+            }
+          ]
+        }
+      ],
+      "official_pages": [
+        {
+          "label": "Eligibility criteria and deadlines (Policies and Procedures, section 1)",
+          "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+        },
+        {
+          "label": "How to prove presence (Interactive Presence Guide)",
+          "url": "https://www.vcf.gov/how-prove-presence"
+        },
+        {
+          "label": "NYC Exposure Zone map",
+          "url": "https://www.vcf.gov/nyc-map-exposure-zone"
+        }
+      ]
+    }
+  ],
+  "nyc_records": [
+    {
+      "id": "dcas",
+      "who": "Current and former City employees",
+      "issuer": "Department of Citywide Administrative Services (DCAS)",
+      "commitment": {
+        "text": "designating personnel at the Department of Citywide Administrative Services",
+        "claim_id": "settlement-dcas-doe-personnel",
+        "source_label": "Settlement, p.3"
+      },
+      "status_obligation_id": "dcas-doe-personnel",
+      "how": "Announced in the settlement and the Mayor’s release. No contact path had been published as of September 11, 2026: the DCAS home page, captured that day, does not mention September 11, the programs or an exposure zone.",
+      "checked": "2026-09-11",
+      "checked_source_id": "dcas-home-2026-09-11"
+    },
+    {
+      "id": "nycps",
+      "who": "People who attended New York City public schools",
+      "issuer": "New York City Public Schools (the settlement names the Department of Education)",
+      "commitment": {
+        "text": "to assist City employees and individuals who attended the New York City Public Schools",
+        "claim_id": "settlement-dcas-doe-beneficiaries",
+        "source_label": "Settlement, p.3"
+      },
+      "status_obligation_id": "dcas-doe-personnel",
+      "how": "The settlement’s designated personnel are announced; no contact path had been published as of September 11, 2026. The standing route is the school itself: NYC Public Schools’ records request page (quoted here).",
+      "route": [
+        {
+          "text": "Former students must print and fill out the Student Records Request Form",
+          "claim_id": "nycps-former-students-form",
+          "url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts"
+        },
+        {
+          "text": "When a student is 18 or older, the DOE will only honor transcript requests from the student.",
+          "claim_id": "nycps-18-or-older"
+        },
+        {
+          "text": "If your former high school has closed, another school now has your transcript and can provide you with a copy.",
+          "claim_id": "nycps-closed-school"
+        }
+      ]
+    },
+    {
+      "id": "comptroller",
+      "who": "City employees whose payroll records the Comptroller holds",
+      "issuer": "Office of the New York City Comptroller",
+      "note": {
+        "text": "The VCF gets the information directly from the Office of the New York City Comptroller.",
+        "claim_id": "vcf-comptroller-direct"
+      },
+      "how": "Listed by the VCF as an entity it obtains presence information from directly."
+    },
+    {
+      "id": "stuyhealth",
+      "who": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone",
+      "issuer": "StuyHealth (an alumni organization)",
+      "note": {
+        "text": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email",
+        "claim_id": "vcf-stuyhealth"
+      },
+      "contact": "info@stuyhealth.org",
+      "how": "Named on the VCF’s policy page for help acquiring proof of attendance. It is a private organization, without a City role."
+    }
+  ],
+  "mayor_announcement": {
+    "text": "appoint dedicated personnel at the Department of Citywide Administrative Services (DCAS) and New York City Public Schools (NYCPS) to coordinate the retrieval of records",
+    "claim_id": "mayor-dcas-nycps-personnel",
+    "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+    "label": "Mayor’s Office release, 2026-09-08"
+  }
+}
