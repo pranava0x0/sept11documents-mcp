@@ -58,7 +58,7 @@ FOOTER = """<footer><div class="in">
 <p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not \
 legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot \
 {snapshot}. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · \
-<a href="llms.txt">For agents</a></p>
+<a href="llms.txt">For agents</a> · <a href="#top">Back to top ↑</a></p>
 </div></footer>"""
 
 # Tools the specs defer, with the reason a reader deserves. Rows a registry cannot
@@ -304,8 +304,8 @@ def tool_rows() -> str:
     for name, returns, status in PLANNED_ROWS:
         rows.append((name, returns, f'<span class="badge">{status}</span>'))
     return "\n".join(
-        f'<tr><td data-label="Tool">{name}</td><td data-label="Returns">{returns}</td>'
-        f'<td data-label="Status">{status}</td></tr>' for name, returns, status in rows)
+        f'<tr><td data-label="Tool">{name}</td><td data-label="What it does">{returns}</td>'
+        f'<td data-label="Availability">{status}</td></tr>' for name, returns, status in rows)
 
 
 def asset_version(name: str) -> str:
@@ -697,8 +697,6 @@ def due_next(scorecard: dict) -> str:
 
 def examples_section(recorded: dict) -> str:
     """Recorded exchanges for the builders page: one article per call, the envelope verbatim."""
-    demo_names = {"records": "Find a record", "help": "Get official help", "budget": "Follow the money",
-                  "releases": "Check releases"}
     options, articles = [], []
     for ex in recorded["examples"]:
         request = ex["request"]
@@ -709,7 +707,6 @@ def examples_section(recorded: dict) -> str:
         redactions = "".join(f'<p class="result-note">Published copy: {e(r)}.</p>' for r in ex.get("redactions", []))
         body = json.dumps(ex["response"], indent=2, ensure_ascii=False)
         articles.append(f'''<article class="example" id="example-{e(ex["id"])}" data-example="{e(ex["id"])}">
-<p class="eyebrow">{e(demo_names.get(ex["demo"], ex["demo"]))} · {e(request["name"])}</p>
 <h3>{e(ex["question"])}</h3>
 <pre class="request">{e(request["name"])} {e(json.dumps(request["arguments"], ensure_ascii=False))}</pre>
 <p class="result-note">The call {outcome}.</p>

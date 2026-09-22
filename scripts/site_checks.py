@@ -109,7 +109,7 @@ PAGE_RULES_ADDED = True
 
 BROKEN = [
     ("cell label dropped", lambda h: h.replace(' data-label="Tool"', "", 1), "page"),
-    ("cell label drifted", lambda h: h.replace('data-label="Status"', 'data-label="State"', 1), "page"),
+    ("cell label drifted", lambda h: h.replace('data-label="Availability"', 'data-label="State"', 1), "page"),
     ("colgroup removed", lambda h: re.sub(r"<colgroup>.*?</colgroup>", "", h, count=1, flags=re.S), "page"),
     ("column widths do not total 100", lambda h: h.replace('<col class="w22">', '<col class="w30">', 1), "page"),
     ("width class not defined in the stylesheet",
