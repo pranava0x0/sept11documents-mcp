@@ -575,13 +575,19 @@ def collection_explorer_demo(summary: dict) -> str:
     }
     options, articles = [], []
     for source, count in sorted(summary["by_source"].items(), key=lambda pair: -pair[1]):
-        agency, note = details[source]
+        detail = details.get(source)
+        if detail:
+            agency, note = detail
+            agency_context = (f'The summary reports {agencies.get(agency, 0):,} documents for {e(agency)} '
+                              'across the saved catalog; it is not a one-to-one collection total.')
+        else:
+            note = "City collection label; no curated agency pairing is stored yet"
+            agency_context = "Inspect the returned catalog rows for their agency field before drawing a collection-level conclusion."
         options.append(f'<option value="{e(source)}">{e(source)} · {count:,} documents</option>')
         request = json.dumps({"source": source, "count": 10}, ensure_ascii=False)
-        agency_count = agencies.get(agency, 0)
         articles.append(f'''<article class="collection-result" data-collection="{e(source)}">
 <p class="eyebrow">{count:,} documents in saved catalog</p><h3>{e(source)}</h3>
-<p>{e(note)}. The summary reports {agency_count:,} documents for {e(agency)} across the saved catalog; it is not a one-to-one collection total.</p>
+<p>{e(note)}. {agency_context}</p>
 <pre class="request">catalog_search {e(request)}</pre>
 <p class="result-note">The source filter reads local metadata. It sends nothing to the City; document dates and page text need separate tools.</p></article>''')
     return ('<label for="collection-choice">Choose a City collection</label>\n'
@@ -904,6 +910,9 @@ def selftest() -> int:
         "paths": [{"id": "p", "question": "q<script>", "tools": "a → b", "answer": "a", "boundary": "b"}]}
     if "<script>" in current_context_demo(context) or "<script>" in research_paths_demo(context):
         failures.append("current context and research paths must escape data text")
+    generated_collection = collection_explorer_demo({"by_source": {"New <source>": 1}, "by_agency": {}})
+    if "New <source>" in generated_collection or "Inspect the returned catalog rows" not in generated_collection:
+        failures.append("collection explorer must escape and render a newly appearing source")
 
     purpose = purpose_section(quotes, [
         [("<b>lead</b>", "q-rule", "quote", "as <published>")],

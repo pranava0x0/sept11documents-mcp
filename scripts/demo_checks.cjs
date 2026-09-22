@@ -5,6 +5,7 @@
 const assert = require("node:assert/strict");
 const { chromium } = require("playwright");
 const base = process.env.DEMO_URL || "http://127.0.0.1:8000";
+const EXPECTED_DEMO_PANELS = 10;
 if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
   throw new Error("demo checks require a local preview");
 }
@@ -130,11 +131,11 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
     await direct.close();
     const nojs = await browser.newPage({ javaScriptEnabled: false });
     await nojs.goto(base + "/examples.html");
-    assert.equal(await nojs.locator(".demo-panel:visible").count(), 4);
+    assert.equal(await nojs.locator(".demo-panel:visible").count(), EXPECTED_DEMO_PANELS);
     await nojs.goto(base + "/index.html");
     assert((await nojs.locator("#money .ledger div").count()) === 3, "three announced commitments on the landing page");
     await nojs.goto(base + "/examples.html");
-    assert.equal(await nojs.locator(".demo-panel:visible").count(), 4);
+    assert.equal(await nojs.locator(".demo-panel:visible").count(), EXPECTED_DEMO_PANELS);
     assert.equal(await nojs.locator(".record-result:visible").count(), 3);
     assert.equal(await nojs.locator(".help-result:visible").count(), 2);
     assert.equal(await nojs.locator(".budget-result:visible").count(), 3);
