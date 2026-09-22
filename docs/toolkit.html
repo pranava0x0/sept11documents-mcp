@@ -8,51 +8,55 @@
 <title>The MCP toolkit — September 11th Documents Toolkit</title>
 <meta name="description" content="A read-only Model Context Protocol server over the City's September 11th Document Portal, the commands that run it, and how the portal's own API is laid out.">
 <link rel="canonical" href="https://pranava0x0.github.io/sept11documents-mcp/toolkit.html">
-<link rel="stylesheet" href="assets/site.css?v=d8587092">
+<link rel="stylesheet" href="assets/site.css?v=9fe77cd5">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
 <!-- BUILD:mast -->
 <header class="mast"><div class="in"><a class="word" href="index.html">September 11th Documents Toolkit</a><span class="note">Independent project. Not an official City of New York website. Not legal advice.</span></div></header>
 <nav class="top" aria-label="Pages"><div class="in"><ul>
-<li><a href="index.html">Overview</a></li><li><a href="toolkit.html" aria-current="page">The MCP</a></li><li><a href="examples.html">Examples</a></li><li><a href="records.html">Records</a></li>
+<li><a href="index.html">Overview</a></li><li><a href="toolkit.html" aria-current="page">The MCP</a></li><li><a href="examples.html">Examples</a></li><li><a href="records.html">Records</a></li><li><a href="community.html">Community support</a></li>
 </ul></div></nav>
 <!-- /BUILD:mast -->
 <main id="main">
 <section id="toolkit">
-<h1 id="top">Use the tools in your research.</h1>
-<p>The Model Context Protocol (MCP) connects an AI assistant to these read-only research tools. Search local catalog metadata, read captured pages, check quotations, and read the obligation rows and the commitment ledger. Live search requires an explicit opt-in because terms reach the City. Documents are fetched separately; missing page text returns <code>not_cached</code>.</p>
-<p><a class="btn" href="#quickstart">Connect the local server</a> <a class="source-link" href="#examples">See what a call returns</a> <a class="source-link" href="examples.html">Try the examples</a></p>
-<details class="fold"><summary>Each tool, its result and its status</summary>
+<h1 id="top">Use the tools</h1>
+<p>Search saved City catalog data, read captured pages, check quotations, and inspect commitments. Live portal search is opt-in.</p>
+<p><a class="btn" href="#quickstart">Connect the local server</a> <a class="source-link" href="#examples">View sample results</a> <a class="source-link" href="examples.html">Try the examples</a></p>
+<nav class="section-nav" aria-label="On this page"><a href="#tools">Tools</a><a href="#examples">Sample calls</a><a href="#quickstart">Setup</a><a href="#planned">Planned</a><a href="#portal">Portal API</a></nav>
+</section>
+<section id="tools">
+<h2>Tools</h2>
+<p class="result-note">What each tool can do. The saved call examples below show the request and response.</p>
+<details class="fold"><summary>Tools available in this version</summary>
 <div class="foldbody"><div class="tw"><table>
 <colgroup><col class="w22"><col class="w52"><col class="w26"></colgroup>
-<thead><tr><th>Tool</th><th>Returns</th><th>Status</th></tr></thead>
+<thead><tr><th>Tool</th><th>What it does</th><th>Availability</th></tr></thead>
 <tbody>
 <!-- BUILD:tools -->
-<tr><td data-label="Tool"><code>portal_search</code></td><td data-label="Returns">Live portal hits with Bates, collection, box, folder, inert snippet text, and a precision warning for fuzzy queries. Off unless the operator opts in, because the words searched reach the City</td><td data-label="Status"><span class="badge built">runs from a clone · live opt-in</span></td></tr>
-<tr><td data-label="Tool"><code>catalog_search</code></td><td data-label="Returns">The same catalog searched locally by Bates, collection, agency, box or folder label, every word matched, with facets by collection, box and folder over all matches; nothing is sent to the City</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_get_document</code></td><td data-label="Returns">Metadata, page count, PDF link, the documents filed before and after it in the same folder, and when it was first and last seen in local snapshots; no date field, because the portal publishes none</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_get_page_text</code></td><td data-label="Returns">Verbatim page text with the Bates stamp printed on that page, read from the page's own footer stamp; withheld whole when personal information is suspected</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_catalog_stats</code></td><td data-label="Returns">Totals by collection, agency and production volume, with the snapshot's SHA-256</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_browse</code></td><td data-label="Returns">The collection → box → folder tree, largest first, with counts</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_changes_since</code></td><td data-label="Returns">Documents observed added, absent or changed between two accepted captures, with the interval compared</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>citations_verify</code></td><td data-label="Returns">found / not-found / no-claim / unverifiable for quotes at Bates pages or registered sources; an ellipsis marks omitted words; it accepts no URLs and no file paths</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>doi_milestones</code></td><td data-label="Returns">The dated obligations with what was observed and when it was checked, with no score and no legal determination</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>budget_lookup</code></td><td data-label="Returns">The commitment ledger: each announced amount with its source and five separately evidenced stages, unlinked stages named as such; rows are never summed</td><td data-label="Status"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>evidence.checklist</code></td><td data-label="Returns">The proof-of-presence lanes for a WTCHP or VCF category, what each document must show, who issues it, and request-letter templates. The static, cited version is the official directory on the Examples page and the <code>sept11://help-directory</code> resource</td><td data-label="Status"><span class="badge">planned · interactive routing held for practitioner review</span></td></tr>
-<tr><td data-label="Tool"><code>archive.timeline</code> · <code>archive.building_lookup</code> · <code>archive.find_readings</code></td><td data-label="Returns">Reviewed timeline events; buildings with zone flags; sampling readings with units and citations</td><td data-label="Status"><span class="badge">planned · Phase 2–3</span></td></tr>
+<tr><td data-label="Tool"><code>portal_search</code></td><td data-label="What it does">Live portal hits with Bates, collection, box, folder, inert snippet text, and a precision warning for fuzzy queries. Off unless the operator opts in, because the words searched reach the City</td><td data-label="Availability"><span class="badge built">runs from a clone · live opt-in</span></td></tr>
+<tr><td data-label="Tool"><code>catalog_search</code></td><td data-label="What it does">The same catalog searched locally by Bates, collection, agency, box or folder label, every word matched, with facets by collection, box and folder over all matches; nothing is sent to the City</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_get_document</code></td><td data-label="What it does">Metadata, page count, PDF link, the documents filed before and after it in the same folder, and when it was first and last seen in local snapshots; no date field, because the portal publishes none</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_get_page_text</code></td><td data-label="What it does">Verbatim page text with the Bates stamp printed on that page, read from the page's own footer stamp; withheld whole when personal information is suspected</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_catalog_stats</code></td><td data-label="What it does">Totals by collection, agency and production volume, with the snapshot's SHA-256</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_browse</code></td><td data-label="What it does">The collection → box → folder tree, largest first, with counts</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_changes_since</code></td><td data-label="What it does">Documents observed added, absent or changed between two accepted captures, with the interval compared</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>citations_verify</code></td><td data-label="What it does">found / not-found / no-claim / unverifiable for quotes at Bates pages or registered sources; an ellipsis marks omitted words; it accepts no URLs and no file paths</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>doi_milestones</code></td><td data-label="What it does">The dated obligations with what was observed and when it was checked, with no score and no legal determination</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>budget_lookup</code></td><td data-label="What it does">The commitment ledger: each announced amount with its source and five separately evidenced stages, unlinked stages named as such; rows are never summed</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>evidence.checklist</code></td><td data-label="What it does">The proof-of-presence lanes for a WTCHP or VCF category, what each document must show, who issues it, and request-letter templates. The static, cited version is the official directory on the Examples page and the <code>sept11://help-directory</code> resource</td><td data-label="Availability"><span class="badge">planned · interactive routing held for practitioner review</span></td></tr>
+<tr><td data-label="Tool"><code>archive.timeline</code> · <code>archive.building_lookup</code> · <code>archive.find_readings</code></td><td data-label="What it does">Reviewed timeline events; buildings with zone flags; sampling readings with units and citations</td><td data-label="Availability"><span class="badge">planned · Phase 2–3</span></td></tr>
 <!-- /BUILD:tools -->
 </tbody></table></div></div></details>
 </section>
 <section id="examples">
-<h2>Recorded calls</h2>
-<p>These calls were made to the local server against this machine's captures, with live search off. Each answer is the response the tool returned, unchanged; a refusal is recorded as the error it returned.</p>
+<h2>Sample calls</h2>
+<p>Choose a question to see one saved request and response. Live search is off.</p>
 <!-- BUILD:examples -->
 <label for="example-choice">Choose a call</label>
 <select id="example-choice"><option value="catalog_search">catalog_search · Which folders in the archive mention John Street?</option><option value="portal_browse">portal_browse · What is inside DEP Box 31?</option><option value="portal_get_document">portal_get_document · What does the catalog hold about the Harding memo?</option><option value="portal_get_page_text">portal_get_page_text · What is printed on page 1 of the Harding memo?</option><option value="citations_verify">citations_verify · Is the Harding estimate really on page 1, and is the same quote on page 2?</option><option value="portal_search">portal_search · Can the server search the live portal?</option><option value="budget_lookup">budget_lookup · What is known about the DOI investigation&#x27;s funding?</option><option value="doi_milestones">doi_milestones · Which dated obligations are upcoming?</option><option value="portal_catalog_stats">portal_catalog_stats · How large is the captured catalog?</option><option value="portal_changes_since">portal_changes_since · What changed since September 9, 2026?</option></select>
 <p class="result-note">Recorded 2026-09-11 with server 0.2.0, schema 2026-09-11; live search off; no network calls.</p>
 <article class="example" id="example-catalog_search" data-example="catalog_search">
-<p class="eyebrow">Find a record · catalog_search</p>
 <h3>Which folders in the archive mention John Street?</h3>
 <pre class="request">catalog_search {&quot;folder&quot;: &quot;JOHN STREET&quot;, &quot;count&quot;: 5}</pre>
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only, physical_labels.</p>
@@ -241,7 +245,6 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_browse" data-example="portal_browse">
-<p class="eyebrow">Find a record · portal_browse</p>
 <h3>What is inside DEP Box 31?</h3>
 <pre class="request">portal_browse {&quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;, &quot;box&quot;: &quot;DEP Box 31&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: physical_labels.</p>
@@ -330,7 +333,6 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_get_document" data-example="portal_get_document">
-<p class="eyebrow">Find a record · portal_get_document</p>
 <h3>What does the catalog hold about the Harding memo?</h3>
 <pre class="request">portal_get_document {&quot;bates&quot;: &quot;NYC-WTC_000138296&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: no_document_date_field.</p>
@@ -377,7 +379,6 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_get_page_text" data-example="portal_get_page_text">
-<p class="eyebrow">Find a record · portal_get_page_text</p>
 <h3>What is printed on page 1 of the Harding memo?</h3>
 <pre class="request">portal_get_page_text {&quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 1}</pre>
 <p class="result-note">The call returned an envelope with warnings: cached_bytes_timestamp, untrusted_source_text.</p>
@@ -426,7 +427,6 @@
 }</pre>
 </article>
 <article class="example" id="example-citations_verify" data-example="citations_verify">
-<p class="eyebrow">Find a record · citations_verify</p>
 <h3>Is the Harding estimate really on page 1, and is the same quote on page 2?</h3>
 <pre class="request">citations_verify {&quot;claims&quot;: [{&quot;id&quot;: &quot;harding-p1&quot;, &quot;claim&quot;: &quot;The memo estimates 35,000 potential plaintiffs.&quot;, &quot;quote&quot;: &quot;approximately 35,000 potential plaintiffs&quot;, &quot;source&quot;: {&quot;type&quot;: &quot;portal&quot;, &quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 1}}, {&quot;id&quot;: &quot;harding-p2&quot;, &quot;claim&quot;: &quot;The same estimate appears on page 2.&quot;, &quot;quote&quot;: &quot;approximately 35,000 potential plaintiffs&quot;, &quot;source&quot;: {&quot;type&quot;: &quot;portal&quot;, &quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 2}}]}</pre>
 <p class="result-note">The call returned an envelope with warnings: match_is_not_review.</p>
@@ -484,7 +484,6 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_search" data-example="portal_search">
-<p class="eyebrow">Find a record · portal_search</p>
 <h3>Can the server search the live portal?</h3>
 <pre class="request">portal_search {&quot;query&quot;: &quot;\&quot;Clean Up Initiative\&quot;&quot;, &quot;count&quot;: 3}</pre>
 <p class="result-note">The call returned a structured error: refused.</p>
@@ -496,7 +495,6 @@
 }</pre>
 </article>
 <article class="example" id="example-budget_lookup" data-example="budget_lookup">
-<p class="eyebrow">Follow the money · budget_lookup</p>
 <h3>What is known about the DOI investigation&#x27;s funding?</h3>
 <pre class="request">budget_lookup {&quot;topic&quot;: &quot;doi&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: announcement_not_expenditure, unreviewed_artifact.</p>
@@ -666,7 +664,6 @@
 }</pre>
 </article>
 <article class="example" id="example-doi_milestones" data-example="doi_milestones">
-<p class="eyebrow">Follow the money · doi_milestones</p>
 <h3>Which dated obligations are upcoming?</h3>
 <pre class="request">doi_milestones {}</pre>
 <p class="result-note">The call returned an envelope with warnings: no_compliance_determination, unreviewed_artifact.</p>
@@ -850,7 +847,6 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_catalog_stats" data-example="portal_catalog_stats">
-<p class="eyebrow">Check releases · portal_catalog_stats</p>
 <h3>How large is the captured catalog?</h3>
 <pre class="request">portal_catalog_stats {}</pre>
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
@@ -907,7 +903,6 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_changes_since" data-example="portal_changes_since">
-<p class="eyebrow">Check releases · portal_changes_since</p>
 <h3>What changed since September 9, 2026?</h3>
 <pre class="request">portal_changes_since {&quot;since&quot;: &quot;2026-09-09&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: interval_actually_compared, observation_not_removal, no_compliance_determination.</p>
@@ -982,7 +977,7 @@
 </section>
 <section id="planned">
 <h2>Not built yet</h2>
-<p>Each item below is specified but not written; its note says what blocks it.</p>
+<p>Specified, not available.</p>
 <ul class="plain">
 <li><strong>Evidence-packet guide</strong> for WTC Health Program and VCF proof of presence. The official
 rules and the New York City issuers are on the <a href="examples.html#demo-help">Examples page</a> as a cited
@@ -1031,9 +1026,9 @@ not publish a total it cannot source.</li>
 </main>
 <!-- BUILD:footer -->
 <footer><div class="in">
-<p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot catalog_2026-09-09_pdf.csv. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · <a href="llms.txt">For agents</a></p>
+<p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot catalog_2026-09-09_pdf.csv. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · <a href="llms.txt">For agents</a> · <a href="#top">Back to top ↑</a></p>
 </div></footer>
 <!-- /BUILD:footer -->
-<script src="assets/site.js?v=68349ee7" defer></script>
+<script src="assets/site.js?v=ef2e5dd4" defer></script>
 </body>
 </html>

@@ -6,23 +6,22 @@
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Examples built on the MCP · September 11th Documents Toolkit</title>
-<meta name="description" content="Four examples built on the MCP server's data: find a cited record, see which official records prove presence and their issuers, follow a budget commitment stage by stage, and inspect an archive capture.">
+<meta name="description" content="Ten examples using the local MCP data: locate a record, find official help, track commitments, inspect catalog captures, and explore the City release.">
 <link rel="canonical" href="https://pranava0x0.github.io/sept11documents-mcp/examples.html">
-<link rel="stylesheet" href="assets/site.css?v=d8587092">
+<link rel="stylesheet" href="assets/site.css?v=9fe77cd5">
 </head>
 <body class="demo-home">
 <a class="skip" href="#main">Skip to main content</a>
 <!-- BUILD:mast -->
 <header class="mast"><div class="in"><a class="word" href="index.html">September 11th Documents Toolkit</a><span class="note">Independent project. Not an official City of New York website. Not legal advice.</span></div></header>
 <nav class="top" aria-label="Pages"><div class="in"><ul>
-<li><a href="index.html">Overview</a></li><li><a href="toolkit.html">The MCP</a></li><li><a href="examples.html" aria-current="page">Examples</a></li><li><a href="records.html">Records</a></li>
+<li><a href="index.html">Overview</a></li><li><a href="toolkit.html">The MCP</a></li><li><a href="examples.html" aria-current="page">Examples</a></li><li><a href="records.html">Records</a></li><li><a href="community.html">Community support</a></li>
 </ul></div></nav>
 <!-- /BUILD:mast -->
 <main id="main">
 <header class="workspace-intro">
-<p class="eyebrow">Built on the MCP</p>
 <h1 id="top">Examples</h1>
-<p>Four examples use the data the <a href="toolkit.html">MCP server</a> serves, and each names the tools an assistant would call.</p>
+<p>Ten ways to use the MCP with the City release.</p>
 </header>
 <div class="workspace">
 <nav class="demo-tabs" aria-label="Choose a demo">
@@ -30,9 +29,15 @@
 <a id="tab-help" href="#demo-help">Get official help</a>
 <a id="tab-budget" href="#demo-budget">Follow the money</a>
 <a id="tab-releases" href="#demo-releases">Check releases</a>
+<a id="tab-context" href="#demo-context">What changed</a>
+<a id="tab-paths" href="#demo-paths">Research paths</a>
+<a id="tab-footprint" href="#demo-footprint">Release footprint</a>
+<a id="tab-tracker" href="#demo-tracker">Release tracker</a>
+<a id="tab-collections" href="#demo-collections">Collections</a>
+<a id="tab-timeline" href="#demo-timeline">Document timeline</a>
 </nav>
 <section id="demo-records" class="demo-panel" aria-labelledby="tab-records">
-<div class="demo-heading"><h2>A saved record and the page it comes from</h2><span class="demo-label">Saved examples</span></div>
+<div class="demo-heading"><h2>Open a cited record</h2><span class="demo-label">Saved examples</span></div>
 <div class="demo-grid">
 <div class="demo-primary">
 <!-- BUILD:record-demo -->
@@ -76,12 +81,12 @@
 </div>
 <aside class="demo-context"><h3>With the MCP</h3>
 <p class="tool-path"><code>catalog_search</code> → <code>portal_get_page_text</code> → <code>citations_verify</code></p>
-<p><a href="toolkit.html#example-catalog_search">See what the tool returns ↗</a></p>
+<p><a href="toolkit.html#example-catalog_search">View sample result ↗</a></p>
 <a href="records.html">More research examples ↗</a></aside>
 </div>
 </section>
 <section id="demo-help" class="demo-panel" aria-labelledby="tab-help">
-<div class="demo-heading"><h2>Records that prove presence, and their issuers</h2><span class="demo-label">Official directory</span></div>
+<div class="demo-heading"><h2>Find proof-of-presence records</h2><span class="demo-label">Official directory</span></div>
 <div class="demo-grid">
 <div class="demo-primary">
 <!-- BUILD:help-demo -->
@@ -128,7 +133,7 @@
 </div>
 </section>
 <section id="demo-budget" class="demo-panel" aria-labelledby="tab-budget">
-<div class="demo-heading"><h2>Each commitment through five evidence stages</h2><span class="demo-label">Commitment ledger</span></div>
+<div class="demo-heading"><h2>Track a funding commitment</h2><span class="demo-label">Commitment ledger</span></div>
 <div class="demo-grid">
 <div class="demo-primary">
 <!-- BUILD:budget-demo -->
@@ -175,12 +180,12 @@
 </div>
 <aside class="demo-context"><h3>With the MCP</h3>
 <p class="tool-path"><code>budget_lookup</code> → <code>doi_milestones</code></p>
-<p><a href="toolkit.html#example-budget_lookup">See what the tool returns ↗</a></p>
+<p><a href="toolkit.html#example-budget_lookup">View sample result ↗</a></p>
 <a href="index.html#obligations">View related obligations ↗</a></aside>
 </div>
 </section>
 <section id="demo-releases" class="demo-panel" aria-labelledby="tab-releases">
-<div class="demo-heading"><h2>The latest catalog capture</h2><span class="demo-label">Saved capture</span></div>
+<div class="demo-heading"><h2>Check catalog changes</h2><span class="demo-label">Saved capture</span></div>
 <div class="demo-grid">
 <div class="demo-primary">
 <div id="watchdog-live" class="ledger"><p>Loading the saved capture. <a href="data/watchdog/latest.json">Open the source data</a>.</p></div>
@@ -194,18 +199,163 @@
 </div>
 <aside class="demo-context"><h3>With the MCP</h3>
 <p class="tool-path"><code>portal_catalog_stats</code> → <code>portal_changes_since</code></p>
-<p><a href="toolkit.html#example-portal_changes_since">See what the tool returns ↗</a></p>
+<p><a href="toolkit.html#example-portal_changes_since">View sample result ↗</a></p>
 <a href="index.html#watchdog">Watchdog methods ↗</a></aside>
 </div>
+</section>
+<section id="demo-context" class="demo-panel" aria-labelledby="tab-context">
+<div class="demo-heading"><h2>Recent coverage and projects</h2><span class="demo-label">Dated reading list</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:current-context -->
+<p class="result-note">As of 2026-09-21 · 2026-09-11 through 2026-09-21. Recent, source-linked developments around the City release.</p><article class="context-item">
+<p class="eyebrow">2026-09-19 · Independent project</p><h3>911records.org moved domains and publishes a change log</h3>
+<p>Cleartext Labs says its independent mirror now uses 911records.org, with prior 911records.nyc links redirecting. Its release notes also describe OCR and search changes. Treat its extracted text and tags as research aids; check the City PDF before relying on a result.</p><a class="source-link" href="https://911records.org/releases">911 City Records release notes ↗</a>
+<p class="result-note"><b>How to use it:</b> Compare a finding with this toolkit’s locally captured catalog. Differences can reflect capture time, OCR, tagging, or a changed City record.</p></article>
+<article class="context-item">
+<p class="eyebrow">2026-09-17 · Independent project</p><h3>A public mirror and MCP were announced for the City release</h3>
+<p>The project describes a map, record search, saved case files, exports, and an MCP endpoint. The operator says it is independent and not a City or benefits-program service.</p><a class="source-link" href="https://www.reddit.com/r/newyorkcity/comments/1wiu6bd/a_new_resource_for_911_wtc_survivors_and_their/">Project announcement ↗</a>
+<p class="result-note"><b>How to use it:</b> Useful for discovery and comparison, not proof of exposure, eligibility, illness, liability, or wrongdoing.</p></article>
+<article class="context-item">
+<p class="eyebrow">2026-09-11 · Federal records</p><h3>National Archives announced declassification of separate federal 9/11 records</h3>
+<p>The Public Interest Declassification Board says presidential briefing material and 9/11 Commission interview memoranda were released. These are separate from New York City’s post-attack air-quality portal.</p><a class="source-link" href="https://transforming-classification.blogs.archives.gov/2026/09/11/long-sought-9-11-records-now-declassified-and-available-to-the-public/">National Archives announcement ↗</a>
+<p class="result-note"><b>How to use it:</b> Keep federal pre-attack records separate from City post-attack records when framing a question or citation.</p></article>
+<!-- /BUILD:current-context -->
+</div><aside class="demo-context"><h3>Scope</h3>
+<p>Official City records, independent tools, and federal records are separate systems.</p>
+<p><a href="https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records">City release announcement ↗</a></p>
+</aside></div>
+</section>
+<section id="demo-paths" class="demo-panel" aria-labelledby="tab-paths">
+<div class="demo-heading"><h2>Turn a question into an MCP query</h2><span class="demo-label">MCP routes</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:research-paths -->
+<label for="path-choice">Choose a research question</label>
+<select id="path-choice"><option value="catalog-change">Did the City catalog change after this toolkit’s saved capture?</option><option value="source-page">What does a cited City page actually say?</option><option value="project-compare">Why might an independent project show more search detail?</option><option value="separate-records">Are City portal documents the same as newly declassified federal records?</option></select>
+<article class="research-path" data-path="catalog-change">
+<h3>Did the City catalog change after this toolkit’s saved capture?</h3><p class="tool-path"><code>portal_changes_since → portal_get_document</code></p>
+<p>Use two accepted local captures. The result can report observed additions, absences, or changed metadata; it does not prove why a record changed or that a City release is complete.</p><p class="result-note"><b>Boundary:</b> This checkout’s published capture is dated 2026-09-11. A current comparison needs a newer accepted capture.</p></article>
+<article class="research-path" data-path="source-page">
+<h3>What does a cited City page actually say?</h3><p class="tool-path"><code>catalog_search → portal_get_document → portal_get_page_text → citations_verify</code></p>
+<p>Find the local catalog entry, open its record, read the specific Bates page, then verify the exact quotation. Page text may be withheld when the PII screen flags it.</p><p class="result-note"><b>Boundary:</b> A located phrase is evidence location, not a finding about exposure, health, liability, or program eligibility.</p></article>
+<article class="research-path" data-path="project-compare">
+<h3>Why might an independent project show more search detail?</h3><p class="tool-path"><code>portal_catalog_stats → portal_browse</code></p>
+<p>This MCP reports its own snapshot, catalog structure, and evidence warnings. Another project can have a later capture or different OCR. Compare source PDF, Bates page, capture date, and stated method.</p><p class="result-note"><b>Boundary:</b> Do not combine counts, map pins, OCR, or tags across projects as if they were one verified dataset.</p></article>
+<article class="research-path" data-path="separate-records">
+<h3>Are City portal documents the same as newly declassified federal records?</h3><p class="tool-path"><code>citations_verify</code></p>
+<p>No. This MCP can verify registered City-portal pages and its registered sources; it does not search or interpret the federal release.</p><p class="result-note"><b>Boundary:</b> Use the National Archives source directly for federal records and identify the record system in every citation.</p></article>
+<!-- /BUILD:research-paths -->
+</div><aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>portal_changes_since</code> · <code>portal_get_page_text</code> · <code>citations_verify</code></p>
+<p>Each route states what the result cannot establish.</p>
+</aside></div>
+</section>
+<section id="demo-footprint" class="demo-panel" aria-labelledby="tab-footprint">
+<div class="demo-heading"><h2>Release snapshot</h2><span class="demo-label">Catalog snapshot</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:release-footprint -->
+<div class="release-metrics" aria-label="Saved catalog footprint">
+<div><b>24,441</b><span>documents</span></div><div><b>173,299</b><span>pages</span></div>
+<div><b>74</b><span>boxes</span></div><div><b>4,173</b><span>folder labels</span></div></div>
+<p class="result-note">Catalog captured 2026-09-09.</p>
+<div class="tw"><table><colgroup><col class="w50"><col class="w25"><col class="w25"></colgroup>
+<thead><tr><th>Collection</th><th>Documents</th><th>Share of saved catalog</th></tr></thead><tbody><tr><td data-label="Collection">DEP Hard Copies (68 Boxes)</td><td data-label="Documents">21,395</td><td data-label="Share of saved catalog">87.5%</td></tr><tr><td data-label="Collection">WTC 7</td><td data-label="Documents">3,025</td><td data-label="Share of saved catalog">12.4%</td></tr><tr><td data-label="Collection">DORIS Giuliani</td><td data-label="Documents">21</td><td data-label="Share of saved catalog">0.1%</td></tr></tbody></table></div>
+<!-- /BUILD:release-footprint -->
+</div><aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>portal_catalog_stats</code> · <code>portal_browse</code></p>
+<p>Use the local snapshot to inspect collections. Capture time matters.</p>
+</aside></div>
+</section>
+<section id="demo-tracker" class="demo-panel" aria-labelledby="tab-tracker">
+<div class="demo-heading"><h2>Track release commitments</h2><span class="demo-label">Dated observations</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:release-tracker -->
+<label for="release-choice">Choose a release commitment</label>
+<select id="release-choice"><option value="portal-launch">Launch the September 11th Public Records Portal with records sought in the FOIL requests plus other records of public interest</option><option value="harding-documents-of-interest">Link the Harding Memo under a &#x27;Documents of Interest&#x27; tab; FAQ explains how it was identified</option><option value="search-terms-posted">Agreed search terms posted on the portal</option><option value="privilege-log">Privilege log of located-but-withheld documents, provided to counsel and posted on the portal</option><option value="dcas-doe-personnel">Designate DCAS and DOE personnel to gather documents for proof of presence (City employees; NYC public-school attendees)</option></select>
+<article class="release-result" data-release="portal-launch">
+<p class="eyebrow">Checked 2026-09-09 · <span class="badge met">observed</span></p>
+<h3>Launch the September 11th Public Records Portal with records sought in the FOIL requests plus other records of public interest</h3><p>Portal live 2026-09-08; catalog export 2026-09-09: 24,441 documents / 173,299 pages</p>
+<p class="result-note"><b>Source:</b> Settlement recitals; ¶ (1)–(3). Observation only.</p>
+</article>
+<article class="release-result" data-release="harding-documents-of-interest">
+<p class="eyebrow">Checked 2026-09-09 · <span class="badge partial">partially observed</span></p>
+<h3>Link the Harding Memo under a &#x27;Documents of Interest&#x27; tab; FAQ explains how it was identified</h3><p>Documents of Interest previously observed; Harding FAQ answer read in browser September 9. Combined obligation requires independent review.</p>
+<p class="result-note"><b>Source:</b> Settlement ¶ (Harding Memo). Observation only.</p>
+</article>
+<article class="release-result" data-release="search-terms-posted">
+<p class="eyebrow">Checked 2026-09-09 · <span class="badge notvisible">not observed on inspected surfaces</span></p>
+<h3>Agreed search terms posted on the portal</h3><p>FAQ provides examples; complete agreed list not observed in inspected navigation.</p>
+<p class="result-note"><b>Source:</b> Transcript 2026-09-08 (Corporation Counsel Banks). Observation only.</p>
+</article>
+<article class="release-result" data-release="privilege-log">
+<p class="eyebrow">Checked 2026-09-09 · <span class="badge notvisible">not observed on inspected surfaces</span></p>
+<h3>Privilege log of located-but-withheld documents, provided to counsel and posted on the portal</h3><p>No dedicated navigation item observed; no claim of absence elsewhere.</p>
+<p class="result-note"><b>Source:</b> Settlement ¶ 7. Observation only.</p>
+</article>
+<article class="release-result" data-release="dcas-doe-personnel">
+<p class="eyebrow">Checked 2026-09-11 · <span class="badge partial">partially observed</span></p>
+<h3>Designate DCAS and DOE personnel to gather documents for proof of presence (City employees; NYC public-school attendees)</h3><p>Commitment announced 2026-09-08 (settlement p.3; Mayor’s release). No contact path published: DCAS home page captured 2026-09-11 has no mention; the portal’s Programs and Forms page was not re-checked.</p>
+<p class="result-note"><b>Source:</b> Settlement ¶ (b); Mayor&#x27;s press release. Observation only.</p>
+</article>
+<!-- /BUILD:release-tracker -->
+</div><aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>doi_milestones</code> · resource <code>sept11://scorecard</code></p>
+<p>Observed, not observed, and unable to check are evidence states, not verdicts.</p>
+</aside></div>
+</section>
+<section id="demo-collections" class="demo-panel" aria-labelledby="tab-collections">
+<div class="demo-heading"><h2>Browse the catalog by collection</h2><span class="demo-label">Local catalog</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:collection-explorer -->
+<label for="collection-choice">Choose a City collection</label>
+<select id="collection-choice"><option value="DEP Hard Copies (68 Boxes)">DEP Hard Copies (68 Boxes) · 21,395 documents</option><option value="WTC 7">WTC 7 · 3,025 documents</option><option value="DORIS Giuliani">DORIS Giuliani · 21 documents</option></select>
+<article class="collection-result" data-collection="DEP Hard Copies (68 Boxes)">
+<p class="eyebrow">21,395 documents in saved catalog</p><h3>DEP Hard Copies (68 Boxes)</h3>
+<p>DEP hard-copy production. The summary reports 21,395 documents for Environmental Protection, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
+<pre class="request">catalog_search {&quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;, &quot;count&quot;: 10}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
+<article class="collection-result" data-collection="WTC 7">
+<p class="eyebrow">3,025 documents in saved catalog</p><h3>WTC 7</h3>
+<p>WTC 7 collection label. The summary reports 2,915 documents for Citywide Administrative Services, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
+<pre class="request">catalog_search {&quot;source&quot;: &quot;WTC 7&quot;, &quot;count&quot;: 10}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
+<article class="collection-result" data-collection="DORIS Giuliani">
+<p class="eyebrow">21 documents in saved catalog</p><h3>DORIS Giuliani</h3>
+<p>DORIS Giuliani collection label. The summary reports 21 documents for Records and Information Services, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
+<pre class="request">catalog_search {&quot;source&quot;: &quot;DORIS Giuliani&quot;, &quot;count&quot;: 10}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
+<!-- /BUILD:collection-explorer -->
+</div><aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>catalog_search</code> → <code>portal_browse</code></p>
+<p>Collection labels are City metadata, not a topic classification.</p>
+</aside></div>
+</section>
+<section id="demo-timeline" class="demo-panel" aria-labelledby="tab-timeline">
+<div class="demo-heading"><h2>Read a short document timeline</h2><span class="demo-label">Located anchors</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:release-timeline -->
+<p class="result-note">Four located documents. Dates use each anchor’s stated basis.</p><ol class="release-timeline"><li><b>2001-10</b><span>Harding memo (Legislative Alternatives to Limit the City&#x27;s Liability)</span>
+<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1">NYC-WTC_000138296 · p.1</a>
+<span class="muted">portal &#x27;Documents of Interest&#x27; label; Oct 16, 2001 email at NYC-WTC_000136670 p.58</span></li><li><b>2001-11-20</b><span>EPA Special Investigative Audit #14, Environmental Data Trend Report (IT Corporation for EPA)</span>
+<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=1">NYC-WTC_000130438 · p.1</a>
+<span class="muted">printed on the cover</span></li><li><b>2002-02-28</b><span>Fuchs memo re Congressman Nadler&#x27;s concerns about indoor air quality</span>
+<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2">NYC-WTC_000147320 · p.2</a>
+<span class="muted">printed on the memo</span></li><li><b>2002-05-16</b><span>Clean Up Initiative note (conversation with Kathy Callahan)</span>
+<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf#page=1">NYC-WTC_000153130 · p.1</a>
+<span class="muted">header &#x27;5/16/02 Clean-up Initiative&#x27;</span></li></ol>
+<!-- /BUILD:release-timeline -->
+</div><aside class="demo-context"><h3>With the MCP</h3>
+<p class="tool-path"><code>portal_get_document</code> → <code>portal_get_page_text</code></p>
+<p>Open the Bates page before quoting. Dates are not catalog fields.</p>
+</aside></div>
 </section>
 </div>
 <div class="help-strip"><p><strong>Official programs for care and compensation</strong> <a href="https://www.cdc.gov/wtc/">WTC Health Program</a> · <a href="https://www.vcf.gov/">Victim Compensation Fund</a></p><p><a href="https://sept11documents.cityofnewyork.us/">Search the full City portal ↗</a> · <a href="toolkit.html#quickstart">Run the local MCP ↗</a></p></div>
 </main>
 <!-- BUILD:footer -->
 <footer><div class="in">
-<p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot catalog_2026-09-09_pdf.csv. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · <a href="llms.txt">For agents</a></p>
+<p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot catalog_2026-09-09_pdf.csv. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · <a href="llms.txt">For agents</a> · <a href="#top">Back to top ↑</a></p>
 </div></footer>
 <!-- /BUILD:footer -->
-<script src="assets/site.js?v=68349ee7" defer></script>
+<script src="assets/site.js?v=ef2e5dd4" defer></script>
 </body>
 </html>

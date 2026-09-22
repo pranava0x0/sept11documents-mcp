@@ -1,45 +1,29 @@
 # September 11th Documents Toolkit
 
-Site order: index.html is the Overview (the portal; the commitments as stated, quoted from the stipulation, Resolution 560-A, the September 8, 2026 transcript and release, and DOI's letters and page, each quote a verified claim; the three announced amounts; the settlement and Council obligation rows with observed status; the watchdog capture); toolkit.html is the MCP server, the base everything else runs on; examples.html holds the four demos built on it; records.html lists the located documents.
+Independent research tools for New York City’s September 11th Document Portal. Not an official City site. Not legal or medical advice.
 
-Purpose: built so that New Yorkers, first responders, survivors and their families can read what the City's records show about the air in Lower Manhattan after September 11, 2001. It also lets them check what the City has committed to in releasing those records. Quotes are verbatim from captured sources; the build refuses a quote it cannot locate.
+## Pages
 
-Browser demos (examples.html, four tabs).
+- [Overview](https://pranava0x0.github.io/sept11documents-mcp/): City records, release commitments, dated obligations, and saved catalog captures.
+- [The MCP](https://pranava0x0.github.io/sept11documents-mcp/toolkit.html): ten read-only tools, resources, prompts, and recorded calls.
+- [Examples](https://pranava0x0.github.io/sept11documents-mcp/examples.html): ten browser demos using local, allowlisted data. They show the tool route and its limits.
+- [Records](https://pranava0x0.github.io/sept11documents-mcp/records.html): located records with cited quotations and Bates pages.
+- [Community support](https://pranava0x0.github.io/sept11documents-mcp/community.html): direct links to organizations serving the 9/11 community.
 
-- Find a record: selected source records with page links and copyable citations, and a folder-label search over the saved catalog capture (data/folders.json), run in the browser.
+## MCP
 
-- Get official help: the WTC Health Program and VCF rules on proof of presence, quoted from the captured official pages with a citation chip on every quote, and the New York City issuers (DCAS, NYCPS, the Comptroller, StuyHealth) with the settlement's commitment and its observed status.
+The server is local and read-only. `portal_search` is the only tool that contacts the City and requires opt-in. Other tools use saved catalog metadata, captured page text, or allowlisted JSON.
 
-- Follow the money: the commitment ledger (portal $34.2 million FY27; DOI $4 million, period unresolved; Memorial education $1 million FY27), each with five separately evidenced stages, never summed.
+Tools: `portal_search`, `catalog_search`, `portal_get_document`, `portal_get_page_text`, `portal_catalog_stats`, `portal_browse`, `portal_changes_since`, `citations_verify`, `doi_milestones`, `budget_lookup`.
 
-- Check releases: the saved watchdog capture and the dated obligations ahead.
+Use `citations_verify` before repeating a quote. A `found` result locates text; it is not a legal, medical, or factual conclusion beyond that text.
 
-Demo tabs switch in place; every example remains readable without JavaScript. No browser demo calls a model or a live MCP. toolkit.html shows recorded tool exchanges (data/mcp-examples.json): calls to the local server, responses unchanged except that page text is elided.
+## Data limits
 
-Independent open tools around New York City's September 11th Document Portal (https://sept11documents.cityofnewyork.us, launched 2026-09-08): an MCP server for page-exact research, a release watchdog, a commitment ledger, an official help directory, and, planned, an accountability dual-timeline, an evidence-packet guide for WTC Health Program / VCF claims and a building-level exposure index. Not an official City website. No legal advice.
+Catalog totals and changes describe saved captures. A missing record in a later capture is not proof of removal or withholding. Announced amounts are not summed and are not transaction records. Current service rules and eligibility belong to the organizations and official programs linked on the site.
 
-- Pages, in menu order.
+## Source and code
 
-  - index.html, Overview: the portal, the purpose, the day-one figures, the commitments as stated (verified quotes), the announced amounts, the settlement and Council Resolution 560-A rows, the release watchdog's latest capture.
-
-  - toolkit.html, the MCP: tools with recorded exchanges, the commands, the portal's API, and what is not built yet.
-
-  - examples.html, the four demos built on the MCP: find a record, get official help, follow the money, check releases.
-
-  - records.html, documents located in the archive, each with its quote and Bates page.
-
-- Source code: https://github.com/pranava0x0/sept11documents-mcp
-
-- Evidence base: the claim registry research/claims/claims.json (133 claims, every one located in a captured source) and the source list research/sources_manifest.json. The captures themselves stay out of the repository; scripts/evidence_bundle.py packs the ones a maintainer's checks read.
-
-- Scripts: scripts/README.md (sept11_mcp.py with serve/tools/call/configure/doctor, watchdog.py, build_site.py, build_folder_index.py, record_mcp_examples.py, mcp_evals.py, publication.py, portal_api.py, export_catalog.py, catalog_diff.py, verify_claims.py, fetch_sources.py)
-
-- Data (all on the publication allowlist, review/publication.json): docs/data/catalog-summary.json, docs/data/scorecard.json, docs/data/watchdog/latest.json, docs/data/anchors.json, docs/data/commitments.json, docs/data/help-directory.json, docs/data/folders.json, docs/data/mcp-examples.json
-
-- MCP server (stdio, stdlib only, 10 tools): portal_search (live, opt-in), catalog_search, portal_get_document, portal_get_page_text, portal_catalog_stats, portal_browse, portal_changes_since, citations_verify, doi_milestones, budget_lookup; resources for every allowlisted file plus templates sept11://document/{bates} and sept11://page/{bates}/{page}; prompts research-assistant, verify-before-publishing, what-changed. Every tool publishes its response schema as outputSchema (schemas/envelope.schema.json). Registry entry: server.json; package: pyproject.toml (`sept11-mcp`).
-
-- Portal facts: Mindbreeze InSpire; anonymous JSON API (api/v2/search, api/v2/export); documents are Bates-numbered NYC-WTC_0000NNNNN; direct PDFs at /apps/content/September11_MD/<BATES>.pdf; no document-date metadata.
-
-- Citation unit: Bates number + page, e.g. NYC-WTC_000138296 p.1. An ellipsis inside a quote marks omitted words.
-
-Status: local research scripts, a read-only stdio MCP server, golden evals over 14 anchor documents, and a release watchdog run from a clone of the repository. The site is static and served by GitHub Pages; no MCP server is hosted and no job is scheduled. Live MCP search is opt-in (`SEPT11_ALLOW_LIVE=1`) because terms reach the City. No output has a named reviewer. The interactive evidence guide and the building index are planned; the official directory and the folder-label search are their static first steps. Found evidence is not semantic approval.
+- Source: https://github.com/pranava0x0/sept11documents-mcp
+- City portal: https://sept11documents.cityofnewyork.us/
+- Sitemap: https://pranava0x0.github.io/sept11documents-mcp/sitemap.xml

@@ -3,7 +3,7 @@
 
 Hand-inlined figures drift: a new catalog snapshot changed `docs/data/`, and the
 page kept yesterday's totals until someone remembered. This build writes the
-marked regions of the four pages from the reviewed artifacts and the server's
+marked regions of the five pages from the reviewed artifacts and the server's
 own tool registry, and refuses to write a number the claim registry contradicts.
 
 It serves only files on the publication allowlist (`review/publication.json`),
@@ -38,13 +38,13 @@ DOCS = ROOT / "docs"
 CLAIMS = ROOT / "research" / "claims" / "claims.json"
 TOOLS_OPEN, TOOLS_CLOSE = "<!-- BUILD:tools -->", "<!-- /BUILD:tools -->"
 
-# The site is four pages, not one scroll. Order here is the order in the menu: what is
-# happening, then the MCP (the base), then the examples built on it, then the records.
+# The site is five pages, not one scroll. Order here is the order in the menu.
 PAGES = [
     ("index.html", "Overview"),
     ("toolkit.html", "The MCP"),
     ("examples.html", "Examples"),
     ("records.html", "Records"),
+    ("community.html", "Community support"),
 ]
 
 MAST = """<header class="mast"><div class="in"><a class="word" href="index.html">September 11th Documents \
@@ -58,7 +58,7 @@ FOOTER = """<footer><div class="in">
 <p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not \
 legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot \
 {snapshot}. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · \
-<a href="llms.txt">For agents</a></p>
+<a href="llms.txt">For agents</a> · <a href="#top">Back to top ↑</a></p>
 </div></footer>"""
 
 # Tools the specs defer, with the reason a reader deserves. Rows a registry cannot
@@ -129,7 +129,7 @@ PUBLISHERS = [
 # The landing page quotes the City in its own words. Each entry is (lead, claim id); the
 # quote itself comes from the claim record and is located in its captured source at build.
 STATEMENTS = [
-    ("The stipulation, so-ordered September 2026", [
+    ("Settlement and order · September 2026", [
         ("", "settlement-portal-goal"),
         ("the records sought under FOIL and", "settlement-records-of-public-interest"),
         ("Monthly meetings:", "settlement-monthly-meetings"),
@@ -304,8 +304,8 @@ def tool_rows() -> str:
     for name, returns, status in PLANNED_ROWS:
         rows.append((name, returns, f'<span class="badge">{status}</span>'))
     return "\n".join(
-        f'<tr><td data-label="Tool">{name}</td><td data-label="Returns">{returns}</td>'
-        f'<td data-label="Status">{status}</td></tr>' for name, returns, status in rows)
+        f'<tr><td data-label="Tool">{name}</td><td data-label="What it does">{returns}</td>'
+        f'<td data-label="Availability">{status}</td></tr>' for name, returns, status in rows)
 
 
 def asset_version(name: str) -> str:
@@ -506,6 +506,109 @@ def budget_demo(document: dict, quotes: Quotes) -> str:
             '<select id="budget-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
 
 
+def current_context_demo(document: dict) -> str:
+    """Small, dated reading list; links distinguish official records from outside projects."""
+    items = []
+    for row in document["items"]:
+        items.append(f'''<article class="context-item">
+<p class="eyebrow">{e(row["date"])} · {e(row["kind"])}</p><h3>{e(row["title"])}</h3>
+<p>{e(row["summary"])}</p><a class="source-link" href="{e(row["source_url"], quote=True)}">{e(row["source_label"])} ↗</a>
+<p class="result-note"><b>How to use it:</b> {e(row["use"])}</p></article>''')
+    return (f'<p class="result-note">As of {e(document["as_of"])} · {e(document["window"])}. '
+            f'{e(document["scope_note"])}</p>' + "\n".join(items))
+
+
+def research_paths_demo(document: dict) -> str:
+    """Question-led routes make the MCP’s boundaries as visible as its capabilities."""
+    options, articles = [], []
+    for row in document["paths"]:
+        options.append(f'<option value="{e(row["id"])}">{e(row["question"])}</option>')
+        articles.append(f'''<article class="research-path" data-path="{e(row["id"])}">
+<h3>{e(row["question"])}</h3><p class="tool-path"><code>{e(row["tools"])}</code></p>
+<p>{e(row["answer"])}</p><p class="result-note"><b>Boundary:</b> {e(row["boundary"])}</p></article>''')
+    return ('<label for="path-choice">Choose a research question</label>\n'
+            '<select id="path-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
+
+
+def release_footprint_demo(summary: dict) -> str:
+    """Show the saved City catalog as a bounded snapshot, not a completeness claim."""
+    total = summary["documents"]
+    rows = []
+    for source, count in sorted(summary["by_source"].items(), key=lambda pair: -pair[1]):
+        share = f"{count / total:.1%}"
+        rows.append(f'<tr><td data-label="Collection">{e(source)}</td><td data-label="Documents">{count:,}</td>'
+                    f'<td data-label="Share of saved catalog">{share}</td></tr>')
+    return f'''<div class="release-metrics" aria-label="Saved catalog footprint">
+<div><b>{total:,}</b><span>documents</span></div><div><b>{summary["pages"]:,}</b><span>pages</span></div>
+<div><b>{summary["boxes"]:,}</b><span>boxes</span></div><div><b>{summary["folders"]:,}</b><span>folder labels</span></div></div>
+<p class="result-note">Catalog captured {e(str(summary["captured_at"])[:10])}.</p>
+<div class="tw"><table><colgroup><col class="w50"><col class="w25"><col class="w25"></colgroup>
+<thead><tr><th>Collection</th><th>Documents</th><th>Share of saved catalog</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'''
+
+
+def release_tracker_demo(scorecard: dict) -> str:
+    """Release-specific settlement rows, with observed status distinct from compliance."""
+    chosen = ("portal-launch", "harding-documents-of-interest", "search-terms-posted", "privilege-log",
+              "dcas-doe-personnel")
+    indexed = {row["id"]: row for row in scorecard["rows"]}
+    options, articles = [], []
+    for key in chosen:
+        row = indexed[key]
+        css, label = STATUS_BADGE[row["status"]]
+        options.append(f'<option value="{e(key)}">{e(row["obligation"])}</option>')
+        articles.append(f'''<article class="release-result" data-release="{e(key)}">
+<p class="eyebrow">Checked {e(row["checked"])} · <span class="badge {css}">{e(label)}</span></p>
+<h3>{e(row["obligation"])}</h3><p>{e(row["evidence"])}</p>
+<p class="result-note"><b>Source:</b> {e(row["source"])}. Observation only.</p>
+</article>''')
+    return ('<label for="release-choice">Choose a release commitment</label>\n'
+            '<select id="release-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
+
+
+def collection_explorer_demo(summary: dict) -> str:
+    """Collection filters a reader can paste into the local MCP without sending a query upstream."""
+    agencies = summary["by_agency"]
+    details = {
+        "DEP Hard Copies (68 Boxes)": ("Environmental Protection, Dept. of", "DEP hard-copy production"),
+        "WTC 7": ("Citywide Administrative Services, Dept. of", "WTC 7 collection label"),
+        "DORIS Giuliani": ("Records and Information Services, Dept. of", "DORIS Giuliani collection label"),
+    }
+    options, articles = [], []
+    for source, count in sorted(summary["by_source"].items(), key=lambda pair: -pair[1]):
+        detail = details.get(source)
+        if detail:
+            agency, note = detail
+            agency_context = (f'The summary reports {agencies.get(agency, 0):,} documents for {e(agency)} '
+                              'across the saved catalog; it is not a one-to-one collection total.')
+        else:
+            note = "City collection label; no curated agency pairing is stored yet"
+            agency_context = "Inspect the returned catalog rows for their agency field before drawing a collection-level conclusion."
+        options.append(f'<option value="{e(source)}">{e(source)} · {count:,} documents</option>')
+        request = json.dumps({"source": source, "count": 10}, ensure_ascii=False)
+        articles.append(f'''<article class="collection-result" data-collection="{e(source)}">
+<p class="eyebrow">{count:,} documents in saved catalog</p><h3>{e(source)}</h3>
+<p>{e(note)}. {agency_context}</p>
+<pre class="request">catalog_search {e(request)}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>''')
+    return ('<label for="collection-choice">Choose a City collection</label>\n'
+            '<select id="collection-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
+
+
+def release_timeline_demo(anchors: dict) -> str:
+    """Document-led timeline: dates are only the dates already recorded for each anchor."""
+    chosen = ("harding-memo", "sia14-audit", "fuchs-memo", "clean-up-initiative")
+    indexed = {row["id"]: row for row in anchors["anchors"]}
+    articles = []
+    for key in chosen:
+        row = indexed[key]
+        url = pdf_link(row["bates"], row["page"])
+        articles.append(f'''<li><b>{e(row["date"])}</b><span>{e(row["label"])}</span>
+<a class="cite" href="{url}">{e(row["bates"])} · p.{row["page"]}</a>
+<span class="muted">{e(row["date_basis"])}</span></li>''')
+    return ('<p class="result-note">Four located documents. Dates use each anchor’s stated basis.</p>'
+            '<ol class="release-timeline">' + "".join(articles) + '</ol>')
+
+
 def statements_section(quotes: Quotes) -> str:
     """The City's commitments in its own words: verified quotes grouped by source."""
     groups = []
@@ -594,8 +697,6 @@ def due_next(scorecard: dict) -> str:
 
 def examples_section(recorded: dict) -> str:
     """Recorded exchanges for the builders page: one article per call, the envelope verbatim."""
-    demo_names = {"records": "Find a record", "help": "Get official help", "budget": "Follow the money",
-                  "releases": "Check releases"}
     options, articles = [], []
     for ex in recorded["examples"]:
         request = ex["request"]
@@ -606,7 +707,6 @@ def examples_section(recorded: dict) -> str:
         redactions = "".join(f'<p class="result-note">Published copy: {e(r)}.</p>' for r in ex.get("redactions", []))
         body = json.dumps(ex["response"], indent=2, ensure_ascii=False)
         articles.append(f'''<article class="example" id="example-{e(ex["id"])}" data-example="{e(ex["id"])}">
-<p class="eyebrow">{e(demo_names.get(ex["demo"], ex["demo"]))} · {e(request["name"])}</p>
 <h3>{e(ex["question"])}</h3>
 <pre class="request">{e(request["name"])} {e(json.dumps(request["arguments"], ensure_ascii=False))}</pre>
 <p class="result-note">The call {outcome}.</p>
@@ -667,10 +767,18 @@ def build(check: bool) -> int:
             directory, _ = publication.read_json("sept11://help-directory")
             scorecard, _ = publication.read_json("sept11://scorecard")
             commitments, _ = publication.read_json("sept11://commitments")
+            summary, _ = publication.read_json("sept11://catalog/summary")
+            recent_context, _ = publication.read_json("sept11://release-context")
             after = region(after, "record-demo", record_demo(anchors))
             after = region(after, "help-demo", help_demo(directory, quotes, scorecard))
             after = region(after, "budget-demo", budget_demo(commitments, quotes))
             after = region(after, "due-next", due_next(scorecard))
+            after = region(after, "current-context", current_context_demo(recent_context))
+            after = region(after, "research-paths", research_paths_demo(recent_context))
+            after = region(after, "release-footprint", release_footprint_demo(summary))
+            after = region(after, "release-tracker", release_tracker_demo(scorecard))
+            after = region(after, "collection-explorer", collection_explorer_demo(summary))
+            after = region(after, "release-timeline", release_timeline_demo(anchors))
         if page == "toolkit.html":
             recorded, _ = publication.read_json("sept11://examples")
             after = region(after, "examples", examples_section(recorded))
@@ -793,6 +901,16 @@ def selftest() -> int:
     if "</pre><script>" in out or out.count("<pre") != 2:
         failures.append("examples must escape recorded text inside <pre>")
 
+    context = {"as_of": "2026-09-21", "window": "w", "scope_note": "n", "items": [
+        {"date": "d", "kind": "<b>k</b>", "title": "<script>x</script>", "summary": "s",
+         "source_label": "l", "source_url": "https://example.com/", "use": "u"}],
+        "paths": [{"id": "p", "question": "q<script>", "tools": "a → b", "answer": "a", "boundary": "b"}]}
+    if "<script>" in current_context_demo(context) or "<script>" in research_paths_demo(context):
+        failures.append("current context and research paths must escape data text")
+    generated_collection = collection_explorer_demo({"by_source": {"New <source>": 1}, "by_agency": {}})
+    if "New <source>" in generated_collection or "Inspect the returned catalog rows" not in generated_collection:
+        failures.append("collection explorer must escape and render a newly appearing source")
+
     purpose = purpose_section(quotes, [
         [("<b>lead</b>", "q-rule", "quote", "as <published>")],
         [("As of", "q-figure", "figure", "members <enrolled>"), ("and", "q-portal", "quote", None)],
@@ -860,7 +978,7 @@ def selftest() -> int:
     for message in failures:
         print("FAIL:", message)
     print(f"build_site selftest: {len(failures)} failures, {total - len(failures)}/{total} checks passed over "
-          f"{len(metrics)} metrics, {len(TOOLS)} registered tools, 4 generated demos, the purpose section and "
+          f"{len(metrics)} metrics, {len(TOOLS)} registered tools, 10 generated demos, the purpose section and "
           f"the records gate")
     return 1 if failures else 0
 

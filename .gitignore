@@ -13,6 +13,8 @@ __pycache__/
 *.egg-info/
 evidence-bundle*.tgz
 snapshots.tgz
+/docs/data/recent-context.json
+/editorial-lessons.md
 
 # Kept out of the public repository: specifications, research notes and captures, working logs,
 # and agent files. The two research files the MCP server and the site build read stay in.

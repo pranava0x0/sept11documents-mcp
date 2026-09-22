@@ -62,6 +62,9 @@ function bindChoice(id, attribute, onChange) {
 bindChoice("record-choice", "data-record");
 bindChoice("help-choice", "data-help");
 bindChoice("example-choice", "data-example");
+bindChoice("path-choice", "data-path");
+bindChoice("release-choice", "data-release");
+bindChoice("collection-choice", "data-collection");
 
 function revealHash() {
   const id = location.hash.slice(1);
@@ -225,7 +228,7 @@ if (watchdogPanel) {
 let printState = [];
 window.addEventListener("beforeprint", () => {
   printState = Array.from(document.querySelectorAll(
-    ".demo-panel, [data-record], [data-help], [data-budget], [data-example], .stage-notes > [data-stage], details.fold"))
+    ".demo-panel, [data-record], [data-help], [data-budget], [data-example], [data-path], [data-release], [data-collection], .stage-notes > [data-stage], details.fold"))
     .map((el) => ({ el, hidden: el.hidden, open: el.open }));
   printState.forEach(({ el }) => { el.hidden = false; if (el.tagName === "DETAILS") el.open = true; });
 });
