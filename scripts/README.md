@@ -1,6 +1,6 @@
 # scripts/
 
-Site workflow: `make build-site` updates the four pages (landing, the MCP, the examples, the records) from
+Site workflow: `make build-site` updates the five pages (landing, the MCP, the examples, the records, community support) from
 the tool registry, the allowlisted data files and the claim registry. `make site` serves the preview. `make demo-check` runs browser acceptance using
 Playwright (install separately or set `NODE_PATH` to an existing installation). Set `CHROME_PATH` to a
 Chrome executable if Playwright's browser is not installed. These optional browser dependencies do not
@@ -21,7 +21,7 @@ adapter live in the package; these files parse arguments and format output. Ever
 | `record_mcp_examples.py` | `docs/data/mcp-examples.json`: real calls to the local server, envelopes unchanged except elided page text; refuses to run with live search on; `--check` gates staleness. | `make examples` |
 | `watchdog.py` | The release watchdog: one export → immutable snapshot → accept or quarantine → atomic publish of `docs/data/watchdog/latest.json`. `import` ingests an existing capture; `status` lists snapshots. | `make watchdog` |
 | `security_checks.py` | Hostile-input regression suite for the portal client: origin contract, redirect refusal, response caps, catalog integrity, paging cursors, PDF cache rejection. | `python3 scripts/security_checks.py --selftest` |
-| `build_site.py` | Writes the menu, footer and hashed asset URLs into all four pages, the figures, the tool table from the MCP registry, and the ten demos from allowlisted data (anchors, the help directory, the commitment ledger, the scorecard, catalog summary, a dated context scan, and recorded examples). Every displayed quote must be its claim's registered quote, located in the captured source; a ledger with a total never reaches a page. `--check` gates it. | `make build-site` |
+| `build_site.py` | Writes the menu, footer and hashed asset URLs into all five pages, the figures, the tool table from the MCP registry, and the ten demos from allowlisted data (anchors, the help directory, the commitment ledger, the scorecard, catalog summary, a dated context scan, and recorded examples). Every displayed quote must be its claim's registered quote, located in the captured source; a ledger with a total never reaches a page. `--check` gates it. | `make build-site` |
 | `site_checks.py` | Structural gates for every page and the shared stylesheet: column labels, colgroups and their width classes, the stacked breakpoint, the motion ceiling, the grid-overflow trap. | `python3 scripts/site_checks.py --selftest` |
 | `mcp_checks.py` | Local-core and stdio gates for the server: protocol shape, argument bounds, cursor binding, untrusted document text, the PII stop rule, the publication allowlist. | `python3 scripts/mcp_checks.py --selftest` |
 | `export_catalog.py` | Daily snapshot → `research/raw/portal-recon/catalog_<date>_pdf.csv` + `_summary.json`, then a diff against the previous snapshot. | `make catalog` |
