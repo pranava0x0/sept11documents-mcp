@@ -63,6 +63,16 @@
       "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
     },
     {
+      "path": "docs/data/release-context.json",
+      "resource": "sept11://release-context",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "b1d88f8e80610e46e81ab6de0070f365b59e2db61fc0e210480312e15b184b28",
+      "freshness_policy": "weekly",
+      "notes": "Dated, source-linked context scan for the Examples page; official, independent, and federal record systems remain separate."
+    },
+    {
       "path": "docs/data/scorecard.json",
       "resource": "sept11://scorecard",
       "review_status": "unreviewed",

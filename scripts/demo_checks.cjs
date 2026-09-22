@@ -28,7 +28,7 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
         return route.continue();
       });
       await page.goto(base + "/examples.html");
-      for (const id of ["records", "help", "budget", "releases"]) {
+      for (const id of ["records", "help", "budget", "releases", "context", "paths", "footprint", "tracker", "collections", "timeline"]) {
         await page.locator("#tab-" + id).click();
         assert.equal(await page.locator(".demo-panel:visible").count(), 1);
         assert(await page.locator("#demo-" + id).isVisible());
@@ -77,6 +77,21 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
       // Check releases: the capture and the dated obligations.
       await page.locator("#tab-releases").click();
       assert((await page.locator(".due-list li").count()) >= 3);
+      await page.locator("#tab-context").click();
+      assert.match(await page.locator("#demo-context").innerText(), /Independent project/);
+      await page.locator("#tab-paths").click();
+      await page.selectOption("#path-choice", "source-page");
+      assert.match(await page.locator(".research-path:visible").innerText(), /Bates page/);
+      await page.locator("#tab-footprint").click();
+      assert.match(await page.locator("#demo-footprint").innerText(), /24,441/);
+      await page.locator("#tab-tracker").click();
+      await page.selectOption("#release-choice", "privilege-log");
+      assert.match(await page.locator(".release-result:visible").innerText(), /privilege log/i);
+      await page.locator("#tab-collections").click();
+      await page.selectOption("#collection-choice", "WTC 7");
+      assert.match(await page.locator(".collection-result:visible").innerText(), /WTC 7/);
+      await page.locator("#tab-timeline").click();
+      assert.equal(await page.locator(".release-timeline li").count(), 4);
       await page.locator("#tab-budget").focus();
       await page.keyboard.press("ArrowRight");
       assert.equal(await page.locator("#tab-releases").getAttribute("aria-selected"), "true");

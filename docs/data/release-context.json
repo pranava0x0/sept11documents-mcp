@@ -1,0 +1,64 @@
+{
+  "as_of": "2026-09-21",
+  "window": "2026-09-11 through 2026-09-21",
+  "scope_note": "A short, source-linked scan of developments around the City release. It is not a complete news archive or a legal, medical, or historical finding.",
+  "items": [
+    {
+      "date": "2026-09-19",
+      "kind": "Independent project",
+      "title": "911records.org moved domains and publishes a change log",
+      "summary": "Cleartext Labs says its independent mirror now uses 911records.org, with prior 911records.nyc links redirecting. Its release notes also describe OCR and search changes. Treat its extracted text and tags as research aids; check the City PDF before relying on a result.",
+      "source_label": "911 City Records release notes",
+      "source_url": "https://911records.org/releases",
+      "use": "Compare a finding with this toolkit’s locally captured catalog. Differences can reflect capture time, OCR, tagging, or a changed City record."
+    },
+    {
+      "date": "2026-09-17",
+      "kind": "Independent project",
+      "title": "A public mirror and MCP were announced for the City release",
+      "summary": "The project describes a map, record search, saved case files, exports, and an MCP endpoint. The operator says it is independent and not a City or benefits-program service.",
+      "source_label": "Project announcement",
+      "source_url": "https://www.reddit.com/r/newyorkcity/comments/1wiu6bd/a_new_resource_for_911_wtc_survivors_and_their/",
+      "use": "Useful for discovery and comparison, not proof of exposure, eligibility, illness, liability, or wrongdoing."
+    },
+    {
+      "date": "2026-09-11",
+      "kind": "Federal records",
+      "title": "National Archives announced declassification of separate federal 9/11 records",
+      "summary": "The Public Interest Declassification Board says presidential briefing material and 9/11 Commission interview memoranda were released. These are separate from New York City’s post-attack air-quality portal.",
+      "source_label": "National Archives announcement",
+      "source_url": "https://transforming-classification.blogs.archives.gov/2026/09/11/long-sought-9-11-records-now-declassified-and-available-to-the-public/",
+      "use": "Keep federal pre-attack records separate from City post-attack records when framing a question or citation."
+    }
+  ],
+  "paths": [
+    {
+      "id": "catalog-change",
+      "question": "Did the City catalog change after this toolkit’s saved capture?",
+      "tools": "portal_changes_since → portal_get_document",
+      "answer": "Use two accepted local captures. The result can report observed additions, absences, or changed metadata; it does not prove why a record changed or that a City release is complete.",
+      "boundary": "This checkout’s published capture is dated 2026-09-11. A current comparison needs a newer accepted capture."
+    },
+    {
+      "id": "source-page",
+      "question": "What does a cited City page actually say?",
+      "tools": "catalog_search → portal_get_document → portal_get_page_text → citations_verify",
+      "answer": "Find the local catalog entry, open its record, read the specific Bates page, then verify the exact quotation. Page text may be withheld when the PII screen flags it.",
+      "boundary": "A located phrase is evidence location, not a finding about exposure, health, liability, or program eligibility."
+    },
+    {
+      "id": "project-compare",
+      "question": "Why might an independent project show more search detail?",
+      "tools": "portal_catalog_stats → portal_browse",
+      "answer": "This MCP reports its own snapshot, catalog structure, and evidence warnings. Another project can have a later capture or different OCR. Compare source PDF, Bates page, capture date, and stated method.",
+      "boundary": "Do not combine counts, map pins, OCR, or tags across projects as if they were one verified dataset."
+    },
+    {
+      "id": "separate-records",
+      "question": "Are City portal documents the same as newly declassified federal records?",
+      "tools": "citations_verify",
+      "answer": "No. This MCP can verify registered City-portal pages and its registered sources; it does not search or interpret the federal release.",
+      "boundary": "Use the National Archives source directly for federal records and identify the record system in every citation."
+    }
+  ]
+}
