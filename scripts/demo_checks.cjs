@@ -29,6 +29,7 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
         return route.continue();
       });
       await page.goto(base + "/examples.html");
+      assert.equal(await page.locator("nav.top a:visible").count(), 5, "examples keeps every page link");
       for (const id of ["records", "help", "budget", "releases", "context", "paths", "footprint", "tracker", "collections", "timeline"]) {
         await page.locator("#tab-" + id).click();
         assert.equal(await page.locator(".demo-panel:visible").count(), 1);
