@@ -14,6 +14,7 @@ This is an independent project. It is not an official City of New York website, 
 - **The MCP** (`toolkit.html`): the tools, recorded exchanges with the local server, the commands and the portal's API.
 - **Examples** (`examples.html`): ten MCP-backed demos. Find a record and search the archive's 4,173 folder labels in the browser. Read which official records prove presence for the WTC Health Program and the VCF and who in the City issues them, every rule quoted from the captured official page. Follow each announced commitment (portal $34.2 million, DOI $4 million, Memorial education $1 million) through five separately evidenced stages. Check the saved archive capture beside the dated obligations. Read a dated, source-linked context scan and choose a bounded MCP route for checking a current question. Inspect the saved release footprint and each release-specific observation without treating either as a completeness or compliance finding. Browse collection filters and a short, citation-linked document timeline.
 - **Records** (`records.html`): the documents located so far, each with its quote and Bates page.
+- **Community support** (`community.html`): links to organizations serving 9/11 responders, survivors, and families of fallen responders.
 
 The demos read dated files in `docs/data/` and call no live server. The evidence guide that routes a person, the building index and the reviewed timeline remain planned.
 
@@ -38,7 +39,7 @@ The server answers from what this machine has captured: the accepted catalog sna
 | `sept11/` | The package: `core/` evidence and citation models, `adapters/portal.py`, `storage/` (immutable snapshots, cache, budgets, publication allowlist), `mcp/` (stdio server) |
 | `scripts/` | Thin CLI entrypoints, listed in `scripts/README.md` |
 | `schemas/` | `envelope.schema.json`, generated from the models; every tool result validates against it |
-| `docs/` | The GitHub Pages site: four pages, one stylesheet, one script, and the published data in `docs/data/` |
+| `docs/` | The GitHub Pages site: five pages, one stylesheet, one script, and the published data in `docs/data/` |
 | `review/` | `anchors.json` (located documents) and `publication.json` (the allowlist of files any public surface may serve) |
 | `evals/` | `golden.json`, the golden evals seeded from `review/anchors.json` |
 | `research/claims/claims.json` | The claim registry: each quote and number on the site with its source |

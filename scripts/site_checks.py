@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 # The mutation fixtures need a page that actually has a table; the index no longer does.
 PAGE = DOCS / "toolkit.html"
-# The site is four pages; a gate that only reads the index proves nothing about the rest.
-PAGES = ["index.html", "toolkit.html", "examples.html", "records.html"]
+# The site is five pages; a gate that only reads the index proves nothing about the rest.
+PAGES = ["index.html", "toolkit.html", "examples.html", "records.html", "community.html"]
 MOTION_CEILING_MS = 300
 
 

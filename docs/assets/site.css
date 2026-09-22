@@ -152,7 +152,7 @@ main section[id]{scroll-margin-top:64px}
 
 /* Compact, direct navigation on every width. No mobile menu to open first. */
 [hidden]{display:none!important}
-nav.top ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:0}
+nav.top ul{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;padding:0}
 nav.top li{min-width:0}
 nav.top li a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:8px 4px;text-align:center;line-height:1.25}
 nav.top li a[aria-current="page"]{border-bottom-color:var(--accent);font-weight:700;color:var(--accent)}
@@ -270,7 +270,7 @@ q{quotes:"\201C" "\201D"}
   .mast .in{padding:8px 14px;gap:2px}
   .mast .word{font-size:15px}
   .mast .note{font-size:11px}
-  nav.top li a{font-size:13px}
+  nav.top li a{font-size:12px}
   .workspace-intro{padding:16px 0 12px}
   .workspace-intro h1{font-size:27px}
   .workspace-intro>p:not(.eyebrow){font-size:15px;line-height:1.4}

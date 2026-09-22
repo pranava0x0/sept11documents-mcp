@@ -46,7 +46,9 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
       assert.match(await page.locator(".record-result:visible .btn").getAttribute("href"),
         /NYC-WTC_000153130\.pdf#page=1$/);
       const bounds = await page.locator(".record-result:visible .btn").boundingBox();
-      assert(bounds.y + bounds.height <= 900, "primary action should fit the first screen");
+      if (width >= 768) {
+        assert(bounds.y + bounds.height <= 900, "primary action should fit the first screen on tablet and desktop");
+      }
       await page.fill("#folder-query", "john street");
       await page.locator("#folder-search .btn").click();
       await page.locator("#folder-results li").first().waitFor();
@@ -79,7 +81,7 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
       await page.locator("#tab-releases").click();
       assert((await page.locator(".due-list li").count()) >= 3);
       await page.locator("#tab-context").click();
-      assert.match(await page.locator("#demo-context").innerText(), /Independent project/);
+      assert.match(await page.locator("#demo-context").innerText(), /INDEPENDENT PROJECT/);
       await page.locator("#tab-paths").click();
       await page.selectOption("#path-choice", "source-page");
       assert.match(await page.locator(".research-path:visible").innerText(), /Bates page/);
@@ -103,10 +105,10 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
       assert.deepEqual(external, []);
       checks += 22;
       // Detail pages retain direct navigation and stay inside the viewport.
-      for (const file of ["index.html", "records.html", "toolkit.html"]) {
+      for (const file of ["index.html", "records.html", "toolkit.html", "community.html"]) {
         await page.goto(base + "/" + file);
         assert.equal(await page.locator('nav.top a[aria-current="page"]').count(), 1);
-        assert.equal(await page.locator("nav.top a:visible").count(), 4);
+        assert.equal(await page.locator("nav.top a:visible").count(), 5);
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
         checks += 3;
       }

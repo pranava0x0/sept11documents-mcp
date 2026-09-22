@@ -3,7 +3,7 @@
 
 Hand-inlined figures drift: a new catalog snapshot changed `docs/data/`, and the
 page kept yesterday's totals until someone remembered. This build writes the
-marked regions of the four pages from the reviewed artifacts and the server's
+marked regions of the five pages from the reviewed artifacts and the server's
 own tool registry, and refuses to write a number the claim registry contradicts.
 
 It serves only files on the publication allowlist (`review/publication.json`),
@@ -38,13 +38,13 @@ DOCS = ROOT / "docs"
 CLAIMS = ROOT / "research" / "claims" / "claims.json"
 TOOLS_OPEN, TOOLS_CLOSE = "<!-- BUILD:tools -->", "<!-- /BUILD:tools -->"
 
-# The site is four pages, not one scroll. Order here is the order in the menu: what is
-# happening, then the MCP (the base), then the examples built on it, then the records.
+# The site is five pages, not one scroll. Order here is the order in the menu.
 PAGES = [
     ("index.html", "Overview"),
     ("toolkit.html", "The MCP"),
     ("examples.html", "Examples"),
     ("records.html", "Records"),
+    ("community.html", "Community support"),
 ]
 
 MAST = """<header class="mast"><div class="in"><a class="word" href="index.html">September 11th Documents \
