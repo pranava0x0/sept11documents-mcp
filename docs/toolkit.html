@@ -21,7 +21,7 @@
 <main id="main">
 <section id="toolkit">
 <h1 id="top">Use the tools in your research.</h1>
-<p>The Model Context Protocol (MCP) connects an AI assistant to these read-only research tools. Search local catalog metadata, read captured pages, check quotations, and read the obligation rows and the commitment ledger. Live search requires an explicit opt-in because terms reach the City. Documents are fetched separately; missing page text returns <code>not_cached</code>.</p>
+<p>Use an AI assistant to search local catalog metadata, read captured pages, check quotations, and inspect obligations and commitments. Live portal search is opt-in.</p>
 <p><a class="btn" href="#quickstart">Connect the local server</a> <a class="source-link" href="#examples">See what a call returns</a> <a class="source-link" href="examples.html">Try the examples</a></p>
 <details class="fold"><summary>Each tool, its result and its status</summary>
 <div class="foldbody"><div class="tw"><table>
@@ -46,7 +46,7 @@
 </section>
 <section id="examples">
 <h2>Recorded calls</h2>
-<p>These calls were made to the local server against this machine's captures, with live search off. Each answer is the response the tool returned, unchanged; a refusal is recorded as the error it returned.</p>
+<p>Recorded local calls. Live search is off.</p>
 <!-- BUILD:examples -->
 <label for="example-choice">Choose a call</label>
 <select id="example-choice"><option value="catalog_search">catalog_search · Which folders in the archive mention John Street?</option><option value="portal_browse">portal_browse · What is inside DEP Box 31?</option><option value="portal_get_document">portal_get_document · What does the catalog hold about the Harding memo?</option><option value="portal_get_page_text">portal_get_page_text · What is printed on page 1 of the Harding memo?</option><option value="citations_verify">citations_verify · Is the Harding estimate really on page 1, and is the same quote on page 2?</option><option value="portal_search">portal_search · Can the server search the live portal?</option><option value="budget_lookup">budget_lookup · What is known about the DOI investigation&#x27;s funding?</option><option value="doi_milestones">doi_milestones · Which dated obligations are upcoming?</option><option value="portal_catalog_stats">portal_catalog_stats · How large is the captured catalog?</option><option value="portal_changes_since">portal_changes_since · What changed since September 9, 2026?</option></select>
@@ -982,7 +982,7 @@
 </section>
 <section id="planned">
 <h2>Not built yet</h2>
-<p>Each item below is specified but not written; its note says what blocks it.</p>
+<p>Specified, not available.</p>
 <ul class="plain">
 <li><strong>Evidence-packet guide</strong> for WTC Health Program and VCF proof of presence. The official
 rules and the New York City issuers are on the <a href="examples.html#demo-help">Examples page</a> as a cited

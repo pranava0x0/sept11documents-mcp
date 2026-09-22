@@ -129,7 +129,7 @@ PUBLISHERS = [
 # The landing page quotes the City in its own words. Each entry is (lead, claim id); the
 # quote itself comes from the claim record and is located in its captured source at build.
 STATEMENTS = [
-    ("The stipulation, so-ordered September 2026", [
+    ("Settlement and order · September 2026", [
         ("", "settlement-portal-goal"),
         ("the records sought under FOIL and", "settlement-records-of-public-interest"),
         ("Monthly meetings:", "settlement-monthly-meetings"),
@@ -541,7 +541,7 @@ def release_footprint_demo(summary: dict) -> str:
     return f'''<div class="release-metrics" aria-label="Saved catalog footprint">
 <div><b>{total:,}</b><span>documents</span></div><div><b>{summary["pages"]:,}</b><span>pages</span></div>
 <div><b>{summary["boxes"]:,}</b><span>boxes</span></div><div><b>{summary["folders"]:,}</b><span>folder labels</span></div></div>
-<p class="result-note">Saved City catalog export: {e(summary["captured_at"])}. These are this toolkit’s local snapshot totals, not a claim that the public release is complete or unchanged.</p>
+<p class="result-note">Catalog captured {e(str(summary["captured_at"])[:10])}.</p>
 <div class="tw"><table><colgroup><col class="w50"><col class="w25"><col class="w25"></colgroup>
 <thead><tr><th>Collection</th><th>Documents</th><th>Share of saved catalog</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'''
 
@@ -559,7 +559,7 @@ def release_tracker_demo(scorecard: dict) -> str:
         articles.append(f'''<article class="release-result" data-release="{e(key)}">
 <p class="eyebrow">Checked {e(row["checked"])} · <span class="badge {css}">{e(label)}</span></p>
 <h3>{e(row["obligation"])}</h3><p>{e(row["evidence"])}</p>
-<p class="result-note"><b>Source:</b> {e(row["source"])}. This is an observation status, not a compliance or legal finding.</p>
+<p class="result-note"><b>Source:</b> {e(row["source"])}. Observation only.</p>
 </article>''')
     return ('<label for="release-choice">Choose a release commitment</label>\n'
             '<select id="release-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
@@ -589,7 +589,7 @@ def collection_explorer_demo(summary: dict) -> str:
 <p class="eyebrow">{count:,} documents in saved catalog</p><h3>{e(source)}</h3>
 <p>{e(note)}. {agency_context}</p>
 <pre class="request">catalog_search {e(request)}</pre>
-<p class="result-note">The source filter reads local metadata. It sends nothing to the City; document dates and page text need separate tools.</p></article>''')
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>''')
     return ('<label for="collection-choice">Choose a City collection</label>\n'
             '<select id="collection-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
 
@@ -605,7 +605,7 @@ def release_timeline_demo(anchors: dict) -> str:
         articles.append(f'''<li><b>{e(row["date"])}</b><span>{e(row["label"])}</span>
 <a class="cite" href="{url}">{e(row["bates"])} · p.{row["page"]}</a>
 <span class="muted">{e(row["date_basis"])}</span></li>''')
-    return ('<p class="result-note">Four located documents from the release. Dates come from each anchor’s stated basis; the portal catalog itself has no document-date field.</p>'
+    return ('<p class="result-note">Four located documents. Dates use each anchor’s stated basis.</p>'
             '<ol class="release-timeline">' + "".join(articles) + '</ol>')
 
 
