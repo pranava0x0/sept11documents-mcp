@@ -931,6 +931,11 @@ class Toolkit(unittest.TestCase):
         self.assertIn("error", get("follow-the-money", {"topic": "air"}))
         money = get("follow-the-money", {})["result"]["messages"][0]["content"]["text"]
         self.assertTrue(money.endswith(tools.LEDGER_RULE))
+        plan = get("research-plan", {"question": "q"})["result"]["messages"][0]["content"]["text"]
+        self.assertTrue(plan.endswith(tools.RESULTS_RULE))
+        self.assertIn("citations_verify on every quote you take from portal_get_page_text", plan)
+        building = get("building-records", {"address": "15 John Street"})["result"]["messages"][0]["content"]["text"]
+        self.assertIn("next_calls entry as given", building)
         text = get("proof-of-presence", {})["result"]["messages"][0]["content"]["text"]
         self.assertIn("Do not ask for", text)
 

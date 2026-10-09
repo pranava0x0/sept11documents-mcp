@@ -23,7 +23,7 @@ from .. import SCHEMA_VERSION, __version__
 from ..config import TOOL_DEADLINE_SECONDS
 from ..core.errors import InputError, IntegrityError, NotCachedError, Sept11Error
 from .context import Context, Deadline
-from .tools import CITE_RULE, CURATED_RULE, LEDGER_RULE, TOOLS, UNTRUSTED, resolve_name
+from .tools import CITE_RULE, CURATED_RULE, LEDGER_RULE, RESULTS_RULE, TOOLS, UNTRUSTED, resolve_name
 
 PROTOCOL_VERSION = "2025-11-25"
 SERVER_INFO = {"name": "sept11", "title": "September 11th Documents", "version": __version__}
@@ -73,16 +73,18 @@ def _plan_prompt(arguments: dict) -> str:
             "portal_get_page_text to read the page; timeline_lookup and readings_lookup for statements, "
             "records and sampling results already located; budget_lookup, doi_milestones and upcoming_dates "
             "for money and deadlines. Then run the plan. Answer only from returned text, cite each fact as "
-            "`NYC-WTC_… p.N` or the official source, run citations_verify on every quote, and say plainly "
-            "what the archive does not show. Do not speculate about individuals. " + UNTRUSTED + " " + CURATED_RULE)
+            "`NYC-WTC_… p.N` or the official source, run citations_verify on every quote you take from "
+            "portal_get_page_text, and say plainly what the archive does not show. Do not speculate about "
+            "individuals. " + UNTRUSTED + " " + RESULTS_RULE)
 
 
 def _building_prompt(arguments: dict) -> str:
     address = _argument(arguments, "address", 80)
     return (f"Find what the City's archive files under {address!r}. Call building_lookup with that address and "
             "report the folders it returns with their box, document counts and first Bates number, and the "
-            "BIN, block and lot the labels print. For the largest folder, call catalog_search with its box and "
-            "folder to list documents, then portal_get_document on one of them. Read a page with "
+            "BIN, block and lot the labels print. For the largest folder, run the catalog_search call in its "
+            "next_calls entry as given, which lists that folder's documents alone, then portal_get_document on "
+            "one of them. Read a page with "
             "portal_get_page_text only when it is captured, and cite it with citations_format. State that a "
             "label match shows where paper was filed, that a document can concern the building without a "
             "label naming it, and that the tool decides no exposure-zone question; quote each program's zone "
