@@ -711,7 +711,19 @@ def presence_evidence(ctx, args: dict, deadline) -> Envelope:
                         if who == "all" or x.get("who") in (None, who)]
             if examples:
                 lanes.append({**lane, "examples": examples})
-        programs.append({**entry, "evidence": lanes})
+        # A window or zone tagged for one audience (the WTC Health Program's survivor window) is
+        # left out for the other, and the omission is named.
+        entry = {**entry, "evidence": lanes}
+        omitted = [k for k in ("window", "zone")
+                   if who != "all" and isinstance(entry.get(k), dict) and entry[k].get("who") not in (None, who)]
+        for key in omitted:
+            entry[key] = None
+        if omitted:
+            entry["omitted_for_audience"] = {
+                "fields": omitted,
+                "note": f"the quoted {' and '.join(omitted)} apply to another group; the program's own page "
+                        f"states the rules for {who}"}
+        programs.append(entry)
     envelope = Envelope(
         data={"filters": {"program": program, "who": who}, "disclaimer": directory.get("disclaimer"),
               "programs": programs, "nyc_records": directory.get("nyc_records", []),

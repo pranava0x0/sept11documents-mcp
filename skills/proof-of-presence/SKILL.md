@@ -12,7 +12,9 @@ description: Explain which documents the WTC Health Program and the September 11
    addresses, employers or claim numbers.
 2. Call `presence_evidence` with `program` and `who`.
 3. List the evidence lanes the response returns, each example as the program words it, with its
-   citation. Give the program's deadline and time window as quoted.
+   citation. Give the program's deadline and time window as quoted. When the response leaves
+   the window or zone out for this role (`omitted_for_audience`), say so and give the program's
+   own page for the rules that apply.
 4. If the person attended a New York City public school or worked for the City, give the issuer
    rows (NYC Public Schools, DCAS, the Comptroller) and their stated status.
 5. End with the program's own phone number and link from the response.

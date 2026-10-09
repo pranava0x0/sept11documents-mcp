@@ -26,10 +26,12 @@
       "window": {
         "text": "between September 11, 2001 and July 31, 2002",
         "applies_to": "Survivors: lived, worked, or attended school, daycare or adult daycare in the NYC Disaster Area",
+        "who": "survivors",
         "claim_id": "wtchp-survivor-window"
       },
       "zone": {
         "name": "NYC Disaster Area",
+        "who": "survivors",
         "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
         "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted."
       },

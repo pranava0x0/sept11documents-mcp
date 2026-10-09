@@ -48,7 +48,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "46104af0d0bf2a1e80ab3b7305742928ec38072c59d406285c55c5d9b0b6c17d",
+      "sha256": "3a865720ff13b175867dc79b207bfa6ab39a9decbb55f0e3957e1f30e30004a7",
       "freshness_policy": "monthly",
       "notes": "Official program and records-request directory: rules quoted from captured official pages via claim ids; NYCPS records route; not personalized."
     },
@@ -58,7 +58,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "2b71d46397cfb88e7efee08701e95e26c633c3b581c6f36f95f05af3764beca7",
+      "sha256": "40a17247e833ca570a62c88f2604af18aae5c7cac005f6d18297acef19bdfbe8",
       "freshness_policy": "on-change",
       "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
     },
@@ -88,7 +88,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "a79c07ecb4045729c3b566a5e720c8f7fca45a7fcf209510d080a0851735ebcf",
+      "sha256": "652c88e6d52fd8c260f9f7fc07a9428ba51e449734c7e09798dcf408b5242c13",
       "freshness_policy": "on-change",
       "notes": "Sampling results printed in located City records, value, unit, medium and location as printed; each row quotes a registered claim at its Bates page."
     },

@@ -98,7 +98,8 @@ def fixture_curated() -> dict:
         {"id": "wtchp", "short": "WTC Health Program", "evidence": [
             {"lane": "Employment", "examples": [example("letter", "responders"), example("stub", "survivors")]},
             {"lane": "Other", "examples": [example("any", None)]}],
-         "zone": {"name": "NYC Disaster Area", "definition_url": "https://www.cdc.gov/wtc/"}},
+         "window": {"text": "between dates", "applies_to": "Survivors", "who": "survivors", "claim_id": "c"},
+         "zone": {"name": "NYC Disaster Area", "who": "survivors", "definition_url": "https://www.cdc.gov/wtc/"}},
         {"id": "vcf", "short": "VCF", "evidence": [], "zone": {"name": "Zone", "definition": [
             {"text": "south of Canal Street", "claim_id": "c"}]}}]}
     return {"timeline": timeline, "readings": readings, "folders": folders, "help-directory": directory}
@@ -796,6 +797,10 @@ class Toolkit(unittest.TestCase):
         lanes = {lane["lane"]: [x["text"] for x in lane["examples"]] for lane in payload["data"]["programs"][0]["evidence"]}
         self.assertEqual(lanes, {"Employment": ["stub"], "Other": ["any"]})
         self.assertIn("directory_not_advice", codes(payload))
+        self.assertEqual(payload["data"]["programs"][0]["window"]["text"], "between dates")
+        responders = self.ok("presence_evidence", {"program": "wtchp", "who": "responders"})["data"]["programs"][0]
+        self.assertEqual((responders["window"], responders["zone"]), (None, None))
+        self.assertEqual(responders["omitted_for_audience"]["fields"], ["window", "zone"])
         self.refused("presence_evidence", {"program": "fema"}, "program must be one of")
 
     def test_upcoming_dates_count_from_the_stated_day(self):
