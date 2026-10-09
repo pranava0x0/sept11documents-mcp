@@ -192,7 +192,9 @@ class Gate(unittest.TestCase):
                 self.assertFalse(definition["inputSchema"]["additionalProperties"])
                 tool = tools.TOOLS[definition["name"]]
                 rule = (tools.CURATED_RULE if tool.curated else tools.LEDGER_RULE if tool.ledger
-                        else tools.CITE_RULE)
+                        else tools.DIRECTORY_RULE if tool.directory else tools.CITE_RULE)
+                if definition["name"] in ("presence_evidence", "building_lookup"):
+                    self.assertEqual(rule, tools.DIRECTORY_RULE)
                 self.assertTrue(definition["description"].endswith(rule))
                 self.assertTrue(definition["annotations"]["readOnlyHint"])
 
@@ -943,6 +945,8 @@ class Toolkit(unittest.TestCase):
         presence = get("proof-of-presence", {})["result"]["messages"][0]["content"]["text"]
         self.assertIn("City agency or a private organization as its `kind` states", presence)
         self.assertNotIn("New York City offices", presence)
+        self.assertTrue(presence.endswith(tools.DIRECTORY_RULE))
+        self.assertTrue(building.endswith(tools.DIRECTORY_RULE))
         text = get("proof-of-presence", {})["result"]["messages"][0]["content"]["text"]
         self.assertIn("Do not ask for", text)
 

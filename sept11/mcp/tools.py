@@ -39,17 +39,22 @@ NO_DATE_FIELD = ("The portal publishes no document-date field; a date exists onl
                  "on a page.")
 
 # timeline_lookup and readings_lookup return curated rows whose quotes the build located at the cited page;
-# budget_lookup, upcoming_dates and doi_milestones return rows from the commitment ledger and obligation table.
+# budget_lookup, upcoming_dates and doi_milestones return rows from the commitment ledger and obligation table;
+# presence_evidence and building_lookup's zone_definitions quote the programs' official pages.
 _CURATED_ROWS = ("Quotes, dates and readings returned by timeline_lookup and readings_lookup were located at "
                  "their cited pages when the files were built; quote them as returned, with their citations.")
 _LEDGER_ROWS = ("Amounts, dates and statuses returned by budget_lookup, upcoming_dates and doi_milestones come "
                 "from the curated commitment ledger and obligation table; report them as returned, each with the "
                 "source it carries and the date it was last checked.")
+_DIRECTORY_ROWS = ("Rules, deadlines and zone wording returned by presence_evidence, and the zone_definitions "
+                   "returned by building_lookup, are quoted from the programs' official pages; quote them as "
+                   "returned, each with its source_url.")
 _ANYTHING_ELSE = ("For anything else from this archive, do not state a date, reading, name, or quote unless it "
                   "appears verbatim in `portal_get_page_text` output; label anything else as inference.")
 CURATED_RULE = f"{_CURATED_ROWS} {_ANYTHING_ELSE}"
 LEDGER_RULE = f"{_LEDGER_ROWS} {_ANYTHING_ELSE}"
-RESULTS_RULE = f"{_CURATED_ROWS} {_LEDGER_ROWS} {_ANYTHING_ELSE}"
+DIRECTORY_RULE = f"{_DIRECTORY_ROWS} {_ANYTHING_ELSE}"
+RESULTS_RULE = f"{_CURATED_ROWS} {_LEDGER_ROWS} {_DIRECTORY_ROWS} {_ANYTHING_ELSE}"
 
 _TAG_RE = re.compile(r"<[^>]+>")
 
@@ -79,11 +84,13 @@ class Tool:
     needs_catalog: bool = False  # true when the call reads the accepted catalog snapshot, which a clone lacks
     curated: bool = False  # true when the rows were located at their cited pages when the files were built
     ledger: bool = False  # true when the rows come from the commitment ledger or the obligation table
+    directory: bool = False  # true when the result quotes the help directory's official program pages
     contract_version: str = "1"
 
     @property
     def rule(self) -> str:
-        return CURATED_RULE if self.curated else LEDGER_RULE if self.ledger else CITE_RULE
+        return (CURATED_RULE if self.curated else LEDGER_RULE if self.ledger
+                else DIRECTORY_RULE if self.directory else CITE_RULE)
 
     @property
     def description(self) -> str:
@@ -1127,7 +1134,7 @@ _register(Tool(
     handler=readings_lookup))
 
 _register(Tool(
-    name="building_lookup", title="Folders filed under a street address",
+    name="building_lookup", directory=True, title="Folders filed under a street address",
     summary=("Find the archive folders whose City labels name a street address, a street or a building "
              "identification number (BIN). DEP's boxes file asbestos and air-monitoring paperwork by "
              "building, so a label match shows where the City filed paper about that address. Returns each "
@@ -1139,7 +1146,7 @@ _register(Tool(
     handler=building_lookup))
 
 _register(Tool(
-    name="presence_evidence", title="Documents the programs accept as proof of presence",
+    name="presence_evidence", directory=True, title="Documents the programs accept as proof of presence",
     summary=("The World Trade Center Health Program's and the Victim Compensation Fund's rules for proving "
              "presence, each quoted from the program's own page with its source: time windows, zones, the "
              "kinds of documents each accepts, and the City agencies and other organizations that hold records. Filters by "

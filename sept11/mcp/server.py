@@ -23,7 +23,7 @@ from .. import SCHEMA_VERSION, __version__
 from ..config import TOOL_DEADLINE_SECONDS
 from ..core.errors import InputError, IntegrityError, NotCachedError, Sept11Error
 from .context import Context, Deadline
-from .tools import CITE_RULE, CURATED_RULE, LEDGER_RULE, RESULTS_RULE, TOOLS, UNTRUSTED, resolve_name
+from .tools import CITE_RULE, CURATED_RULE, DIRECTORY_RULE, LEDGER_RULE, RESULTS_RULE, TOOLS, UNTRUSTED, resolve_name
 
 PROTOCOL_VERSION = "2025-11-25"
 SERVER_INFO = {"name": "sept11", "title": "September 11th Documents", "version": __version__}
@@ -91,7 +91,7 @@ def _building_prompt(arguments: dict) -> str:
             "wording only where zone_definitions returns a definition, naming the group when a zone has `who` "
             "set; where the definition is empty, give the zone's note and official link and say the wording "
             "was not captured. " + UNTRUSTED + " "
-            + CITE_RULE)
+            + DIRECTORY_RULE)
 
 
 def _presence_prompt(arguments: dict) -> str:
@@ -102,7 +102,7 @@ def _presence_prompt(arguments: dict) -> str:
             "those two answers and present the official rules exactly as quoted, each with its source link, "
             "followed by the records routes returned in nyc_records, saying for each whether it is a City "
             "agency or a private organization as its `kind` states. Say that this is not legal advice and "
-            "does not decide eligibility, and give the helplines from the result. " + UNTRUSTED)
+            "does not decide eligibility, and give the helplines from the result. " + UNTRUSTED + " " + DIRECTORY_RULE)
 
 
 def _statements_prompt(arguments: dict) -> str:
