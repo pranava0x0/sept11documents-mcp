@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T04:23:48+00:00",
+  "recorded_at": "2026-10-09T04:28:26+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:47+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUxOTgyN30uZTgyYzU3YTcwNTgwNTg2OGNkZTI0MzFmODkzY2ZkNmY="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMDEwNn0uOWZhN2IyMjg0NDdhNWJhY2QxZjI0ZGJjNjIxMjEzOWE="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:47+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:47+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:47+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:47+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:47+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:47+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1145,7 +1145,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1305,7 +1305,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1441,7 +1441,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1582,6 +1582,25 @@
               }
             },
             {
+              "id": "epa-sitrep-2001-10",
+              "date": "2001-10",
+              "date_precision": "month",
+              "side": "city_record",
+              "topic": "air",
+              "source_label": "EPA sampling situation report in the City's files",
+              "title": "EPA air, bulk, wipe and water sampling situation report",
+              "claim_id": "fresh-kills-sitrep-exceedances",
+              "quote": "Exceedances occurred at Sift Location",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000154488",
+                "page": 3
+              },
+              "date_basis": {
+                "text": "the report's own date is not on this page; its results cover sampling from October 16 to 18, and the page's fax line reads Oct 24 2001"
+              }
+            },
+            {
               "id": "epa-osha-2001-10-03",
               "date": "2001-10-03",
               "date_precision": "day",
@@ -1622,25 +1641,6 @@
                   "bates": "NYC-WTC_000106411",
                   "page": 1
                 }
-              }
-            },
-            {
-              "id": "epa-sitrep-2001-10-20",
-              "date": "2001-10-20",
-              "date_precision": "day",
-              "side": "city_record",
-              "topic": "air",
-              "source_label": "EPA sampling situation report in the City's files",
-              "title": "EPA air, bulk, wipe and water sampling situation report",
-              "claim_id": "fresh-kills-sitrep-exceedances",
-              "quote": "Exceedances occurred at Sift Location",
-              "citation": {
-                "type": "portal",
-                "bates": "NYC-WTC_000154488",
-                "page": 3
-              },
-              "date_basis": {
-                "text": "printed in the report header"
               }
             },
             {
@@ -1803,7 +1803,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1925,9 +1925,9 @@
               "location_as_printed": "Sift Location 9C",
               "sample_date": null,
               "sample_date_precision": "unknown",
-              "sample_date_basis": "the result is printed without a sampling date; the next report on the page is dated October 20, 2001",
+              "sample_date_basis": "the result is printed without a sampling date; the report resubmits results from the October 17/18 situation report",
               "document": "EPA sampling situation report",
-              "document_date": "2001-10-20",
+              "document_date": "2001-10",
               "reported_by": "EPA",
               "claim_id": "fresh-kills-sitrep-exceedances",
               "quote": "Exceedances occurred at Sift Location",
@@ -1987,9 +1987,9 @@
               "unit_as_printed": "structures per square centimeter",
               "medium": "dust (ultrasonication test, as described)",
               "location_as_printed": "Stuyvesant High School, one sample",
-              "sample_date": "2002-08",
-              "sample_date_precision": "month",
-              "sample_date_basis": "the release of August 7, 2002 describes recent testing",
+              "sample_date": null,
+              "sample_date_precision": "unknown",
+              "sample_date_basis": "the release of August 7, 2002 describes the testing as recent and gives no collection date",
               "document": "Concerned Stuyvesant Parents release",
               "document_date": "2002-08-07",
               "reported_by": "Parents' association consultant, as reported by the parents' group",
@@ -2023,7 +2023,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2071,7 +2071,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2336,7 +2336,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2431,7 +2431,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2480,7 +2480,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2531,7 +2531,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2582,7 +2582,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2647,7 +2647,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:23:48+00:00",
+        "retrieved_at": "2026-10-09T04:28:26+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

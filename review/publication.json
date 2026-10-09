@@ -58,7 +58,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "c12fe2e364ac7672c0d304c13a81bf6a84ba5b6c4ae9064cfe0746187cd5a477",
+      "sha256": "0faf1ec8f14733d2ad7117a1a18740dd8db4ddb37e40a380ae894ebd56db068b",
       "freshness_policy": "on-change",
       "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
     },
@@ -88,7 +88,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "652c88e6d52fd8c260f9f7fc07a9428ba51e449734c7e09798dcf408b5242c13",
+      "sha256": "e90b8d5cc8f476c2af02d0fd994fafa779e5fe143fc8a53c84a321e8d28cc7d5",
       "freshness_policy": "on-change",
       "notes": "Sampling results printed in located City records, value, unit, medium and location as printed; each row quotes a registered claim at its Bates page."
     },
@@ -118,7 +118,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "f41ab972cbc494e706455b53fb244fb46cbc09f22f773b966884dd0a505b112c",
+      "sha256": "f043168a0af2ca284d11e549cf6b31810ad21b856863755f51cb28157989f402",
       "freshness_policy": "on-change",
       "notes": "Statements and records timeline: each entry quotes a registered claim, located in its captured source by build_site.py; dates with their stated basis."
     },
