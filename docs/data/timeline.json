@@ -1,0 +1,324 @@
+{
+  "generated_at": "2026-10-08",
+  "schema": "timeline/1",
+  "note": "Public statements and City records about the air, the schools and the City's liability after September 11, 2001, in date order. Each entry quotes a registered claim, located in its captured source by scripts/build_site.py before the site shows it. A date is the date printed on or stated for the source, with its basis; a month or year means the source gives no closer date.",
+  "boundary": "Placing a statement beside a record is not a finding about what any official knew or intended. Council Resolution 560-A gives that analysis to the Department of Investigation.",
+  "sides": {
+    "public_statement": "What officials said in public at the time",
+    "city_record": "Records in the City's portal",
+    "later_review": "Later reviews and oversight"
+  },
+  "topics": [
+    "air",
+    "schools",
+    "liability",
+    "cleanup",
+    "oversight"
+  ],
+  "events": [
+    {
+      "id": "epa-2001-09-13",
+      "date": "2001-09-13",
+      "date_precision": "day",
+      "side": "public_statement",
+      "topic": "air",
+      "source_label": "EPA press release",
+      "title": "EPA release on asbestos monitoring in Lower Manhattan",
+      "claim_id": "epa-2001-09-13-no-significant-asbestos",
+      "quote": "there appears to be no significant levels of asbestos dust in the air in New York City",
+      "citation": {
+        "type": "url",
+        "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/d7ada9cf2d39c0a185256acc007c097f.html"
+      },
+      "date_basis": {
+        "text": "date of the release"
+      }
+    },
+    {
+      "id": "mayor-2001-09-16",
+      "date": "2001-09-16",
+      "date_precision": "day",
+      "side": "public_statement",
+      "topic": "air",
+      "source_label": "Mayor's Office press release",
+      "title": "Mayor's Office release on reopening buildings",
+      "claim_id": "giuliani-2001-09-16-deemed-safe",
+      "quote": "air quality has been tested and deemed safe",
+      "citation": {
+        "type": "url",
+        "url": "https://www.nyc.gov/html/om/html/2001b/pr315-01b.html"
+      },
+      "date_basis": {
+        "text": "date of the release"
+      }
+    },
+    {
+      "id": "epa-2001-09-18",
+      "date": "2001-09-18",
+      "date_precision": "day",
+      "side": "public_statement",
+      "topic": "air",
+      "source_label": "EPA press release",
+      "title": "EPA Administrator Whitman on air and water in New York",
+      "claim_id": "epa-2001-09-18-safe-to-breathe",
+      "quote": "their air is safe to breath",
+      "citation": {
+        "type": "url",
+        "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/ed368f43303656488525744e00039488.html"
+      },
+      "date_basis": {
+        "text": "date of the release"
+      },
+      "note": "The spelling follows the published text."
+    },
+    {
+      "id": "epa-2001-09-21",
+      "date": "2001-09-21",
+      "date_precision": "day",
+      "side": "public_statement",
+      "topic": "air",
+      "source_label": "EPA press release",
+      "title": "EPA release on monitoring results",
+      "claim_id": "epa-2001-09-21-not-exposed",
+      "quote": "are not being exposed to contaminants such as asbestos, radiation, mercury and other metals",
+      "citation": {
+        "type": "url",
+        "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/1dcfffa0c895910885256ace0082cdeb.html"
+      },
+      "date_basis": {
+        "text": "date of the release"
+      }
+    },
+    {
+      "id": "harding-memo-2001-10",
+      "date": "2001-10",
+      "date_precision": "month",
+      "side": "city_record",
+      "topic": "liability",
+      "source_label": "Memo to the Deputy Mayor",
+      "title": "Memo to Deputy Mayor Harding on limiting the City's liability",
+      "claim_id": "harding-health-advisories",
+      "quote": "Health advisories caused individuals either to return to the area too soon",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000138296",
+        "page": 1
+      },
+      "date_basis": {
+        "text": "The memo is undated on its page. The FOIL request describes it as an October 2001 memorandum, and an email filed in the same portal document as another copy was sent on October 16, 2001.",
+        "claim_id": "harding-file-email-2001-10-16",
+        "citation": {
+          "type": "portal",
+          "bates": "NYC-WTC_000136670",
+          "page": 58
+        }
+      }
+    },
+    {
+      "id": "epa-sitrep-2001-10",
+      "date": "2001-10",
+      "date_precision": "month",
+      "side": "city_record",
+      "topic": "air",
+      "source_label": "EPA sampling situation report in the City's files",
+      "title": "EPA air, bulk, wipe and water sampling situation report",
+      "claim_id": "fresh-kills-sitrep-exceedances",
+      "quote": "Exceedances occurred at Sift Location",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000154488",
+        "page": 3
+      },
+      "date_basis": {
+        "text": "the report's own date is not on this page; its results cover sampling from October 16 to 18, and the page's fax line reads Oct 24 2001"
+      }
+    },
+    {
+      "id": "epa-osha-2001-10-03",
+      "date": "2001-10-03",
+      "date_precision": "day",
+      "side": "public_statement",
+      "topic": "air",
+      "source_label": "EPA and OSHA press release",
+      "title": "OSHA sampling beyond the disaster site",
+      "claim_id": "osha-2001-10-03-no-evidence-beyond-site",
+      "quote": "no evidence of significant levels of airborne asbestos or other contaminants beyond the disaster site itself",
+      "citation": {
+        "type": "url",
+        "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/a58e3e62ff609f5185256ada00729977.html"
+      },
+      "date_basis": {
+        "text": "date of the release"
+      }
+    },
+    {
+      "id": "uft-stuyvesant-2001-10-09",
+      "date": "2001-10-09",
+      "date_precision": "day",
+      "side": "city_record",
+      "topic": "schools",
+      "source_label": "UFT memo in the City's files",
+      "title": "UFT memo on re-occupying Stuyvesant High School",
+      "claim_id": "stuyvesant-roof-sample-positive",
+      "quote": "1 sample tested positive for asbestos",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000106411",
+        "page": 2
+      },
+      "date_basis": {
+        "text": "printed on the memo",
+        "claim_id": "stuyvesant-uft-reoccupying",
+        "citation": {
+          "type": "portal",
+          "bates": "NYC-WTC_000106411",
+          "page": 1
+        }
+      }
+    },
+    {
+      "id": "sia14-2001-11-20",
+      "date": "2001-11-20",
+      "date_precision": "day",
+      "side": "city_record",
+      "topic": "air",
+      "source_label": "EPA-commissioned audit in the City's files",
+      "title": "Special Investigative Audit #14, environmental data trend report",
+      "claim_id": "audit-dust-38-chrysotile-sept19",
+      "quote": "38% Chrysotile from Ground Zero",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000130438",
+        "page": 22
+      },
+      "date_basis": {
+        "text": "printed on the cover",
+        "claim_id": "audit-sia14-title",
+        "citation": {
+          "type": "portal",
+          "bates": "NYC-WTC_000130438",
+          "page": 1
+        }
+      },
+      "note": "The audit reports a bulk dust sample collected at Ground Zero on September 19, 2001."
+    },
+    {
+      "id": "frieden-2002-02-14",
+      "date": "2002-02-14",
+      "date_precision": "day",
+      "side": "city_record",
+      "topic": "air",
+      "source_label": "Letter from the Health Commissioner",
+      "title": "Health Commissioner Frieden to EPA Administrator Whitman",
+      "claim_id": "frieden-to-whitman-2002-02-14",
+      "quote": "disseminated by Ms. Cate Jenkins publicly criticizing",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000151604",
+        "page": 1
+      },
+      "date_basis": {
+        "text": "dated on the letter"
+      }
+    },
+    {
+      "id": "fuchs-2002-02-28",
+      "date": "2002-02-28",
+      "date_precision": "day",
+      "side": "city_record",
+      "topic": "air",
+      "source_label": "Memo from a mayoral advisor",
+      "title": "Fuchs memo on Congressman Nadler's indoor air concerns",
+      "claim_id": "fuchs-real-health-risks",
+      "quote": "real health risks in lower Manhattan",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000147320",
+        "page": 2
+      },
+      "date_basis": {
+        "text": "printed on the memo's first page",
+        "citation": {
+          "type": "portal",
+          "bates": "NYC-WTC_000147320",
+          "page": 1
+        }
+      }
+    },
+    {
+      "id": "cleanup-2002-05-16",
+      "date": "2002-05-16",
+      "date_precision": "day",
+      "side": "city_record",
+      "topic": "cleanup",
+      "source_label": "Handwritten note in the City's files",
+      "title": "Clean Up Initiative note",
+      "claim_id": "cleanup-initiative-risk-word",
+      "quote": "we would not use the word 'risk' in any letters as it would defeat the purpose of creating public confidence",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000153130",
+        "page": 1
+      },
+      "date_basis": {
+        "text": "the note's header reads 5/16/02"
+      }
+    },
+    {
+      "id": "stuyvesant-parents-2002-08-07",
+      "date": "2002-08-07",
+      "date_precision": "day",
+      "side": "city_record",
+      "topic": "schools",
+      "source_label": "Parents' association release, faxed through DEP",
+      "title": "Concerned Stuyvesant Parents release on dust testing",
+      "claim_id": "stuyvesant-2-5-million",
+      "quote": "asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000144518",
+        "page": 2
+      },
+      "date_basis": {
+        "text": "printed on the release"
+      },
+      "note": "A parents' group statement found in DEP's files; the figure is the group's report of a consultant's test."
+    },
+    {
+      "id": "oig-2003-08-21",
+      "date": "2003-08-21",
+      "date_precision": "day",
+      "side": "later_review",
+      "topic": "air",
+      "source_label": "EPA Office of Inspector General report",
+      "title": "EPA Inspector General on the September 18 statement",
+      "claim_id": "oig-2003-sept18-insufficient-data",
+      "quote": "the Agency did not have sufficient data and analyses to make the statement",
+      "citation": {
+        "type": "url",
+        "url": "https://19january2021snapshot.epa.gov/sites/static/files/2015-10/documents/wtc_report_20030821.pdf"
+      },
+      "date_basis": {
+        "text": "date of the report"
+      }
+    },
+    {
+      "id": "res-560a-2025-07-14",
+      "date": "2025-07-14",
+      "date_precision": "day",
+      "side": "later_review",
+      "topic": "oversight",
+      "source_label": "City Council Resolution 560-A",
+      "title": "Council asks DOI to compare what was known with what was said",
+      "claim_id": "res-560a-contrast-analysis",
+      "quote": "An analysis of the contrast between the knowledge mayoral administrations possessed on these toxins and the information the administrations conveyed to the public",
+      "citation": {
+        "type": "url",
+        "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206"
+      },
+      "date_basis": {
+        "text": "date the Council adopted the resolution"
+      }
+    }
+  ]
+}

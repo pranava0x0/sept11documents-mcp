@@ -54,6 +54,13 @@ class IntegrityError(Sept11Error):
     code = "integrity_failure"
 
 
+class NoSnapshotError(IntegrityError):
+    """No accepted catalog snapshot exists on this machine yet; nothing stored is contradicted.
+
+    A tool that can answer without the catalog catches this one and lets a hash mismatch through.
+    """
+
+
 class DeadlineError(Sept11Error):
     """The tool ran past its wall-clock budget. A socket timeout is not a job deadline."""
 

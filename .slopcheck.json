@@ -17,5 +17,15 @@
     "variants": "alternate verbatim wordings of a registered quote, accepted only when located in the captured source",
     "text": "a quoted rule or statement in the help directory and commitments data, verified against its claim at build time; also search terms in recorded tool calls",
     "snippet": "inert snippet text returned by the portal, quoted as evidence"
-  }
+  },
+  "allow": [
+    {
+      "phrase": "Copy citation",
+      "reason": "label of a button that copies a page citation to the clipboard; a control names its action, and the checker reads the button as a heading"
+    },
+    {
+      "phrase": "Copy query",
+      "reason": "label of a button that copies the drafted portal query to the clipboard; a control names its action, and the checker reads the button as a heading"
+    }
+  ]
 }

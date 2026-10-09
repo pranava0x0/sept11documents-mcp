@@ -1,0 +1,180 @@
+{
+  "generated_at": "2026-10-08",
+  "schema": "readings/1",
+  "note": "Sampling results printed in located City records, transcribed with the value, unit, medium and location as the document prints them. Each row quotes a registered claim at its Bates page. Units are not converted: percent asbestos in bulk dust, structures per square millimetre on an air filter and parts per billion of a gas measure different things.",
+  "boundary": "This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states.",
+  "readings": [
+    {
+      "id": "sia14-dust-murray",
+      "analyte": "asbestos (chrysotile)",
+      "value_as_printed": "4.5",
+      "unit_as_printed": "%",
+      "medium": "bulk dust",
+      "location_as_printed": "Murray Street and West Side Highway",
+      "sample_date": "2001-09-11",
+      "sample_date_precision": "day",
+      "sample_date_basis": "stated in the audit text",
+      "document": "Special Investigative Audit #14",
+      "document_date": "2001-11-20",
+      "reported_by": "IT Corporation for EPA",
+      "claim_id": "audit-dust-4-5-chrysotile-sept11",
+      "quote": "The highest result, 4.5% Chrysotile, was reported from a sample collected at Murray Street and West Side Highway",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000130438",
+        "page": 22
+      },
+      "note": "The audit calls this the highest of 59 Lower Manhattan bulk dust results."
+    },
+    {
+      "id": "sia14-dust-ground-zero",
+      "analyte": "asbestos (chrysotile)",
+      "value_as_printed": "38",
+      "unit_as_printed": "%",
+      "medium": "bulk dust",
+      "location_as_printed": "Ground Zero",
+      "sample_date": "2001-09-19",
+      "sample_date_precision": "day",
+      "sample_date_basis": "stated in the audit text",
+      "document": "Special Investigative Audit #14",
+      "document_date": "2001-11-20",
+      "reported_by": "IT Corporation for EPA",
+      "claim_id": "audit-dust-38-chrysotile-sept19",
+      "quote": "38% Chrysotile from Ground Zero",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000130438",
+        "page": 22
+      }
+    },
+    {
+      "id": "sia14-fresh-kills",
+      "analyte": "asbestos (TEM)",
+      "value_as_printed": "88 to 128",
+      "unit_as_printed": "S/mm2",
+      "medium": "air filter (TEM analysis)",
+      "location_as_printed": "Fresh Kills Landfill, Screening Operations (Locations 09-A and 09-B) and Location 12-A",
+      "sample_date": "2001-10",
+      "sample_date_precision": "month",
+      "sample_date_basis": "audit text: between October 8 and October 31",
+      "document": "Special Investigative Audit #14",
+      "document_date": "2001-11-20",
+      "reported_by": "IT Corporation for EPA",
+      "claim_id": "audit-fresh-kills-tem",
+      "quote": "were measured at the Screening Operations",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000130438",
+        "page": 21
+      },
+      "note": "The audit compares these with 70 S/mm2, the screening level it uses for TEM results."
+    },
+    {
+      "id": "sia14-benzene",
+      "analyte": "benzene",
+      "value_as_printed": "180,000",
+      "unit_as_printed": "ppb",
+      "medium": "VOC sample; the quoted sentence does not name the medium",
+      "location_as_printed": "WTC North Tower Center (the sentence continues on p.8)",
+      "sample_date": "2001-11-08",
+      "sample_date_precision": "day",
+      "sample_date_basis": "stated in the audit text",
+      "document": "Special Investigative Audit #14",
+      "document_date": "2001-11-20",
+      "reported_by": "IT Corporation for EPA",
+      "claim_id": "audit-benzene-180000-ppb",
+      "quote": "The recent high value for benzene of 180,000 ppb on November 8th",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000130438",
+        "page": 7
+      },
+      "note": "The audit says VOC concentrations outside the WTC sites were much lower or undetected."
+    },
+    {
+      "id": "sitrep-fresh-kills",
+      "analyte": "asbestos (TEM)",
+      "value_as_printed": "97.78",
+      "unit_as_printed": "S/mm2",
+      "medium": "air (fixed ambient sampling)",
+      "location_as_printed": "Sift Location 9C",
+      "sample_date": null,
+      "sample_date_precision": "unknown",
+      "sample_date_basis": "the result is printed without a sampling date; the report resubmits results from the October 17/18 situation report",
+      "document": "EPA sampling situation report",
+      "document_date": "2001-10",
+      "reported_by": "EPA",
+      "claim_id": "fresh-kills-sitrep-exceedances",
+      "quote": "Exceedances occurred at Sift Location",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000154488",
+        "page": 3
+      },
+      "note": "The report records 2 of 19 samples above the TEM AHERA standard; the text layer misreads some characters."
+    },
+    {
+      "id": "stuyvesant-roof",
+      "analyte": "asbestos",
+      "value_as_printed": "1 of 3 samples positive (greater than 1%)",
+      "unit_as_printed": "",
+      "medium": "bulk debris",
+      "location_as_printed": "Stuyvesant High School, southeast roof",
+      "sample_date": null,
+      "sample_date_precision": "unknown",
+      "sample_date_basis": "the memo of October 9, 2001 does not state the sample date",
+      "document": "UFT memo, Re-Occupying Stuyvesant High School",
+      "document_date": "2001-10-09",
+      "reported_by": "UFT",
+      "claim_id": "stuyvesant-roof-sample-positive",
+      "quote": "1 sample tested positive for asbestos",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000106411",
+        "page": 2
+      }
+    },
+    {
+      "id": "15-john-facade",
+      "analyte": "asbestos (chrysotile)",
+      "value_as_printed": "1",
+      "unit_as_printed": "%",
+      "medium": "bulk sample",
+      "location_as_printed": "15 John Street, west facade ledge",
+      "sample_date": "2002-07-13",
+      "sample_date_precision": "day",
+      "sample_date_basis": "'Date Collected: 07/13/02' on the report",
+      "document": "DEP Asbestos Control Program laboratory report",
+      "document_date": null,
+      "reported_by": "DEP laboratory",
+      "claim_id": "15-john-chrysotile-1pct",
+      "quote": "Asbestos Present: Yes",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000094256",
+        "page": 1
+      }
+    },
+    {
+      "id": "stuyvesant-parents",
+      "analyte": "asbestos",
+      "value_as_printed": "as much as 2.5 million",
+      "unit_as_printed": "structures per square centimeter",
+      "medium": "dust (ultrasonication test, as described)",
+      "location_as_printed": "Stuyvesant High School, one sample",
+      "sample_date": null,
+      "sample_date_precision": "unknown",
+      "sample_date_basis": "the release of August 7, 2002 describes the testing as recent and gives no collection date",
+      "document": "Concerned Stuyvesant Parents release",
+      "document_date": "2002-08-07",
+      "reported_by": "Parents' association consultant, as reported by the parents' group",
+      "claim_id": "stuyvesant-2-5-million",
+      "quote": "asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample",
+      "citation": {
+        "type": "portal",
+        "bates": "NYC-WTC_000144518",
+        "page": 2
+      }
+    }
+  ]
+}

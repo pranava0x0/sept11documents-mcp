@@ -1,0 +1,75 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//sept11documents-toolkit//obligations//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:September 11th records obligations
+BEGIN:VEVENT
+UID:doi-update-2025-12-31@sept11documents-toolkit
+DTSTAMP:20260911T000000Z
+DTSTART;VALUE=DATE:20251231
+DTEND;VALUE=DATE:20260101
+SUMMARY:DOI written status update to the Speaker
+DESCRIPTION:Source: Res. 560-A §1. Status when checked (2026-09-11): obser
+ ved. An observation of public surfaces\, with no legal determination. http
+ s://pranava0x0.github.io/sept11documents-mcp/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:doi-update-2026-06-30@sept11documents-toolkit
+DTSTAMP:20260911T000000Z
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+SUMMARY:DOI written status update to the Speaker
+DESCRIPTION:Source: Res. 560-A §1. Status when checked (2026-09-11): obser
+ ved. An observation of public surfaces\, with no legal determination. http
+ s://pranava0x0.github.io/sept11documents-mcp/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:doi-update-2026-12-31@sept11documents-toolkit
+DTSTAMP:20260911T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270101
+SUMMARY:DOI written status update to the Speaker
+DESCRIPTION:Source: Res. 560-A §1. Status when checked (2026-09-09): upcom
+ ing. An observation of public surfaces\, with no legal determination. http
+ s://pranava0x0.github.io/sept11documents-mcp/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:doi-update-2027-06-30@sept11documents-toolkit
+DTSTAMP:20260911T000000Z
+DTSTART;VALUE=DATE:20270630
+DTEND;VALUE=DATE:20270701
+SUMMARY:DOI written status update to the Speaker
+DESCRIPTION:Source: Res. 560-A §1. Status when checked (2026-09-09): upcom
+ ing. An observation of public surfaces\, with no legal determination. http
+ s://pranava0x0.github.io/sept11documents-mcp/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:doi-report-2027-07-14@sept11documents-toolkit
+DTSTAMP:20260911T000000Z
+DTSTART;VALUE=DATE:20270714
+DTEND;VALUE=DATE:20270715
+SUMMARY:DOI report: knowledge assessment\, timeline of awareness\, public-v
+ s-internal contrast analysis
+DESCRIPTION:Source: Res. 560-A §2. Status when checked (2026-09-09): upcom
+ ing. An observation of public surfaces\, with no legal determination. http
+ s://pranava0x0.github.io/sept11documents-mcp/
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:twelve-month-mark@sept11documents-toolkit
+DTSTAMP:20260911T000000Z
+DTSTART;VALUE=DATE:20270908
+DTEND;VALUE=DATE:20270909
+SUMMARY:Twelve months of good-faith performance\; then dismissal with preju
+ dice
+DESCRIPTION:Source: Settlement ¶ 7–8. Status when checked (2026-09-09): 
+ upcoming. An observation of public surfaces\, with no legal determination.
+  https://pranava0x0.github.io/sept11documents-mcp/
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

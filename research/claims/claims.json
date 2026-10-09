@@ -249,7 +249,8 @@
     "quote": "discontinue telling people to clean their apartments with wet mops and rags",
     "source": {
       "type": "portal",
-      "bates": "NYC-WTC_000147320"
+      "bates": "NYC-WTC_000147320",
+      "page": 2
     }
   },
   {
@@ -346,7 +347,8 @@
     "quote": "Exceedances occurred at Sift Location",
     "source": {
       "type": "portal",
-      "bates": "NYC-WTC_000154488"
+      "bates": "NYC-WTC_000154488",
+      "page": 3
     },
     "variants": [
       "Sift Location ~9C (97.78 S/mm^)"
@@ -424,7 +426,8 @@
     "quote": "disseminated by Ms. Cate Jenkins publicly criticizing",
     "source": {
       "type": "portal",
-      "bates": "NYC-WTC_000151604"
+      "bates": "NYC-WTC_000151604",
+      "page": 1
     }
   },
   {
@@ -475,6 +478,16 @@
       "type": "portal",
       "bates": "NYC-WTC_000153130",
       "page": 1
+    }
+  },
+  {
+    "id": "harding-file-email-2001-10-16",
+    "claim": "An email in the same portal document as a copy of the Harding memo was sent on October 16, 2001.",
+    "quote": "October 16, 2001 2:55 PM",
+    "source": {
+      "type": "portal",
+      "bates": "NYC-WTC_000136670",
+      "page": 58
     }
   },
   {

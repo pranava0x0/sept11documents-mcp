@@ -42,6 +42,14 @@ WARNING_CODES = (
     "announcement_not_expenditure", # an announced amount is not a line, a contract or a payment
     "periods_not_comparable",       # fiscal periods differ or are unresolved; rows are not summed
     "directory_not_advice",         # quoted official rules; no eligibility decision
+    "sequence_not_finding",         # a statement placed beside a record is not a finding about knowledge
+    "readings_not_dataset",         # located results, units as printed; no health finding
+    "label_match_only",             # matched the City's folder labels, not document text
+    "street_type_not_printed",      # a label printed the street name without STREET, PLACE or the like
+    "zone_not_computed",            # no exposure-zone membership is decided
+    "query_not_sent",               # a drafted query; nothing reached the City
+    "days_relative_to_as_of",       # day counts are against a stated date
+    "missing_from_snapshot",        # a requested Bates number is not in the local catalog
 )
 
 # Obligation vocabulary for the watchdog scorecard (spec 08). No percentage score, no verdict.

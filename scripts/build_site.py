@@ -3,7 +3,7 @@
 
 Hand-inlined figures drift: a new catalog snapshot changed `docs/data/`, and the
 page kept yesterday's totals until someone remembered. This build writes the
-marked regions of the four pages from the reviewed artifacts and the server's
+marked regions of the five pages from the reviewed artifacts and the server's
 own tool registry, and refuses to write a number the claim registry contradicts.
 
 It serves only files on the publication allowlist (`review/publication.json`),
@@ -29,22 +29,24 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from sept11.core import calendar, chronology  # noqa: E402
 from sept11.core import commitments as ledger  # noqa: E402
 from sept11.core.text import quote_hits, split_pages  # noqa: E402
 from sept11.mcp.tools import TOOLS  # noqa: E402
 from sept11.storage.publication import Publication  # noqa: E402
 
 DOCS = ROOT / "docs"
+SITE_URL = "https://pranava0x0.github.io/sept11documents-mcp/"
 CLAIMS = ROOT / "research" / "claims" / "claims.json"
 TOOLS_OPEN, TOOLS_CLOSE = "<!-- BUILD:tools -->", "<!-- /BUILD:tools -->"
 
-# The site is four pages, not one scroll. Order here is the order in the menu: what is
-# happening, then the MCP (the base), then the examples built on it, then the records.
+# The site is five pages, not one scroll. Order here is the order in the menu.
 PAGES = [
     ("index.html", "Overview"),
     ("toolkit.html", "The MCP"),
     ("examples.html", "Examples"),
     ("records.html", "Records"),
+    ("community.html", "Community support"),
 ]
 
 MAST = """<header class="mast"><div class="in"><a class="word" href="index.html">September 11th Documents \
@@ -58,20 +60,16 @@ FOOTER = """<footer><div class="in">
 <p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not \
 legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot \
 {snapshot}. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · \
-<a href="llms.txt">For agents</a></p>
+<a href="llms.txt">For agents</a> · <a href="#top">Back to top ↑</a></p>
 </div></footer>"""
 
-# Tools the specs defer, with the reason a reader deserves. Rows a registry cannot
-# supply, because the tool does not exist: kept here so the table stays complete.
+# Rows a registry cannot supply, because the tool does not exist, with the reason a reader
+# deserves. Kept here so the table states what the toolkit deliberately leaves out.
 PLANNED_ROWS = [
-    ("<code>evidence.checklist</code>",
-     "The proof-of-presence lanes for a WTCHP or VCF category, what each document must show, who issues "
-     "it, and request-letter templates. The static, cited version is the official directory on the "
-     "Examples page and the <code>sept11://help-directory</code> resource",
-     "planned · interactive routing held for practitioner review"),
-    ("<code>archive.timeline</code> · <code>archive.building_lookup</code> · <code>archive.find_readings</code>",
-     "Reviewed timeline events; buildings with zone flags; sampling readings with units and citations",
-     "planned · Phase 2–3"),
+    ("Exposure-zone check for an address",
+     "Whether an address is inside a program's zone. Each program decides that; "
+     "<code>building_lookup</code> quotes the definitions and links the official maps",
+     "not planned · the programs decide"),
 ]
 
 # What each tool returns, in the site's register. Derived text would read like a schema dump;
@@ -100,6 +98,22 @@ TOOL_BLURBS = {
                        "and no legal determination"),
     "budget_lookup": ("The commitment ledger: each announced amount with its source and five separately "
                       "evidenced stages, unlinked stages named as such; rows are never summed"),
+    "timeline_lookup": ("Public statements, City records and later reviews in date order, with quotes, "
+                        "citation and the basis for its date; filter by side, topic or dates"),
+    "readings_lookup": ("Sampling results printed in located City records: value, unit, medium and location as "
+                        "printed, with the quote and Bates page; never converted or compared"),
+    "building_lookup": ("Folders whose City label names an address or BIN, with the house numbers and "
+                        "identifiers the label prints and the follow-up catalog call; zones are quoted, not decided"),
+    "presence_evidence": ("What the WTC Health Program and the VCF accept as proof of presence, by program and "
+                          "applicant group, every rule quoted from the official page"),
+    "upcoming_dates": ("Dated settlement and Res. 560-A obligations with days from a given date, recurring "
+                       "obligations listed without invented dates, and an iCalendar file"),
+    "portal_query_draft": ("A portal search written in the syntax the City's search accepts, with the matching "
+                           "catalog filters; the draft is not sent anywhere"),
+    "citations_format": ("Short, full and Markdown citations for a Bates page, with the page link and whether the "
+                         "printed stamp was read"),
+    "records_manifest": ("A reading list for up to 50 Bates numbers: collection, box, folder, pages and PDF link, "
+                         "as rows and as CSV, with any number the catalog lacks"),
 }
 
 # Chip labels for the publishers the pages quote, keyed by URL prefix; specific prefixes first.
@@ -107,6 +121,13 @@ PUBLISHERS = [
     ("https://www.cdc.gov/wtc/pdfs/statistics/", "CDC quarterly summary, 2026-06-30"),
     ("https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/ed368f43303656488525744e00039488.html",
      "EPA release, 2001-09-18"),
+    ("https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/d7ada9cf2d39c0a185256acc007c097f.html",
+     "EPA release, 2001-09-13"),
+    ("https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/1dcfffa0c895910885256ace0082cdeb.html",
+     "EPA release, 2001-09-21"),
+    ("https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/a58e3e62ff609f5185256ada00729977.html",
+     "EPA and OSHA release, 2001-10-03"),
+    ("https://www.nyc.gov/html/om/html/2001b/pr315-01b.html", "Mayor’s Office release, 2001-09-16"),
     ("https://19january2021snapshot.epa.gov/sites/static/files/2015-10/documents/wtc_report_20030821.pdf",
      "EPA OIG report 2003-P-00012"),
     ("https://www.cdc.gov/wtc/documentation.html", "CDC, supporting documentation"),
@@ -129,7 +150,7 @@ PUBLISHERS = [
 # The landing page quotes the City in its own words. Each entry is (lead, claim id); the
 # quote itself comes from the claim record and is located in its captured source at build.
 STATEMENTS = [
-    ("The stipulation, so-ordered September 2026", [
+    ("Settlement and order · September 2026", [
         ("", "settlement-portal-goal"),
         ("the records sought under FOIL and", "settlement-records-of-public-interest"),
         ("Monthly meetings:", "settlement-monthly-meetings"),
@@ -150,7 +171,7 @@ STATEMENTS = [
         ("Corporation Counsel Steven Banks:", "banks-for-too-long"),
         ("On the 68 boxes:", "banks-right-to-know"),
         ("On the rollout:", "banks-rolling-releases"),
-        ("On the agreed search terms, the City will", "banks-search-terms"),
+        ("For the agreed search terms the City will", "banks-search-terms"),
         ("Mayor Zohran Mamdani:", "mamdani-34-million-commitment"),
         ("On what is withheld:", "mamdani-omissions"),
         ("", "mamdani-nothing-else-redacted"),
@@ -298,14 +319,15 @@ def tool_rows() -> str:
     for tool in TOOLS.values():
         if tool.name not in TOOL_BLURBS:
             raise SystemExit(f"build_site: no site copy for tool {tool.name!r}; add it to TOOL_BLURBS")
-        status = "runs from a clone" + (" · live opt-in" if tool.open_world else "")
+        status = ("runs after one catalog export" if tool.needs_catalog else "runs from a clone") + (
+            " · live opt-in" if tool.open_world else "")
         rows.append((f"<code>{tool.name}</code>", TOOL_BLURBS[tool.name],
                      f'<span class="badge built">{status}</span>'))
     for name, returns, status in PLANNED_ROWS:
         rows.append((name, returns, f'<span class="badge">{status}</span>'))
     return "\n".join(
         f'<tr><td data-label="Tool">{name}</td><td data-label="Returns">{returns}</td>'
-        f'<td data-label="Status">{status}</td></tr>' for name, returns, status in rows)
+        f'<td data-label="Availability">{status}</td></tr>' for name, returns, status in rows)
 
 
 def asset_version(name: str) -> str:
@@ -366,6 +388,34 @@ def record_demo(anchors: dict) -> str:
             '<select id="record-choice">' + ''.join(options) + '</select>\n' + '\n'.join(articles))
 
 
+def check_source_urls(document, quotes: Quotes) -> int:
+    """Every quoted object carries the URL of its registered claim, so the MCP can return the two together."""
+    checked = 0
+    stack = [document]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, dict):
+            if isinstance(node.get("claim_id"), str):
+                if node.get("source_url") != quotes.url(node["claim_id"]):
+                    raise ValueError(f"{node['claim_id']}: source_url must be the claim's registered source")
+                checked += 1
+            stack.extend(node.values())
+        elif isinstance(node, list):
+            stack.extend(node)
+    return checked
+
+
+ISSUER_KINDS = ("city_agency", "private_organization")
+
+
+def check_issuer_kinds(directory) -> int:
+    """Every records route says whether it is a City agency, so no answer presents a private group as one."""
+    for issuer in directory["nyc_records"]:
+        if issuer.get("kind") not in ISSUER_KINDS:
+            raise ValueError(f"{issuer.get('id')}: kind must be one of {ISSUER_KINDS}")
+    return len(directory["nyc_records"])
+
+
 def help_demo(directory: dict, quotes: Quotes, scorecard: dict) -> str:
     """The official directory: programs, then the New York City issuers, every rule a verified quote."""
     options, articles = [], []
@@ -410,7 +460,8 @@ def help_demo(directory: dict, quotes: Quotes, scorecard: dict) -> str:
                 if item.get("contact_url"):
                     shown.pop("note", None)
                 items.append(f"<li>{quotes.quoted(shown)}{extra}{who}</li>")
-            lanes.append(f'<li><b>{e(lane["lane"])}</b><ul>{"".join(items)}</ul></li>')
+            group = f' <span class="muted">{e(lane["who"])}</span>' if lane.get("who") else ""
+            lanes.append(f'<li><b>{e(lane["lane"])}</b>{group}<ul>{"".join(items)}</ul></li>')
         pages = " · ".join(f'<a href="{e(p["url"], quote=True)}">{e(p["label"])}</a>' for p in program["official_pages"])
         articles.append(f'''<article class="help-result" data-help="{pid}">
 <p class="eyebrow">{e(program["administered_by"])}</p>
@@ -479,7 +530,7 @@ def budget_demo(document: dict, quotes: Quotes) -> str:
             if spec.get("next"):
                 body += f' <span class="next">Next: {e(spec["next"])}</span>'
             if spec.get("obligation_ids"):
-                body += ' <a href="index.html#obligations">Obligation rows ↗</a>'
+                body += ' <a href="index.html#obligations">Dated obligations ↗</a>'
             notes.append(f'<div data-stage="{stage}"><dt>{e(spec["title"])}</dt><dd>{body}</dd></div>')
         questions = "".join(f"<li>{e(q)}</li>" for q in row["questions"])
         observations = ""
@@ -495,7 +546,7 @@ def budget_demo(document: dict, quotes: Quotes) -> str:
 <p class="amount">{e(row["amount_display"])}</p><p>{e(row["description"])}</p>
 <a class="source-link" href="{e(announcement["url"], quote=True)}">{e(announcement["label"])} ↗</a>
 {('<p class="result-note">' + e(row["period_note"]) + '</p>') if row.get("period_note") else ''}
-<h4>Evidence by stage</h4>
+<h4>Evidence for each stage</h4>
 <div class="evidence-stages" role="group" aria-label="Evidence stages">{"".join(buttons)}</div>
 <dl class="stage-notes">{"".join(notes)}</dl>
 {observations}
@@ -504,6 +555,314 @@ def budget_demo(document: dict, quotes: Quotes) -> str:
 </article>''')
     return ('<label for="budget-choice">Choose a commitment</label>\n'
             '<select id="budget-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
+
+
+def current_context_demo(document: dict) -> str:
+    """Small, dated reading list; links distinguish official records from outside projects."""
+    items = []
+    for row in document["items"]:
+        items.append(f'''<article class="context-item">
+<p class="eyebrow">{e(row["date"])} · {e(row["kind"])}</p><h3>{e(row["title"])}</h3>
+<p>{e(row["summary"])}</p><a class="source-link" href="{e(row["source_url"], quote=True)}">{e(row["source_label"])} ↗</a>
+<p class="result-note"><b>How to use it:</b> {e(row["use"])}</p></article>''')
+    return (f'<p class="result-note">As of {e(document["as_of"])} · {e(document["window"])}. '
+            f'{e(document["scope_note"])}</p>' + "\n".join(items))
+
+
+def research_paths_demo(document: dict) -> str:
+    """Question-led routes make the MCP’s boundaries as visible as its capabilities."""
+    options, articles = [], []
+    for row in document["paths"]:
+        options.append(f'<option value="{e(row["id"])}">{e(row["question"])}</option>')
+        articles.append(f'''<article class="research-path" data-path="{e(row["id"])}">
+<h3>{e(row["title"])}</h3><p class="tool-path"><code>{e(row["tools"])}</code></p>
+<p>{e(row["answer"])}</p><p class="result-note"><b>Boundary:</b> {e(row["boundary"])}</p></article>''')
+    return ('<label for="path-choice">Choose a research question</label>\n'
+            '<select id="path-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
+
+
+def release_footprint_demo(summary: dict) -> str:
+    """Show the saved City catalog as a bounded snapshot, not a completeness claim."""
+    total = summary["documents"]
+    rows = []
+    for source, count in sorted(summary["by_source"].items(), key=lambda pair: -pair[1]):
+        share = f"{count / total:.1%}"
+        rows.append(f'<tr><td data-label="Collection">{e(source)}</td><td data-label="Documents">{count:,}</td>'
+                    f'<td data-label="Share of saved catalog">{share}</td></tr>')
+    return f'''<div class="release-metrics" aria-label="Saved catalog footprint">
+<div><b>{total:,}</b><span>documents</span></div><div><b>{summary["pages"]:,}</b><span>pages</span></div>
+<div><b>{summary["boxes"]:,}</b><span>boxes</span></div><div><b>{summary["folders"]:,}</b><span>folder labels</span></div></div>
+<p class="result-note">Catalog captured {e(str(summary["captured_at"])[:10])}.</p>
+<div class="tw"><table><colgroup><col class="w50"><col class="w25"><col class="w25"></colgroup>
+<thead><tr><th>Collection</th><th>Documents</th><th>Share of saved catalog</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>'''
+
+
+def release_tracker_demo(scorecard: dict) -> str:
+    """Release-specific settlement rows, with observed status distinct from compliance."""
+    chosen = ("portal-launch", "harding-documents-of-interest", "search-terms-posted", "privilege-log",
+              "dcas-doe-personnel")
+    indexed = {row["id"]: row for row in scorecard["rows"]}
+    options, articles = [], []
+    for key in chosen:
+        row = indexed[key]
+        css, label = STATUS_BADGE[row["status"]]
+        options.append(f'<option value="{e(key)}">{e(row["obligation"])}</option>')
+        articles.append(f'''<article class="release-result" data-release="{e(key)}">
+<p class="eyebrow">Checked {e(row["checked"])} · <span class="badge {css}">{e(label)}</span></p>
+<h3>{e(row["obligation"])}</h3><p>{e(row["evidence"])}</p>
+<p class="result-note"><b>Source:</b> {e(row["source"])}. Observation only.</p>
+</article>''')
+    return ('<label for="release-choice">Choose a release commitment</label>\n'
+            '<select id="release-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
+
+
+def collection_explorer_demo(summary: dict) -> str:
+    """Collection filters a reader can paste into the local MCP without sending a query upstream."""
+    agencies = summary["by_agency"]
+    details = {
+        "DEP Hard Copies (68 Boxes)": ("Environmental Protection, Dept. of", "DEP hard-copy production"),
+        "WTC 7": ("Citywide Administrative Services, Dept. of", "WTC 7 collection label"),
+        "DORIS Giuliani": ("Records and Information Services, Dept. of", "DORIS Giuliani collection label"),
+    }
+    options, articles = [], []
+    for source, count in sorted(summary["by_source"].items(), key=lambda pair: -pair[1]):
+        detail = details.get(source)
+        if detail:
+            agency, note = detail
+            agency_context = (f'The summary reports {agencies.get(agency, 0):,} documents for {e(agency)} '
+                              'across the saved catalog; it is not a one-to-one collection total.')
+        else:
+            note = "City collection label; no curated agency pairing is stored yet"
+            agency_context = "Inspect the returned catalog rows for their agency field before drawing a collection-level conclusion."
+        options.append(f'<option value="{e(source)}">{e(source)} · {count:,} documents</option>')
+        request = json.dumps({"source": source, "count": 10}, ensure_ascii=False)
+        articles.append(f'''<article class="collection-result" data-collection="{e(source)}">
+<p class="eyebrow">{count:,} documents in saved catalog</p><h3>{e(source)}</h3>
+<p>{e(note)}. {agency_context}</p>
+<pre class="request">catalog_search {e(request)}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>''')
+    return ('<label for="collection-choice">Choose a City collection</label>\n'
+            '<select id="collection-choice">' + "".join(options) + '</select>\n' + "\n".join(articles))
+
+
+MONTHS = ("January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+          "November", "December")
+SIDE_LABELS = {"public_statement": "Public statement", "city_record": "City record", "later_review": "Later review"}
+
+
+def display_date(value: str) -> str:
+    """`2001-10-03` → October 3, 2001; `2001-10` → October 2001; a year stays a year."""
+    chronology.check_date(value, "date")
+    parts = value.split("-")
+    if len(parts) == 1:
+        return parts[0]
+    month = MONTHS[int(parts[1]) - 1]
+    return f"{month} {int(parts[2])}, {parts[0]}" if len(parts) == 3 else f"{month} {parts[0]}"
+
+
+def recorded_for(recorded: dict, demo: str) -> list[dict]:
+    rows = [ex for ex in recorded["examples"] if ex.get("demo") == demo and not ex["is_error"]]
+    if not rows:
+        raise ValueError(f"no recorded example for the {demo!r} demo; run scripts/record_mcp_examples.py")
+    return rows
+
+
+def recorded_note(ex: dict) -> str:
+    """The line under a demo built from a recorded call: the call itself and a link to its envelope."""
+    request = ex["request"]
+    return (f'<p class="result-note">Recorded output of <code>{e(request["name"])}</code> '
+            f'<code>{e(json.dumps(request["arguments"], ensure_ascii=False))}</code>. '
+            f'<a href="toolkit.html#example-{e(ex["id"], quote=True)}">Full response ↗</a></p>')
+
+
+def statements_timeline_demo(document: dict, quotes: Quotes) -> str:
+    """Statements and records in date order. Every quote, and every date basis that cites a
+    record, links to its own source; a month or a year means the source gives no closer date."""
+    chronology.validate(document, "timeline")
+    side_options = '<option value="all">All entries</option>' + "".join(
+        f'<option value="{e(key)}">{e(label)}</option>' for key, label in document["sides"].items())
+    topic_options = '<option value="all">All topics</option>' + "".join(
+        f'<option value="{e(t)}">{e(t.capitalize())}</option>' for t in document["topics"])
+    items = []
+    for row in document["events"]:
+        text = quotes.verify(row["claim_id"], row["quote"])
+        basis = row["date_basis"]
+        basis_html = e(basis["text"])
+        if basis.get("claim_id"):
+            basis_html += " " + quotes.chip(basis["claim_id"])
+        elif basis.get("citation"):
+            cited = basis["citation"]
+            if cited["type"] == "portal":
+                basis_html += (f' <a class="cite" href="{pdf_link(cited["bates"], cited["page"])}">'
+                               f'{e(cited["bates"])} · p.{cited["page"]}</a>')
+            else:
+                basis_html += f' <a class="cite" href="{e(cited["url"], quote=True)}">source</a>'
+        note = f'<p class="muted">{e(row["note"])}</p>' if row.get("note") else ""
+        items.append(
+            f'<li data-side="{e(row["side"])}" data-topic="{e(row["topic"])}">\n'
+            f'<p class="eyebrow"><time datetime="{e(row["date"])}">{e(display_date(row["date"]))}</time> · '
+            f'{e(SIDE_LABELS[row["side"]])} · {e(row["topic"])}</p>\n'
+            f'<h3>{e(row["title"])}</h3>\n'
+            f'<p><span class="muted">{e(row["source_label"])}:</span> <q>{e(text)}</q> {quotes.chip(row["claim_id"])}</p>\n'
+            f'{note}<p class="date-basis"><b>Date basis:</b> {basis_html}</p></li>')
+    return (f'<p class="result-note">{e(document["note"])}</p>\n'
+            '<div class="filters"><div><label for="timeline-side">Show</label>'
+            f'<select id="timeline-side">{side_options}</select></div>'
+            '<div><label for="timeline-topic">Topic</label>'
+            f'<select id="timeline-topic">{topic_options}</select></div></div>\n'
+            '<p id="timeline-count" class="result-note" role="status"></p>\n'
+            '<ol class="statement-timeline">' + "\n".join(items) + '</ol>\n'
+            f'<p class="result-note"><b>Boundary:</b> {e(document["boundary"])}</p>')
+
+
+def readings_demo(document: dict, quotes: Quotes) -> str:
+    """Sampling results as printed: no conversion, no comparison, no total."""
+    chronology.validate(document, "readings")
+    rows = []
+    for row in document["readings"]:
+        text = quotes.verify(row["claim_id"], row["quote"])
+        unit = f' {e(row["unit_as_printed"])}' if row["unit_as_printed"] else ""
+        note = f'<span class="cellnote">{e(row["note"])}</span>' if row.get("note") else ""
+        doc_date = f', {e(display_date(row["document_date"]))}' if row["document_date"] else ""
+        rows.append(
+            f'<tr><td data-label="Result as printed"><b>{e(row["value_as_printed"])}{unit}</b>'
+            f'<span class="cellnote">{e(row["analyte"])}, {e(row["medium"])}</span></td>'
+            f'<td data-label="Location as printed">{e(row["location_as_printed"])}</td>'
+            f'<td data-label="Sampled">{e(display_date(row["sample_date"]) if row["sample_date"] else "Not stated")}'
+            f'<span class="cellnote">{e(row["sample_date_basis"])}</span></td>'
+            f'<td data-label="Source"><q>{e(text)}</q> {quotes.chip(row["claim_id"])}'
+            f'<span class="cellnote">{e(row["document"])}{doc_date}; '
+            f'{e(row["reported_by"])}</span>{note}</td></tr>')
+    return (f'<p class="result-note">{e(document["note"])}</p>\n'
+            '<div class="tw"><table class="readings">\n'
+            '<colgroup><col class="w20"><col class="w25"><col class="w20"><col class="w35"></colgroup>\n'
+            '<thead><tr><th>Result as printed</th><th>Location as printed</th><th>Sampled</th><th>Source</th></tr></thead>\n'
+            '<tbody>\n' + "\n".join(rows) + '\n</tbody></table></div>\n'
+            f'<p class="result-note"><b>Boundary:</b> {e(document["boundary"])}</p>')
+
+
+def key_dates_demo(scorecard: dict) -> str:
+    """Dated obligations in order, recurring ones apart, and the same dates as a calendar file.
+    The page carries no day count; the reader's browser adds one against the reader's own date."""
+    plan = calendar.schedule(scorecard, calendar.parse_day(str(scorecard["generated_at"])[:10], "generated_at"))
+    items = []
+    for row in plan["dated"]:
+        css, label = STATUS_BADGE[row["status"]]
+        items.append(f'<li><b><time datetime="{e(row["date"])}">{e(display_date(row["date"]))}</time></b> '
+                     f'<span>{e(row["obligation"])}</span> <span class="badge {css}">{e(label)}</span> '
+                     f'<span class="days" data-date="{e(row["date"])}"></span>'
+                     f'<span class="cellnote">{e(row["source"])} · checked {e(row["checked"] or "not recorded")}</span></li>')
+    rolling = "".join(f'<li><b>{e(row["due_as_stated"])}</b> <span>{e(row["obligation"])}</span>'
+                      f'<span class="cellnote">{e(row["source"])}</span></li>' for row in plan["rolling"])
+    return ('<ol class="plain due-list">' + "".join(items) + '</ol>\n'
+            '<h3>Recurring obligations</h3>\n'
+            f'<ul class="plain due-list">{rolling}</ul>\n'
+            '<p class="result-note">Recurring obligations state no dates, so none are added to the calendar. '
+            'Status is what was observed on public pages when checked, with no legal determination.</p>\n'
+            '<p class="result-actions"><a class="btn" href="data/obligations.ics" download>Add the dated obligations '
+            'to a calendar (.ics)</a></p>')
+
+
+def address_demo(recorded: dict) -> str:
+    """Recorded building_lookup calls, one per address: the folders whose labels name it."""
+    options, articles = [], []
+    for ex in recorded_for(recorded, "address"):
+        data = ex["response"]["data"]
+        options.append(f'<option value="{e(ex["id"])}">{e(ex["request"]["arguments"]["address"])}</option>')
+        rows = []
+        for folder in data["folders"]:
+            ids = folder["printed_identifiers"]
+            printed = ", ".join(x for x in (
+                f'BIN {", ".join(ids["bins"])}' if ids["bins"] else "",
+                f'block {ids["block"]}' if ids["block"] else "",
+                f'lot {ids["lot"]}' if ids["lot"] else "") if x)
+            rows.append(f'<tr><td data-label="Folder label">{e(folder["folder"])}'
+                        f'<span class="cellnote">{e(folder["source"])} · {e(folder["box"])}</span></td>'
+                        f'<td data-label="Documents">{folder["documents"]:,}</td>'
+                        f'<td data-label="Printed on the label">{e(printed) or "no identifiers"}</td>'
+                        f'<td data-label="First document"><a class="cite" href="{e(folder["first_pdf_url"], quote=True)}">'
+                        f'{e(folder["first_bates"])}</a></td></tr>')
+        if rows:
+            table = ('<div class="tw"><table><colgroup><col class="w40"><col class="w15"><col class="w20">'
+                     '<col class="w25"></colgroup><thead><tr><th>Folder label</th><th>Documents</th>'
+                     '<th>Printed on the label</th><th>First document</th></tr></thead><tbody>'
+                     + "".join(rows) + '</tbody></table></div>')
+        else:
+            table = '<p>No folder label in the capture names this address.</p>'
+        more = (f'<p class="result-note">Showing {data["folders_returned"]} of {data["folders_matched"]} matching '
+                'folders, largest first.</p>') if data["folders_returned"] < data["folders_matched"] else ""
+        noun = "folder" if data["folders_matched"] == 1 else "folders"
+        articles.append(
+            f'<article class="address-result" data-address="{e(ex["id"])}">\n'
+            f'<p class="eyebrow">Read as {e(data["query"]["read_as"])} · catalog captured '
+            f'{e(data["catalog_captured_at"][:10])}</p>\n'
+            f'<h3>{data["folders_matched"]:,} {noun}, {data["documents_in_matched_folders"]:,} documents</h3>\n'
+            f'{table}{more}\n{recorded_note(ex)}</article>')
+    return ('<label for="address-choice">Choose an address</label>\n'
+            '<select id="address-choice">' + "".join(options) + '</select>\n' + "\n".join(articles)
+            + '\n<p class="result-note">A label match shows where the City filed paper. A document can concern a '
+              'building whose address is not on its folder. The lookup does not decide whether an address is '
+              'inside a program’s exposure zone; each program decides that, and the response quotes its '
+              'definition.</p>')
+
+
+def cite_demo(recorded: dict) -> str:
+    """Recorded citations_format calls: three forms of one page citation, each with a copy button."""
+    options, articles = [], []
+    for ex in recorded_for(recorded, "cite"):
+        data = ex["response"]["data"]
+        label = f'{data["bates"]} p.{data["page"]}'
+        options.append(f'<option value="{e(ex["id"])}">{e(label)}</option>')
+        forms = []
+        for key, name in (("short", "Short"), ("full", "Full"), ("markdown", "Markdown")):
+            text = data["formats"][key]
+            forms.append(f'<div><dt>{name}</dt><dd><code class="citation-text">{e(text)}</code> '
+                         f'<button type="button" class="quiet copy-citation" data-status="cite-status" '
+                         f'data-copy="{e(text, quote=True)}" hidden>Copy</button></dd></div>')
+        if data["stamp_status"] == "matched":
+            stamp = "The Bates stamp printed on this page was read from the captured page text."
+        elif data["stamp_status"] == "ambiguous_stamp":
+            stamp = "The page text shows more than one Bates stamp, so none was chosen; the citation uses the catalog number."
+        elif data.get("page_text_read"):
+            stamp = "The page text was read and no Bates stamp was legible; the citation uses the catalog number."
+        else:
+            stamp = "The page text was not read, so the printed stamp was not checked."
+        catalog = data.get("catalog") or {}
+        place = " · ".join(x for x in (catalog.get("source"), catalog.get("box"), catalog.get("folder")) if x)
+        articles.append(
+            f'<article class="cite-result" data-cite="{e(ex["id"])}">\n'
+            f'<p class="eyebrow">{e(place or "No catalog row")}</p>\n'
+            f'<h3><a href="{e(data["pdf_url"], quote=True)}">{e(label)} ↗</a></h3>\n'
+            f'<dl class="facts">{"".join(forms)}</dl>\n'
+            f'<p class="result-note">{e(stamp)}</p>\n{recorded_note(ex)}</article>')
+    return ('<label for="cite-choice">Choose a page</label>\n'
+            '<select id="cite-choice">' + "".join(options) + '</select>\n' + "\n".join(articles)
+            + '\n<p id="cite-status" class="result-note copy-status" role="status"></p>')
+
+
+def manifest_demo(recorded: dict) -> tuple[str, str]:
+    """The recorded records_manifest call as a table, and its CSV as a download."""
+    ex = recorded_for(recorded, "manifest")[0]
+    data = ex["response"]["data"]
+    rows = []
+    for row in data["records"]:
+        place = " · ".join(x for x in (row["source"], row["box"], row["folder"]) if x)
+        pages = "" if row["page_count"] is None else f'{row["page_count"]:,}'
+        size = "" if row["pdf_size"] is None else f'{row["pdf_size"] / 1_000_000:.1f} MB'
+        rows.append(f'<tr><td data-label="Bates"><a class="cite" href="{e(row["pdf_url"], quote=True)}">'
+                    f'{e(row["bates"])}</a></td>'
+                    f'<td data-label="Collection, box, folder">{e(place)}</td>'
+                    f'<td data-label="Pages">{pages}</td><td data-label="PDF size">{size}</td></tr>')
+    missing = (f'<p class="result-note">Not in the catalog: {e(", ".join(data["missing"]))}.</p>'
+               if data["missing"] else "")
+    html = (f'<p class="result-note">{data["found"]} of {data["requested"]} requested documents found in the '
+            f'catalog captured {e(data["catalog_captured_at"][:10])}.</p>\n'
+            '<div class="tw"><table><colgroup><col class="w25"><col class="w45"><col class="w15"><col class="w15">'
+            '</colgroup><thead><tr><th>Bates</th><th>Collection, box, folder</th><th>Pages</th><th>PDF size</th>'
+            '</tr></thead><tbody>' + "".join(rows) + '</tbody></table></div>\n' + missing
+            + '<p class="result-actions"><a class="btn" href="data/reading-list.csv" download>Download as CSV</a></p>\n'
+            + recorded_note(ex))
+    return html, data["csv"]
 
 
 def statements_section(quotes: Quotes) -> str:
@@ -579,23 +938,8 @@ def money_ledger(document: dict, quotes: Quotes) -> str:
     return '<div class="ledger money" aria-label="Announced commitments">' + "".join(tiles) + "</div>"
 
 
-def due_next(scorecard: dict) -> str:
-    """Dated obligations ahead, from the scorecard's `due` fields, in date order."""
-    rows = [r for r in scorecard["rows"] if r.get("due") and r.get("status") == "upcoming"]
-    rows.sort(key=lambda r: (not r["due"][0].isdigit(), r["due"]))
-    items = []
-    for row in rows:
-        css, label = STATUS_BADGE[row["status"]]
-        items.append(f'<li><b>{e(row["due"])}</b> <span>{e(row["obligation"])}</span> '
-                     f'<span class="badge {css}">{e(label)}</span> '
-                     f'<a class="cite" href="index.html#obligations">{e(row["source"])}</a></li>')
-    return '<ul class="plain due-list">' + "".join(items) + "</ul>"
-
-
 def examples_section(recorded: dict) -> str:
     """Recorded exchanges for the builders page: one article per call, the envelope verbatim."""
-    demo_names = {"records": "Find a record", "help": "Get official help", "budget": "Follow the money",
-                  "releases": "Check releases"}
     options, articles = [], []
     for ex in recorded["examples"]:
         request = ex["request"]
@@ -606,8 +950,7 @@ def examples_section(recorded: dict) -> str:
         redactions = "".join(f'<p class="result-note">Published copy: {e(r)}.</p>' for r in ex.get("redactions", []))
         body = json.dumps(ex["response"], indent=2, ensure_ascii=False)
         articles.append(f'''<article class="example" id="example-{e(ex["id"])}" data-example="{e(ex["id"])}">
-<p class="eyebrow">{e(demo_names.get(ex["demo"], ex["demo"]))} · {e(request["name"])}</p>
-<h3>{e(ex["question"])}</h3>
+<h3>{e(ex["title"])}</h3>
 <pre class="request">{e(request["name"])} {e(json.dumps(request["arguments"], ensure_ascii=False))}</pre>
 <p class="result-note">The call {outcome}.</p>
 {redactions}<pre class="response">{e(body)}</pre>
@@ -650,6 +993,7 @@ def build(check: bool) -> int:
     quotes = Quotes(claims)
     snapshot = summary.get("csv_file", "catalog_2026-09-09_pdf.csv")
     stale, records_matched = [], 0
+    generated: dict[Path, str] = {}
     for page, _label in PAGES:
         path = DOCS / page
         if not path.is_file():
@@ -665,12 +1009,32 @@ def build(check: bool) -> int:
         if page == "examples.html":
             anchors, _ = publication.read_json("sept11://anchors")
             directory, _ = publication.read_json("sept11://help-directory")
+            check_source_urls(directory, quotes)
+            check_issuer_kinds(directory)
             scorecard, _ = publication.read_json("sept11://scorecard")
             commitments, _ = publication.read_json("sept11://commitments")
+            summary, _ = publication.read_json("sept11://catalog/summary")
+            recent_context, _ = publication.read_json("sept11://release-context")
             after = region(after, "record-demo", record_demo(anchors))
             after = region(after, "help-demo", help_demo(directory, quotes, scorecard))
             after = region(after, "budget-demo", budget_demo(commitments, quotes))
-            after = region(after, "due-next", due_next(scorecard))
+            timeline, _ = publication.read_json("sept11://timeline")
+            readings, _ = publication.read_json("sept11://readings")
+            recorded, _ = publication.read_json("sept11://examples")
+            manifest_html, manifest_csv = manifest_demo(recorded)
+            generated[DOCS / "data" / "reading-list.csv"] = manifest_csv
+            generated[DOCS / "data" / "obligations.ics"] = calendar.ics(scorecard, SITE_URL)
+            after = region(after, "address-demo", address_demo(recorded))
+            after = region(after, "timeline-demo", statements_timeline_demo(timeline, quotes))
+            after = region(after, "readings-demo", readings_demo(readings, quotes))
+            after = region(after, "dates-demo", key_dates_demo(scorecard))
+            after = region(after, "cite-demo", cite_demo(recorded))
+            after = region(after, "manifest-demo", manifest_html)
+            after = region(after, "current-context", current_context_demo(recent_context))
+            after = region(after, "research-paths", research_paths_demo(recent_context))
+            after = region(after, "release-footprint", release_footprint_demo(summary))
+            after = region(after, "release-tracker", release_tracker_demo(scorecard))
+            after = region(after, "collection-explorer", collection_explorer_demo(summary))
         if page == "toolkit.html":
             recorded, _ = publication.read_json("sept11://examples")
             after = region(after, "examples", examples_section(recorded))
@@ -687,6 +1051,12 @@ def build(check: bool) -> int:
         stale.append(page)
         if not check:
             path.write_text(after, encoding="utf-8")
+    for path, content in generated.items():
+        if path.is_file() and path.read_bytes() == content.encode("utf-8"):
+            continue
+        stale.append(str(path.relative_to(DOCS)))
+        if not check:
+            path.write_bytes(content.encode("utf-8"))
     verb = "stale" if check else "written"
     print(f"examined {len(PAGES)} pages, {len(metrics)} metrics, {len(TOOLS)} registered tools and "
           f"{quotes.checked} displayed quotes ({records_matched} on records.html) against {artifact.path} "
@@ -725,6 +1095,18 @@ def selftest() -> int:
         failures.append("record demo must escape source markup and preserve page links")
 
     quotes = _fixture_quotes()
+    try:
+        check_source_urls({"rules": [{"claim_id": "q-rule", "source_url": "https://www.cdc.gov/wtc/other.html"}]}, quotes)
+        failures.append("a quote's source_url must be the URL of its registered claim")
+    except ValueError:
+        pass
+    if check_source_urls({"rules": [{"claim_id": "q-rule", "source_url": "https://www.cdc.gov/wtc/about.html"}]}, quotes) != 1:
+        failures.append("a matching source_url must pass")
+    try:
+        check_issuer_kinds({"nyc_records": [{"id": "i", "kind": "city_agency"}, {"id": "j"}]})
+        failures.append("a records route without a kind must fail")
+    except ValueError:
+        pass
     directory = {"disclaimer": "d", "programs": [{
         "id": "p", "name": "<b>P</b>", "administered_by": "a", "what_it_is": None,
         "contact": {"phone": "1-800-000-0000", "url": "https://www.cdc.gov/wtc/", "claim_id": "q-rule"},
@@ -734,7 +1116,7 @@ def selftest() -> int:
         "separate_from": {"text": "There is no deadline to enroll.", "claim_id": "q-rule"},
         "rules": [], "evidence": [{"lane": "L", "examples": [{"text": "There is no deadline to enroll.", "claim_id": "q-rule"}]}],
         "official_pages": []}],
-        "nyc_records": [{"id": "i", "who": "w", "issuer": "<i>x</i>", "how": "h",
+        "nyc_records": [{"id": "i", "kind": "city_agency", "who": "w", "issuer": "<i>x</i>", "how": "h",
                          "note": {"text": "There is no deadline to enroll.", "claim_id": "q-rule"},
                          "status_obligation_id": "o"}],
         "mayor_announcement": {"text": "There is no deadline to enroll.", "claim_id": "q-rule"}}
@@ -752,9 +1134,74 @@ def selftest() -> int:
     except ValueError:
         pass
 
-    due = due_next(scorecard)
-    if due.index("2027-07-14") > due.index("monthly") or "2026-12-31" in due:
-        failures.append("due list must be upcoming rows only, dated first, in order")
+    scorecard["generated_at"] = "2026-09-11"
+    dates = key_dates_demo(scorecard)
+    if (dates.index("December 31, 2026") > dates.index("July 14, 2027") or dates.index("July 14, 2027") > dates.index("monthly")
+            or 'data-date="2027-07-14"' not in dates or "obligations.ics" not in dates):
+        failures.append("key dates must list dated rows in order, recurring rows apart, and link the calendar file")
+
+    timeline = {"note": "n", "boundary": "b", "topics": ["air"], "sides": {"public_statement": "P", "city_record": "C"},
+                "events": [
+                    {"id": "a", "date": "2001-10", "date_precision": "month", "side": "city_record", "topic": "air",
+                     "title": "<b>t</b>", "source_label": "s", "claim_id": "q-portal", "quote": "35,000 potential plaintiffs",
+                     "citation": {"type": "portal", "bates": "NYC-WTC_000138296", "page": 1},
+                     "date_basis": {"text": "an email in the same file", "claim_id": "q-portal"}},
+                    {"id": "b", "date": "2001-10-03", "date_precision": "day", "side": "public_statement", "topic": "air",
+                     "title": "t", "source_label": "s", "claim_id": "q-rule", "quote": "There is no deadline to enroll.",
+                     "citation": {"type": "url", "url": "https://www.cdc.gov/wtc/about.html"},
+                     "date_basis": {"text": "date of the release"}}]}
+    out = statements_timeline_demo(timeline, quotes)
+    basis = out[out.index("Date basis:"):]
+    if ("<b>t</b>" in out or "October 2001" not in out or "October 3, 2001" not in out
+            or "NYC-WTC_000138296.pdf#page=1" not in basis[:basis.index("</p>")]):
+        failures.append("the timeline must escape titles, show partial dates as such and link each date basis to its source")
+    drifted = json.loads(json.dumps(timeline))
+    drifted["events"][1]["quote"] = "There is no deadline."
+    try:
+        statements_timeline_demo(drifted, quotes)
+        failures.append("a timeline quote that is not the registered quote must stop the build")
+    except ValueError:
+        pass
+
+    readings = {"note": "n", "boundary": "b", "readings": [
+        {"id": "r", "analyte": "<i>a</i>", "value_as_printed": "4.5", "unit_as_printed": "%", "medium": "m",
+         "location_as_printed": "l", "sample_date": "2001-09-11", "sample_date_precision": "day", "sample_date_basis": "b",
+         "document": "d", "document_date": "2001-11-20", "reported_by": "r", "claim_id": "q-portal",
+         "quote": "35,000 potential plaintiffs", "citation": {"type": "portal", "bates": "NYC-WTC_000138296", "page": 1}}]}
+    out = readings_demo(readings, quotes)
+    if "<i>a</i>" in out or "<b>4.5 %</b>" not in out or "September 11, 2001" not in out:
+        failures.append("readings must escape text and show the value and unit as printed")
+
+    folder = {"source": "s", "box": "b", "folder": "<script>", "documents": 3, "pages": 3, "first_bates": "NYC-WTC_000000001",
+              "first_pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000000001.pdf",
+              "printed_identifiers": {"bins": ["1001217"], "block": "79", "lot": None}}
+    calls = {"examples": [
+        {"id": "addr", "demo": "address", "is_error": False, "request": {"name": "building_lookup", "arguments": {"address": "15 John"}},
+         "response": {"data": {"query": {"read_as": "15 JOHN"}, "folders": [folder], "folders_matched": 2, "folders_returned": 1,
+                               "documents_in_matched_folders": 3, "catalog_captured_at": "2026-09-11T00:00:00"}}},
+        {"id": "cite", "demo": "cite", "is_error": False, "title": "t", "question": "q",
+         "request": {"name": "citations_format", "arguments": {"bates": "NYC-WTC_000000001", "page": 1}},
+         "response": {"data": {"bates": "NYC-WTC_000000001", "page": 1, "pdf_url": "https://x/#page=1", "stamp_status": "unverified_stamp", "page_text_read": False,
+                               "catalog": None, "formats": {"short": "s", "full": 'f "quoted"', "markdown": "[m](u)"}}}},
+        {"id": "list", "demo": "manifest", "is_error": False,
+         "request": {"name": "records_manifest", "arguments": {"bates": ["NYC-WTC_000000001"]}},
+         "response": {"data": {"requested": 2, "found": 1, "missing": ["NYC-WTC_000000009"], "catalog_captured_at": "2026-09-11",
+                               "csv": "bates\r\n", "records": [{"bates": "NYC-WTC_000000001", "source": "s", "box": "", "folder": "f",
+                                                                 "page_count": 2, "pdf_size": 1_500_000, "pdf_url": "https://x"}]}}}]}
+    out = address_demo(calls)
+    if "<script>" in out or "BIN 1001217, block 79" not in out or "Showing 1 of 2" not in out or "#example-addr" not in out:
+        failures.append("the address demo must escape labels, show printed identifiers, say when it truncates and link the call")
+    out = cite_demo(calls)
+    if 'data-copy="f &quot;quoted&quot;"' not in out or "printed stamp was not checked" not in out:
+        failures.append("the citation demo must escape copy text and say when the stamp was not read")
+    out, csv_text = manifest_demo(calls)
+    if "1.5 MB" not in out or "NYC-WTC_000000009" not in out or csv_text != "bates\r\n":
+        failures.append("the reading list must show sizes, name missing numbers and pass the CSV through")
+    try:
+        recorded_for({"examples": []}, "address")
+        failures.append("a demo with no recorded call must stop the build")
+    except ValueError:
+        pass
 
     from mcp_checks import fixture_ledger  # the same fixture the server gates use
     fixture = fixture_ledger()
@@ -785,13 +1232,23 @@ def selftest() -> int:
         pass
 
     recorded = {"recorded_at": "2026-09-11T00:00:00+00:00", "server_version": "0.2.0", "schema_version": "s",
-                "examples": [{"id": "x", "demo": "records", "question": "q</pre><script>",
+                "examples": [{"id": "x", "demo": "records", "title": "t</pre><script>", "question": "q</pre><script>",
                               "request": {"name": "catalog_search", "arguments": {"text": "</pre>"}},
                               "is_error": False, "response": {"warnings": [{"code": "local_snapshot_only"}], "data": "</pre>"},
                               "redactions": []}]}
     out = examples_section(recorded)
     if "</pre><script>" in out or out.count("<pre") != 2:
         failures.append("examples must escape recorded text inside <pre>")
+
+    context = {"as_of": "2026-09-21", "window": "w", "scope_note": "n", "items": [
+        {"date": "d", "kind": "<b>k</b>", "title": "<script>x</script>", "summary": "s",
+         "source_label": "l", "source_url": "https://example.com/", "use": "u"}],
+        "paths": [{"id": "p", "title": "t<script>", "question": "q<script>", "tools": "a → b", "answer": "a", "boundary": "b"}]}
+    if "<script>" in current_context_demo(context) or "<script>" in research_paths_demo(context):
+        failures.append("current context and research paths must escape data text")
+    generated_collection = collection_explorer_demo({"by_source": {"New <source>": 1}, "by_agency": {}})
+    if "New <source>" in generated_collection or "Inspect the returned catalog rows" not in generated_collection:
+        failures.append("collection explorer must escape and render a newly appearing source")
 
     purpose = purpose_section(quotes, [
         [("<b>lead</b>", "q-rule", "quote", "as <published>")],
@@ -856,11 +1313,11 @@ def selftest() -> int:
     except SystemExit:
         pass
 
-    total = 21
+    total = 30
     for message in failures:
         print("FAIL:", message)
     print(f"build_site selftest: {len(failures)} failures, {total - len(failures)}/{total} checks passed over "
-          f"{len(metrics)} metrics, {len(TOOLS)} registered tools, 4 generated demos, the purpose section and "
+          f"{len(metrics)} metrics, {len(TOOLS)} registered tools, 16 generated demos, the purpose section and "
           f"the records gate")
     return 1 if failures else 0
 

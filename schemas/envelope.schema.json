@@ -93,7 +93,15 @@
               "history_is_local_only",
               "announcement_not_expenditure",
               "periods_not_comparable",
-              "directory_not_advice"
+              "directory_not_advice",
+              "sequence_not_finding",
+              "readings_not_dataset",
+              "label_match_only",
+              "street_type_not_printed",
+              "zone_not_computed",
+              "query_not_sent",
+              "days_relative_to_as_of",
+              "missing_from_snapshot"
             ]
           },
           "message": {

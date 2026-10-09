@@ -39,15 +39,15 @@ TARGET = ROOT / "docs" / "data" / "mcp-examples.json"
 # The demo each example belongs to, the question it answers, and the call. Order is the
 # order the site shows them.
 EXAMPLES = [
-    {"id": "catalog_search", "demo": "records", "question": "Which folders in the archive mention John Street?",
+    {"id": "catalog_search", "title": "Folders in the archive that mention John Street", "demo": "records", "question": "Which folders in the archive mention John Street?",
      "request": {"name": "catalog_search", "arguments": {"folder": "JOHN STREET", "count": 5}}},
-    {"id": "portal_browse", "demo": "records", "question": "What is inside DEP Box 31?",
+    {"id": "portal_browse", "title": "Contents of DEP Box 31", "demo": "records", "question": "What is inside DEP Box 31?",
      "request": {"name": "portal_browse", "arguments": {"source": "DEP Hard Copies (68 Boxes)", "box": "DEP Box 31"}}},
-    {"id": "portal_get_document", "demo": "records", "question": "What does the catalog hold about the Harding memo?",
+    {"id": "portal_get_document", "title": "The catalog record for the Harding memo", "demo": "records", "question": "What does the catalog hold about the Harding memo?",
      "request": {"name": "portal_get_document", "arguments": {"bates": "NYC-WTC_000138296"}}},
-    {"id": "portal_get_page_text", "demo": "records", "question": "What is printed on page 1 of the Harding memo?",
+    {"id": "portal_get_page_text", "title": "Page 1 of the Harding memo", "demo": "records", "question": "What is printed on page 1 of the Harding memo?",
      "request": {"name": "portal_get_page_text", "arguments": {"bates": "NYC-WTC_000138296", "page": 1}}},
-    {"id": "citations_verify", "demo": "records",
+    {"id": "citations_verify", "title": "The Harding estimate checked on pages 1 and 2", "demo": "records",
      "question": "Is the Harding estimate really on page 1, and is the same quote on page 2?",
      "request": {"name": "citations_verify", "arguments": {"claims": [
          {"id": "harding-p1", "claim": "The memo estimates 35,000 potential plaintiffs.",
@@ -56,16 +56,47 @@ EXAMPLES = [
          {"id": "harding-p2", "claim": "The same estimate appears on page 2.",
           "quote": "approximately 35,000 potential plaintiffs",
           "source": {"type": "portal", "bates": "NYC-WTC_000138296", "page": 2}}]}}},
-    {"id": "portal_search", "demo": "records", "question": "Can the server search the live portal?",
+    {"id": "portal_search", "title": "A live portal search with live access off", "demo": "records", "question": "Can the server search the live portal?",
      "request": {"name": "portal_search", "arguments": {"query": '"Clean Up Initiative"', "count": 3}}},
-    {"id": "budget_lookup", "demo": "budget", "question": "What is known about the DOI investigation's funding?",
+    {"id": "budget_lookup", "title": "Funding for the DOI investigation", "demo": "budget", "question": "What is known about the DOI investigation's funding?",
      "request": {"name": "budget_lookup", "arguments": {"topic": "doi"}}},
-    {"id": "doi_milestones", "demo": "budget", "question": "Which dated obligations are upcoming?",
+    {"id": "doi_milestones", "title": "Upcoming dated obligations", "demo": "budget", "question": "Which dated obligations are upcoming?",
      "request": {"name": "doi_milestones", "arguments": {}}},
-    {"id": "portal_catalog_stats", "demo": "releases", "question": "How large is the captured catalog?",
+    {"id": "portal_catalog_stats", "title": "Size of the captured catalog", "demo": "releases", "question": "How large is the captured catalog?",
      "request": {"name": "portal_catalog_stats", "arguments": {}}},
-    {"id": "portal_changes_since", "demo": "releases", "question": "What changed since September 9, 2026?",
+    {"id": "portal_changes_since", "title": "Catalog changes since September 9, 2026", "demo": "releases", "question": "What changed since September 9, 2026?",
      "request": {"name": "portal_changes_since", "arguments": {"since": "2026-09-09"}}},
+    {"id": "building_lookup", "title": "Records filed under 15 John Street", "demo": "address", "question": "What does the archive file under 15 John Street?",
+     "request": {"name": "building_lookup", "arguments": {"address": "15 John Street"}}},
+    {"id": "building_lookup-chambers", "title": "Records filed under 345 Chambers Street (Stuyvesant High School)", "demo": "address",
+     "question": "What does the archive file under 345 Chambers Street (Stuyvesant High School)?",
+     "request": {"name": "building_lookup", "arguments": {"address": "345 Chambers Street"}}},
+    {"id": "building_lookup-broadway", "title": "Records filed under 120 Broadway", "demo": "address", "question": "What does the archive file under 120 Broadway?",
+     "request": {"name": "building_lookup", "arguments": {"address": "120 Broadway"}}},
+    {"id": "timeline_lookup", "title": "Public statements and City records in date order", "demo": "timeline",
+     "question": "What did officials say in public, and what do the City's records show, in date order?",
+     "request": {"name": "timeline_lookup", "arguments": {}}},
+    {"id": "readings_lookup", "title": "Sampling results located so far", "demo": "readings", "question": "Which sampling results have been located so far?",
+     "request": {"name": "readings_lookup", "arguments": {"include_unreviewed": True}}},
+    {"id": "readings_lookup-default", "title": "Asbestos results without unreviewed rows", "demo": "readings",
+     "question": "What happens when unreviewed results are not requested?",
+     "request": {"name": "readings_lookup", "arguments": {"analyte": "asbestos"}}},
+    {"id": "presence_evidence", "title": "Proof of presence the VCF accepts from survivors", "demo": "help",
+     "question": "Which documents does the VCF accept from survivors as proof of presence?",
+     "request": {"name": "presence_evidence", "arguments": {"program": "vcf", "who": "survivors"}}},
+    {"id": "upcoming_dates", "title": "Obligations ahead as of October 8, 2026", "demo": "dates", "question": "Which dated obligations are ahead as of October 8, 2026?",
+     "request": {"name": "upcoming_dates", "arguments": {"as_of": "2026-10-08"}}},
+    {"id": "portal_query_draft", "title": "A portal search for the Stuyvesant memo", "demo": "search", "question": "How should a search for the Stuyvesant memo be written?",
+     "request": {"name": "portal_query_draft", "arguments": {"phrase": "Re-Occupying Stuyvesant High School",
+                                                             "box": "DEP Box 37"}}},
+    {"id": "citations_format", "title": "Citations for page 1 of the Harding memo", "demo": "cite", "question": "How is page 1 of the Harding memo cited?",
+     "request": {"name": "citations_format", "arguments": {"bates": "NYC-WTC_000138296", "page": 1}}},
+    {"id": "citations_format-fuchs", "title": "Citations for page 2 of the Fuchs memo", "demo": "cite", "question": "How is page 2 of the Fuchs memo cited?",
+     "request": {"name": "citations_format", "arguments": {"bates": "NYC-WTC_000147320", "page": 2}}},
+    {"id": "citations_format-15-john", "title": "Citations for the 15 John Street lab report", "demo": "cite", "question": "How is the 15 John Street lab report cited?",
+     "request": {"name": "citations_format", "arguments": {"bates": "NYC-WTC_000094256", "page": 1}}},
+    {"id": "records_manifest", "title": "Documents behind the research examples", "demo": "manifest", "question": "What are the documents behind the research examples?",
+     "request": {"name": "records_manifest", "arguments": {"bates": ["NYC-WTC_000138296", "NYC-WTC_000147320", "NYC-WTC_000153130", "NYC-WTC_000130438", "NYC-WTC_000154488", "NYC-WTC_000094256", "NYC-WTC_000144518", "NYC-WTC_000106411", "NYC-WTC_000148621", "NYC-WTC_000151604"]}}},
 ]
 
 PAGE_TEXT_NOTE = ("[page text elided from this published example: {n} characters. The tool returns it "
@@ -83,7 +114,7 @@ def record_one(server: Server, example: dict) -> dict:
             payload["data"]["text"] = PAGE_TEXT_NOTE.format(n=len(text))
             redactions.append("data.text replaced by a note with its length; page text is not re-hosted "
                               "on a public surface without review")
-    return {"id": example["id"], "demo": example["demo"], "question": example["question"],
+    return {"id": example["id"], "demo": example["demo"], "title": example["title"], "question": example["question"],
             "request": example["request"], "is_error": bool(result["isError"]),
             "response": payload, "redactions": redactions}
 
@@ -152,11 +183,11 @@ def selftest() -> int:
         ctx = build_fixture(Path(folder))
         server = Server(ctx=ctx)
         examples = [
-            {"id": "page", "demo": "records", "question": "q",
+            {"id": "page", "title": "t", "demo": "records", "question": "q",
              "request": {"name": "portal_get_page_text", "arguments": {"bates": "NYC-WTC_000000001", "page": 1}}},
-            {"id": "refused", "demo": "records", "question": "q",
+            {"id": "refused", "title": "t", "demo": "records", "question": "q",
              "request": {"name": "portal_search", "arguments": {"query": "asbestos"}}},
-            {"id": "search", "demo": "records", "question": "q",
+            {"id": "search", "title": "t", "demo": "records", "question": "q",
              "request": {"name": "catalog_search", "arguments": {"text": "Folder A", "count": 2}}},
         ]
         doc = record_all(server, examples)

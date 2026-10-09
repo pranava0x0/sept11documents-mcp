@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.pranava0x0/sept11-mcp",
   "title": "September 11th Documents",
-  "description": "Read-only research tools over New York City's September 11th Document Portal: local catalog search, verbatim page text with Bates citations, quote verification, the release watchdog, settlement and DOI obligation rows, and the commitment ledger. Every answer carries its snapshot, evidence state and warnings; nothing is summarized or inferred.",
-  "version": "0.2.0",
+  "description": "Read-only research tools over New York City's September 11th Document Portal: local catalog search, verbatim page text with Bates citations, quote verification, catalog change tracking, settlement and DOI obligations, and the commitment ledger. Every answer carries its snapshot, evidence state and warnings; nothing is summarized or inferred.",
+  "version": "0.3.0",
   "repository": {
     "url": "https://github.com/pranava0x0/sept11documents-mcp",
     "source": "github"
@@ -14,7 +14,7 @@
       "registryType": "pypi",
       "registryBaseUrl": "https://pypi.org",
       "identifier": "sept11-mcp",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "runtimeHint": "uvx",
       "transport": {
         "type": "stdio"

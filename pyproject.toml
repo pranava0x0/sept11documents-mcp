@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sept11-mcp"
-version = "0.2.0"
+version = "0.3.0"
 description = "Read-only MCP server and research tools over New York City's September 11th Document Portal: page-exact citations, a release watchdog, a commitment ledger, and no invented facts."
 readme = "README.md"
 requires-python = ">=3.9"

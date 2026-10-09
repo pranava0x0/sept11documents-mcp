@@ -1,13 +1,14 @@
 {
-  "recorded_at": "2026-09-11T20:46:54+00:00",
-  "server_version": "0.2.0",
+  "recorded_at": "2026-10-09T13:12:54+00:00",
+  "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
-  "schema_version": "2026-09-11",
+  "schema_version": "2026-10-08",
   "note": "Real calls to the local server, recorded in-process against this machine's captures with live search disabled. Envelopes are published unchanged except where `redactions` says otherwise. `retrieved_at` on a cached envelope is the capture time, as the warning says.",
   "examples": [
     {
       "id": "catalog_search",
       "demo": "records",
+      "title": "Folders in the archive that mention John Street",
       "question": "Which folders in the archive mention John Street?",
       "request": {
         "name": "catalog_search",
@@ -18,8 +19,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:53+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -198,13 +199,14 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc4OTE1OTYxM30uZmE5OGRlZmE2NGY1NmJiOTgzZDcxY2I0YjdlYzdkODA="
+        "next_cursor": "eyJmIjogIjU2NTMwNmQ5ZDdjOWYwYWYiLCAibyI6IDUsICJ0IjogMTc5MTU1MTU3M30uYWE5M2Y3MzE3ZTU2OGI0NGY0Mzg1ZGFlNjI4ODMwMjc="
       },
       "redactions": []
     },
     {
       "id": "portal_browse",
       "demo": "records",
+      "title": "Contents of DEP Box 31",
       "question": "What is inside DEP Box 31?",
       "request": {
         "name": "portal_browse",
@@ -215,8 +217,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:53+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -302,6 +304,7 @@
     {
       "id": "portal_get_document",
       "demo": "records",
+      "title": "The catalog record for the Harding memo",
       "question": "What does the catalog hold about the Harding memo?",
       "request": {
         "name": "portal_get_document",
@@ -311,8 +314,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:53+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -356,6 +359,7 @@
     {
       "id": "portal_get_page_text",
       "demo": "records",
+      "title": "Page 1 of the Harding memo",
       "question": "What is printed on page 1 of the Harding memo?",
       "request": {
         "name": "portal_get_page_text",
@@ -366,8 +370,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-09T15:26:08+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T03:26:16+00:00",
         "source_snapshot": "local_capture:file_mtime",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -415,6 +419,7 @@
     {
       "id": "citations_verify",
       "demo": "records",
+      "title": "The Harding estimate checked on pages 1 and 2",
       "question": "Is the Harding estimate really on page 1, and is the same quote on page 2?",
       "request": {
         "name": "citations_verify",
@@ -445,8 +450,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:53+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -501,6 +506,7 @@
     {
       "id": "portal_search",
       "demo": "records",
+      "title": "A live portal search with live access off",
       "question": "Can the server search the live portal?",
       "request": {
         "name": "portal_search",
@@ -521,6 +527,7 @@
     {
       "id": "budget_lookup",
       "demo": "budget",
+      "title": "Funding for the DOI investigation",
       "question": "What is known about the DOI investigation's funding?",
       "request": {
         "name": "budget_lookup",
@@ -530,8 +537,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:53+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -698,6 +705,7 @@
     {
       "id": "doi_milestones",
       "demo": "budget",
+      "title": "Upcoming dated obligations",
       "question": "Which dated obligations are upcoming?",
       "request": {
         "name": "doi_milestones",
@@ -705,8 +713,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:53+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -715,7 +723,7 @@
         "warnings": [
           {
             "code": "no_compliance_determination",
-            "message": "obligation rows are observations of public surfaces on the date checked, with no percentage score and no legal determination. A missed check is recorded as `unable_to_check`; `not_observed` means a surface was inspected"
+            "message": "each obligation is an observation of public surfaces on the date checked, with no percentage score and no legal determination. A missed check is recorded as `unable_to_check`; `not_observed` means a surface was inspected"
           },
           {
             "code": "unreviewed_artifact",
@@ -887,6 +895,7 @@
     {
       "id": "portal_catalog_stats",
       "demo": "releases",
+      "title": "Size of the captured catalog",
       "question": "How large is the captured catalog?",
       "request": {
         "name": "portal_catalog_stats",
@@ -894,8 +903,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:53+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -949,6 +958,7 @@
     {
       "id": "portal_changes_since",
       "demo": "releases",
+      "title": "Catalog changes since September 9, 2026",
       "question": "What changed since September 9, 2026?",
       "request": {
         "name": "portal_changes_since",
@@ -958,8 +968,8 @@
       },
       "is_error": false,
       "response": {
-        "schema_version": "2026-09-11",
-        "retrieved_at": "2026-09-11T20:46:54+00:00",
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1004,6 +1014,1865 @@
             "to": 24437
           },
           "note": "Absence in a later catalog is an observation only; deletion, redaction and withholding are separate findings it cannot make. Catalog rows do not show PDF byte changes."
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "building_lookup",
+      "demo": "address",
+      "title": "Records filed under 15 John Street",
+      "question": "What does the archive file under 15 John Street?",
+      "request": {
+        "name": "building_lookup",
+        "arguments": {
+          "address": "15 John Street"
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
+        "source_snapshot": "docs/data/folders.json",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "label_match_only",
+            "message": "matched against the City's folder labels; a document can concern this building without a label that names it, and a label can name several buildings"
+          },
+          {
+            "code": "zone_not_computed",
+            "message": "no exposure-zone membership is decided here; zone_definitions quotes each program's own wording, and the program decides"
+          },
+          {
+            "code": "physical_labels",
+            "message": "labels are transcribed as the City produced them, including misspellings"
+          }
+        ],
+        "data": {
+          "query": {
+            "as_given": "15 John Street",
+            "read_as": "15 JOHN STREET",
+            "house_number": 15,
+            "house_number_suffix": null,
+            "street_words": [
+              "JOHN",
+              "STREET"
+            ],
+            "bin": null
+          },
+          "folders_matched": 1,
+          "folders_returned": 1,
+          "documents_in_matched_folders": 81,
+          "folders": [
+            {
+              "source": "DEP Hard Copies (68 Boxes)",
+              "box": "DEP Box 01",
+              "folder": "15 JOHN STREET 1001217, 79/14",
+              "documents": 81,
+              "pages": 81,
+              "first_bates": "NYC-WTC_000094197",
+              "first_pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094197.pdf",
+              "matched_by": "number_and_street",
+              "printed_house_numbers": [
+                "15"
+              ],
+              "printed_identifiers": {
+                "bins": [
+                  "1001217"
+                ],
+                "block": "79",
+                "lot": "14"
+              }
+            }
+          ],
+          "next_calls": [
+            {
+              "tool": "catalog_search",
+              "arguments": {
+                "box": "DEP Box 01",
+                "folder": "15 JOHN STREET 1001217, 79/14",
+                "exact": true
+              }
+            }
+          ],
+          "zone_definitions": [
+            {
+              "program": "WTC Health Program",
+              "who": "survivors",
+              "map_url": null,
+              "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
+              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.",
+              "name": "NYC Disaster Area",
+              "definition": []
+            },
+            {
+              "program": "VCF",
+              "who": null,
+              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+              "definition_url": null,
+              "note": null,
+              "name": "VCF NYC Exposure Zone",
+              "definition": [
+                {
+                  "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
+                  "claim_id": "vcf-zone-canal-street",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                },
+                {
+                  "text": "north on East Broadway to Clinton Street, and east on Clinton Street to the East River",
+                  "claim_id": "vcf-zone-clinton-street",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                }
+              ],
+              "also": {
+                "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+                "claim_id": "vcf-debris-routes",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              }
+            }
+          ],
+          "catalog_captured_at": "2026-09-11T12:57:00+00:00"
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "building_lookup-chambers",
+      "demo": "address",
+      "title": "Records filed under 345 Chambers Street (Stuyvesant High School)",
+      "question": "What does the archive file under 345 Chambers Street (Stuyvesant High School)?",
+      "request": {
+        "name": "building_lookup",
+        "arguments": {
+          "address": "345 Chambers Street"
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:53+00:00",
+        "source_snapshot": "docs/data/folders.json",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "label_match_only",
+            "message": "matched against the City's folder labels; a document can concern this building without a label that names it, and a label can name several buildings"
+          },
+          {
+            "code": "zone_not_computed",
+            "message": "no exposure-zone membership is decided here; zone_definitions quotes each program's own wording, and the program decides"
+          },
+          {
+            "code": "physical_labels",
+            "message": "labels are transcribed as the City produced them, including misspellings"
+          }
+        ],
+        "data": {
+          "query": {
+            "as_given": "345 Chambers Street",
+            "read_as": "345 CHAMBERS STREET",
+            "house_number": 345,
+            "house_number_suffix": null,
+            "street_words": [
+              "CHAMBERS",
+              "STREET"
+            ],
+            "bin": null
+          },
+          "folders_matched": 3,
+          "folders_returned": 3,
+          "documents_in_matched_folders": 11,
+          "folders": [
+            {
+              "source": "DEP Hard Copies (68 Boxes)",
+              "box": "DEP Box 37",
+              "folder": "345 CHAMBERS STREET; Block: 16; Stuyvesant HS",
+              "documents": 5,
+              "pages": 134,
+              "first_bates": "NYC-WTC_000106763",
+              "first_pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106763.pdf",
+              "matched_by": "number_and_street",
+              "printed_house_numbers": [
+                "345"
+              ],
+              "printed_identifiers": {
+                "bins": [],
+                "block": "16",
+                "lot": null
+              }
+            },
+            {
+              "source": "DEP Hard Copies (68 Boxes)",
+              "box": "DEP Box 37",
+              "folder": "345 CHAMBERS STREET; 16/1",
+              "documents": 4,
+              "pages": 354,
+              "first_bates": "NYC-WTC_000106409",
+              "first_pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106409.pdf",
+              "matched_by": "number_and_street",
+              "printed_house_numbers": [
+                "345"
+              ],
+              "printed_identifiers": {
+                "bins": [],
+                "block": "16",
+                "lot": "1"
+              }
+            },
+            {
+              "source": "DEP Hard Copies (68 Boxes)",
+              "box": "DEP Box 51",
+              "folder": "345 CHAMBERS ST.",
+              "documents": 2,
+              "pages": 2,
+              "first_bates": "NYC-WTC_000126990",
+              "first_pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000126990.pdf",
+              "matched_by": "number_and_street",
+              "printed_house_numbers": [
+                "345"
+              ],
+              "printed_identifiers": {
+                "bins": [],
+                "block": null,
+                "lot": null
+              }
+            }
+          ],
+          "next_calls": [
+            {
+              "tool": "catalog_search",
+              "arguments": {
+                "box": "DEP Box 37",
+                "folder": "345 CHAMBERS STREET; Block: 16; Stuyvesant HS",
+                "exact": true
+              }
+            },
+            {
+              "tool": "catalog_search",
+              "arguments": {
+                "box": "DEP Box 37",
+                "folder": "345 CHAMBERS STREET; 16/1",
+                "exact": true
+              }
+            },
+            {
+              "tool": "catalog_search",
+              "arguments": {
+                "box": "DEP Box 51",
+                "folder": "345 CHAMBERS ST.",
+                "exact": true
+              }
+            }
+          ],
+          "zone_definitions": [
+            {
+              "program": "WTC Health Program",
+              "who": "survivors",
+              "map_url": null,
+              "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
+              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.",
+              "name": "NYC Disaster Area",
+              "definition": []
+            },
+            {
+              "program": "VCF",
+              "who": null,
+              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+              "definition_url": null,
+              "note": null,
+              "name": "VCF NYC Exposure Zone",
+              "definition": [
+                {
+                  "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
+                  "claim_id": "vcf-zone-canal-street",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                },
+                {
+                  "text": "north on East Broadway to Clinton Street, and east on Clinton Street to the East River",
+                  "claim_id": "vcf-zone-clinton-street",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                }
+              ],
+              "also": {
+                "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+                "claim_id": "vcf-debris-routes",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              }
+            }
+          ],
+          "catalog_captured_at": "2026-09-11T12:57:00+00:00"
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "building_lookup-broadway",
+      "demo": "address",
+      "title": "Records filed under 120 Broadway",
+      "question": "What does the archive file under 120 Broadway?",
+      "request": {
+        "name": "building_lookup",
+        "arguments": {
+          "address": "120 Broadway"
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "docs/data/folders.json",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "label_match_only",
+            "message": "matched against the City's folder labels; a document can concern this building without a label that names it, and a label can name several buildings"
+          },
+          {
+            "code": "zone_not_computed",
+            "message": "no exposure-zone membership is decided here; zone_definitions quotes each program's own wording, and the program decides"
+          },
+          {
+            "code": "physical_labels",
+            "message": "labels are transcribed as the City produced them, including misspellings"
+          }
+        ],
+        "data": {
+          "query": {
+            "as_given": "120 Broadway",
+            "read_as": "120 BROADWAY",
+            "house_number": 120,
+            "house_number_suffix": null,
+            "street_words": [
+              "BROADWAY"
+            ],
+            "bin": null
+          },
+          "folders_matched": 2,
+          "folders_returned": 2,
+          "documents_in_matched_folders": 5,
+          "folders": [
+            {
+              "source": "DEP Hard Copies (68 Boxes)",
+              "box": "DEP Box 50",
+              "folder": "120 BROADWAY Block: 47 Lot: 7501 BIN: 1001026 70-84 CEDAR ST. 15-25 NASSAU ST. 2-16 PINE ST",
+              "documents": 3,
+              "pages": 21,
+              "first_bates": "NYC-WTC_000123774",
+              "first_pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000123774.pdf",
+              "matched_by": "number_and_street",
+              "printed_house_numbers": [
+                "120"
+              ],
+              "printed_identifiers": {
+                "bins": [
+                  "1001026"
+                ],
+                "block": "47",
+                "lot": "7501"
+              }
+            },
+            {
+              "source": "DEP Hard Copies (68 Boxes)",
+              "box": "DEP Box 49",
+              "folder": "120 BROADWAY 1001026, 47/7501",
+              "documents": 2,
+              "pages": 6,
+              "first_bates": "NYC-WTC_000122511",
+              "first_pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000122511.pdf",
+              "matched_by": "number_and_street",
+              "printed_house_numbers": [
+                "120"
+              ],
+              "printed_identifiers": {
+                "bins": [
+                  "1001026"
+                ],
+                "block": "47",
+                "lot": "7501"
+              }
+            }
+          ],
+          "next_calls": [
+            {
+              "tool": "catalog_search",
+              "arguments": {
+                "box": "DEP Box 50",
+                "folder": "120 BROADWAY Block: 47 Lot: 7501 BIN: 1001026 70-84 CEDAR ST. 15-25 NASSAU ST. 2-16 PINE ST",
+                "exact": true
+              }
+            },
+            {
+              "tool": "catalog_search",
+              "arguments": {
+                "box": "DEP Box 49",
+                "folder": "120 BROADWAY 1001026, 47/7501",
+                "exact": true
+              }
+            }
+          ],
+          "zone_definitions": [
+            {
+              "program": "WTC Health Program",
+              "who": "survivors",
+              "map_url": null,
+              "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
+              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.",
+              "name": "NYC Disaster Area",
+              "definition": []
+            },
+            {
+              "program": "VCF",
+              "who": null,
+              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+              "definition_url": null,
+              "note": null,
+              "name": "VCF NYC Exposure Zone",
+              "definition": [
+                {
+                  "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
+                  "claim_id": "vcf-zone-canal-street",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                },
+                {
+                  "text": "north on East Broadway to Clinton Street, and east on Clinton Street to the East River",
+                  "claim_id": "vcf-zone-clinton-street",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                }
+              ],
+              "also": {
+                "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+                "claim_id": "vcf-debris-routes",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              }
+            }
+          ],
+          "catalog_captured_at": "2026-09-11T12:57:00+00:00"
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "timeline_lookup",
+      "demo": "timeline",
+      "title": "Public statements and City records in date order",
+      "question": "What did officials say in public, and what do the City's records show, in date order?",
+      "request": {
+        "name": "timeline_lookup",
+        "arguments": {}
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "docs/data/timeline.json",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "sequence_not_finding",
+            "message": "Placing a statement beside a record is not a finding about what any official knew or intended. Council Resolution 560-A gives that analysis to the Department of Investigation."
+          },
+          {
+            "code": "no_document_date_field",
+            "message": "each date is the one printed on or stated for its source, with its basis; the portal itself publishes no document dates"
+          },
+          {
+            "code": "unreviewed_artifact",
+            "message": "no named reviewer has signed off this timeline; quotes are located in their sources, which is not review"
+          }
+        ],
+        "data": {
+          "filters": {
+            "side": "all",
+            "topic": "all",
+            "date_from": null,
+            "date_to": null
+          },
+          "sides": {
+            "public_statement": "What officials said in public at the time",
+            "city_record": "Records in the City's portal",
+            "later_review": "Later reviews and oversight"
+          },
+          "topics": [
+            "air",
+            "schools",
+            "liability",
+            "cleanup",
+            "oversight"
+          ],
+          "events_total": 15,
+          "events_returned": 15,
+          "events": [
+            {
+              "id": "epa-2001-09-13",
+              "date": "2001-09-13",
+              "date_precision": "day",
+              "side": "public_statement",
+              "topic": "air",
+              "source_label": "EPA press release",
+              "title": "EPA release on asbestos monitoring in Lower Manhattan",
+              "claim_id": "epa-2001-09-13-no-significant-asbestos",
+              "quote": "there appears to be no significant levels of asbestos dust in the air in New York City",
+              "citation": {
+                "type": "url",
+                "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/d7ada9cf2d39c0a185256acc007c097f.html"
+              },
+              "date_basis": {
+                "text": "date of the release"
+              }
+            },
+            {
+              "id": "mayor-2001-09-16",
+              "date": "2001-09-16",
+              "date_precision": "day",
+              "side": "public_statement",
+              "topic": "air",
+              "source_label": "Mayor's Office press release",
+              "title": "Mayor's Office release on reopening buildings",
+              "claim_id": "giuliani-2001-09-16-deemed-safe",
+              "quote": "air quality has been tested and deemed safe",
+              "citation": {
+                "type": "url",
+                "url": "https://www.nyc.gov/html/om/html/2001b/pr315-01b.html"
+              },
+              "date_basis": {
+                "text": "date of the release"
+              }
+            },
+            {
+              "id": "epa-2001-09-18",
+              "date": "2001-09-18",
+              "date_precision": "day",
+              "side": "public_statement",
+              "topic": "air",
+              "source_label": "EPA press release",
+              "title": "EPA Administrator Whitman on air and water in New York",
+              "claim_id": "epa-2001-09-18-safe-to-breathe",
+              "quote": "their air is safe to breath",
+              "citation": {
+                "type": "url",
+                "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/ed368f43303656488525744e00039488.html"
+              },
+              "date_basis": {
+                "text": "date of the release"
+              },
+              "note": "The spelling follows the published text."
+            },
+            {
+              "id": "epa-2001-09-21",
+              "date": "2001-09-21",
+              "date_precision": "day",
+              "side": "public_statement",
+              "topic": "air",
+              "source_label": "EPA press release",
+              "title": "EPA release on monitoring results",
+              "claim_id": "epa-2001-09-21-not-exposed",
+              "quote": "are not being exposed to contaminants such as asbestos, radiation, mercury and other metals",
+              "citation": {
+                "type": "url",
+                "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/1dcfffa0c895910885256ace0082cdeb.html"
+              },
+              "date_basis": {
+                "text": "date of the release"
+              }
+            },
+            {
+              "id": "harding-memo-2001-10",
+              "date": "2001-10",
+              "date_precision": "month",
+              "side": "city_record",
+              "topic": "liability",
+              "source_label": "Memo to the Deputy Mayor",
+              "title": "Memo to Deputy Mayor Harding on limiting the City's liability",
+              "claim_id": "harding-health-advisories",
+              "quote": "Health advisories caused individuals either to return to the area too soon",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000138296",
+                "page": 1
+              },
+              "date_basis": {
+                "text": "The memo is undated on its page. The FOIL request describes it as an October 2001 memorandum, and an email filed in the same portal document as another copy was sent on October 16, 2001.",
+                "claim_id": "harding-file-email-2001-10-16",
+                "citation": {
+                  "type": "portal",
+                  "bates": "NYC-WTC_000136670",
+                  "page": 58
+                }
+              }
+            },
+            {
+              "id": "epa-sitrep-2001-10",
+              "date": "2001-10",
+              "date_precision": "month",
+              "side": "city_record",
+              "topic": "air",
+              "source_label": "EPA sampling situation report in the City's files",
+              "title": "EPA air, bulk, wipe and water sampling situation report",
+              "claim_id": "fresh-kills-sitrep-exceedances",
+              "quote": "Exceedances occurred at Sift Location",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000154488",
+                "page": 3
+              },
+              "date_basis": {
+                "text": "the report's own date is not on this page; its results cover sampling from October 16 to 18, and the page's fax line reads Oct 24 2001"
+              }
+            },
+            {
+              "id": "epa-osha-2001-10-03",
+              "date": "2001-10-03",
+              "date_precision": "day",
+              "side": "public_statement",
+              "topic": "air",
+              "source_label": "EPA and OSHA press release",
+              "title": "OSHA sampling beyond the disaster site",
+              "claim_id": "osha-2001-10-03-no-evidence-beyond-site",
+              "quote": "no evidence of significant levels of airborne asbestos or other contaminants beyond the disaster site itself",
+              "citation": {
+                "type": "url",
+                "url": "https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/a58e3e62ff609f5185256ada00729977.html"
+              },
+              "date_basis": {
+                "text": "date of the release"
+              }
+            },
+            {
+              "id": "uft-stuyvesant-2001-10-09",
+              "date": "2001-10-09",
+              "date_precision": "day",
+              "side": "city_record",
+              "topic": "schools",
+              "source_label": "UFT memo in the City's files",
+              "title": "UFT memo on re-occupying Stuyvesant High School",
+              "claim_id": "stuyvesant-roof-sample-positive",
+              "quote": "1 sample tested positive for asbestos",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000106411",
+                "page": 2
+              },
+              "date_basis": {
+                "text": "printed on the memo",
+                "claim_id": "stuyvesant-uft-reoccupying",
+                "citation": {
+                  "type": "portal",
+                  "bates": "NYC-WTC_000106411",
+                  "page": 1
+                }
+              }
+            },
+            {
+              "id": "sia14-2001-11-20",
+              "date": "2001-11-20",
+              "date_precision": "day",
+              "side": "city_record",
+              "topic": "air",
+              "source_label": "EPA-commissioned audit in the City's files",
+              "title": "Special Investigative Audit #14, environmental data trend report",
+              "claim_id": "audit-dust-38-chrysotile-sept19",
+              "quote": "38% Chrysotile from Ground Zero",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000130438",
+                "page": 22
+              },
+              "date_basis": {
+                "text": "printed on the cover",
+                "claim_id": "audit-sia14-title",
+                "citation": {
+                  "type": "portal",
+                  "bates": "NYC-WTC_000130438",
+                  "page": 1
+                }
+              },
+              "note": "The audit reports a bulk dust sample collected at Ground Zero on September 19, 2001."
+            },
+            {
+              "id": "frieden-2002-02-14",
+              "date": "2002-02-14",
+              "date_precision": "day",
+              "side": "city_record",
+              "topic": "air",
+              "source_label": "Letter from the Health Commissioner",
+              "title": "Health Commissioner Frieden to EPA Administrator Whitman",
+              "claim_id": "frieden-to-whitman-2002-02-14",
+              "quote": "disseminated by Ms. Cate Jenkins publicly criticizing",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000151604",
+                "page": 1
+              },
+              "date_basis": {
+                "text": "dated on the letter"
+              }
+            },
+            {
+              "id": "fuchs-2002-02-28",
+              "date": "2002-02-28",
+              "date_precision": "day",
+              "side": "city_record",
+              "topic": "air",
+              "source_label": "Memo from a mayoral advisor",
+              "title": "Fuchs memo on Congressman Nadler's indoor air concerns",
+              "claim_id": "fuchs-real-health-risks",
+              "quote": "real health risks in lower Manhattan",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000147320",
+                "page": 2
+              },
+              "date_basis": {
+                "text": "printed on the memo's first page",
+                "citation": {
+                  "type": "portal",
+                  "bates": "NYC-WTC_000147320",
+                  "page": 1
+                }
+              }
+            },
+            {
+              "id": "cleanup-2002-05-16",
+              "date": "2002-05-16",
+              "date_precision": "day",
+              "side": "city_record",
+              "topic": "cleanup",
+              "source_label": "Handwritten note in the City's files",
+              "title": "Clean Up Initiative note",
+              "claim_id": "cleanup-initiative-risk-word",
+              "quote": "we would not use the word 'risk' in any letters as it would defeat the purpose of creating public confidence",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000153130",
+                "page": 1
+              },
+              "date_basis": {
+                "text": "the note's header reads 5/16/02"
+              }
+            },
+            {
+              "id": "stuyvesant-parents-2002-08-07",
+              "date": "2002-08-07",
+              "date_precision": "day",
+              "side": "city_record",
+              "topic": "schools",
+              "source_label": "Parents' association release, faxed through DEP",
+              "title": "Concerned Stuyvesant Parents release on dust testing",
+              "claim_id": "stuyvesant-2-5-million",
+              "quote": "asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000144518",
+                "page": 2
+              },
+              "date_basis": {
+                "text": "printed on the release"
+              },
+              "note": "A parents' group statement found in DEP's files; the figure is the group's report of a consultant's test."
+            },
+            {
+              "id": "oig-2003-08-21",
+              "date": "2003-08-21",
+              "date_precision": "day",
+              "side": "later_review",
+              "topic": "air",
+              "source_label": "EPA Office of Inspector General report",
+              "title": "EPA Inspector General on the September 18 statement",
+              "claim_id": "oig-2003-sept18-insufficient-data",
+              "quote": "the Agency did not have sufficient data and analyses to make the statement",
+              "citation": {
+                "type": "url",
+                "url": "https://19january2021snapshot.epa.gov/sites/static/files/2015-10/documents/wtc_report_20030821.pdf"
+              },
+              "date_basis": {
+                "text": "date of the report"
+              }
+            },
+            {
+              "id": "res-560a-2025-07-14",
+              "date": "2025-07-14",
+              "date_precision": "day",
+              "side": "later_review",
+              "topic": "oversight",
+              "source_label": "City Council Resolution 560-A",
+              "title": "Council asks DOI to compare what was known with what was said",
+              "claim_id": "res-560a-contrast-analysis",
+              "quote": "An analysis of the contrast between the knowledge mayoral administrations possessed on these toxins and the information the administrations conveyed to the public",
+              "citation": {
+                "type": "url",
+                "url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&ID=6860206"
+              },
+              "date_basis": {
+                "text": "date the Council adopted the resolution"
+              }
+            }
+          ],
+          "boundary": "Placing a statement beside a record is not a finding about what any official knew or intended. Council Resolution 560-A gives that analysis to the Department of Investigation."
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "readings_lookup",
+      "demo": "readings",
+      "title": "Sampling results located so far",
+      "question": "Which sampling results have been located so far?",
+      "request": {
+        "name": "readings_lookup",
+        "arguments": {
+          "include_unreviewed": true
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "docs/data/readings.json",
+        "coverage": "partial",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "readings_not_dataset",
+            "message": "This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states. Units are as printed and are not converted."
+          },
+          {
+            "code": "unreviewed_artifact",
+            "message": "these rows are unreviewed: each quote is located at its Bates page, and no named reviewer has signed them off"
+          }
+        ],
+        "data": {
+          "filters": {
+            "analyte": null,
+            "location": null,
+            "include_unreviewed": true
+          },
+          "readings_matched": 8,
+          "readings_returned": 8,
+          "withheld_unreviewed": 0,
+          "readings": [
+            {
+              "id": "sia14-dust-murray",
+              "analyte": "asbestos (chrysotile)",
+              "value_as_printed": "4.5",
+              "unit_as_printed": "%",
+              "medium": "bulk dust",
+              "location_as_printed": "Murray Street and West Side Highway",
+              "sample_date": "2001-09-11",
+              "sample_date_precision": "day",
+              "sample_date_basis": "stated in the audit text",
+              "document": "Special Investigative Audit #14",
+              "document_date": "2001-11-20",
+              "reported_by": "IT Corporation for EPA",
+              "claim_id": "audit-dust-4-5-chrysotile-sept11",
+              "quote": "The highest result, 4.5% Chrysotile, was reported from a sample collected at Murray Street and West Side Highway",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000130438",
+                "page": 22
+              },
+              "note": "The audit calls this the highest of 59 Lower Manhattan bulk dust results."
+            },
+            {
+              "id": "sia14-dust-ground-zero",
+              "analyte": "asbestos (chrysotile)",
+              "value_as_printed": "38",
+              "unit_as_printed": "%",
+              "medium": "bulk dust",
+              "location_as_printed": "Ground Zero",
+              "sample_date": "2001-09-19",
+              "sample_date_precision": "day",
+              "sample_date_basis": "stated in the audit text",
+              "document": "Special Investigative Audit #14",
+              "document_date": "2001-11-20",
+              "reported_by": "IT Corporation for EPA",
+              "claim_id": "audit-dust-38-chrysotile-sept19",
+              "quote": "38% Chrysotile from Ground Zero",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000130438",
+                "page": 22
+              }
+            },
+            {
+              "id": "sia14-fresh-kills",
+              "analyte": "asbestos (TEM)",
+              "value_as_printed": "88 to 128",
+              "unit_as_printed": "S/mm2",
+              "medium": "air filter (TEM analysis)",
+              "location_as_printed": "Fresh Kills Landfill, Screening Operations (Locations 09-A and 09-B) and Location 12-A",
+              "sample_date": "2001-10",
+              "sample_date_precision": "month",
+              "sample_date_basis": "audit text: between October 8 and October 31",
+              "document": "Special Investigative Audit #14",
+              "document_date": "2001-11-20",
+              "reported_by": "IT Corporation for EPA",
+              "claim_id": "audit-fresh-kills-tem",
+              "quote": "were measured at the Screening Operations",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000130438",
+                "page": 21
+              },
+              "note": "The audit compares these with 70 S/mm2, the screening level it uses for TEM results."
+            },
+            {
+              "id": "sia14-benzene",
+              "analyte": "benzene",
+              "value_as_printed": "180,000",
+              "unit_as_printed": "ppb",
+              "medium": "VOC sample; the quoted sentence does not name the medium",
+              "location_as_printed": "WTC North Tower Center (the sentence continues on p.8)",
+              "sample_date": "2001-11-08",
+              "sample_date_precision": "day",
+              "sample_date_basis": "stated in the audit text",
+              "document": "Special Investigative Audit #14",
+              "document_date": "2001-11-20",
+              "reported_by": "IT Corporation for EPA",
+              "claim_id": "audit-benzene-180000-ppb",
+              "quote": "The recent high value for benzene of 180,000 ppb on November 8th",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000130438",
+                "page": 7
+              },
+              "note": "The audit says VOC concentrations outside the WTC sites were much lower or undetected."
+            },
+            {
+              "id": "sitrep-fresh-kills",
+              "analyte": "asbestos (TEM)",
+              "value_as_printed": "97.78",
+              "unit_as_printed": "S/mm2",
+              "medium": "air (fixed ambient sampling)",
+              "location_as_printed": "Sift Location 9C",
+              "sample_date": null,
+              "sample_date_precision": "unknown",
+              "sample_date_basis": "the result is printed without a sampling date; the report resubmits results from the October 17/18 situation report",
+              "document": "EPA sampling situation report",
+              "document_date": "2001-10",
+              "reported_by": "EPA",
+              "claim_id": "fresh-kills-sitrep-exceedances",
+              "quote": "Exceedances occurred at Sift Location",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000154488",
+                "page": 3
+              },
+              "note": "The report records 2 of 19 samples above the TEM AHERA standard; the text layer misreads some characters."
+            },
+            {
+              "id": "stuyvesant-roof",
+              "analyte": "asbestos",
+              "value_as_printed": "1 of 3 samples positive (greater than 1%)",
+              "unit_as_printed": "",
+              "medium": "bulk debris",
+              "location_as_printed": "Stuyvesant High School, southeast roof",
+              "sample_date": null,
+              "sample_date_precision": "unknown",
+              "sample_date_basis": "the memo of October 9, 2001 does not state the sample date",
+              "document": "UFT memo, Re-Occupying Stuyvesant High School",
+              "document_date": "2001-10-09",
+              "reported_by": "UFT",
+              "claim_id": "stuyvesant-roof-sample-positive",
+              "quote": "1 sample tested positive for asbestos",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000106411",
+                "page": 2
+              }
+            },
+            {
+              "id": "15-john-facade",
+              "analyte": "asbestos (chrysotile)",
+              "value_as_printed": "1",
+              "unit_as_printed": "%",
+              "medium": "bulk sample",
+              "location_as_printed": "15 John Street, west facade ledge",
+              "sample_date": "2002-07-13",
+              "sample_date_precision": "day",
+              "sample_date_basis": "'Date Collected: 07/13/02' on the report",
+              "document": "DEP Asbestos Control Program laboratory report",
+              "document_date": null,
+              "reported_by": "DEP laboratory",
+              "claim_id": "15-john-chrysotile-1pct",
+              "quote": "Asbestos Present: Yes",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000094256",
+                "page": 1
+              }
+            },
+            {
+              "id": "stuyvesant-parents",
+              "analyte": "asbestos",
+              "value_as_printed": "as much as 2.5 million",
+              "unit_as_printed": "structures per square centimeter",
+              "medium": "dust (ultrasonication test, as described)",
+              "location_as_printed": "Stuyvesant High School, one sample",
+              "sample_date": null,
+              "sample_date_precision": "unknown",
+              "sample_date_basis": "the release of August 7, 2002 describes the testing as recent and gives no collection date",
+              "document": "Concerned Stuyvesant Parents release",
+              "document_date": "2002-08-07",
+              "reported_by": "Parents' association consultant, as reported by the parents' group",
+              "claim_id": "stuyvesant-2-5-million",
+              "quote": "asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample",
+              "citation": {
+                "type": "portal",
+                "bates": "NYC-WTC_000144518",
+                "page": 2
+              }
+            }
+          ],
+          "boundary": "This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states.",
+          "note": "Sampling results printed in located City records, transcribed with the value, unit, medium and location as the document prints them. Each row quotes a registered claim at its Bates page. Units are not converted: percent asbestos in bulk dust, structures per square millimetre on an air filter and parts per billion of a gas measure different things."
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "readings_lookup-default",
+      "demo": "readings",
+      "title": "Asbestos results without unreviewed rows",
+      "question": "What happens when unreviewed results are not requested?",
+      "request": {
+        "name": "readings_lookup",
+        "arguments": {
+          "analyte": "asbestos"
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "docs/data/readings.json",
+        "coverage": "partial",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "readings_not_dataset",
+            "message": "This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states. Units are as printed and are not converted."
+          },
+          {
+            "code": "unreviewed_artifact",
+            "message": "7 matching rows withheld: no named reviewer has signed off these readings. Call again with include_unreviewed=true to see them, labelled unreviewed"
+          }
+        ],
+        "data": {
+          "filters": {
+            "analyte": "asbestos",
+            "location": null,
+            "include_unreviewed": false
+          },
+          "readings_matched": 7,
+          "readings_returned": 0,
+          "withheld_unreviewed": 7,
+          "readings": [],
+          "boundary": "This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states.",
+          "note": "Sampling results printed in located City records, transcribed with the value, unit, medium and location as the document prints them. Each row quotes a registered claim at its Bates page. Units are not converted: percent asbestos in bulk dust, structures per square millimetre on an air filter and parts per billion of a gas measure different things."
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "presence_evidence",
+      "demo": "help",
+      "title": "Proof of presence the VCF accepts from survivors",
+      "question": "Which documents does the VCF accept from survivors as proof of presence?",
+      "request": {
+        "name": "presence_evidence",
+        "arguments": {
+          "program": "vcf",
+          "who": "survivors"
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "docs/data/help-directory.json",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "directory_not_advice",
+            "message": "This directory quotes official rules with their sources. It does not decide eligibility, calculate a deadline or file anything. Rules change; read the linked official page before acting. Not legal advice."
+          },
+          {
+            "code": "unreviewed_artifact",
+            "message": "no practitioner has reviewed this directory yet; read the linked official page before acting"
+          }
+        ],
+        "data": {
+          "filters": {
+            "program": "vcf",
+            "who": "survivors"
+          },
+          "disclaimer": "This directory quotes official rules with their sources. It does not decide eligibility, calculate a deadline or file anything. Rules change; read the linked official page before acting. Not legal advice.",
+          "programs": [
+            {
+              "id": "vcf",
+              "name": "September 11th Victim Compensation Fund",
+              "short": "VCF",
+              "administered_by": "U.S. Department of Justice",
+              "what_it_is": null,
+              "contact": {
+                "phone": "1-855-885-1555",
+                "url": "https://www.vcf.gov/",
+                "claim_id": "vcf-helpline",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              },
+              "deadline": {
+                "text": "submit your complete claim no later than October 1, 2090",
+                "claim_id": "vcf-claim-deadline-2090",
+                "caveat": {
+                  "text": "deadline applicable to your individual circumstances",
+                  "claim_id": "vcf-registration-deadline-individual",
+                  "lead": "Registration has its own",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                },
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              },
+              "window": {
+                "text": "between September 11, 2001, and May 30, 2002",
+                "applies_to": "The World Trade Center site or the NYC Exposure Zone",
+                "claim_id": "vcf-nyc-window",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              },
+              "zone": {
+                "name": "VCF NYC Exposure Zone",
+                "definition": [
+                  {
+                    "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
+                    "claim_id": "vcf-zone-canal-street",
+                    "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                  },
+                  {
+                    "text": "north on East Broadway to Clinton Street, and east on Clinton Street to the East River",
+                    "claim_id": "vcf-zone-clinton-street",
+                    "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                  }
+                ],
+                "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+                "also": {
+                  "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+                  "claim_id": "vcf-debris-routes",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                }
+              },
+              "separate_from": {
+                "text": "Enrollment in the WTC Health Program does not automatically register you with the VCF",
+                "claim_id": "vcf-registration-separate-from-wtchp",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              },
+              "rules": [
+                {
+                  "text": "Registration is not the same as filing a claim.",
+                  "claim_id": "vcf-registration-not-claim",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                },
+                {
+                  "text": "There are no requirements for the minimum amount of time an individual needed to be at a site",
+                  "claim_id": "vcf-no-minimum-time",
+                  "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                }
+              ],
+              "evidence": [
+                {
+                  "lane": "Third-party verification (primary)",
+                  "examples": [
+                    {
+                      "text": "to the VCF from the employer or other third party, with specific dates and locations, is often sufficient to verify presence",
+                      "claim_id": "vcf-third-party-verification",
+                      "lead": "Sent directly",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    },
+                    {
+                      "text": "must demonstrate that he/she sought to obtain presence information from the listed",
+                      "claim_id": "vcf-listed-employer-first",
+                      "lead": "A claimant with a listed employer, entity or union",
+                      "note": "before the VCF relies on witness statements",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    }
+                  ]
+                },
+                {
+                  "lane": "Contemporaneous documents (primary)",
+                  "examples": [
+                    {
+                      "text": "documents, whether from the list below or otherwise, are required",
+                      "claim_id": "vcf-two-documents",
+                      "lead": "At least two",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    },
+                    {
+                      "text": "Official personnel roster.",
+                      "claim_id": "vcf-personnel-roster",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    },
+                    {
+                      "text": "Police memo book submitted with the front cover including supervisory signature and opening and closing dates",
+                      "claim_id": "vcf-police-memo-book",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    }
+                  ]
+                },
+                {
+                  "lane": "Residence documents (corroborating)",
+                  "who": "survivors",
+                  "examples": [
+                    {
+                      "text": "The documents listed below are not sufficient on their own, but will be reviewed in conjunction with other documents",
+                      "claim_id": "vcf-residence-not-sufficient-alone",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    }
+                  ]
+                },
+                {
+                  "lane": "School or daycare records",
+                  "who": "survivors",
+                  "examples": [
+                    {
+                      "text": "If you submit a certified transcript or school record as explained below, you do not need to submit any additional proof of presence",
+                      "claim_id": "vcf-school-records-sufficient",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    },
+                    {
+                      "text": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email",
+                      "claim_id": "vcf-stuyhealth",
+                      "note": "info@stuyhealth.org",
+                      "contact_url": "mailto:info@stuyhealth.org",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    }
+                  ]
+                },
+                {
+                  "lane": "Witness statements (secondary)",
+                  "examples": [
+                    {
+                      "text": "minimum of two people",
+                      "claim_id": "vcf-witness-minimum-two",
+                      "lead": "Statements as the only proof need a",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    },
+                    {
+                      "text": "be from an individual who is not related to you or to the Personal Representative or Guardian",
+                      "claim_id": "vcf-witness-non-relative",
+                      "lead": "At least one must",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    },
+                    {
+                      "text": "Effective February 1, 2023, the VCF will no longer accept affidavits as proof of presence.",
+                      "claim_id": "vcf-affidavits-not-accepted",
+                      "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                    }
+                  ]
+                }
+              ],
+              "official_pages": [
+                {
+                  "label": "Eligibility criteria and deadlines (Policies and Procedures, section 1)",
+                  "url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+                },
+                {
+                  "label": "How to prove presence (Interactive Presence Guide)",
+                  "url": "https://www.vcf.gov/how-prove-presence"
+                },
+                {
+                  "label": "NYC Exposure Zone map",
+                  "url": "https://www.vcf.gov/nyc-map-exposure-zone"
+                }
+              ]
+            }
+          ],
+          "nyc_records": [
+            {
+              "id": "dcas",
+              "kind": "city_agency",
+              "who": "Current and former City employees",
+              "issuer": "Department of Citywide Administrative Services (DCAS)",
+              "commitment": {
+                "text": "designating personnel at the Department of Citywide Administrative Services",
+                "claim_id": "settlement-dcas-doe-personnel",
+                "source_label": "Settlement, p.3",
+                "source_url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf"
+              },
+              "status_obligation_id": "dcas-doe-personnel",
+              "how": "Announced in the settlement and the Mayor’s release. No contact path had been published as of September 11, 2026: the DCAS home page, captured that day, does not mention September 11, the programs or an exposure zone.",
+              "checked": "2026-09-11",
+              "checked_source_id": "dcas-home-2026-09-11"
+            },
+            {
+              "id": "nycps",
+              "kind": "city_agency",
+              "who": "People who attended New York City public schools",
+              "issuer": "New York City Public Schools (the settlement names the Department of Education)",
+              "audience": "survivors",
+              "commitment": {
+                "text": "to assist City employees and individuals who attended the New York City Public Schools",
+                "claim_id": "settlement-dcas-doe-beneficiaries",
+                "source_label": "Settlement, p.3",
+                "source_url": "https://www.911healthwatch.org/files/101ba5889feaae84c19c8f8.pdf"
+              },
+              "status_obligation_id": "dcas-doe-personnel",
+              "how": "The settlement’s designated personnel are announced; no contact path had been published as of September 11, 2026. The standing route is the school itself: NYC Public Schools’ records request page (quoted here).",
+              "route": [
+                {
+                  "text": "Former students must print and fill out the Student Records Request Form",
+                  "claim_id": "nycps-former-students-form",
+                  "url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts",
+                  "source_url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts"
+                },
+                {
+                  "text": "When a student is 18 or older, the DOE will only honor transcript requests from the student.",
+                  "claim_id": "nycps-18-or-older",
+                  "source_url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts"
+                },
+                {
+                  "text": "If your former high school has closed, another school now has your transcript and can provide you with a copy.",
+                  "claim_id": "nycps-closed-school",
+                  "source_url": "https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts"
+                }
+              ]
+            },
+            {
+              "id": "comptroller",
+              "kind": "city_agency",
+              "who": "City employees whose payroll records the Comptroller holds",
+              "issuer": "Office of the New York City Comptroller",
+              "programs": [
+                "vcf"
+              ],
+              "note": {
+                "text": "The VCF gets the information directly from the Office of the New York City Comptroller.",
+                "claim_id": "vcf-comptroller-direct",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              },
+              "how": "Listed by the VCF as an entity it obtains presence information from directly."
+            },
+            {
+              "id": "stuyhealth",
+              "kind": "private_organization",
+              "who": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone",
+              "issuer": "StuyHealth (an alumni organization)",
+              "programs": [
+                "vcf"
+              ],
+              "audience": "survivors",
+              "note": {
+                "text": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email",
+                "claim_id": "vcf-stuyhealth",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              },
+              "contact": "info@stuyhealth.org",
+              "how": "Named on the VCF’s policy page for help acquiring proof of attendance. It is a private organization, without a City role."
+            }
+          ],
+          "mayor_announcement": {
+            "text": "appoint dedicated personnel at the Department of Citywide Administrative Services (DCAS) and New York City Public Schools (NYCPS) to coordinate the retrieval of records",
+            "claim_id": "mayor-dcas-nycps-personnel",
+            "url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records",
+            "label": "Mayor’s Office release, 2026-09-08",
+            "source_url": "https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records"
+          },
+          "not_personalized": true
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "upcoming_dates",
+      "demo": "dates",
+      "title": "Obligations ahead as of October 8, 2026",
+      "question": "Which dated obligations are ahead as of October 8, 2026?",
+      "request": {
+        "name": "upcoming_dates",
+        "arguments": {
+          "as_of": "2026-10-08"
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "docs/data/scorecard.json",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "days_relative_to_as_of",
+            "message": "days_from_as_of counts from 2026-10-08; dates are the ones stated in the settlement and the resolution, and a rolling basis is listed without dates"
+          },
+          {
+            "code": "no_compliance_determination",
+            "message": "status is what was observed on public surfaces when checked; no legal determination"
+          }
+        ],
+        "data": {
+          "as_of": "2026-10-08",
+          "as_of_source": "argument",
+          "ahead": [
+            {
+              "id": "doi-update-2026-12-31",
+              "obligation": "DOI written status update to the Speaker",
+              "source": "Res. 560-A §1",
+              "status": "upcoming",
+              "checked": "2026-09-09",
+              "due_as_stated": "2026-12-31",
+              "date": "2026-12-31",
+              "days_from_as_of": 84
+            },
+            {
+              "id": "doi-update-2027-06-30",
+              "obligation": "DOI written status update to the Speaker",
+              "source": "Res. 560-A §1",
+              "status": "upcoming",
+              "checked": "2026-09-09",
+              "due_as_stated": "2027-06-30",
+              "date": "2027-06-30",
+              "days_from_as_of": 265
+            },
+            {
+              "id": "doi-report-2027-07-14",
+              "obligation": "DOI report: knowledge assessment, timeline of awareness, public-vs-internal contrast analysis",
+              "source": "Res. 560-A §2",
+              "status": "upcoming",
+              "checked": "2026-09-09",
+              "due_as_stated": "2027-07-14",
+              "date": "2027-07-14",
+              "days_from_as_of": 279
+            },
+            {
+              "id": "twelve-month-mark",
+              "obligation": "Twelve months of good-faith performance; then dismissal with prejudice",
+              "source": "Settlement ¶ 7–8",
+              "status": "upcoming",
+              "checked": "2026-09-09",
+              "due_as_stated": "2027-09-08",
+              "date": "2027-09-08",
+              "days_from_as_of": 335
+            }
+          ],
+          "past": [],
+          "past_count": 2,
+          "rolling": [
+            {
+              "id": "monthly-meetings",
+              "obligation": "Monthly Law Department meetings with 9/11 Health Watch, Sept 2026 – Aug 2027 (documents, pages, sources, subjects)",
+              "source": "Settlement ¶ 1",
+              "status": "upcoming",
+              "checked": "2026-09-09",
+              "due_as_stated": "monthly through 2027-08"
+            }
+          ],
+          "calendar_file": "docs/data/obligations.ics",
+          "basis": "`due` is the date basis stated in the source; rows without one are rolling or already dated by observation."
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "portal_query_draft",
+      "demo": "search",
+      "title": "A portal search for the Stuyvesant memo",
+      "question": "How should a search for the Stuyvesant memo be written?",
+      "request": {
+        "name": "portal_query_draft",
+        "arguments": {
+          "phrase": "Re-Occupying Stuyvesant High School",
+          "box": "DEP Box 37"
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": null,
+        "coverage": "complete_for_query",
+        "retrieval": "not_checked",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "query_not_sent",
+            "message": "this is a draft; nothing was sent to the City. portal_search sends the query only when the operator has enabled live search"
+          }
+        ],
+        "data": {
+          "portal_search": {
+            "arguments": {
+              "query": "\"Re-Occupying Stuyvesant High School\" extension:pdf"
+            }
+          },
+          "catalog_search": {
+            "arguments": {
+              "box": "DEP Box 37"
+            }
+          },
+          "explanation": [
+            "A quoted phrase matches those words in that order; unquoted words match loosely.",
+            "extension:pdf keeps results to the documents themselves.",
+            "Collection, box and folder are catalog fields; catalog_search matches them on this machine without sending anything to the City. The portal query searches every collection."
+          ],
+          "live_search_enabled": false
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "citations_format",
+      "demo": "cite",
+      "title": "Citations for page 1 of the Harding memo",
+      "question": "How is page 1 of the Harding memo cited?",
+      "request": {
+        "name": "citations_format",
+        "arguments": {
+          "bates": "NYC-WTC_000138296",
+          "page": 1
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "20260911T125700Z-26f24148f199",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "local_snapshot_only",
+            "message": "collection, box and folder come from the local catalog snapshot"
+          }
+        ],
+        "data": {
+          "bates": "NYC-WTC_000138296",
+          "page": 1,
+          "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1",
+          "stamp": "NYC-WTC_000138296",
+          "stamp_status": "matched",
+          "page_text_read": true,
+          "catalog": {
+            "source": "DORIS Giuliani",
+            "agency": "Records and Information Services, Dept. of",
+            "box": "",
+            "folder": "Folder 140",
+            "page_count": 2
+          },
+          "formats": {
+            "short": "NYC-WTC_000138296 p.1",
+            "full": "City of New York, September 11th Document Portal, DORIS Giuliani, Folder 140, NYC-WTC_000138296, PDF page 1 (page stamp NYC-WTC 000138296), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1; catalog captured 2026-09-11.",
+            "markdown": "[NYC-WTC_000138296 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1)"
+          }
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "citations_format-fuchs",
+      "demo": "cite",
+      "title": "Citations for page 2 of the Fuchs memo",
+      "question": "How is page 2 of the Fuchs memo cited?",
+      "request": {
+        "name": "citations_format",
+        "arguments": {
+          "bates": "NYC-WTC_000147320",
+          "page": 2
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "20260911T125700Z-26f24148f199",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "local_snapshot_only",
+            "message": "collection, box and folder come from the local catalog snapshot"
+          }
+        ],
+        "data": {
+          "bates": "NYC-WTC_000147320",
+          "page": 2,
+          "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2",
+          "stamp": "NYC-WTC_000147321",
+          "stamp_status": "matched",
+          "page_text_read": true,
+          "catalog": {
+            "source": "DEP Hard Copies (68 Boxes)",
+            "agency": "Environmental Protection, Dept. of",
+            "box": "DEP Box 09",
+            "folder": "",
+            "page_count": 2
+          },
+          "formats": {
+            "short": "NYC-WTC_000147320 p.2",
+            "full": "City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 09, NYC-WTC_000147320, PDF page 2 (page stamp NYC-WTC 000147321), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2; catalog captured 2026-09-11.",
+            "markdown": "[NYC-WTC_000147320 p.2](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2)"
+          }
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "citations_format-15-john",
+      "demo": "cite",
+      "title": "Citations for the 15 John Street lab report",
+      "question": "How is the 15 John Street lab report cited?",
+      "request": {
+        "name": "citations_format",
+        "arguments": {
+          "bates": "NYC-WTC_000094256",
+          "page": 1
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "20260911T125700Z-26f24148f199",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "stamp_unverified",
+            "message": "stamp_status is unverified_stamp; the printed stamp was not read from this page, and none is computed from the document ID"
+          },
+          {
+            "code": "local_snapshot_only",
+            "message": "collection, box and folder come from the local catalog snapshot"
+          }
+        ],
+        "data": {
+          "bates": "NYC-WTC_000094256",
+          "page": 1,
+          "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1",
+          "stamp": null,
+          "stamp_status": "unverified_stamp",
+          "page_text_read": false,
+          "catalog": {
+            "source": "DEP Hard Copies (68 Boxes)",
+            "agency": "Environmental Protection, Dept. of",
+            "box": "DEP Box 01",
+            "folder": "15 JOHN STREET 1001217, 79/14",
+            "page_count": 1
+          },
+          "formats": {
+            "short": "NYC-WTC_000094256 p.1",
+            "full": "City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 01, 15 JOHN STREET 1001217, 79/14, NYC-WTC_000094256, PDF page 1, https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1; catalog captured 2026-09-11.",
+            "markdown": "[NYC-WTC_000094256 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1)"
+          }
+        },
+        "next_cursor": null
+      },
+      "redactions": []
+    },
+    {
+      "id": "records_manifest",
+      "demo": "manifest",
+      "title": "Documents behind the research examples",
+      "question": "What are the documents behind the research examples?",
+      "request": {
+        "name": "records_manifest",
+        "arguments": {
+          "bates": [
+            "NYC-WTC_000138296",
+            "NYC-WTC_000147320",
+            "NYC-WTC_000153130",
+            "NYC-WTC_000130438",
+            "NYC-WTC_000154488",
+            "NYC-WTC_000094256",
+            "NYC-WTC_000144518",
+            "NYC-WTC_000106411",
+            "NYC-WTC_000148621",
+            "NYC-WTC_000151604"
+          ]
+        }
+      },
+      "is_error": false,
+      "response": {
+        "schema_version": "2026-10-08",
+        "retrieved_at": "2026-10-09T13:12:54+00:00",
+        "source_snapshot": "20260911T125700Z-26f24148f199",
+        "coverage": "complete_for_query",
+        "retrieval": "captured",
+        "review_status": "unreviewed",
+        "freshness": "unknown",
+        "warnings": [
+          {
+            "code": "local_snapshot_only",
+            "message": "rows come from the catalog captured 2026-09-11T12:57:00+00:00"
+          }
+        ],
+        "data": {
+          "requested": 10,
+          "found": 10,
+          "missing": [],
+          "pages_total": 226,
+          "bytes_total": 77936391,
+          "records": [
+            {
+              "bates": "NYC-WTC_000138296",
+              "source": "DORIS Giuliani",
+              "agency": "Records and Information Services, Dept. of",
+              "box": "",
+              "folder": "Folder 140",
+              "page_count": 2,
+              "pdf_size": 87751,
+              "production_volume": "NYC-WTC0005",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000147320",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 09",
+              "folder": "",
+              "page_count": 2,
+              "pdf_size": 115643,
+              "production_volume": "NYC-WTC0006",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000153130",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 26",
+              "folder": "",
+              "page_count": 1,
+              "pdf_size": 44342,
+              "production_volume": "NYC-WTC0006",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000130438",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 53",
+              "folder": "E-Mail 1/2/02",
+              "page_count": 78,
+              "pdf_size": 53608331,
+              "production_volume": "NYC-WTC0004",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000154488",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 26",
+              "folder": "DEP OEM Reports to Commissioner",
+              "page_count": 8,
+              "pdf_size": 695582,
+              "production_volume": "NYC-WTC0006",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000154488.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000094256",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 01",
+              "folder": "15 JOHN STREET 1001217, 79/14",
+              "page_count": 1,
+              "pdf_size": 34246,
+              "production_volume": "NYC-WTC0004",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000144518",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 08",
+              "folder": "SCHOOLS",
+              "page_count": 4,
+              "pdf_size": 262728,
+              "production_volume": "NYC-WTC0006",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000144518.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000106411",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 37",
+              "folder": "345 CHAMBERS STREET; 16/1",
+              "page_count": 7,
+              "pdf_size": 364607,
+              "production_volume": "NYC-WTC0004",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000148621",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 10",
+              "folder": "DEP - BEC  ACTIVITIES  WTC",
+              "page_count": 120,
+              "pdf_size": 22401495,
+              "production_volume": "NYC-WTC0006",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000148621.pdf",
+              "text_cached_locally": true
+            },
+            {
+              "bates": "NYC-WTC_000151604",
+              "source": "DEP Hard Copies (68 Boxes)",
+              "agency": "Environmental Protection, Dept. of",
+              "box": "DEP Box 11",
+              "folder": "WTC DC TO RC LETTERS CALLEHAN WHITMAN ETC. WARD DOCTOROFF KENNY",
+              "page_count": 3,
+              "pdf_size": 321666,
+              "production_volume": "NYC-WTC0006",
+              "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000151604.pdf",
+              "text_cached_locally": true
+            }
+          ],
+          "csv": "bates,source,box,folder,page_count,pdf_size,pdf_url\nNYC-WTC_000138296,DORIS Giuliani,,Folder 140,2,87751,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf\nNYC-WTC_000147320,DEP Hard Copies (68 Boxes),DEP Box 09,,2,115643,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf\nNYC-WTC_000153130,DEP Hard Copies (68 Boxes),DEP Box 26,,1,44342,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf\nNYC-WTC_000130438,DEP Hard Copies (68 Boxes),DEP Box 53,E-Mail 1/2/02,78,53608331,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf\nNYC-WTC_000154488,DEP Hard Copies (68 Boxes),DEP Box 26,DEP OEM Reports to Commissioner,8,695582,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000154488.pdf\nNYC-WTC_000094256,DEP Hard Copies (68 Boxes),DEP Box 01,\"15 JOHN STREET 1001217, 79/14\",1,34246,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf\nNYC-WTC_000144518,DEP Hard Copies (68 Boxes),DEP Box 08,SCHOOLS,4,262728,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000144518.pdf\nNYC-WTC_000106411,DEP Hard Copies (68 Boxes),DEP Box 37,345 CHAMBERS STREET; 16/1,7,364607,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf\nNYC-WTC_000148621,DEP Hard Copies (68 Boxes),DEP Box 10,DEP - BEC  ACTIVITIES  WTC,120,22401495,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000148621.pdf\nNYC-WTC_000151604,DEP Hard Copies (68 Boxes),DEP Box 11,WTC DC TO RC LETTERS CALLEHAN WHITMAN ETC. WARD DOCTOROFF KENNY,3,321666,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000151604.pdf\n",
+          "catalog_captured_at": "2026-09-11T12:57:00+00:00"
         },
         "next_cursor": null
       },
