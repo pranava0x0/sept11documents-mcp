@@ -122,6 +122,9 @@ def readings_problems(document: dict) -> list[str]:
             dated = ("document_date",)
         else:
             dated = ("sample_date", "document_date")
+            if (row.get("sample_date_precision") not in PRECISION or not isinstance(row["sample_date"], str)
+                    or len(row["sample_date"]) != _PRECISION_LENGTH[row["sample_date_precision"]]):
+                problems.append(f"{rid}: sample_date_precision must match the sample date's length")
         for key in dated:
             try:
                 check_date(row.get(key), f"{rid}.{key}")

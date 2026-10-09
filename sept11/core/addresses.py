@@ -30,6 +30,9 @@ _BLOCK = re.compile(r"\bBLOCK[:;#\s]*\s*(\d{1,5})\b")
 _LOT = re.compile(r"\bLOT[:;#\s]*\s*(\d{1,4})\b")
 # Many DEP labels print "BIN, block/lot" without the words: `15 JOHN STREET 1001217, 79/14`.
 _BIN_PAIR = re.compile(r"\b(\d{7}),\s*(\d{1,5})/(\d{1,4})\b")
+# Some print a space for the comma: `17 JOHN STREET 1001216 79/10`. Read only in labels without the
+# word BIN, where `BIN: 1001396 26/42 PARK PL` shows the pair can be a house-number range instead.
+_BIN_PAIR_SPACED = re.compile(r"\b(\d{7})\s+(\d{1,5})/(\d{1,4})\b(?![/\d])")
 
 # Street-type words; a query made only of these names no street ("West Street" is a street).
 _SUFFIXES = frozenset({"STREET", "AVENUE", "PLACE", "SQUARE", "PLAZA", "BOULEVARD", "DRIVE",
@@ -102,7 +105,7 @@ def parse_query(address: str) -> Query:
 def identifiers(label: str) -> dict:
     """BIN, block and lot where the label prints them; never inferred."""
     upper = (label or "").upper()
-    pair = _BIN_PAIR.search(upper)
+    pair = _BIN_PAIR.search(upper) or (None if "BIN" in upper else _BIN_PAIR_SPACED.search(upper))
     return {"bins": sorted(set(_BIN.findall(upper)) | ({pair.group(1)} if pair else set())),
             "block": (_BLOCK.search(upper) or [None, None])[1] or (pair.group(2) if pair else None),
             "lot": (_LOT.search(upper) or [None, None])[1] or (pair.group(3) if pair else None)}
@@ -154,6 +157,12 @@ def selftest() -> list[str]:
         failures.append("BIN and block must be read from the label")
     if identifiers("15 JOHN STREET 1001217, 79/14") != {"bins": ["1001217"], "block": "79", "lot": "14"}:
         failures.append("the 'BIN, block/lot' label form must be read")
+    if identifiers("17 JOHN STREET 1001216 79/10") != {"bins": ["1001216"], "block": "79", "lot": "10"}:
+        failures.append("the 'BIN block/lot' label form without a comma must be read")
+    if identifiers("BIN: 1001396 26/42 PARK PL")["block"] is not None:
+        failures.append("a range after a labelled BIN must not be read as block and lot")
+    if identifiers("REPORT 1001216 10/16/01")["bins"]:
+        failures.append("a date after a seven-digit number must not be read as block and lot")
     if match("115 BROADWAY", parse_query("15 Broadway")):
         failures.append("15 must not match 115")
     if not match("120 B'WAY", parse_query("120 Broadway")) or not match("2 W 14TH ST", parse_query("2 West 14 Street")):
