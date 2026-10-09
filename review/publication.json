@@ -58,7 +58,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "de3e8b34a001f738bdc094a0f2694eb128a107c23d235d581faf3ad8031fd917",
+      "sha256": "2b71d46397cfb88e7efee08701e95e26c633c3b581c6f36f95f05af3764beca7",
       "freshness_policy": "on-change",
       "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
     },
@@ -88,7 +88,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "86ca3e150af71f8f8f323e3c0d559c9d0976f449f138c4c2bd552687ce431f67",
+      "sha256": "a79c07ecb4045729c3b566a5e720c8f7fca45a7fcf209510d080a0851735ebcf",
       "freshness_policy": "on-change",
       "notes": "Sampling results printed in located City records, value, unit, medium and location as printed; each row quotes a registered claim at its Bates page."
     },

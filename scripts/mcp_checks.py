@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from sept11 import cli, config  # noqa: E402
 from sept11.adapters import portal  # noqa: E402
-from sept11.core import commitments  # noqa: E402
+from sept11.core import chronology, commitments  # noqa: E402
 from sept11.core.citations import stamps_on  # noqa: E402
 from sept11.core.errors import IntegrityError, NotCachedError, PolicyError  # noqa: E402
 from sept11.core.evidence import envelope_schema  # noqa: E402
@@ -785,6 +785,11 @@ class Toolkit(unittest.TestCase):
         self.assertIn("readings_not_dataset", codes(shown))
         self.refused("readings_lookup", {"include_unreviewed": "yes"}, "true or false")
         self.refused("readings_lookup", {"analyte": "x" * 61}, "limit is 60")
+        row = self.ok("readings_lookup", {"include_unreviewed": True})["data"]["readings"][0]
+        undated = dict(row, sample_date=None, sample_date_precision="unknown")
+        self.assertEqual(chronology.readings_problems({"boundary": "b", "readings": [undated]}), [])
+        self.assertTrue(chronology.readings_problems(
+            {"boundary": "b", "readings": [dict(undated, sample_date_precision="day")]}))
 
     def test_presence_evidence_filters_without_dropping_general_rules(self):
         payload = self.ok("presence_evidence", {"program": "wtchp", "who": "survivors"})

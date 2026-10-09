@@ -697,7 +697,7 @@ def readings_demo(document: dict, quotes: Quotes) -> str:
             f'<tr><td data-label="Result as printed"><b>{e(row["value_as_printed"])}{unit}</b>'
             f'<span class="cellnote">{e(row["analyte"])}, {e(row["medium"])}</span></td>'
             f'<td data-label="Location as printed">{e(row["location_as_printed"])}</td>'
-            f'<td data-label="Sampled">{e(display_date(row["sample_date"]))}'
+            f'<td data-label="Sampled">{e(display_date(row["sample_date"]) if row["sample_date"] else "Not stated")}'
             f'<span class="cellnote">{e(row["sample_date_basis"])}</span></td>'
             f'<td data-label="Source"><q>{e(text)}</q> {quotes.chip(row["claim_id"])}'
             f'<span class="cellnote">{e(row["document"])}, {e(display_date(row["document_date"]))}; '

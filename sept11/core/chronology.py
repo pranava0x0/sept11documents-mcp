@@ -115,7 +115,14 @@ def readings_problems(document: dict) -> list[str]:
                 problems.append(f"{rid}: {key} is required")
         if not isinstance(row.get("unit_as_printed"), str):
             problems.append(f"{rid}: unit_as_printed must be a string (empty when the document prints none)")
-        for key in ("sample_date", "document_date"):
+        # A sample date the document does not state stays null, with precision "unknown".
+        if row.get("sample_date") is None:
+            if row.get("sample_date_precision") != "unknown":
+                problems.append(f"{rid}: a null sample_date needs sample_date_precision 'unknown'")
+            dated = ("document_date",)
+        else:
+            dated = ("sample_date", "document_date")
+        for key in dated:
             try:
                 check_date(row.get(key), f"{rid}.{key}")
             except ValueError as exc:
