@@ -90,7 +90,8 @@ def fixture_curated() -> dict:
         "citation": portal_cite}]}
     rows = [[0, "DEP Box 01", "15 JOHN STREET 1001217, 79/14", 2, 2, "NYC-WTC_000000003"],
             [0, "DEP Box 01", "1 HANOVER SQUARE BIN: 1000841 60-64 Stone St", 1, 4, "NYC-WTC_000000005"],
-            [0, "DEP Box 02", "115 JOHN STREET", 1, 1, "NYC-WTC_000000006"]]
+            [0, "DEP Box 02", "115 JOHN STREET", 1, 1, "NYC-WTC_000000006"],
+            [0, "DEP Box 02", "105 DUANE STREET / 1 TRIMBLE Block: 151, Lot: 1", 1, 1, "NYC-WTC_000000007"]]
     rows += [[0, "DEP Box 03", f"{n} CHAMBERS STREET", 1, 1, f"NYC-WTC_{n:09d}"] for n in range(100, 140)]
     folders = {"captured_at": "2026-09-02T00:00:00+00:00", "sources": ["DEP Hard Copies (68 Boxes)"],
                "columns": ["source_index", "box", "folder", "documents", "pages", "first_bates"], "rows": rows}
@@ -793,6 +794,10 @@ class Toolkit(unittest.TestCase):
         wide = self.ok("building_lookup", {"address": "Chambers Street"})
         self.assertEqual((wide["data"]["folders_returned"], wide["coverage"]), (25, "partial"))
         self.assertIn("truncated_inline", codes(wide))
+        bare = self.ok("building_lookup", {"address": "1 Trimble Street"})
+        self.assertEqual([f["matched_by"] for f in bare["data"]["folders"]], ["number_and_street_name"])
+        self.assertIn("street_type_not_printed", codes(bare))
+        self.assertNotIn("street_type_not_printed", codes(payload))
         self.refused("building_lookup", {"address": "15"}, "street name")
         self.refused("building_lookup", {"address": "Street"}, "street name")
         self.refused("building_lookup", {"address": "x" * 81}, "limit is 80")
@@ -942,6 +947,7 @@ class Toolkit(unittest.TestCase):
         building = get("building-records", {"address": "15 John Street"})["result"]["messages"][0]["content"]["text"]
         self.assertIn("next_calls entry as given", building)
         self.assertIn("where the definition is empty, give the zone's note and official link", building)
+        self.assertIn("If catalog_search reports that no catalog snapshot is saved on this machine", building)
         presence = get("proof-of-presence", {})["result"]["messages"][0]["content"]["text"]
         self.assertIn("City agency or a private organization as its `kind` states", presence)
         self.assertNotIn("New York City offices", presence)

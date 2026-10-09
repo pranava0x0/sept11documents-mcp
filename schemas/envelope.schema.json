@@ -97,6 +97,7 @@
               "sequence_not_finding",
               "readings_not_dataset",
               "label_match_only",
+              "street_type_not_printed",
               "zone_not_computed",
               "query_not_sent",
               "days_relative_to_as_of",

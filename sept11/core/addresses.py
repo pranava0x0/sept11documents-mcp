@@ -240,6 +240,18 @@ def match(label: str, query: Query) -> dict | None:
     tokens = _join_split_numbers(normalize(_street_text(label)))
     width = len(query.street)
     starts = [i for i in range(len(tokens) - width + 1) if tuple(tokens[i:i + width]) == query.street]
+    by = "number_and_street"
+    if not starts and query.number is not None and width >= 2 and query.street[-1] in _SUFFIXES:
+        # `1 TRIMBLE Block: …` and `102 GREENWICH 1001054, 53/37` print the street without its type. The
+        # name alone counts only where the label ends or an identifier or number follows it, so
+        # `13 SOUTH WILLIAM STREET` and `1 PARK ROW` stay other streets, and a bare direction never counts
+        # (`Pier 86 W. 46 St.` names West 46th Street).
+        name = query.street[:-1]
+        if not set(name) <= {"NORTH", "SOUTH", "EAST", "WEST"}:
+            starts = [i for i in range(len(tokens) - width + 2) if tuple(tokens[i:i + width - 1]) == name
+                      and (i + width - 1 == len(tokens) or tokens[i + width - 1] == "X"
+                           or tokens[i + width - 1][0].isdigit())]
+        by = "number_and_street_name"
     if not starts:
         return None
     if query.number is None:
@@ -248,7 +260,7 @@ def match(label: str, query: Query) -> dict | None:
         spans = _numbers_before(tokens, start)
         if any(_covers(span, query) for span in spans):
             # A range covers both sides of a street; the label alone cannot say which side.
-            return {"by": "number_and_street",
+            return {"by": by,
                     "printed_numbers": [_printed(a, c) if a == b else f"{a}-{b}" for a, b, c in spans]}
     return None
 
@@ -332,6 +344,17 @@ def selftest() -> list[str]:
         failures.append("a BIN and block/lot printed with a period must not read as a house number")
     if match("75 WARREN ST 1001431, 13726 75 WARREN STREET 1001431, 132/26", parse_query("13726 Warren Street")):
         failures.append("an unslashed pair beside a slashed one must not read as a house number")
+    bare = "105 DUANE STREET 10-16 THOMAS ST / 1 TRIMBLE Block: 145 Lot: 1"
+    hit = match(bare, parse_query("1 Trimble Street"))
+    if not hit or hit["by"] != "number_and_street_name" or match(bare, parse_query("2 Trimble Street")):
+        failures.append(f"1 Trimble Street must match a label printing 1 TRIMBLE, and 2 must not, got {hit}")
+    for label, query in (("1 TRIMBLE PLACE", "1 Trimble Street"), ("TRIMBLE", "1 Trimble Street"),
+                         ("13 SOUTH WILLIAM STREET", "13 South Street"), ("1 PARK ROW 1085949, 90/1", "1 Park Place"),
+                         ("Pier 86 W. 46 St.", "86 West Street")):
+        if match(label, parse_query(query)):
+            failures.append(f"{query!r} must not match {label!r}: the name runs on into another street")
+    if not match("102 GREENWICH 1001054, 53/37", parse_query("102 Greenwich Street")):
+        failures.append("a street printed without its type before its BIN must match")
     suffixed = "19A SOUTH STREET"
     if match(suffixed, parse_query("19 South Street")) or match(suffixed, parse_query("19B South Street")):
         failures.append("19 and 19B South Street must not match a label printing 19A")

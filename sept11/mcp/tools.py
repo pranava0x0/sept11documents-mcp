@@ -722,6 +722,10 @@ def building_lookup(ctx, args: dict, deadline) -> Envelope:
                   "no exposure-zone membership is decided here; zone_definitions quotes each program's own "
                   "wording, and the program decides")
     envelope.warn("physical_labels", "labels are transcribed as the City produced them, including misspellings")
+    if any(h["matched_by"] == "number_and_street_name" for h in hits):
+        envelope.warn("street_type_not_printed",
+                      "some labels print the street name without its type (STREET, PLACE, AVENUE); those folders "
+                      "may concern another street of that name")
     if len(hits) > len(shown):
         envelope.warn("truncated_inline", f"showing the {len(shown)} largest of {len(hits)} matching folders")
     return envelope
