@@ -363,6 +363,8 @@ class Gate(unittest.TestCase):
         try:
             with self.assertRaises(IntegrityError):
                 self.ctx.evidence.page("NYC-WTC_000000099", 1)
+            result = call(self.server, "citations_format", {"bates": "NYC-WTC_000000099", "page": 1})
+            self.assertEqual(result["structuredContent"].get("error", {}).get("code"), "integrity_failure")
         finally:
             link.unlink(missing_ok=True)
 
@@ -853,6 +855,15 @@ class Toolkit(unittest.TestCase):
         self.refused("citations_format", {"bates": "NYC-WTC_000000001", "page": 4}, "does not exist")
         absent = self.ok("citations_format", {"bates": "NYC-WTC_000999999", "page": 1})
         self.assertIn("missing_from_snapshot", codes(absent))
+
+    def test_an_altered_help_directory_fails_the_building_lookup(self):
+        altered = build_fixture(Path(tempfile.mkdtemp()))
+        stored = altered.cfg.root / "docs" / "data" / "help-directory.json"
+        os.chmod(stored, 0o644)
+        stored.write_text(stored.read_text() + "\n")
+        result = call(Server(ctx=altered), "building_lookup", {"address": "15 John Street"})
+        self.assertTrue(result["isError"], "zone wording that fails its hash must not be dropped silently")
+        self.assertEqual(result["structuredContent"]["error"]["code"], "integrity_failure")
 
     def test_a_damaged_catalog_stays_an_integrity_failure(self):
         damaged = build_fixture(Path(tempfile.mkdtemp()))

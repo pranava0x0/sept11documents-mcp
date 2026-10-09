@@ -25,7 +25,7 @@ from ..adapters import portal
 from ..core import addresses, calendar, chronology
 from ..core import citations as cite
 from ..core import commitments as ledger
-from ..core.errors import InputError, IntegrityError, NoSnapshotError, PolicyError, Sept11Error
+from ..core.errors import InputError, IntegrityError, NoSnapshotError, NotCachedError, PolicyError, Sept11Error
 from ..core.evidence import Envelope, OBLIGATION_STATUS, cached_envelope, envelope_schema
 from ..core.pii import PORTAL_PII_FORM, screen
 from ..core.text import quote_hits, split_pages, truncate
@@ -641,11 +641,11 @@ MAX_BUILDING_FOLDERS = 25
 
 
 def _zone_definitions(ctx) -> list[dict]:
-    """Zone wording from the published directory, quoted with claim ids; never computed."""
-    try:
-        directory, _ = ctx.publication().read_json("sept11://help-directory")
-    except Sept11Error:
-        return []
+    """Zone wording from the published directory, quoted with claim ids; never computed.
+
+    A missing or altered directory fails the call: the zone wording is part of every answer.
+    """
+    directory, _ = ctx.publication().read_json("sept11://help-directory")
     zones = []
     for program in directory.get("programs", []):
         zone = program.get("zone")
@@ -840,8 +840,8 @@ def citations_format(ctx, args: dict, deadline) -> Envelope:
     if ctx.evidence.has(bates):
         try:
             page_text = ctx.evidence.page(bates, page).text
-        except Sept11Error:
-            page_text = None  # captured document, page not in the capture
+        except NotCachedError:
+            page_text = None  # captured document, page not in the capture; a symlinked capture still fails
     if page_text is not None and screen(page_text).suspect:
         page_text = None  # the stamp is read from text the PII screen withholds; leave it unread
     citation = cite.build(bates, page, page_text=page_text)
