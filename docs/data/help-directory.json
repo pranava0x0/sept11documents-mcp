@@ -323,6 +323,7 @@
       "id": "nycps",
       "who": "People who attended New York City public schools",
       "issuer": "New York City Public Schools (the settlement names the Department of Education)",
+      "audience": "survivors",
       "commitment": {
         "text": "to assist City employees and individuals who attended the New York City Public Schools",
         "claim_id": "settlement-dcas-doe-beneficiaries",
@@ -354,6 +355,9 @@
       "id": "comptroller",
       "who": "City employees whose payroll records the Comptroller holds",
       "issuer": "Office of the New York City Comptroller",
+      "programs": [
+        "vcf"
+      ],
       "note": {
         "text": "The VCF gets the information directly from the Office of the New York City Comptroller.",
         "claim_id": "vcf-comptroller-direct",
@@ -365,6 +369,10 @@
       "id": "stuyhealth",
       "who": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone",
       "issuer": "StuyHealth (an alumni organization)",
+      "programs": [
+        "vcf"
+      ],
+      "audience": "survivors",
       "note": {
         "text": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email",
         "claim_id": "vcf-stuyhealth",

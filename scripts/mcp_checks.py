@@ -94,7 +94,9 @@ def fixture_curated() -> dict:
     folders = {"captured_at": "2026-09-02T00:00:00+00:00", "sources": ["DEP Hard Copies (68 Boxes)"],
                "columns": ["source_index", "box", "folder", "documents", "pages", "first_bates"], "rows": rows}
     example = lambda text, who: {"text": text, "claim_id": "c", "who": who}  # noqa: E731
-    directory = {"disclaimer": "Not legal advice.", "nyc_records": [{"id": "dcas"}], "programs": [
+    directory = {"disclaimer": "Not legal advice.", "nyc_records": [
+        {"id": "dcas"}, {"id": "comptroller", "programs": ["vcf"]},
+        {"id": "stuyhealth", "programs": ["vcf"], "audience": "survivors"}], "programs": [
         {"id": "wtchp", "short": "WTC Health Program", "evidence": [
             {"lane": "Employment", "examples": [example("letter", "responders"), example("stub", "survivors")]},
             {"lane": "Other", "examples": [example("any", None)]}],
@@ -805,6 +807,10 @@ class Toolkit(unittest.TestCase):
         self.assertEqual((responders["window"], responders["zone"]), (None, None))
         self.assertEqual(responders["omitted_for_audience"]["fields"], ["window", "zone"])
         self.refused("presence_evidence", {"program": "fema"}, "program must be one of")
+        routes = lambda args: [r["id"] for r in self.ok("presence_evidence", args)["data"]["nyc_records"]]  # noqa: E731
+        self.assertEqual(routes({"program": "wtchp", "who": "survivors"}), ["dcas"])
+        self.assertEqual(routes({"program": "vcf", "who": "responders"}), ["dcas", "comptroller"])
+        self.assertEqual(routes({"program": "both", "who": "all"}), ["dcas", "comptroller", "stuyhealth"])
 
     def test_upcoming_dates_count_from_the_stated_day(self):
         payload = self.ok("upcoming_dates", {"as_of": "2026-10-08"})

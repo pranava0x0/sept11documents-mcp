@@ -725,9 +725,14 @@ def presence_evidence(ctx, args: dict, deadline) -> Envelope:
                 "note": f"the quoted {' and '.join(omitted)} apply to another group; the program's own page "
                         f"states the rules for {who}"}
         programs.append(entry)
+    # A records route tagged for one program or one group (the VCF's Comptroller route, school
+    # records for survivors) is listed only when that program and group are asked for.
+    routes = [r for r in directory.get("nyc_records", [])
+              if (program == "both" or program in r.get("programs", PROGRAMS))
+              and (who == "all" or r.get("audience") in (None, who))]
     envelope = Envelope(
         data={"filters": {"program": program, "who": who}, "disclaimer": directory.get("disclaimer"),
-              "programs": programs, "nyc_records": directory.get("nyc_records", []),
+              "programs": programs, "nyc_records": routes,
               "mayor_announcement": directory.get("mayor_announcement"),
               "not_personalized": True},
         source_snapshot=artifact.path, coverage="complete_for_query", review_status=artifact.review_status,

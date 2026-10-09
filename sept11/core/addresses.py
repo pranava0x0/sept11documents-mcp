@@ -40,6 +40,9 @@ _BIN_PAIR = re.compile(r"\b(\d{7}),\s*(\d{1,5})/(\d{1,4})\b")
 # Some print a space for the comma: `17 JOHN STREET 1001216 79/10`. Read only in labels without the
 # word BIN or BN, where `BIN: 1001396 26/42 PARK PL` shows the pair can be a house-number range instead.
 _BIN_PAIR_SPACED = re.compile(r"\b(\d{7})\s+(\d{1,5})/(\d{1,4})\b(?![/\d])")
+# A few print the pair without its slash (`113 NASSAU STREET 1001256, 90117`); the BIN before the
+# comma is read and the run-together block and lot are left unread.
+_BIN_COMMA = re.compile(r"\b(\d{7}),\s*\d{2,9}\b(?!/)")
 
 # Street-type words; a query made only of these names no street ("West Street" is a street).
 _SUFFIXES = frozenset({"STREET", "AVENUE", "PLACE", "SQUARE", "PLAZA", "BOULEVARD", "DRIVE",
@@ -114,6 +117,7 @@ def identifiers(label: str) -> dict:
     upper = (label or "").upper()
     pair = _BIN_PAIR.search(upper) or (None if _BIN_WORD.search(upper) else _BIN_PAIR_SPACED.search(upper))
     return {"bins": sorted(set(_BIN.findall(upper)) | set(_BIN_AFTER_LOT.findall(upper))
+                           | (set() if pair else set(_BIN_COMMA.findall(upper)))
                            | ({pair.group(1)} if pair else set())),
             "block": (_BLOCK.search(upper) or [None, None])[1] or (pair.group(2) if pair else None),
             "lot": (_LOT.search(upper) or [None, None])[1] or (pair.group(3) if pair else None)}
@@ -181,6 +185,9 @@ def selftest() -> list[str]:
         got = identifiers(label)
         if (got["bins"], got["block"], got["lot"]) != want:
             failures.append(f"block, lot and BIN must be read from {label!r}, got {got}")
+    got = identifiers("113 NASSAU STREET 1001256, 90117")
+    if (got["bins"], got["block"], got["lot"]) != (["1001256"], None, None):
+        failures.append(f"a BIN before an unslashed block and lot must be read, the pair left unread, got {got}")
     if identifiers("BLDG 4 BIBLE 12")["block"] is not None or identifiers("PILOT 12")["lot"] is not None:
         failures.append("a short block label needs a lot after it, and LOT inside a word is not a lot")
     if identifiers("BIN: 1001396 26/42 PARK PL")["block"] is not None:
