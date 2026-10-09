@@ -80,7 +80,7 @@ def _plan_prompt(arguments: dict) -> str:
             "records and sampling results already located; budget_lookup, doi_milestones and upcoming_dates "
             "for money and deadlines. Then run the plan. Answer only from returned text, cite each fact as "
             "`NYC-WTC_… p.N` or the official source, run citations_verify on every quote, and say plainly "
-            "what the archive does not show. Do not speculate about individuals. " + UNTRUSTED + " " + CITE_RULE)
+            "what the archive does not show. Do not speculate about individuals. " + UNTRUSTED + " " + CURATED_RULE)
 
 
 def _building_prompt(arguments: dict) -> str:

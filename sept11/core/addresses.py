@@ -25,9 +25,10 @@ _WORDS = {
 _ORDINAL = re.compile(r"\b(\d+)(ST|ND|RD|TH)\b")
 _TOKEN = re.compile(r"[A-Z0-9]+(?:-[A-Z0-9]+)?")
 _NUMBER = re.compile(r"^(\d+)(?:-(\d+))?[A-Z]?$")
-# Labels print the BIN as `BIN: 1000859`, `BIN# 1000859`, `BN# 1001215` or `BN # 1079039`.
-_BIN_WORD = re.compile(r"\bBI?N\b")
-_BIN = re.compile(r"\bBI?N[:;#\s]*\s*(\d{7})\b")
+# Labels print the BIN as `BIN: 1000859`, `BIN# 1000859`, `BN# 1001215`, `BN # 1079039` or
+# `B# 1083350`; a bare B counts only with its #, so `BID # 1234567` is not read as a BIN.
+_BIN_WORD = re.compile(r"\bBI?N\b|\bB\s?#")
+_BIN = re.compile(r"\b(?:BI?N[:;#\s]*|B\s?#\s*)(\d{7})\b")
 _BLOCK = re.compile(r"\bBLOCK[:;#\s]*\s*(\d{1,5})\b")
 _LOT = re.compile(r"\bLOT[:;#\s]*\s*(\d{1,4})\b")
 # Many DEP labels print "BIN, block/lot" without the words: `15 JOHN STREET 1001217, 79/14`.
@@ -88,7 +89,7 @@ def parse_query(address: str) -> Query:
     if len(address) > MAX_ADDRESS_CHARS:
         raise ValueError(f"address is {len(address)} characters; the limit is {MAX_ADDRESS_CHARS}")
     raw = address.strip()
-    bin_only = re.fullmatch(r"(?:BI?N[:\s#]*)?(\d{7})", raw.upper())
+    bin_only = re.fullmatch(r"(?:BI?N[:\s#]*|B\s?#\s*)?(\d{7})", raw.upper())
     if bin_only:
         return Query(number=None, street=(), bin=bin_only.group(1))
     tokens = normalize(raw)
@@ -163,6 +164,8 @@ def selftest() -> list[str]:
         failures.append("the 'BIN block/lot' label form without a comma must be read")
     if identifiers("29 JOHN STREET BN# 1001215")["bins"] != ["1001215"] or identifiers("4-6 LIBERTY PLACE BN # 1079039")["bins"] != ["1079039"]:
         failures.append("the 'BN#' and 'BN #' label forms must be read as a BIN")
+    if identifiers("333 PEARL STREET B# 1083350")["bins"] != ["1083350"] or identifiers("FURNITURE BID # 1234567")["bins"]:
+        failures.append("'B# 1083350' must be read as a BIN and 'BID # 1234567' must not")
     if parse_query("BN# 1001215").bin != "1001215":
         failures.append("a query written 'BN# 1001215' must be read as a BIN")
     if identifiers("BN: 1001396 26/42 PARK PL")["block"] is not None:
