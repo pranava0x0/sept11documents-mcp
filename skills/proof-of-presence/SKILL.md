@@ -16,7 +16,8 @@ description: Explain which documents the WTC Health Program and the September 11
    the window or zone out for this role (`omitted_for_audience`), say so and give the program's
    own page for the rules that apply.
 4. If the person attended a New York City public school or worked for the City, give the issuer
-   rows (NYC Public Schools, DCAS, the Comptroller) and their stated status.
+   rows the response returns in `nyc_records`, and their stated status. The call leaves out rows
+   that belong to another program or group; do not add them back.
 5. End with the program's own phone number and link from the response.
 
 ## Rules

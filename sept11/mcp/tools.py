@@ -650,7 +650,9 @@ def _zone_definitions(ctx) -> list[dict]:
     for program in directory.get("programs", []):
         zone = program.get("zone")
         if zone:
+            # `who` names the group a zone applies to (the WTC Health Program's area is for survivors).
             zones.append({"program": program.get("short") or program.get("name"), "name": zone.get("name"),
+                          "who": zone.get("who"),
                           "definition": zone.get("definition") or [], "map_url": zone.get("map_url"),
                           "definition_url": zone.get("definition_url"), "note": zone.get("note")})
     return zones

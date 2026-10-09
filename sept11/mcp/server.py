@@ -86,7 +86,8 @@ def _building_prompt(arguments: dict) -> str:
             "portal_get_page_text only when it is captured, and cite it with citations_format. State that a "
             "label match shows where paper was filed, that a document can concern the building without a "
             "label naming it, and that the tool decides no exposure-zone question; quote each program's zone "
-            "wording from zone_definitions instead. " + UNTRUSTED + " " + CITE_RULE)
+            "wording from zone_definitions instead, naming the group when a zone has `who` set. " + UNTRUSTED + " "
+            + CITE_RULE)
 
 
 def _presence_prompt(arguments: dict) -> str:

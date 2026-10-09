@@ -26,5 +26,6 @@ block and lot.
 - A label match shows where the City filed paper. Say that a document about the building may sit
   in a folder that does not name it.
 - Do not say whether the address is inside an exposure zone. Quote the `zone_definitions` the tool
-  returns and link the program's map; the program decides.
+  returns and link the program's map; the program decides. A zone with `who` set applies to that
+  group only; say so when quoting it.
 - Do not ask for or record the user's own address beyond the lookup itself.

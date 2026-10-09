@@ -760,6 +760,8 @@ class Toolkit(unittest.TestCase):
         self.assertEqual(payload["data"]["folders"][0]["printed_identifiers"]["bins"], ["1001217"])
         self.assertIn("zone_not_computed", codes(payload))
         self.assertNotIn("inside_zone", json.dumps(payload))
+        zones = {z["program"]: z["who"] for z in payload["data"]["zone_definitions"]}
+        self.assertEqual(zones, {"WTC Health Program": "survivors", "VCF": None})
         self.assertEqual(self.ok("building_lookup", {"address": "62 Stone Street"})["data"]["folders_matched"], 1)
         self.assertEqual(self.ok("building_lookup", {"address": "1000841"})["data"]["folders_matched"], 1)
         self.assertEqual(self.ok("building_lookup", {"address": "John Street"})["data"]["folders_matched"], 2)

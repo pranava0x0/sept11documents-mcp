@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T05:21:04+00:00",
+  "recorded_at": "2026-10-09T05:26:58+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:03+00:00",
+        "retrieved_at": "2026-10-09T05:26:57+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMzI2M30uZmMxYjllMDIyYjQ2OWMxZjFiMWEwZjU3YzdhZDc4ZDc="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMzYxN30uN2Y3ODM1ZDVjNWUxMDYzNWVmMjM2ZWNjY2EyNTViYjA="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:03+00:00",
+        "retrieved_at": "2026-10-09T05:26:57+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:03+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:03+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:03+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:03+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:03+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1103,6 +1103,7 @@
             {
               "program": "WTC Health Program",
               "name": "NYC Disaster Area",
+              "who": "survivors",
               "definition": [],
               "map_url": null,
               "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
@@ -1111,6 +1112,7 @@
             {
               "program": "VCF",
               "name": "VCF NYC Exposure Zone",
+              "who": null,
               "definition": [
                 {
                   "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
@@ -1148,7 +1150,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1266,6 +1268,7 @@
             {
               "program": "WTC Health Program",
               "name": "NYC Disaster Area",
+              "who": "survivors",
               "definition": [],
               "map_url": null,
               "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
@@ -1274,6 +1277,7 @@
             {
               "program": "VCF",
               "name": "VCF NYC Exposure Zone",
+              "who": null,
               "definition": [
                 {
                   "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
@@ -1311,7 +1315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1407,6 +1411,7 @@
             {
               "program": "WTC Health Program",
               "name": "NYC Disaster Area",
+              "who": "survivors",
               "definition": [],
               "map_url": null,
               "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
@@ -1415,6 +1420,7 @@
             {
               "program": "VCF",
               "name": "VCF NYC Exposure Zone",
+              "who": null,
               "definition": [
                 {
                   "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
@@ -1450,7 +1456,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1817,7 +1823,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2037,7 +2043,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2085,7 +2091,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2387,7 +2393,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2482,7 +2488,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2531,7 +2537,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2582,7 +2588,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2633,7 +2639,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2698,7 +2704,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:21:04+00:00",
+        "retrieved_at": "2026-10-09T05:26:58+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
