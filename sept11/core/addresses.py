@@ -29,8 +29,12 @@ _NUMBER = re.compile(r"^(\d+)(?:-(\d+))?[A-Z]?$")
 # `B# 1083350`; a bare B counts only with its #, so `BID # 1234567` is not read as a BIN.
 _BIN_WORD = re.compile(r"\bBI?N\b|\bB\s?#")
 _BIN = re.compile(r"\b(?:BI?N[:;#\s]*|B\s?#\s*)(\d{7})\b")
-_BLOCK = re.compile(r"\bBLOCK[:;#\s]*\s*(\d{1,5})\b")
-_LOT = re.compile(r"\bLOT[:;#\s]*\s*(\d{1,4})\b")
+# Block is also printed `Bl. 46`, or `BI 69` where the scan reads l as I; the short forms count only
+# when a lot follows. `69Lot.` runs the words together, so LOT is bounded by letters only.
+_BLOCK = re.compile(r"\b(?:BLOCK|B[LI]\.?(?=\s*\d{1,5}[\s.,;:]*LOT))[.:;#\s]*(\d{1,5})(?!\d)")
+_LOT = re.compile(r"(?<![A-Z])LOT[.:;#\s]*(\d{1,4})(?!\d)")
+# Some labels print the BIN straight after the lot: `Bl. 46 Lot 9/1001025`, `Lot: 8 1000872`.
+_BIN_AFTER_LOT = re.compile(r"(?<![A-Z])LOT[.:;#\s]*\d{1,4}(?:\s*/\s*|\s+)(\d{7})(?!\d)")
 # Many DEP labels print "BIN, block/lot" without the words: `15 JOHN STREET 1001217, 79/14`.
 _BIN_PAIR = re.compile(r"\b(\d{7}),\s*(\d{1,5})/(\d{1,4})\b")
 # Some print a space for the comma: `17 JOHN STREET 1001216 79/10`. Read only in labels without the
@@ -109,7 +113,8 @@ def identifiers(label: str) -> dict:
     """BIN, block and lot where the label prints them; never inferred."""
     upper = (label or "").upper()
     pair = _BIN_PAIR.search(upper) or (None if _BIN_WORD.search(upper) else _BIN_PAIR_SPACED.search(upper))
-    return {"bins": sorted(set(_BIN.findall(upper)) | ({pair.group(1)} if pair else set())),
+    return {"bins": sorted(set(_BIN.findall(upper)) | set(_BIN_AFTER_LOT.findall(upper))
+                           | ({pair.group(1)} if pair else set())),
             "block": (_BLOCK.search(upper) or [None, None])[1] or (pair.group(2) if pair else None),
             "lot": (_LOT.search(upper) or [None, None])[1] or (pair.group(3) if pair else None)}
 
@@ -170,6 +175,14 @@ def selftest() -> list[str]:
         failures.append("a query written 'BN# 1001215' must be read as a BIN")
     if identifiers("BN: 1001396 26/42 PARK PL")["block"] is not None:
         failures.append("a range after a BIN labelled BN must not be read as block and lot")
+    for label, want in (("14 WALL STREET; Bl. 46 Lot 9/1001025", (["1001025"], "46", "9")),
+                        ("90 JOHN STREET bi. 76Lot. 11/1001180", (["1001180"], "76", "11")),
+                        ("110 WALL STREET; Block: 37 Lot: 8 1000872", (["1000872"], "37", "8"))):
+        got = identifiers(label)
+        if (got["bins"], got["block"], got["lot"]) != want:
+            failures.append(f"block, lot and BIN must be read from {label!r}, got {got}")
+    if identifiers("BLDG 4 BIBLE 12")["block"] is not None or identifiers("PILOT 12")["lot"] is not None:
+        failures.append("a short block label needs a lot after it, and LOT inside a word is not a lot")
     if identifiers("BIN: 1001396 26/42 PARK PL")["block"] is not None:
         failures.append("a range after a labelled BIN must not be read as block and lot")
     if identifiers("REPORT 1001216 10/16/01")["bins"]:

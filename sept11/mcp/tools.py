@@ -63,6 +63,7 @@ class Tool:
     schema: dict
     handler: Callable
     open_world: bool = False  # true when the call reaches the City's servers
+    needs_catalog: bool = False  # true when the call reads the accepted catalog snapshot, which a clone lacks
     contract_version: str = "1"
 
     @property
@@ -936,7 +937,7 @@ _register(Tool(
     handler=portal_search))
 
 _register(Tool(
-    name="catalog_search", title="Search the local catalog snapshot", contract_version="2",
+    name="catalog_search", needs_catalog=True, title="Search the local catalog snapshot", contract_version="2",
     summary=("Search the catalog snapshot stored on this machine by Bates number, source, agency, box "
              "or folder label. Nothing is sent to the City. Metadata only: the catalog has no document "
              "text and no document dates. Every word in `text` must appear somewhere in a record's "
@@ -959,7 +960,7 @@ _register(Tool(
     handler=catalog_search))
 
 _register(Tool(
-    name="portal_get_document", title="Catalog record for one document",
+    name="portal_get_document", needs_catalog=True, title="Catalog record for one document",
     summary=("Metadata for one Bates number from the local catalog snapshot, whether its page text is "
              "captured on this machine, and the documents filed before and after it in the same "
              "physical folder. Returns no date field: the portal publishes none."),
@@ -986,14 +987,14 @@ _register(Tool(
     handler=portal_catalog_stats))
 
 _register(Tool(
-    name="portal_browse", title="Browse source → box → folder",
+    name="portal_browse", needs_catalog=True, title="Browse source → box → folder",
     summary=("Walk the archive's own structure: sources, then boxes, then folder labels, with document "
              "and page counts from the local snapshot."),
     schema=_schema({"source": _string("Source to open."), "box": _string("Box to open within a source.")}),
     handler=portal_browse))
 
 _register(Tool(
-    name="portal_changes_since", title="What the catalog shows added or absent",
+    name="portal_changes_since", needs_catalog=True, title="What the catalog shows added or absent",
     summary=("Compare the accepted snapshot at or before a date with the newest accepted snapshot. "
              "Reports observed_added, observed_absent and metadata_changed, and states the interval it "
              "actually compared. Absence is an observation only; it does not establish removal."),
@@ -1143,7 +1144,7 @@ _register(Tool(
     handler=citations_format))
 
 _register(Tool(
-    name="records_manifest", title="Manifest of a set of documents",
+    name="records_manifest", needs_catalog=True, title="Manifest of a set of documents",
     summary=("For up to 50 Bates numbers, one row each with collection, box, folder, pages, file size and "
              "PDF link from the local catalog, the total pages and bytes, the numbers not found, and the "
              "same rows as CSV for a records request or a shared reading list."),

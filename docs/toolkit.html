@@ -36,12 +36,12 @@
 <tbody>
 <!-- BUILD:tools -->
 <tr><td data-label="Tool"><code>portal_search</code></td><td data-label="Returns">Live portal hits with Bates, collection, box, folder, inert snippet text, and a precision warning for fuzzy queries. Off unless the operator opts in, because the words searched reach the City</td><td data-label="Availability"><span class="badge built">runs from a clone · live opt-in</span></td></tr>
-<tr><td data-label="Tool"><code>catalog_search</code></td><td data-label="Returns">The same catalog searched locally by Bates, collection, agency, box or folder label, every word matched, with facets by collection, box and folder over all matches; nothing is sent to the City</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_get_document</code></td><td data-label="Returns">Metadata, page count, PDF link, the documents filed before and after it in the same folder, and when it was first and last seen in local snapshots; no date field, because the portal publishes none</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>catalog_search</code></td><td data-label="Returns">The same catalog searched locally by Bates, collection, agency, box or folder label, every word matched, with facets by collection, box and folder over all matches; nothing is sent to the City</td><td data-label="Availability"><span class="badge built">runs after one catalog export</span></td></tr>
+<tr><td data-label="Tool"><code>portal_get_document</code></td><td data-label="Returns">Metadata, page count, PDF link, the documents filed before and after it in the same folder, and when it was first and last seen in local snapshots; no date field, because the portal publishes none</td><td data-label="Availability"><span class="badge built">runs after one catalog export</span></td></tr>
 <tr><td data-label="Tool"><code>portal_get_page_text</code></td><td data-label="Returns">Verbatim page text with the Bates stamp printed on that page, read from the page's own footer stamp; withheld whole when personal information is suspected</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
 <tr><td data-label="Tool"><code>portal_catalog_stats</code></td><td data-label="Returns">Totals by collection, agency and production volume, with the snapshot's SHA-256</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_browse</code></td><td data-label="Returns">The collection → box → folder tree, largest first, with counts</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_changes_since</code></td><td data-label="Returns">Documents observed added, absent or changed between two accepted captures, with the interval compared</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_browse</code></td><td data-label="Returns">The collection → box → folder tree, largest first, with counts</td><td data-label="Availability"><span class="badge built">runs after one catalog export</span></td></tr>
+<tr><td data-label="Tool"><code>portal_changes_since</code></td><td data-label="Returns">Documents observed added, absent or changed between two accepted captures, with the interval compared</td><td data-label="Availability"><span class="badge built">runs after one catalog export</span></td></tr>
 <tr><td data-label="Tool"><code>citations_verify</code></td><td data-label="Returns">found / not-found / no-claim / unverifiable for quotes at Bates pages or registered sources; an ellipsis marks omitted words; it accepts no URLs and no file paths</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
 <tr><td data-label="Tool"><code>doi_milestones</code></td><td data-label="Returns">The dated obligations with what was observed and when it was checked, with no score and no legal determination</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
 <tr><td data-label="Tool"><code>budget_lookup</code></td><td data-label="Returns">The commitment ledger: each announced amount with its source and five separately evidenced stages, unlinked stages named as such; rows are never summed</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
@@ -52,7 +52,7 @@
 <tr><td data-label="Tool"><code>upcoming_dates</code></td><td data-label="Returns">Dated settlement and Res. 560-A obligations with days from a given date, recurring obligations listed without invented dates, and an iCalendar file</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
 <tr><td data-label="Tool"><code>portal_query_draft</code></td><td data-label="Returns">A portal search written in the syntax the City's search accepts, with the matching catalog filters; the draft is not sent anywhere</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
 <tr><td data-label="Tool"><code>citations_format</code></td><td data-label="Returns">Short, full and Markdown citations for a Bates page, with the page link and whether the printed stamp was read</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>records_manifest</code></td><td data-label="Returns">A reading list for up to 50 Bates numbers: collection, box, folder, pages and PDF link, as rows and as CSV, with any number the catalog lacks</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>records_manifest</code></td><td data-label="Returns">A reading list for up to 50 Bates numbers: collection, box, folder, pages and PDF link, as rows and as CSV, with any number the catalog lacks</td><td data-label="Availability"><span class="badge built">runs after one catalog export</span></td></tr>
 <tr><td data-label="Tool">Exposure-zone check for an address</td><td data-label="Returns">Whether an address is inside a program's zone. Each program decides that; <code>building_lookup</code> quotes the definitions and links the official maps</td><td data-label="Availability"><span class="badge">not planned · the programs decide</span></td></tr>
 <!-- /BUILD:tools -->
 </tbody></table></div></div></details>
@@ -70,7 +70,7 @@
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only, physical_labels.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:56+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:12+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -249,7 +249,7 @@
       }
     ]
   },
-  &quot;next_cursor&quot;: &quot;eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMTQ1Nn0uNzcxNzllMmM0N2NlNzEyMzE5NDI5NzM1YTVlYmU0NDc=&quot;
+  &quot;next_cursor&quot;: &quot;eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMTgzMn0uYjdkZDRjMmM5YzEwODA4ZGFhZGVkNGVhYzc4N2JjMTk=&quot;
 }</pre>
 </article>
 <article class="example" id="example-portal_browse" data-example="portal_browse">
@@ -258,7 +258,7 @@
 <p class="result-note">The call returned an envelope with warnings: physical_labels.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:56+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:12+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -346,7 +346,7 @@
 <p class="result-note">The call returned an envelope with warnings: no_document_date_field.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:56+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:12+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -440,7 +440,7 @@
 <p class="result-note">The call returned an envelope with warnings: match_is_not_review.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:56+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:12+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;local captures&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -508,7 +508,7 @@
 <p class="result-note">The call returned an envelope with warnings: announcement_not_expenditure, unreviewed_artifact.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:56+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:12+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/commitments.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -677,7 +677,7 @@
 <p class="result-note">The call returned an envelope with warnings: no_compliance_determination, unreviewed_artifact.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:56+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:12+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/scorecard.json&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -860,7 +860,7 @@
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:56+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:12+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -916,7 +916,7 @@
 <p class="result-note">The call returned an envelope with warnings: interval_actually_compared, observation_not_removal, no_compliance_determination.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -971,7 +971,7 @@
 <p class="result-note">The call returned an envelope with warnings: label_match_only, zone_not_computed, physical_labels.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/folders.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -1076,7 +1076,7 @@
 <p class="result-note">The call returned an envelope with warnings: label_match_only, zone_not_computed, physical_labels.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/folders.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -1229,7 +1229,7 @@
 <p class="result-note">The call returned an envelope with warnings: label_match_only, zone_not_computed, physical_labels.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/folders.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -1360,7 +1360,7 @@
 <p class="result-note">The call returned an envelope with warnings: sequence_not_finding, no_document_date_field, unreviewed_artifact.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/timeline.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -1718,7 +1718,7 @@
 <p class="result-note">The call returned an envelope with warnings: readings_not_dataset, unreviewed_artifact.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/readings.json&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -1929,7 +1929,7 @@
 <p class="result-note">The call returned an envelope with warnings: readings_not_dataset, unreviewed_artifact.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/readings.json&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -1967,7 +1967,7 @@
 <p class="result-note">The call returned an envelope with warnings: directory_not_advice, unreviewed_artifact.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/help-directory.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -2252,7 +2252,7 @@
 <p class="result-note">The call returned an envelope with warnings: days_relative_to_as_of, no_compliance_determination.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/scorecard.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -2337,7 +2337,7 @@
 <p class="result-note">The call returned an envelope with warnings: query_not_sent.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: null,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;not_checked&quot;,
@@ -2376,7 +2376,7 @@
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -2417,7 +2417,7 @@
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -2458,7 +2458,7 @@
 <p class="result-note">The call returned an envelope with warnings: stamp_unverified, local_snapshot_only.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -2503,7 +2503,7 @@
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
 <pre class="response">{
   &quot;schema_version&quot;: &quot;2026-10-08&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-10-09T04:50:57+00:00&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:57:13+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,

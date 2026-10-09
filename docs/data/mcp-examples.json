@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T04:50:57+00:00",
+  "recorded_at": "2026-10-09T04:57:13+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:56+00:00",
+        "retrieved_at": "2026-10-09T04:57:12+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMTQ1Nn0uNzcxNzllMmM0N2NlNzEyMzE5NDI5NzM1YTVlYmU0NDc="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMTgzMn0uYjdkZDRjMmM5YzEwODA4ZGFhZGVkNGVhYzc4N2JjMTk="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:56+00:00",
+        "retrieved_at": "2026-10-09T04:57:12+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:56+00:00",
+        "retrieved_at": "2026-10-09T04:57:12+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:56+00:00",
+        "retrieved_at": "2026-10-09T04:57:12+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:56+00:00",
+        "retrieved_at": "2026-10-09T04:57:12+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:56+00:00",
+        "retrieved_at": "2026-10-09T04:57:12+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:56+00:00",
+        "retrieved_at": "2026-10-09T04:57:12+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1147,7 +1147,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1309,7 +1309,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1447,7 +1447,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1814,7 +1814,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2034,7 +2034,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2082,7 +2082,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2376,7 +2376,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2471,7 +2471,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2520,7 +2520,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2571,7 +2571,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2622,7 +2622,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2687,7 +2687,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:50:57+00:00",
+        "retrieved_at": "2026-10-09T04:57:13+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

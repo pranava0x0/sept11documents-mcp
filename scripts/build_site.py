@@ -319,7 +319,8 @@ def tool_rows() -> str:
     for tool in TOOLS.values():
         if tool.name not in TOOL_BLURBS:
             raise SystemExit(f"build_site: no site copy for tool {tool.name!r}; add it to TOOL_BLURBS")
-        status = "runs from a clone" + (" · live opt-in" if tool.open_world else "")
+        status = ("runs after one catalog export" if tool.needs_catalog else "runs from a clone") + (
+            " · live opt-in" if tool.open_world else "")
         rows.append((f"<code>{tool.name}</code>", TOOL_BLURBS[tool.name],
                      f'<span class="badge built">{status}</span>'))
     for name, returns, status in PLANNED_ROWS:
