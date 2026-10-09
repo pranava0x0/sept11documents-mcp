@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T05:39:29+00:00",
+  "recorded_at": "2026-10-09T05:44:41+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyNDM2OH0uODAyZGYwOTY3ZDViOGMyMWYxOGI1YTM0MDcyZDQ4N2Y="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyNDY4MH0uMTcwZWM0ZTFiN2MyMjBkNDY3YTlhYmJhNmNlNDkxYjk="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:28+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:40+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1102,17 +1102,20 @@
           "zone_definitions": [
             {
               "program": "WTC Health Program",
-              "name": "NYC Disaster Area",
               "who": "survivors",
-              "definition": [],
               "map_url": null,
               "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
-              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted."
+              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.",
+              "name": "NYC Disaster Area",
+              "definition": []
             },
             {
               "program": "VCF",
-              "name": "VCF NYC Exposure Zone",
               "who": null,
+              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+              "definition_url": null,
+              "note": null,
+              "name": "VCF NYC Exposure Zone",
               "definition": [
                 {
                   "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
@@ -1125,9 +1128,11 @@
                   "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
                 }
               ],
-              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
-              "definition_url": null,
-              "note": null
+              "also": {
+                "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+                "claim_id": "vcf-debris-routes",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              }
             }
           ],
           "catalog_captured_at": "2026-09-11T12:57:00+00:00"
@@ -1150,7 +1155,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1267,17 +1272,20 @@
           "zone_definitions": [
             {
               "program": "WTC Health Program",
-              "name": "NYC Disaster Area",
               "who": "survivors",
-              "definition": [],
               "map_url": null,
               "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
-              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted."
+              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.",
+              "name": "NYC Disaster Area",
+              "definition": []
             },
             {
               "program": "VCF",
-              "name": "VCF NYC Exposure Zone",
               "who": null,
+              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+              "definition_url": null,
+              "note": null,
+              "name": "VCF NYC Exposure Zone",
               "definition": [
                 {
                   "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
@@ -1290,9 +1298,11 @@
                   "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
                 }
               ],
-              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
-              "definition_url": null,
-              "note": null
+              "also": {
+                "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+                "claim_id": "vcf-debris-routes",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              }
             }
           ],
           "catalog_captured_at": "2026-09-11T12:57:00+00:00"
@@ -1315,7 +1325,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1410,17 +1420,20 @@
           "zone_definitions": [
             {
               "program": "WTC Health Program",
-              "name": "NYC Disaster Area",
               "who": "survivors",
-              "definition": [],
               "map_url": null,
               "definition_url": "https://www.cdc.gov/wtc/eligiblegroups.html",
-              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted."
+              "note": "The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.",
+              "name": "NYC Disaster Area",
+              "definition": []
             },
             {
               "program": "VCF",
-              "name": "VCF NYC Exposure Zone",
               "who": null,
+              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
+              "definition_url": null,
+              "note": null,
+              "name": "VCF NYC Exposure Zone",
               "definition": [
                 {
                   "text": "runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway",
@@ -1433,9 +1446,11 @@
                   "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
                 }
               ],
-              "map_url": "https://www.vcf.gov/nyc-map-exposure-zone",
-              "definition_url": null,
-              "note": null
+              "also": {
+                "text": "The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris",
+                "claim_id": "vcf-debris-routes",
+                "source_url": "https://www.vcf.gov/policy/eligibility-criteria-and-deadlines"
+              }
             }
           ],
           "catalog_captured_at": "2026-09-11T12:57:00+00:00"
@@ -1456,7 +1471,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1823,7 +1838,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2043,7 +2058,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2091,7 +2106,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2395,7 +2410,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2490,7 +2505,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2539,7 +2554,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2590,7 +2605,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2641,7 +2656,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2706,7 +2721,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:39:29+00:00",
+        "retrieved_at": "2026-10-09T05:44:41+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

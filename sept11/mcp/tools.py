@@ -650,11 +650,11 @@ def _zone_definitions(ctx) -> list[dict]:
     for program in directory.get("programs", []):
         zone = program.get("zone")
         if zone:
-            # `who` names the group a zone applies to (the WTC Health Program's area is for survivors).
-            zones.append({"program": program.get("short") or program.get("name"), "name": zone.get("name"),
-                          "who": zone.get("who"),
-                          "definition": zone.get("definition") or [], "map_url": zone.get("map_url"),
-                          "definition_url": zone.get("definition_url"), "note": zone.get("note")})
+            # Every quoted field is kept: `who` names the group a zone applies to (the WTC Health
+            # Program's area is for survivors) and `also` the VCF's debris routes with their condition.
+            zones.append({"program": program.get("short") or program.get("name"), "who": None,
+                          "map_url": None, "definition_url": None, "note": None, **zone,
+                          "definition": zone.get("definition") or []})
     return zones
 
 
@@ -727,6 +727,8 @@ def presence_evidence(ctx, args: dict, deadline) -> Envelope:
                         if who == "all" or x.get("who") in (None, who)]
             if examples:
                 lanes.append({**lane, "examples": examples})
+            elif lane.get("examples"):
+                other_lanes.append(lane.get("lane"))  # every example was for the other group
         # A window or zone tagged for one audience (the WTC Health Program's survivor window) is
         # left out for the other, and every omission is named.
         entry = {**entry, "evidence": lanes}

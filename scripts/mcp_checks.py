@@ -100,12 +100,13 @@ def fixture_curated() -> dict:
         {"id": "stuyhealth", "programs": ["vcf"], "audience": "survivors"}], "programs": [
         {"id": "wtchp", "short": "WTC Health Program", "evidence": [
             {"lane": "Employment", "examples": [example("letter", "responders"), example("stub", "survivors")]},
+            {"lane": "Residence", "examples": [example("lease", "survivors")]},
             {"lane": "Other", "examples": [example("any", None)]}],
          "window": {"text": "between dates", "applies_to": "Survivors", "who": "survivors", "claim_id": "c"},
          "zone": {"name": "NYC Disaster Area", "who": "survivors", "definition_url": "https://www.cdc.gov/wtc/"}},
         {"id": "vcf", "short": "VCF", "evidence": [
             {"lane": "Residence", "who": "survivors", "examples": [example("lease", None)]},
-            {"lane": "Third party", "examples": [example("employer", None)]}], "zone": {"name": "Zone", "definition": [
+            {"lane": "Third party", "examples": [example("employer", None)]}], "zone": {"name": "Zone", "also": {"text": "debris routes", "claim_id": "c"}, "definition": [
             {"text": "south of Canal Street", "claim_id": "c"}]}}]}
     return {"timeline": timeline, "readings": readings, "folders": folders, "help-directory": directory}
 
@@ -766,6 +767,8 @@ class Toolkit(unittest.TestCase):
         self.assertNotIn("inside_zone", json.dumps(payload))
         zones = {z["program"]: z["who"] for z in payload["data"]["zone_definitions"]}
         self.assertEqual(zones, {"WTC Health Program": "survivors", "VCF": None})
+        vcf_zone = next(z for z in payload["data"]["zone_definitions"] if z["program"] == "VCF")
+        self.assertEqual(vcf_zone["also"]["text"], "debris routes")
         self.assertEqual(self.ok("building_lookup", {"address": "62 Stone Street"})["data"]["folders_matched"], 1)
         self.assertEqual(self.ok("building_lookup", {"address": "1000841"})["data"]["folders_matched"], 1)
         self.assertEqual(self.ok("building_lookup", {"address": "John Street"})["data"]["folders_matched"], 2)
@@ -808,12 +811,13 @@ class Toolkit(unittest.TestCase):
     def test_presence_evidence_filters_without_dropping_general_rules(self):
         payload = self.ok("presence_evidence", {"program": "wtchp", "who": "survivors"})
         lanes = {lane["lane"]: [x["text"] for x in lane["examples"]] for lane in payload["data"]["programs"][0]["evidence"]}
-        self.assertEqual(lanes, {"Employment": ["stub"], "Other": ["any"]})
+        self.assertEqual(lanes, {"Employment": ["stub"], "Residence": ["lease"], "Other": ["any"]})
         self.assertIn("directory_not_advice", codes(payload))
         self.assertEqual(payload["data"]["programs"][0]["window"]["text"], "between dates")
         responders = self.ok("presence_evidence", {"program": "wtchp", "who": "responders"})["data"]["programs"][0]
         self.assertEqual((responders["window"], responders["zone"]), (None, None))
         self.assertEqual(responders["omitted_for_audience"]["fields"], ["window", "zone"])
+        self.assertEqual(responders["omitted_for_audience"]["lanes"], ["Residence"])
         vcf = self.ok("presence_evidence", {"program": "vcf", "who": "responders"})["data"]["programs"][0]
         self.assertEqual([lane["lane"] for lane in vcf["evidence"]], ["Third party"])
         self.assertEqual(vcf["omitted_for_audience"]["lanes"], ["Residence"])
