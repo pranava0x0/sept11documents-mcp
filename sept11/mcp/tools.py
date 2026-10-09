@@ -716,24 +716,30 @@ def presence_evidence(ctx, args: dict, deadline) -> Envelope:
     for entry in directory.get("programs", []):
         if program != "both" and entry.get("id") != program:
             continue
-        lanes = []
+        lanes, other_lanes = [], []
         for lane in entry.get("evidence", []):
+            # A lane tagged for one group (the VCF's residence and school records prove a survivor's
+            # presence) is left out whole for the other.
+            if who != "all" and lane.get("who") not in (None, who):
+                other_lanes.append(lane.get("lane"))
+                continue
             examples = [x for x in lane.get("examples", [])
                         if who == "all" or x.get("who") in (None, who)]
             if examples:
                 lanes.append({**lane, "examples": examples})
         # A window or zone tagged for one audience (the WTC Health Program's survivor window) is
-        # left out for the other, and the omission is named.
+        # left out for the other, and every omission is named.
         entry = {**entry, "evidence": lanes}
         omitted = [k for k in ("window", "zone")
                    if who != "all" and isinstance(entry.get(k), dict) and entry[k].get("who") not in (None, who)]
         for key in omitted:
             entry[key] = None
-        if omitted:
+        if omitted or other_lanes:
+            named = omitted + [f"{lane!r} evidence" for lane in other_lanes]
             entry["omitted_for_audience"] = {
-                "fields": omitted,
-                "note": f"the quoted {' and '.join(omitted)} apply to another group; the program's own page "
-                        f"states the rules for {who}"}
+                "fields": omitted, "lanes": other_lanes,
+                "note": f"the quoted {', '.join(named[:-1]) + ' and ' + named[-1] if len(named) > 1 else named[0]} "
+                        f"apply to another group; the program's own page states the rules for {who}"}
         programs.append(entry)
     # A records route tagged for one program or one group (the VCF's Comptroller route, school
     # records for survivors) is listed only when that program and group are asked for.

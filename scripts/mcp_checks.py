@@ -103,7 +103,9 @@ def fixture_curated() -> dict:
             {"lane": "Other", "examples": [example("any", None)]}],
          "window": {"text": "between dates", "applies_to": "Survivors", "who": "survivors", "claim_id": "c"},
          "zone": {"name": "NYC Disaster Area", "who": "survivors", "definition_url": "https://www.cdc.gov/wtc/"}},
-        {"id": "vcf", "short": "VCF", "evidence": [], "zone": {"name": "Zone", "definition": [
+        {"id": "vcf", "short": "VCF", "evidence": [
+            {"lane": "Residence", "who": "survivors", "examples": [example("lease", None)]},
+            {"lane": "Third party", "examples": [example("employer", None)]}], "zone": {"name": "Zone", "definition": [
             {"text": "south of Canal Street", "claim_id": "c"}]}}]}
     return {"timeline": timeline, "readings": readings, "folders": folders, "help-directory": directory}
 
@@ -812,6 +814,12 @@ class Toolkit(unittest.TestCase):
         responders = self.ok("presence_evidence", {"program": "wtchp", "who": "responders"})["data"]["programs"][0]
         self.assertEqual((responders["window"], responders["zone"]), (None, None))
         self.assertEqual(responders["omitted_for_audience"]["fields"], ["window", "zone"])
+        vcf = self.ok("presence_evidence", {"program": "vcf", "who": "responders"})["data"]["programs"][0]
+        self.assertEqual([lane["lane"] for lane in vcf["evidence"]], ["Third party"])
+        self.assertEqual(vcf["omitted_for_audience"]["lanes"], ["Residence"])
+        survivors = self.ok("presence_evidence", {"program": "vcf", "who": "survivors"})["data"]["programs"][0]
+        self.assertEqual([lane["lane"] for lane in survivors["evidence"]], ["Residence", "Third party"])
+        self.assertNotIn("omitted_for_audience", survivors)
         self.refused("presence_evidence", {"program": "fema"}, "program must be one of")
         routes = lambda args: [r["id"] for r in self.ok("presence_evidence", args)["data"]["nyc_records"]]  # noqa: E731
         self.assertEqual(routes({"program": "wtchp", "who": "survivors"}), ["dcas"])

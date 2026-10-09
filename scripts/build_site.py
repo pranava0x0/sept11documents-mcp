@@ -449,7 +449,8 @@ def help_demo(directory: dict, quotes: Quotes, scorecard: dict) -> str:
                 if item.get("contact_url"):
                     shown.pop("note", None)
                 items.append(f"<li>{quotes.quoted(shown)}{extra}{who}</li>")
-            lanes.append(f'<li><b>{e(lane["lane"])}</b><ul>{"".join(items)}</ul></li>')
+            group = f' <span class="muted">{e(lane["who"])}</span>' if lane.get("who") else ""
+            lanes.append(f'<li><b>{e(lane["lane"])}</b>{group}<ul>{"".join(items)}</ul></li>')
         pages = " · ".join(f'<a href="{e(p["url"], quote=True)}">{e(p["label"])}</a>' for p in program["official_pages"])
         articles.append(f'''<article class="help-result" data-help="{pid}">
 <p class="eyebrow">{e(program["administered_by"])}</p>

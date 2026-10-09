@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T05:32:16+00:00",
+  "recorded_at": "2026-10-09T05:39:29+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:15+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMzkzNX0uOTU4Y2I5YmEyMjU3Y2VkMTI2NjZhYzA5NTJmYWY1Zjg="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyNDM2OH0uODAyZGYwOTY3ZDViOGMyMWYxOGI1YTM0MDcyZDQ4N2Y="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:28+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1150,7 +1150,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1315,7 +1315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1456,7 +1456,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1823,7 +1823,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2043,7 +2043,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2091,7 +2091,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2223,6 +2223,7 @@
                 },
                 {
                   "lane": "Residence documents (corroborating)",
+                  "who": "survivors",
                   "examples": [
                     {
                       "text": "The documents listed below are not sufficient on their own, but will be reviewed in conjunction with other documents",
@@ -2233,6 +2234,7 @@
                 },
                 {
                   "lane": "School or daycare records",
+                  "who": "survivors",
                   "examples": [
                     {
                       "text": "If you submit a certified transcript or school record as explained below, you do not need to submit any additional proof of presence",
@@ -2393,7 +2395,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2488,7 +2490,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2537,7 +2539,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2588,7 +2590,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2639,7 +2641,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2704,7 +2706,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:32:16+00:00",
+        "retrieved_at": "2026-10-09T05:39:29+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

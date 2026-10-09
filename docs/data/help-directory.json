@@ -239,6 +239,7 @@
         },
         {
           "lane": "Residence documents (corroborating)",
+          "who": "survivors",
           "examples": [
             {
               "text": "The documents listed below are not sufficient on their own, but will be reviewed in conjunction with other documents",
@@ -249,6 +250,7 @@
         },
         {
           "lane": "School or daycare records",
+          "who": "survivors",
           "examples": [
             {
               "text": "If you submit a certified transcript or school record as explained below, you do not need to submit any additional proof of presence",
