@@ -23,8 +23,12 @@ _WORDS = {
     "W": "WEST", "E": "EAST", "N": "NORTH", "S": "SOUTH",
 }
 _ORDINAL = re.compile(r"\b(\d+)(ST|ND|RD|TH)\b")
-_TOKEN = re.compile(r"[A-Z0-9]+(?:-[A-Z0-9]+)?")
-_NUMBER = re.compile(r"^(\d+)(?:-(\d+))?([A-Z]?)$")
+# A half or quarter number (`86 1/2 Nassau St`) is its own lot. It is read as one token with the
+# fraction as its suffix, so neither half of the fraction is taken for a house number.
+_FRACTIONS = {"1/2": "½", "1/3": "⅓", "2/3": "⅔", "1/4": "¼", "3/4": "¾"}
+_FRACTION = re.compile(r"\b(\d+)\s+(1/2|1/3|2/3|1/4|3/4)(?![/\d])")
+_TOKEN = re.compile(r"[A-Z0-9]+(?:-[A-Z0-9]+)?[½⅓⅔¼¾]?")
+_NUMBER = re.compile(r"^(\d+)(?:-(\d+))?([A-Z½⅓⅔¼¾]?)$")
 # Labels print the BIN as `BIN: 1000859`, `BIN# 1000859`, `BN# 1001215`, `BN # 1079039` or
 # `B# 1083350`; a bare B counts only with its #, so `BID # 1234567` is not read as a BIN.
 _BIN_WORD = re.compile(r"\bBI?N\b|\bB\s?#")
@@ -66,7 +70,14 @@ MAX_ADDRESS_CHARS = 80
 
 
 def _upper(text: str) -> str:
-    return (text or "").upper().replace("B'WAY", "BWAY").replace("’", "'").replace("'", "")
+    text = (text or "").upper().replace("B'WAY", "BWAY").replace("’", "'").replace("'", "")
+    return _FRACTION.sub(lambda m: m.group(1) + _FRACTIONS[m.group(2)], text)
+
+
+def _printed(number: int, suffix: str) -> str:
+    """`86½` back to `86 1/2`, as labels print it; a letter stays attached (`19A`)."""
+    fraction = {v: k for k, v in _FRACTIONS.items()}.get(suffix)
+    return f"{number} {fraction}" if fraction else f"{number}{suffix}"
 
 
 def normalize(text: str) -> list[str]:
@@ -98,7 +109,7 @@ class Query:
     def describe(self) -> str:
         if self.bin:
             return f"BIN {self.bin}"
-        return " ".join(([f"{self.number}{self.suffix}"] if self.number is not None else []) + list(self.street))
+        return " ".join(([_printed(self.number, self.suffix)] if self.number is not None else []) + list(self.street))
 
 
 def parse_query(address: str) -> Query:
@@ -214,7 +225,7 @@ def match(label: str, query: Query) -> dict | None:
         if any(_covers(span, query) for span in spans):
             # A range covers both sides of a street; the label alone cannot say which side.
             return {"by": "number_and_street",
-                    "printed_numbers": [f"{a}{c}" if a == b else f"{a}-{b}" for a, b, c in spans]}
+                    "printed_numbers": [_printed(a, c) if a == b else f"{a}-{b}" for a, b, c in spans]}
     return None
 
 
@@ -272,6 +283,19 @@ def selftest() -> list[str]:
         failures.append("the number printed before a block/lot pair is not a house number")
     if not match("345 CHAMBERS STREET; 16/1", parse_query("345 Chambers Street")):
         failures.append("blanking a block/lot pair must keep the street it follows")
+    for label in ("86 1/2 Nassau St", "27 MADISON STREET Block: 116 Lot: 43 BIN: 1082027 AKAS:27 Madison St., "
+                  "27 1/2 Madison St., 31-39 Madison St"):
+        street = " ".join(normalize(label)[-2:])
+        for wrong in (f"1 {street}", f"2 {street}"):
+            if match(label, parse_query(wrong)):
+                failures.append(f"{wrong!r} must not match {label!r}: 1 and 2 are halves of a fraction")
+    half = match("86 1/2 Nassau St", parse_query("86 1/2 Nassau Street"))
+    if not half or half["printed_numbers"] != ["86 1/2"] or match("86 1/2 Nassau St", parse_query("86 Nassau Street")):
+        failures.append(f"86 1/2 Nassau Street must match its own label alone, got {half}")
+    if parse_query("94 1/2 Greenwich St").describe() != "94 1/2 GREENWICH STREET":
+        failures.append("a half number must be described as printed")
+    if not match("524 2/4/02 27 Madison St", parse_query("27 Madison Street")):
+        failures.append("a date is not a fraction")
     suffixed = "19A SOUTH STREET"
     if match(suffixed, parse_query("19 South Street")) or match(suffixed, parse_query("19B South Street")):
         failures.append("19 and 19B South Street must not match a label printing 19A")
