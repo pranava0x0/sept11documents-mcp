@@ -1142,7 +1142,7 @@ _register(Tool(
     name="presence_evidence", title="Documents the programs accept as proof of presence",
     summary=("The World Trade Center Health Program's and the Victim Compensation Fund's rules for proving "
              "presence, each quoted from the program's own page with its source: time windows, zones, the "
-             "kinds of documents each accepts, and the New York City offices that hold records. Filters by "
+             "kinds of documents each accepts, and the City agencies and other organizations that hold records. Filters by "
              "program and by responders or survivors. It does not decide eligibility, and the server keeps "
              "no record of the inputs."),
     schema=_schema({

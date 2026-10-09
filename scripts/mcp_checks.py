@@ -96,8 +96,9 @@ def fixture_curated() -> dict:
                "columns": ["source_index", "box", "folder", "documents", "pages", "first_bates"], "rows": rows}
     example = lambda text, who: {"text": text, "claim_id": "c", "who": who}  # noqa: E731
     directory = {"disclaimer": "Not legal advice.", "nyc_records": [
-        {"id": "dcas"}, {"id": "comptroller", "programs": ["vcf"]},
-        {"id": "stuyhealth", "programs": ["vcf"], "audience": "survivors"}], "programs": [
+        {"id": "dcas", "kind": "city_agency"}, {"id": "comptroller", "kind": "city_agency", "programs": ["vcf"]},
+        {"id": "stuyhealth", "kind": "private_organization", "programs": ["vcf"], "audience": "survivors"}],
+        "programs": [
         {"id": "wtchp", "short": "WTC Health Program", "evidence": [
             {"lane": "Employment", "examples": [example("letter", "responders"), example("stub", "survivors")]},
             {"lane": "Residence", "examples": [example("lease", "survivors")]},
@@ -844,6 +845,8 @@ class Toolkit(unittest.TestCase):
         self.assertEqual(routes({"program": "wtchp", "who": "survivors"}), ["dcas"])
         self.assertEqual(routes({"program": "vcf", "who": "responders"}), ["dcas", "comptroller"])
         self.assertEqual(routes({"program": "both", "who": "all"}), ["dcas", "comptroller", "stuyhealth"])
+        kinds = {r["id"]: r["kind"] for r in self.ok("presence_evidence", {})["data"]["nyc_records"]}
+        self.assertEqual(kinds["stuyhealth"], "private_organization")
 
     def test_upcoming_dates_count_from_the_stated_day(self):
         payload = self.ok("upcoming_dates", {"as_of": "2026-10-08"})
@@ -936,6 +939,10 @@ class Toolkit(unittest.TestCase):
         self.assertIn("citations_verify on every quote you take from portal_get_page_text", plan)
         building = get("building-records", {"address": "15 John Street"})["result"]["messages"][0]["content"]["text"]
         self.assertIn("next_calls entry as given", building)
+        self.assertIn("where the definition is empty, give the zone's note and official link", building)
+        presence = get("proof-of-presence", {})["result"]["messages"][0]["content"]["text"]
+        self.assertIn("City agency or a private organization as its `kind` states", presence)
+        self.assertNotIn("New York City offices", presence)
         text = get("proof-of-presence", {})["result"]["messages"][0]["content"]["text"]
         self.assertIn("Do not ask for", text)
 

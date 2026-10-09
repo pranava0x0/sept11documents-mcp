@@ -27,5 +27,6 @@ block and lot.
   in a folder that does not name it.
 - Do not say whether the address is inside an exposure zone. Quote the `zone_definitions` the tool
   returns and link the program's map; the program decides. A zone with `who` set applies to that
-  group only; say so when quoting it.
+  group only; say so when quoting it. Where a zone's `definition` is empty, give its `note` and
+  official link and say the wording was not captured; do not supply wording of your own.
 - Do not ask for or record the user's own address beyond the lookup itself.

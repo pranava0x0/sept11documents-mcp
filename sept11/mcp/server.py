@@ -87,8 +87,10 @@ def _building_prompt(arguments: dict) -> str:
             "one of them. Read a page with "
             "portal_get_page_text only when it is captured, and cite it with citations_format. State that a "
             "label match shows where paper was filed, that a document can concern the building without a "
-            "label naming it, and that the tool decides no exposure-zone question; quote each program's zone "
-            "wording from zone_definitions instead, naming the group when a zone has `who` set. " + UNTRUSTED + " "
+            "label naming it, and that the tool decides no exposure-zone question. Quote a program's zone "
+            "wording only where zone_definitions returns a definition, naming the group when a zone has `who` "
+            "set; where the definition is empty, give the zone's note and official link and say the wording "
+            "was not captured. " + UNTRUSTED + " "
             + CITE_RULE)
 
 
@@ -98,7 +100,8 @@ def _presence_prompt(arguments: dict) -> str:
             "they were a responder or a survivor (lived, worked or went to school in the area). Do not ask for "
             "or record a name, address, date of birth, employer or any identifier. Call presence_evidence with "
             "those two answers and present the official rules exactly as quoted, each with its source link, "
-            "followed by the New York City offices that hold records. Say that this is not legal advice and "
+            "followed by the records routes returned in nyc_records, saying for each whether it is a City "
+            "agency or a private organization as its `kind` states. Say that this is not legal advice and "
             "does not decide eligibility, and give the helplines from the result. " + UNTRUSTED)
 
 

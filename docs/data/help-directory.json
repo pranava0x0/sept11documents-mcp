@@ -308,6 +308,7 @@
   "nyc_records": [
     {
       "id": "dcas",
+      "kind": "city_agency",
       "who": "Current and former City employees",
       "issuer": "Department of Citywide Administrative Services (DCAS)",
       "commitment": {
@@ -323,6 +324,7 @@
     },
     {
       "id": "nycps",
+      "kind": "city_agency",
       "who": "People who attended New York City public schools",
       "issuer": "New York City Public Schools (the settlement names the Department of Education)",
       "audience": "survivors",
@@ -355,6 +357,7 @@
     },
     {
       "id": "comptroller",
+      "kind": "city_agency",
       "who": "City employees whose payroll records the Comptroller holds",
       "issuer": "Office of the New York City Comptroller",
       "programs": [
@@ -369,6 +372,7 @@
     },
     {
       "id": "stuyhealth",
+      "kind": "private_organization",
       "who": "Alumni of Stuyvesant or any area school in the NYC Exposure Zone",
       "issuer": "StuyHealth (an alumni organization)",
       "programs": [

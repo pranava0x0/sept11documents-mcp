@@ -405,6 +405,17 @@ def check_source_urls(document, quotes: Quotes) -> int:
     return checked
 
 
+ISSUER_KINDS = ("city_agency", "private_organization")
+
+
+def check_issuer_kinds(directory) -> int:
+    """Every records route says whether it is a City agency, so no answer presents a private group as one."""
+    for issuer in directory["nyc_records"]:
+        if issuer.get("kind") not in ISSUER_KINDS:
+            raise ValueError(f"{issuer.get('id')}: kind must be one of {ISSUER_KINDS}")
+    return len(directory["nyc_records"])
+
+
 def help_demo(directory: dict, quotes: Quotes, scorecard: dict) -> str:
     """The official directory: programs, then the New York City issuers, every rule a verified quote."""
     options, articles = [], []
@@ -999,6 +1010,7 @@ def build(check: bool) -> int:
             anchors, _ = publication.read_json("sept11://anchors")
             directory, _ = publication.read_json("sept11://help-directory")
             check_source_urls(directory, quotes)
+            check_issuer_kinds(directory)
             scorecard, _ = publication.read_json("sept11://scorecard")
             commitments, _ = publication.read_json("sept11://commitments")
             summary, _ = publication.read_json("sept11://catalog/summary")
@@ -1090,6 +1102,11 @@ def selftest() -> int:
         pass
     if check_source_urls({"rules": [{"claim_id": "q-rule", "source_url": "https://www.cdc.gov/wtc/about.html"}]}, quotes) != 1:
         failures.append("a matching source_url must pass")
+    try:
+        check_issuer_kinds({"nyc_records": [{"id": "i", "kind": "city_agency"}, {"id": "j"}]})
+        failures.append("a records route without a kind must fail")
+    except ValueError:
+        pass
     directory = {"disclaimer": "d", "programs": [{
         "id": "p", "name": "<b>P</b>", "administered_by": "a", "what_it_is": None,
         "contact": {"phone": "1-800-000-0000", "url": "https://www.cdc.gov/wtc/", "claim_id": "q-rule"},
@@ -1099,7 +1116,7 @@ def selftest() -> int:
         "separate_from": {"text": "There is no deadline to enroll.", "claim_id": "q-rule"},
         "rules": [], "evidence": [{"lane": "L", "examples": [{"text": "There is no deadline to enroll.", "claim_id": "q-rule"}]}],
         "official_pages": []}],
-        "nyc_records": [{"id": "i", "who": "w", "issuer": "<i>x</i>", "how": "h",
+        "nyc_records": [{"id": "i", "kind": "city_agency", "who": "w", "issuer": "<i>x</i>", "how": "h",
                          "note": {"text": "There is no deadline to enroll.", "claim_id": "q-rule"},
                          "status_obligation_id": "o"}],
         "mayor_announcement": {"text": "There is no deadline to enroll.", "claim_id": "q-rule"}}
