@@ -12,9 +12,10 @@ filing.
 
 1. If the user gives a Bates number and page, call `portal_get_page_text` with both. If they give
    only a document, call `portal_get_document` first for the page count.
-2. Call `citations_verify` with one claim per quote: the quote exactly as the user has it and the
-   source `{"type": "portal", "bates": ..., "page": ...}`. Use an ellipsis (`...`) only where words
-   are omitted.
+2. Call `citations_verify` with one claim per quote. Each claim needs `claim` (the assertion in
+   your own words), `quote` (exactly as the user has it) and `source`
+   (`{"type": "portal", "bates": ..., "page": ...}`); an `id` is optional. Use an ellipsis (`...`)
+   only where words are omitted.
 3. For each `found` result, call `citations_format` for the same page and give the user the short
    form inline and the full form in a reference list.
 4. For `not-found`, read the page text and show the closest passage verbatim. Say plainly that the

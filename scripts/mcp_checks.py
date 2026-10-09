@@ -85,7 +85,7 @@ def fixture_curated() -> dict:
         "id": "dust", "analyte": "asbestos (chrysotile)", "value_as_printed": "4.5", "unit_as_printed": "%",
         "medium": "bulk dust", "location_as_printed": "Murray Street", "sample_date": "2001-09-11",
         "sample_date_precision": "day", "sample_date_basis": "stated", "document": "audit",
-        "document_date": "2001-11-20", "reported_by": "", "claim_id": "c", "quote": "Asbestos results",
+        "document_date": "2001-11-20", "reported_by": "DEP", "claim_id": "c", "quote": "Asbestos results",
         "citation": portal_cite}]}
     rows = [[0, "DEP Box 01", "15 JOHN STREET 1001217, 79/14", 2, 2, "NYC-WTC_000000003"],
             [0, "DEP Box 01", "1 HANOVER SQUARE BIN: 1000841 60-64 Stone St", 1, 4, "NYC-WTC_000000005"],
@@ -762,6 +762,7 @@ class Toolkit(unittest.TestCase):
         self.assertEqual((wide["data"]["folders_returned"], wide["coverage"]), (25, "partial"))
         self.assertIn("truncated_inline", codes(wide))
         self.refused("building_lookup", {"address": "15"}, "street name")
+        self.refused("building_lookup", {"address": "Street"}, "street name")
         self.refused("building_lookup", {"address": "x" * 81}, "limit is 80")
 
     def test_timeline_filters_by_side_and_partial_dates(self):
@@ -771,6 +772,8 @@ class Toolkit(unittest.TestCase):
         side = self.ok("timeline_lookup", {"side": "public_statement"})
         self.assertEqual([e["id"] for e in side["data"]["events"]], ["said"])
         self.refused("timeline_lookup", {"date_from": "Sept 2001"}, "YYYY")
+        self.refused("timeline_lookup", {"date_from": "2001-13-45"}, "YYYY")
+        self.refused("timeline_lookup", {"date_from": "0000"}, "YYYY")
         self.refused("timeline_lookup", {"date_from": "2002", "date_to": "2001"}, "after")
         self.refused("timeline_lookup", {"topic": "weather"}, "topic must be one of")
 
@@ -781,6 +784,7 @@ class Toolkit(unittest.TestCase):
         self.assertEqual(shown["data"]["readings"][0]["value_as_printed"], "4.5")
         self.assertIn("readings_not_dataset", codes(shown))
         self.refused("readings_lookup", {"include_unreviewed": "yes"}, "true or false")
+        self.refused("readings_lookup", {"analyte": "x" * 61}, "limit is 60")
 
     def test_presence_evidence_filters_without_dropping_general_rules(self):
         payload = self.ok("presence_evidence", {"program": "wtchp", "who": "survivors"})
@@ -796,6 +800,8 @@ class Toolkit(unittest.TestCase):
         self.assertEqual([r["id"] for r in payload["data"]["rolling"]], ["monthly"])
         self.assertEqual(len(self.ok("upcoming_dates", {"as_of": "2026-10-08", "include_past": True})["data"]["past"]), 1)
         self.refused("upcoming_dates", {"as_of": "2026-02-30"}, "not a calendar date")
+        self.refused("upcoming_dates", {"as_of": 0}, "ISO date")
+        self.refused("upcoming_dates", {"as_of": "2026-10-08\n"}, "ISO date")
 
     def test_query_draft_sends_nothing_and_quotes_the_phrase(self):
         payload = self.ok("portal_query_draft", {"phrase": "Clean Up Initiative", "words": "Callahan",
@@ -806,8 +812,11 @@ class Toolkit(unittest.TestCase):
         self.assertIn("query_not_sent", codes(payload))
         self.assertEqual(self.ctx.client().requests_made, 0)
         self.assertIn("fuzzy_single_term", codes(self.ok("portal_query_draft", {"words": "asbestos"})))
-        self.refused("portal_query_draft", {"phrase": 'a "b"'}, "without quotation marks")
+        quoted = self.ok("portal_query_draft", {"phrase": 'Clean  “Up” "Initiative"', "words": ' "Callahan" '})
+        self.assertEqual(quoted["data"]["portal_search"]["arguments"]["query"],
+                         '"Clean Up Initiative" Callahan extension:pdf')
         self.refused("portal_query_draft", {"words": "source:DEP"}, "plain terms")
+        self.refused("portal_query_draft", {"phrase": "x" * 201}, "limit is 200")
         self.refused("portal_query_draft", {}, "give a phrase")
 
     def test_citation_reads_the_stamp_and_never_from_a_withheld_page(self):
@@ -829,6 +838,7 @@ class Toolkit(unittest.TestCase):
         self.assertEqual(payload["data"]["csv"].splitlines()[0], "bates,source,box,folder,page_count,pdf_size,pdf_url")
         self.assertIn("missing_from_snapshot", codes(payload))
         self.assertEqual(tools._csv_cell("=HYPERLINK(1)"), "'=HYPERLINK(1)")
+        self.assertEqual(tools._csv_cell("\t=1"), "'\t=1")
         self.assertEqual((tools._csv_cell(""), tools._csv_cell(None), tools._csv_cell(3)), ("", None, 3))
         self.refused("records_manifest", {"bates": ["NYC-WTC_000000001"] * 51}, "limit is 50")
         self.refused("records_manifest", {"bates": ["../etc/passwd"]}, "not a Bates number")

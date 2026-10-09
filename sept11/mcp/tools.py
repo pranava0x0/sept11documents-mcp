@@ -103,13 +103,14 @@ def _require_query(query: str) -> str:
     return query.strip()
 
 
-def _optional_text(value, name: str) -> str:
+def _optional_text(value, name: str, limit: int = MAX_QUERY_CHARS) -> str:
+    """The schema's maxLength, enforced here as well: clients may skip schema validation."""
     if value is None:
         return ""
     if not isinstance(value, str):
         raise InputError(f"{name} must be a string")
-    if len(value) > MAX_QUERY_CHARS:
-        raise InputError(f"{name} is {len(value)} characters; the limit is {MAX_QUERY_CHARS}")
+    if len(value) > limit:
+        raise InputError(f"{name} is {len(value)} characters; the limit is {limit}")
     return value.strip()
 
 
@@ -599,8 +600,8 @@ def readings_lookup(ctx, args: dict, deadline) -> Envelope:
         chronology.validate(document, "readings")
     except ValueError as exc:
         raise IntegrityError(str(exc)) from exc
-    analyte = _optional_text(args.get("analyte"), "analyte")
-    location = _optional_text(args.get("location"), "location")
+    analyte = _optional_text(args.get("analyte"), "analyte", 60)
+    location = _optional_text(args.get("location"), "location", 80)
     include = args.get("include_unreviewed", False)
     if not isinstance(include, bool):
         raise InputError("include_unreviewed must be true or false")
@@ -734,7 +735,7 @@ CALENDAR_PATH = "docs/data/obligations.ics"
 def upcoming_dates(ctx, args: dict, deadline) -> Envelope:
     given = args.get("as_of")
     try:
-        as_of = calendar.parse_day(given) if given else dt.datetime.now(dt.timezone.utc).date()
+        as_of = calendar.parse_day(given) if given is not None else dt.datetime.now(dt.timezone.utc).date()
     except ValueError as exc:
         raise InputError(str(exc)) from exc
     include_past = args.get("include_past", False)
@@ -745,7 +746,7 @@ def upcoming_dates(ctx, args: dict, deadline) -> Envelope:
     ahead = [r for r in plan["dated"] if r["days_from_as_of"] >= 0]
     past = [r for r in plan["dated"] if r["days_from_as_of"] < 0]
     envelope = Envelope(
-        data={"as_of": as_of.isoformat(), "as_of_source": "argument" if given else "server clock (UTC)",
+        data={"as_of": as_of.isoformat(), "as_of_source": "argument" if given is not None else "server clock (UTC)",
               "ahead": ahead, "past": past if include_past else [], "past_count": len(past),
               "rolling": plan["rolling"], "calendar_file": CALENDAR_PATH, "basis": scorecard.get("note_due")},
         source_snapshot=artifact.path, coverage="complete_for_query", review_status=artifact.review_status,
@@ -760,15 +761,16 @@ def upcoming_dates(ctx, args: dict, deadline) -> Envelope:
 # -- portal_query_draft ---------------------------------------------------------
 
 def portal_query_draft(ctx, args: dict, deadline) -> Envelope:
-    phrase = _optional_text(args.get("phrase"), "phrase")
-    words = _optional_text(args.get("words"), "words").split()
-    filters = {f: _optional_text(args.get(f), f) for f in ("source", "box", "folder")}
+    # Quotation marks are dropped and spaces collapsed; the Examples page builder does the same.
+    def clean(text: str) -> str:
+        return " ".join(re.sub(r'["\u201c\u201d]', "", text).split())
+    phrase = clean(_optional_text(args.get("phrase"), "phrase", 200))
+    words = clean(_optional_text(args.get("words"), "words", 200)).split()
+    filters = {f: clean(_optional_text(args.get(f), f, 200)) for f in ("source", "box", "folder")}
     if not phrase and not words and not any(filters.values()):
         raise InputError("give a phrase, some words, or a source, box or folder filter")
-    if '"' in phrase:
-        raise InputError("give the phrase without quotation marks; the draft adds them")
-    if any('"' in w or ":" in w for w in words):
-        raise InputError("words are plain terms; put an exact phrase in `phrase`")
+    if any(":" in w for w in words):
+        raise InputError("words are plain terms; the draft adds extension:pdf itself")
     terms = ([f'"{phrase}"'] if phrase else []) + words
     portal_query = " ".join(terms + ["extension:pdf"]) if terms else None
     catalog_arguments = {k: v for k, v in filters.items() if v}
@@ -779,7 +781,7 @@ def portal_query_draft(ctx, args: dict, deadline) -> Envelope:
             "A quoted phrase matches those words in that order; unquoted words match loosely.",
             "extension:pdf keeps results to the documents themselves.",
             "Collection, box and folder are catalog fields; catalog_search matches them on this machine "
-            "without sending anything to the City.",
+            "without sending anything to the City. The portal query searches every collection.",
         ],
         "live_search_enabled": bool(ctx.cfg.allow_live_search),
     }
@@ -823,7 +825,7 @@ def citations_format(ctx, args: dict, deadline) -> Envelope:
             f"PDF page {page}{stamp}, {url}{captured}.")
     envelope = Envelope(
         data={"bates": bates, "page": page, "pdf_url": url, "stamp": citation.stamp,
-              "stamp_status": citation.stamp_status,
+              "stamp_status": citation.stamp_status, "page_text_read": page_text is not None,
               "catalog": {k: (row or {}).get(k) for k in ("source", "agency", "box", "folder", "page_count")}
               if row else None,
               "formats": {"short": f"{bates} p.{page}", "full": full, "markdown": f"[{bates} p.{page}]({url})"}},
@@ -847,9 +849,10 @@ MAX_MANIFEST = 50
 
 
 def _csv_cell(value):
-    """A label that begins with = + - or @ would run as a formula in a spreadsheet."""
+    """A cell that begins with = + - @, a tab or a carriage return would run as a formula in a
+    spreadsheet. The prefixed apostrophe is in the CSV only; `records` keeps the label as printed."""
     text = "" if value is None else str(value)
-    return "'" + text if text[:1] and text[0] in "=+-@" else value
+    return "'" + text if text[:1] and text[0] in "=+-@\t\r" else value
 
 
 def records_manifest(ctx, args: dict, deadline) -> Envelope:
@@ -864,7 +867,8 @@ def records_manifest(ctx, args: dict, deadline) -> Envelope:
         if bates not in wanted:
             wanted.append(bates)
     rows, snapshot = ctx.catalog()
-    index = {r["bates"]: r for r in rows if r["bates"] in set(wanted)}
+    wanted_set = set(wanted)
+    index = {r["bates"]: r for r in rows if r["bates"] in wanted_set}
     found, missing = [], []
     for bates in wanted:
         row = index.get(bates)
@@ -1107,7 +1111,7 @@ _register(Tool(
              "portal_search and catalog_search, with the reason for each part. Sends nothing anywhere; use it "
              "to write a precise query before deciding whether to send one to the City."),
     schema=_schema({
-        "phrase": _string("Words that must appear together, in order, without quotation marks.", maxLength=200),
+        "phrase": _string("Words that must appear together, in order; quotation marks are dropped.", maxLength=200),
         "words": _string("Other words, separated by spaces.", maxLength=200),
         "source": _string("Collection, e.g. 'DEP Hard Copies (68 Boxes)'.", maxLength=200),
         "box": _string("Box label, e.g. 'DEP Box 31'.", maxLength=200),

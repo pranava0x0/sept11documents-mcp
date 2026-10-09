@@ -15,7 +15,7 @@ UID_DOMAIN = "sept11documents-toolkit"
 
 
 def parse_day(value, label: str = "as_of") -> dt.date:
-    if not isinstance(value, str) or not _ISO_DAY.match(value):
+    if not isinstance(value, str) or not _ISO_DAY.fullmatch(value):
         raise ValueError(f"{label} must be an ISO date such as 2026-10-08")
     try:
         return dt.date.fromisoformat(value)
@@ -32,7 +32,7 @@ def schedule(scorecard: dict, as_of: dt.date) -> dict:
             continue
         base = {"id": row["id"], "obligation": row["obligation"], "source": row.get("source"),
                 "status": row["status"], "checked": row.get("checked"), "due_as_stated": due}
-        if _ISO_DAY.match(due):
+        if isinstance(due, str) and _ISO_DAY.fullmatch(due):
             day = dt.date.fromisoformat(due)
             dated.append({**base, "date": due, "days_from_as_of": (day - as_of).days})
         else:

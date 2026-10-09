@@ -115,6 +115,9 @@ if (!["localhost", "127.0.0.1"].includes(new URL(base).hostname)) {
       await page.fill("#qb-box", "");
       assert.equal(await page.locator("#qb-query").innerText(), '"Clean Up Initiative" Callahan extension:pdf');
       assert.equal(await page.locator("#qb-call").innerText(), 'portal_query_draft {"phrase":"Clean Up Initiative","words":"Callahan"}');
+      await page.fill("#qb-words", "site:nyc.gov");
+      assert.equal(await page.locator("#qb-query").innerText(), "(give a phrase or some words)");
+      assert.match(await page.locator("#qb-status").innerText(), /plain terms/);
       await page.fill("#qb-phrase", "");
       await page.fill("#qb-words", "");
       assert(await page.locator("#qb-copy").isDisabled());

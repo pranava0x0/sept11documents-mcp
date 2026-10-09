@@ -31,14 +31,37 @@ _LOT = re.compile(r"\bLOT[:;#\s]*\s*(\d{1,4})\b")
 # Many DEP labels print "BIN, block/lot" without the words: `15 JOHN STREET 1001217, 79/14`.
 _BIN_PAIR = re.compile(r"\b(\d{7}),\s*(\d{1,5})/(\d{1,4})\b")
 
+# Street-type words; a query made only of these names no street ("West Street" is a street).
+_SUFFIXES = frozenset({"STREET", "AVENUE", "PLACE", "SQUARE", "PLAZA", "BOULEVARD", "DRIVE",
+                       "TERRACE", "LANE", "ROAD", "HIGHWAY", "SLIP"})
+# City, state and ZIP printed after an address: `15 John Street, New York, NY 10038`.
+_CITY_TAIL = frozenset({"NY", "NYC", "MANHATTAN"})
+_ZIP = re.compile(r"^\d{5}$")
+
 MAX_ADDRESS_CHARS = 80
+
+
+def _upper(text: str) -> str:
+    return (text or "").upper().replace("B'WAY", "BWAY").replace("’", "'").replace("'", "")
 
 
 def normalize(text: str) -> list[str]:
     """Upper-case tokens with suffixes, directionals and ordinals in one spelling."""
-    text = (text or "").upper().replace("B'WAY", "BWAY").replace("’", "'").replace("'", "")
-    text = _ORDINAL.sub(r"\1", text)
+    text = _ORDINAL.sub(r"\1", _upper(text))
     return [_WORDS.get(token, token) for token in _TOKEN.findall(text)]
+
+
+def _strip_city_tail(tokens: list[str]) -> list[str]:
+    """Drop a trailing city, state or ZIP; `1 New York Plaza` keeps its street words."""
+    tokens = list(tokens)
+    while tokens:
+        if tokens[-1] in _CITY_TAIL or _ZIP.match(tokens[-1]):
+            tokens.pop()
+        elif tokens[-2:] == ["NEW", "YORK"]:
+            del tokens[-2:]
+        else:
+            break
+    return tokens
 
 
 @dataclass(frozen=True)
@@ -65,11 +88,13 @@ def parse_query(address: str) -> Query:
         return Query(number=None, street=(), bin=bin_only.group(1))
     tokens = normalize(raw)
     number = None
-    if tokens and _NUMBER.match(tokens[0]):
+    # Read the house number before ordinals are normalized: `14th Street` has none.
+    first = _TOKEN.findall(_upper(raw))[:1]
+    if tokens and first and _NUMBER.match(first[0]) and not _ORDINAL.fullmatch(first[0]):
         number = int(_NUMBER.match(tokens[0]).group(1))
         tokens = tokens[1:]
-    street = tuple(t for t in tokens if t not in ("NEW", "YORK", "NY", "NYC", "MANHATTAN"))
-    if not street:
+    street = tuple(_strip_city_tail(tokens))
+    if not street or set(street) <= _SUFFIXES:
         raise ValueError("give a street name, e.g. 'John Street', '15 John Street' or 'Stuyvesant'")
     return Query(number=number, street=street, bin=None)
 
@@ -135,7 +160,16 @@ def selftest() -> list[str]:
         failures.append("abbreviations and ordinals must normalize")
     if not match("STUYVESANT HIGH SCHOOL 345 CHAMBERS", parse_query("Stuyvesant")):
         failures.append("a bare name must match by street words")
-    for bad in ("", "x" * 200, "15"):
+    if not match("BIN: 1000813 47 New Street", parse_query("47 New Street")):
+        failures.append("NEW in a street name must be kept")
+    if not match("4 NEW YORK PLAZA", parse_query("4 New York Plaza")):
+        failures.append("NEW YORK inside a street name must be kept")
+    if parse_query("15 John Street, New York, NY 10038").describe() != "15 JOHN STREET":
+        failures.append("a trailing city, state and ZIP must be dropped")
+    q = parse_query("14th Street")
+    if q.number is not None or q.street != ("14", "STREET"):
+        failures.append("an ordinal street must not be read as a house number")
+    for bad in ("", "x" * 200, "15", "Street", "12 Avenue", "New York, NY"):
         try:
             parse_query(bad)
             failures.append(f"{bad[:10]!r} must be refused")

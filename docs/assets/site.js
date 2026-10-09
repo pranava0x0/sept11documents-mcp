@@ -54,8 +54,8 @@ function bindChoice(id, attribute, onChange) {
     document.querySelectorAll("[" + attribute + "]").forEach((row) => {
       row.hidden = row.getAttribute(attribute) !== select.value;
     });
-    const status = document.getElementById("copy-status");
-    if (status) status.textContent = "";
+    // A copy message belongs to the article it was copied from.
+    (select.closest(".demo-panel") || document).querySelectorAll(".copy-status").forEach((s) => { s.textContent = ""; });
     if (onChange) onChange(select.value);
   };
   select.addEventListener("change", sync);
@@ -116,12 +116,17 @@ if (builder) {
   const call = document.getElementById("qb-call");
   const copy = document.getElementById("qb-copy");
   const status = document.getElementById("qb-status");
+  const copyStatus = document.getElementById("qb-copy-status");
+  // Same normalization as the tool: quotation marks dropped, spaces collapsed.
+  const clean = (text) => text.replace(/["\u201c\u201d]/g, "").replace(/\s+/g, " ").trim();
   const update = () => {
-    const p = phrase.value.replace(/["\u201c\u201d]/g, "").replace(/\s+/g, " ").trim();
-    const w = words.value.split(/\s+/).map((t) => t.replace(/["\u201c\u201d]/g, "")).filter((t) => t && !t.includes(":"));
-    const b = box.value.replace(/\s+/g, " ").trim();
-    const terms = (p ? ['"' + p + '"'] : []).concat(w);
+    const p = clean(phrase.value);
+    const w = clean(words.value).split(" ").filter(Boolean);
+    const b = clean(box.value);
+    const operator = w.some((t) => t.includes(":"));
+    const terms = operator ? [] : (p ? ['"' + p + '"'] : []).concat(w);
     const query = terms.length ? terms.concat(["extension:pdf"]).join(" ") : "";
+    if (copyStatus) copyStatus.textContent = "";
     out.textContent = query || "(give a phrase or some words)";
     copy.dataset.copy = query;
     copy.disabled = !query;
@@ -130,7 +135,8 @@ if (builder) {
     if (w.length) args.words = w.join(" ");
     if (b) args.box = b;
     call.textContent = "portal_query_draft " + JSON.stringify(args);
-    status.textContent = !query ? "Give a phrase or some words to build a portal query."
+    status.textContent = operator ? "Other words are plain terms; the draft adds extension:pdf itself."
+      : !query ? "Give a phrase or some words to build a portal query."
       : terms.length === 1 && !p ? "One loose word matches broadly; a quoted phrase is more precise."
       : "A quoted phrase matches those words in that order. extension:pdf keeps results to the documents themselves.";
   };
@@ -163,9 +169,9 @@ document.querySelectorAll(".copy-citation").forEach((button) => {
     const status = document.getElementById(button.dataset.status || "copy-status");
     try {
       await navigator.clipboard.writeText(button.dataset.copy);
-      status.textContent = "Citation copied.";
+      status.textContent = "Copied the " + (button.dataset.what || "citation") + ".";
     } catch {
-      status.textContent = "Select and copy this citation: " + button.dataset.copy;
+      status.textContent = "Select and copy the " + (button.dataset.what || "citation") + ": " + button.dataset.copy;
     }
   });
 });

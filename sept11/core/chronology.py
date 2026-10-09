@@ -7,6 +7,7 @@ and selects rows; it computes no date, converts no unit and ranks nothing.
 """
 from __future__ import annotations
 
+import datetime as dt
 import re
 
 SIDES = ("public_statement", "city_record", "later_review")
@@ -16,8 +17,15 @@ _PRECISION_LENGTH = {"year": 4, "month": 7, "day": 10}
 
 
 def check_date(value, label: str) -> str:
-    if not isinstance(value, str) or not _DATE.match(value):
-        raise ValueError(f"{label} must be YYYY, YYYY-MM or YYYY-MM-DD, got {value!r}")
+    """A year, a month or a day that exists on the calendar; `2001-13` and `0000` are refused."""
+    problem = ValueError(f"{label} must be YYYY, YYYY-MM or YYYY-MM-DD, got {value!r}")
+    if not isinstance(value, str) or not _DATE.fullmatch(value):
+        raise problem
+    parts = value.split("-")
+    try:
+        dt.date(int(parts[0]), int(parts[1]) if len(parts) > 1 else 1, int(parts[2]) if len(parts) > 2 else 1)
+    except ValueError:
+        raise problem from None
     return value
 
 
@@ -102,7 +110,7 @@ def readings_problems(document: dict) -> list[str]:
             problems.append(f"{rid}: duplicate id")
         seen.add(rid)
         for key in ("analyte", "value_as_printed", "medium", "location_as_printed", "document",
-                    "claim_id", "quote", "sample_date_basis"):
+                    "reported_by", "claim_id", "quote", "sample_date_basis"):
             if not isinstance(row.get(key), str) or not row[key].strip():
                 problems.append(f"{rid}: {key} is required")
         if not isinstance(row.get("unit_as_printed"), str):
@@ -117,6 +125,8 @@ def readings_problems(document: dict) -> list[str]:
         problems += _citation_problems(rid, row.get("citation"))
     if not seen:
         problems.append("the readings file has no rows")
+    if not isinstance(document.get("boundary"), str) or not document["boundary"].strip():
+        problems.append("the readings file needs a boundary statement")
     return problems
 
 

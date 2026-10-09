@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T04:00:06+00:00",
+  "recorded_at": "2026-10-09T04:10:09+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:05+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUxODQwNX0uZDdiMDc0NzVlOTkwMzgzMGY5ZjZkMTVmMDk1YjQzYjM="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUxOTAwOX0uNTc0ODJiZTIyNjRhMmMwYjFkZTc3OTM5NDI0OTlmMWE="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:05+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:05+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:05+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:05+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:05+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:05+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1145,7 +1145,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1305,7 +1305,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1441,7 +1441,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1803,7 +1803,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2023,7 +2023,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2071,7 +2071,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2336,7 +2336,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2431,7 +2431,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2457,7 +2457,7 @@
           "explanation": [
             "A quoted phrase matches those words in that order; unquoted words match loosely.",
             "extension:pdf keeps results to the documents themselves.",
-            "Collection, box and folder are catalog fields; catalog_search matches them on this machine without sending anything to the City."
+            "Collection, box and folder are catalog fields; catalog_search matches them on this machine without sending anything to the City. The portal query searches every collection."
           ],
           "live_search_enabled": false
         },
@@ -2480,7 +2480,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2498,6 +2498,7 @@
           "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1",
           "stamp": "NYC-WTC_000138296",
           "stamp_status": "matched",
+          "page_text_read": true,
           "catalog": {
             "source": "DORIS Giuliani",
             "agency": "Records and Information Services, Dept. of",
@@ -2530,7 +2531,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2548,6 +2549,7 @@
           "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2",
           "stamp": "NYC-WTC_000147321",
           "stamp_status": "matched",
+          "page_text_read": true,
           "catalog": {
             "source": "DEP Hard Copies (68 Boxes)",
             "agency": "Environmental Protection, Dept. of",
@@ -2580,7 +2582,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2602,6 +2604,7 @@
           "pdf_url": "https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1",
           "stamp": null,
           "stamp_status": "unverified_stamp",
+          "page_text_read": false,
           "catalog": {
             "source": "DEP Hard Copies (68 Boxes)",
             "agency": "Environmental Protection, Dept. of",
@@ -2644,7 +2647,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:00:06+00:00",
+        "retrieved_at": "2026-10-09T04:10:09+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

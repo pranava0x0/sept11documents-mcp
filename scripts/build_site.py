@@ -788,9 +788,14 @@ def cite_demo(recorded: dict) -> str:
             forms.append(f'<div><dt>{name}</dt><dd><code class="citation-text">{e(text)}</code> '
                          f'<button type="button" class="quiet copy-citation" data-status="cite-status" '
                          f'data-copy="{e(text, quote=True)}" hidden>Copy</button></dd></div>')
-        stamp = {"matched": "The Bates stamp printed on the page was read and matches the number.",
-                 "not_found": "No Bates stamp could be read on this page; the citation uses the catalog number."
-                 }.get(data["stamp_status"], "The page text was not read, so the printed stamp was not checked.")
+        if data["stamp_status"] == "matched":
+            stamp = "The Bates stamp printed on this page was read from the captured page text."
+        elif data["stamp_status"] == "ambiguous_stamp":
+            stamp = "The page text shows more than one Bates stamp, so none was chosen; the citation uses the catalog number."
+        elif data.get("page_text_read"):
+            stamp = "The page text was read and no Bates stamp was legible; the citation uses the catalog number."
+        else:
+            stamp = "The page text was not read, so the printed stamp was not checked."
         catalog = data.get("catalog") or {}
         place = " · ".join(x for x in (catalog.get("source"), catalog.get("box"), catalog.get("folder")) if x)
         articles.append(
@@ -801,7 +806,7 @@ def cite_demo(recorded: dict) -> str:
             f'<p class="result-note">{e(stamp)}</p>\n{recorded_note(ex)}</article>')
     return ('<label for="cite-choice">Choose a page</label>\n'
             '<select id="cite-choice">' + "".join(options) + '</select>\n' + "\n".join(articles)
-            + '\n<p id="cite-status" class="result-note" role="status"></p>')
+            + '\n<p id="cite-status" class="result-note copy-status" role="status"></p>')
 
 
 def manifest_demo(recorded: dict) -> tuple[str, str]:
@@ -811,11 +816,12 @@ def manifest_demo(recorded: dict) -> tuple[str, str]:
     rows = []
     for row in data["records"]:
         place = " · ".join(x for x in (row["source"], row["box"], row["folder"]) if x)
+        pages = "" if row["page_count"] is None else f'{row["page_count"]:,}'
+        size = "" if row["pdf_size"] is None else f'{row["pdf_size"] / 1_000_000:.1f} MB'
         rows.append(f'<tr><td data-label="Bates"><a class="cite" href="{e(row["pdf_url"], quote=True)}">'
                     f'{e(row["bates"])}</a></td>'
                     f'<td data-label="Collection, box, folder">{e(place)}</td>'
-                    f'<td data-label="Pages">{row["page_count"]:,}</td>'
-                    f'<td data-label="PDF size">{row["pdf_size"] / 1_000_000:.1f} MB</td></tr>')
+                    f'<td data-label="Pages">{pages}</td><td data-label="PDF size">{size}</td></tr>')
     missing = (f'<p class="result-note">Not in the catalog: {e(", ".join(data["missing"]))}.</p>'
                if data["missing"] else "")
     html = (f'<p class="result-note">{data["found"]} of {data["requested"]} requested documents found in the '
@@ -1130,7 +1136,7 @@ def selftest() -> int:
                                "documents_in_matched_folders": 3, "catalog_captured_at": "2026-09-11T00:00:00"}}},
         {"id": "cite", "demo": "cite", "is_error": False, "title": "t", "question": "q",
          "request": {"name": "citations_format", "arguments": {"bates": "NYC-WTC_000000001", "page": 1}},
-         "response": {"data": {"bates": "NYC-WTC_000000001", "page": 1, "pdf_url": "https://x/#page=1", "stamp_status": "unread",
+         "response": {"data": {"bates": "NYC-WTC_000000001", "page": 1, "pdf_url": "https://x/#page=1", "stamp_status": "unverified_stamp", "page_text_read": False,
                                "catalog": None, "formats": {"short": "s", "full": 'f "quoted"', "markdown": "[m](u)"}}}},
         {"id": "list", "demo": "manifest", "is_error": False,
          "request": {"name": "records_manifest", "arguments": {"bates": ["NYC-WTC_000000001"]}},
