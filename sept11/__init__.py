@@ -11,10 +11,10 @@ Layering (spec/10-security-and-runtime-architecture.md):
 """
 from __future__ import annotations
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 # Bumped whenever a tool's response envelope changes shape (spec 08, MCP response contract).
-SCHEMA_VERSION = "2026-09-11"
+SCHEMA_VERSION = "2026-10-08"
 
 # Recorded in every snapshot manifest so snapshots parsed by different code are never compared.
 ADAPTER_VERSION = "portal/0.1.0"

@@ -10,7 +10,10 @@ clients constrain tool names to [A-Za-z0-9_-].
 """
 from __future__ import annotations
 
+import csv
+import datetime as dt
 import html
+import io
 import re
 from collections import Counter
 from dataclasses import dataclass, field
@@ -19,6 +22,7 @@ from typing import Callable
 from ..config import (MAX_BROWSE_CHILDREN, MAX_CLAIMS_PER_CALL, MAX_PAGE_TEXT_CHARS,
                       MAX_QUERY_CHARS, MAX_RESULTS)
 from ..adapters import portal
+from ..core import addresses, calendar, chronology
 from ..core import citations as cite
 from ..core import commitments as ledger
 from ..core.errors import InputError, IntegrityError, PolicyError, Sept11Error
@@ -504,7 +508,7 @@ def doi_milestones(ctx, args: dict, deadline) -> Envelope:
     envelope = Envelope(data=scorecard, source_snapshot=artifact.path, coverage="partial",
                         review_status=artifact.review_status, retrieval="captured", freshness="unknown")
     envelope.warn("no_compliance_determination",
-                  "obligation rows are observations of public surfaces on the date checked, "
+                  "each obligation is an observation of public surfaces on the date checked, "
                   "with no percentage score and no legal determination. "
                   "A missed check is recorded as `unable_to_check`; `not_observed` means a surface was inspected")
     if artifact.review_status == "unreviewed":
@@ -536,6 +540,357 @@ def budget_lookup(ctx, args: dict, deadline) -> Envelope:
                       "one and must not be added together")
     if artifact.review_status == "unreviewed":
         envelope.warn("unreviewed_artifact", "no named reviewer has signed off this ledger")
+    return envelope
+
+
+# -- timeline_lookup ------------------------------------------------------------
+
+def _optional_date(value, name: str) -> str | None:
+    if value in (None, ""):
+        return None
+    try:
+        return chronology.check_date(value, name)
+    except ValueError as exc:
+        raise InputError(str(exc)) from exc
+
+
+def _choice(value, allowed: tuple, name: str, default: str = "all") -> str:
+    chosen = default if value in (None, "") else value
+    if chosen not in allowed:
+        raise InputError(f"{name} must be one of {list(allowed)}")
+    return chosen
+
+
+def timeline_lookup(ctx, args: dict, deadline) -> Envelope:
+    document, artifact = ctx.publication().read_json("sept11://timeline")
+    try:
+        chronology.validate(document, "timeline")
+    except ValueError as exc:
+        raise IntegrityError(str(exc)) from exc
+    side = _choice(args.get("side"), chronology.SIDES + ("all",), "side")
+    topic = _choice(args.get("topic"), tuple(document["topics"]) + ("all",), "topic")
+    date_from = _optional_date(args.get("date_from"), "date_from")
+    date_to = _optional_date(args.get("date_to"), "date_to")
+    if date_from and date_to and chronology.span(date_from)[0] > chronology.span(date_to)[1]:
+        raise InputError("date_from is after date_to")
+    events = chronology.select_events(document, side, topic, date_from, date_to)
+    envelope = Envelope(
+        data={"filters": {"side": side, "topic": topic, "date_from": date_from, "date_to": date_to},
+              "sides": document["sides"], "topics": document["topics"],
+              "events_total": len(document["events"]), "events_returned": len(events),
+              "events": events, "boundary": document["boundary"]},
+        source_snapshot=artifact.path, coverage="complete_for_query",
+        review_status=artifact.review_status, retrieval="captured", freshness="unknown")
+    envelope.warn("sequence_not_finding", document["boundary"])
+    envelope.warn("no_document_date_field",
+                  "each date is the one printed on or stated for its source, with its basis; "
+                  "the portal itself publishes no document dates")
+    if artifact.review_status == "unreviewed":
+        envelope.warn("unreviewed_artifact", "no named reviewer has signed off this timeline; quotes are "
+                      "located in their sources, which is not review")
+    return envelope
+
+
+# -- readings_lookup ------------------------------------------------------------
+
+def readings_lookup(ctx, args: dict, deadline) -> Envelope:
+    document, artifact = ctx.publication().read_json("sept11://readings")
+    try:
+        chronology.validate(document, "readings")
+    except ValueError as exc:
+        raise IntegrityError(str(exc)) from exc
+    analyte = _optional_text(args.get("analyte"), "analyte")
+    location = _optional_text(args.get("location"), "location")
+    include = args.get("include_unreviewed", False)
+    if not isinstance(include, bool):
+        raise InputError("include_unreviewed must be true or false")
+    matched = chronology.select_readings(document, analyte, location)
+    # Spec 02 §3.8: unreviewed rows are returned only when the caller asks for them.
+    withheld = len(matched) if artifact.review_status != "approved" and not include else 0
+    rows = [] if withheld else matched
+    envelope = Envelope(
+        data={"filters": {"analyte": analyte or None, "location": location or None,
+                          "include_unreviewed": include},
+              "readings_matched": len(matched), "readings_returned": len(rows),
+              "withheld_unreviewed": withheld, "readings": rows, "boundary": document["boundary"],
+              "note": document["note"]},
+        source_snapshot=artifact.path, coverage="partial", review_status=artifact.review_status,
+        retrieval="captured", freshness="unknown")
+    envelope.warn("readings_not_dataset", document["boundary"] + " Units are as printed and are not converted.")
+    if artifact.review_status == "unreviewed":
+        envelope.warn("unreviewed_artifact",
+                      f"{withheld} matching rows withheld: no named reviewer has signed off these readings. "
+                      "Call again with include_unreviewed=true to see them, labelled unreviewed"
+                      if withheld else "these rows are unreviewed: each quote is located at its Bates page, "
+                      "and no named reviewer has signed them off")
+    return envelope
+
+
+# -- building_lookup ------------------------------------------------------------
+
+MAX_BUILDING_FOLDERS = 25
+
+
+def _zone_definitions(ctx) -> list[dict]:
+    """Zone wording from the published directory, quoted with claim ids; never computed."""
+    try:
+        directory, _ = ctx.publication().read_json("sept11://help-directory")
+    except Sept11Error:
+        return []
+    zones = []
+    for program in directory.get("programs", []):
+        zone = program.get("zone")
+        if zone:
+            zones.append({"program": program.get("short") or program.get("name"), "name": zone.get("name"),
+                          "definition": zone.get("definition") or [], "map_url": zone.get("map_url"),
+                          "definition_url": zone.get("definition_url"), "note": zone.get("note")})
+    return zones
+
+
+def building_lookup(ctx, args: dict, deadline) -> Envelope:
+    try:
+        query = addresses.parse_query(args.get("address"))
+    except ValueError as exc:
+        raise InputError(str(exc)) from exc
+    index, artifact = ctx.publication().read_json("sept11://catalog/folders")
+    sources = index.get("sources", [])
+    hits = []
+    for row in index.get("rows", []):
+        source_index, box, folder, documents, pages, first = row
+        how = addresses.match(folder, query)
+        if how:
+            hits.append({"source": sources[source_index] if source_index < len(sources) else None,
+                         "box": box, "folder": folder, "documents": documents, "pages": pages,
+                         "first_bates": first, "first_pdf_url": cite.pdf_url(first),
+                         "matched_by": how["by"], "printed_house_numbers": how["printed_numbers"],
+                         "printed_identifiers": addresses.identifiers(folder)})
+    hits.sort(key=lambda h: (-h["documents"], h["box"], h["folder"]))
+    shown = hits[:MAX_BUILDING_FOLDERS]
+    envelope = Envelope(
+        data={"query": {"as_given": args.get("address"), "read_as": query.describe(),
+                        "house_number": query.number, "street_words": list(query.street), "bin": query.bin},
+              "folders_matched": len(hits), "folders_returned": len(shown),
+              "documents_in_matched_folders": sum(h["documents"] for h in hits),
+              "folders": shown,
+              "next_calls": [{"tool": "catalog_search", "arguments": {"box": h["box"], "folder": h["folder"]}}
+                             for h in shown[:3]],
+              "zone_definitions": _zone_definitions(ctx),
+              "catalog_captured_at": index.get("captured_at")},
+        source_snapshot=artifact.path, coverage="partial" if len(hits) > len(shown) else "complete_for_query",
+        review_status=artifact.review_status, retrieval="captured", freshness="unknown")
+    envelope.warn("label_match_only",
+                  "matched against the City's folder labels; a document can concern this building without a "
+                  "label that names it, and a label can name several buildings")
+    envelope.warn("zone_not_computed",
+                  "no exposure-zone membership is decided here; zone_definitions quotes each program's own "
+                  "wording, and the program decides")
+    envelope.warn("physical_labels", "labels are transcribed as the City produced them, including misspellings")
+    if len(hits) > len(shown):
+        envelope.warn("truncated_inline", f"showing the {len(shown)} largest of {len(hits)} matching folders")
+    return envelope
+
+
+# -- presence_evidence ----------------------------------------------------------
+
+PROGRAMS = ("wtchp", "vcf", "both")
+AUDIENCES = ("responders", "survivors", "all")
+
+
+def presence_evidence(ctx, args: dict, deadline) -> Envelope:
+    program = _choice(args.get("program"), PROGRAMS, "program", default="both")
+    who = _choice(args.get("who"), AUDIENCES, "who")
+    directory, artifact = ctx.publication().read_json("sept11://help-directory")
+    programs = []
+    for entry in directory.get("programs", []):
+        if program != "both" and entry.get("id") != program:
+            continue
+        lanes = []
+        for lane in entry.get("evidence", []):
+            examples = [x for x in lane.get("examples", [])
+                        if who == "all" or x.get("who") in (None, who)]
+            if examples:
+                lanes.append({**lane, "examples": examples})
+        programs.append({**entry, "evidence": lanes})
+    envelope = Envelope(
+        data={"filters": {"program": program, "who": who}, "disclaimer": directory.get("disclaimer"),
+              "programs": programs, "nyc_records": directory.get("nyc_records", []),
+              "mayor_announcement": directory.get("mayor_announcement"),
+              "not_personalized": True},
+        source_snapshot=artifact.path, coverage="complete_for_query", review_status=artifact.review_status,
+        retrieval="captured", freshness="unknown")
+    envelope.warn("directory_not_advice", directory.get("disclaimer") or
+                  "quoted official rules; no eligibility decision")
+    if artifact.review_status == "unreviewed":
+        envelope.warn("unreviewed_artifact", "no practitioner has reviewed this directory yet; read the "
+                      "linked official page before acting")
+    return envelope
+
+
+# -- upcoming_dates -------------------------------------------------------------
+
+CALENDAR_PATH = "docs/data/obligations.ics"
+
+
+def upcoming_dates(ctx, args: dict, deadline) -> Envelope:
+    given = args.get("as_of")
+    try:
+        as_of = calendar.parse_day(given) if given else dt.datetime.now(dt.timezone.utc).date()
+    except ValueError as exc:
+        raise InputError(str(exc)) from exc
+    include_past = args.get("include_past", False)
+    if not isinstance(include_past, bool):
+        raise InputError("include_past must be true or false")
+    scorecard, artifact = ctx.publication().read_json("sept11://scorecard")
+    plan = calendar.schedule(scorecard, as_of)
+    ahead = [r for r in plan["dated"] if r["days_from_as_of"] >= 0]
+    past = [r for r in plan["dated"] if r["days_from_as_of"] < 0]
+    envelope = Envelope(
+        data={"as_of": as_of.isoformat(), "as_of_source": "argument" if given else "server clock (UTC)",
+              "ahead": ahead, "past": past if include_past else [], "past_count": len(past),
+              "rolling": plan["rolling"], "calendar_file": CALENDAR_PATH, "basis": scorecard.get("note_due")},
+        source_snapshot=artifact.path, coverage="complete_for_query", review_status=artifact.review_status,
+        retrieval="captured", freshness="unknown")
+    envelope.warn("days_relative_to_as_of", f"days_from_as_of counts from {as_of.isoformat()}; dates are the "
+                  "ones stated in the settlement and the resolution, and a rolling basis is listed without dates")
+    envelope.warn("no_compliance_determination",
+                  "status is what was observed on public surfaces when checked; no legal determination")
+    return envelope
+
+
+# -- portal_query_draft ---------------------------------------------------------
+
+def portal_query_draft(ctx, args: dict, deadline) -> Envelope:
+    phrase = _optional_text(args.get("phrase"), "phrase")
+    words = _optional_text(args.get("words"), "words").split()
+    filters = {f: _optional_text(args.get(f), f) for f in ("source", "box", "folder")}
+    if not phrase and not words and not any(filters.values()):
+        raise InputError("give a phrase, some words, or a source, box or folder filter")
+    if '"' in phrase:
+        raise InputError("give the phrase without quotation marks; the draft adds them")
+    if any('"' in w or ":" in w for w in words):
+        raise InputError("words are plain terms; put an exact phrase in `phrase`")
+    terms = ([f'"{phrase}"'] if phrase else []) + words
+    portal_query = " ".join(terms + ["extension:pdf"]) if terms else None
+    catalog_arguments = {k: v for k, v in filters.items() if v}
+    data = {
+        "portal_search": {"arguments": {"query": portal_query}} if portal_query else None,
+        "catalog_search": {"arguments": catalog_arguments} if catalog_arguments else None,
+        "explanation": [
+            "A quoted phrase matches those words in that order; unquoted words match loosely.",
+            "extension:pdf keeps results to the documents themselves.",
+            "Collection, box and folder are catalog fields; catalog_search matches them on this machine "
+            "without sending anything to the City.",
+        ],
+        "live_search_enabled": bool(ctx.cfg.allow_live_search),
+    }
+    envelope = Envelope(data=data, source_snapshot=None, coverage="complete_for_query",
+                        review_status="unreviewed", retrieval="not_checked", freshness="unknown")
+    envelope.warn("query_not_sent", "this is a draft; nothing was sent to the City. portal_search sends the "
+                  "query only when the operator has enabled live search")
+    if portal_query and len(terms) == 1 and not phrase:
+        envelope.warn("fuzzy_single_term", "one unquoted word matches loosely; give a phrase for precision")
+    return envelope
+
+
+# -- citations_format -----------------------------------------------------------
+
+def citations_format(ctx, args: dict, deadline) -> Envelope:
+    bates = cite.normalize_bates(args.get("bates", ""))
+    page = args.get("page")
+    if not isinstance(page, int) or isinstance(page, bool) or page < 1:
+        raise InputError("page must be a positive integer; PDF pages are one-based")
+    try:
+        rows, snapshot = ctx.catalog()
+        row = next((r for r in rows if r["bates"] == bates), None)
+    except IntegrityError:
+        rows, snapshot, row = None, None, None
+    if row and row.get("page_count") and page > row["page_count"]:
+        raise InputError(f"{bates} has {row['page_count']} pages in the catalog; page {page} does not exist")
+    page_text = None
+    if ctx.evidence.has(bates):
+        try:
+            page_text = ctx.evidence.page(bates, page).text
+        except Sept11Error:
+            page_text = None  # captured document, page not in the capture
+    if page_text is not None and screen(page_text).suspect:
+        page_text = None  # the stamp is read from text the PII screen withholds; leave it unread
+    citation = cite.build(bates, page, page_text=page_text)
+    url = f"{citation.pdf_url}#page={page}"
+    place = ", ".join(x for x in ((row or {}).get("source"), (row or {}).get("box"), (row or {}).get("folder")) if x)
+    stamp = f" (page stamp {citation.stamp.replace('_', ' ')})" if citation.stamp_status == "matched" else ""
+    captured = f"; catalog captured {snapshot.captured_at[:10]}" if snapshot else ""
+    full = (f"City of New York, September 11th Document Portal, {place + ', ' if place else ''}{bates}, "
+            f"PDF page {page}{stamp}, {url}{captured}.")
+    envelope = Envelope(
+        data={"bates": bates, "page": page, "pdf_url": url, "stamp": citation.stamp,
+              "stamp_status": citation.stamp_status,
+              "catalog": {k: (row or {}).get(k) for k in ("source", "agency", "box", "folder", "page_count")}
+              if row else None,
+              "formats": {"short": f"{bates} p.{page}", "full": full, "markdown": f"[{bates} p.{page}]({url})"}},
+        source_snapshot=snapshot.snapshot_id if snapshot else None,
+        coverage="complete_for_query" if row else "partial", review_status="unreviewed",
+        retrieval="captured" if row or page_text else "not_checked", freshness="unknown")
+    if citation.stamp_status != "matched":
+        envelope.warn("stamp_unverified", f"stamp_status is {citation.stamp_status}; the printed stamp was not "
+                      "read from this page, and none is computed from the document ID")
+    if row is None:
+        envelope.warn("missing_from_snapshot", f"{bates} is not in a local catalog snapshot; the citation carries "
+                      "no collection, box or folder")
+    else:
+        envelope.warn("local_snapshot_only", "collection, box and folder come from the local catalog snapshot")
+    return envelope
+
+
+# -- records_manifest -----------------------------------------------------------
+
+MAX_MANIFEST = 50
+
+
+def _csv_cell(value):
+    """A label that begins with = + - or @ would run as a formula in a spreadsheet."""
+    text = "" if value is None else str(value)
+    return "'" + text if text[:1] and text[0] in "=+-@" else value
+
+
+def records_manifest(ctx, args: dict, deadline) -> Envelope:
+    requested = args.get("bates")
+    if not isinstance(requested, list) or not requested:
+        raise InputError("bates must be a non-empty array of Bates numbers")
+    if len(requested) > MAX_MANIFEST:
+        raise InputError(f"{len(requested)} Bates numbers; the limit is {MAX_MANIFEST} per call")
+    wanted = []
+    for value in requested:
+        bates = cite.normalize_bates(value)
+        if bates not in wanted:
+            wanted.append(bates)
+    rows, snapshot = ctx.catalog()
+    index = {r["bates"]: r for r in rows if r["bates"] in set(wanted)}
+    found, missing = [], []
+    for bates in wanted:
+        row = index.get(bates)
+        if row is None:
+            missing.append(bates)
+            continue
+        found.append({"bates": bates, "source": row.get("source"), "agency": row.get("agency"),
+                      "box": row.get("box"), "folder": row.get("folder"), "page_count": row.get("page_count"),
+                      "pdf_size": row.get("pdf_size"), "production_volume": row.get("production_volume"),
+                      "pdf_url": cite.pdf_url(bates), "text_cached_locally": ctx.evidence.has(bates)})
+    columns = ("bates", "source", "box", "folder", "page_count", "pdf_size", "pdf_url")
+    buffer = io.StringIO()
+    writer = csv.writer(buffer, lineterminator="\n")
+    writer.writerow(columns)
+    for row in found:
+        writer.writerow([_csv_cell(row[c]) for c in columns])
+    envelope = Envelope(
+        data={"requested": len(wanted), "found": len(found), "missing": missing,
+              "pages_total": sum(r["page_count"] or 0 for r in found),
+              "bytes_total": sum(r["pdf_size"] or 0 for r in found),
+              "records": found, "csv": buffer.getvalue(), "catalog_captured_at": snapshot.captured_at},
+        source_snapshot=snapshot.snapshot_id, coverage="complete_for_query" if not missing else "partial",
+        review_status="unreviewed", retrieval="captured", freshness="unknown")
+    envelope.warn("local_snapshot_only", f"rows come from the catalog captured {snapshot.captured_at}")
+    if missing:
+        envelope.warn("missing_from_snapshot", f"{len(missing)} requested Bates numbers are not in this snapshot")
     return envelope
 
 
@@ -661,7 +1016,7 @@ _register(Tool(
     handler=citations_verify))
 
 _register(Tool(
-    name="doi_milestones", title="Settlement and DOI obligation rows",
+    name="doi_milestones", title="Settlement and DOI obligations",
     summary=("The dated obligations from the settlement and Council Resolution 560-A with what was "
              "observed on the public surfaces, when it was checked, and what remains upcoming."),
     schema=_schema({}),
@@ -679,3 +1034,104 @@ _register(Tool(
                   "description": "portal, doi, education, or all (default)."},
     }),
     handler=budget_lookup))
+
+_register(Tool(
+    name="timeline_lookup", title="Public statements and City records, in date order",
+    summary=("A curated timeline of what officials said in public about the air, the schools and the City's "
+             "liability after September 11, 2001, beside the City records in the portal and the later "
+             "reviews. Every entry quotes a registered claim at its Bates page or official URL, with the basis "
+             "for its date. Placing a statement beside a record is not a finding about what anyone knew."),
+    schema=_schema({
+        "side": {"type": "string", "enum": list(chronology.SIDES) + ["all"],
+                 "description": "public_statement, city_record, later_review, or all (default)."},
+        "topic": _string("air, schools, liability, cleanup, oversight, or all (default).", maxLength=20),
+        "date_from": _string("Earliest date, YYYY, YYYY-MM or YYYY-MM-DD.", maxLength=10),
+        "date_to": _string("Latest date, YYYY, YYYY-MM or YYYY-MM-DD.", maxLength=10),
+    }),
+    handler=timeline_lookup))
+
+_register(Tool(
+    name="readings_lookup", title="Sampling results printed in located records",
+    summary=("Asbestos, benzene and other sampling results printed in City records located so far, each "
+             "with the value, unit, medium, location and dates exactly as the document prints them and the "
+             "Bates page that holds the quote. Units are not converted and nothing is compared with a health "
+             "standard. Unreviewed rows are returned only with include_unreviewed=true."),
+    schema=_schema({
+        "analyte": _string("Filter by substance, e.g. 'asbestos' or 'benzene'.", maxLength=60),
+        "location": _string("Filter by location words as printed, e.g. 'Stuyvesant' or 'Fresh Kills'.", maxLength=80),
+        "include_unreviewed": {"type": "boolean",
+                               "description": "Return rows no named reviewer has signed off (default false)."},
+    }),
+    handler=readings_lookup))
+
+_register(Tool(
+    name="building_lookup", title="Folders filed under a street address",
+    summary=("Find the archive folders whose City labels name a street address, a street or a building "
+             "identification number (BIN). DEP's boxes file asbestos and air-monitoring paperwork by "
+             "building, so a label match shows where the City filed paper about that address. Returns each "
+             "folder with its counts and first Bates number, the BIN, block and lot the label prints, and "
+             "each program's own zone wording. It does not decide whether an address is inside a zone."),
+    schema=_schema({"address": _string("A street address ('15 John Street'), a street ('Chambers Street'), "
+                                       "a building name in a label ('Stuyvesant') or a seven-digit BIN.",
+                                       maxLength=addresses.MAX_ADDRESS_CHARS)}, ["address"]),
+    handler=building_lookup))
+
+_register(Tool(
+    name="presence_evidence", title="Documents the programs accept as proof of presence",
+    summary=("The World Trade Center Health Program's and the Victim Compensation Fund's rules for proving "
+             "presence, each quoted from the program's own page with its source: time windows, zones, the "
+             "kinds of documents each accepts, and the New York City offices that hold records. Filters by "
+             "program and by responders or survivors. It does not decide eligibility, and the server keeps "
+             "no record of the inputs."),
+    schema=_schema({
+        "program": {"type": "string", "enum": list(PROGRAMS), "description": "wtchp, vcf, or both (default)."},
+        "who": {"type": "string", "enum": list(AUDIENCES),
+                "description": "responders, survivors, or all (default)."},
+    }),
+    handler=presence_evidence))
+
+_register(Tool(
+    name="upcoming_dates", title="Dated obligations ahead",
+    summary=("The settlement's and Council Resolution 560-A's dated obligations in date order, with days "
+             "from a given date, the status last observed, and the rows whose basis is rolling rather than "
+             "dated. The same dates are published as an iCalendar file at docs/data/obligations.ics."),
+    schema=_schema({
+        "as_of": _string("Count days from this ISO date (default: today, UTC).", maxLength=10),
+        "include_past": {"type": "boolean", "description": "Also list dated obligations already past."},
+    }),
+    handler=upcoming_dates))
+
+_register(Tool(
+    name="portal_query_draft", title="Draft a portal search without sending it",
+    summary=("Turn an exact phrase, some words and a collection, box or folder into the arguments for "
+             "portal_search and catalog_search, with the reason for each part. Sends nothing anywhere; use it "
+             "to write a precise query before deciding whether to send one to the City."),
+    schema=_schema({
+        "phrase": _string("Words that must appear together, in order, without quotation marks.", maxLength=200),
+        "words": _string("Other words, separated by spaces.", maxLength=200),
+        "source": _string("Collection, e.g. 'DEP Hard Copies (68 Boxes)'.", maxLength=200),
+        "box": _string("Box label, e.g. 'DEP Box 31'.", maxLength=200),
+        "folder": _string("Folder label words, e.g. 'JOHN STREET'.", maxLength=200),
+    }),
+    handler=portal_query_draft))
+
+_register(Tool(
+    name="citations_format", title="Citation for one page",
+    summary=("A citation for one page of one document in short, full and Markdown forms: Bates number, PDF "
+             "page, the stamp printed on that page where it can be read, the collection, box and folder from "
+             "the local catalog, and a link that opens the City's PDF at that page."),
+    schema=_schema({
+        "bates": _string("Bates number, e.g. NYC-WTC_000138296."),
+        "page": {"type": "integer", "minimum": 1, "description": "One-based PDF page number."},
+    }, ["bates", "page"]),
+    handler=citations_format))
+
+_register(Tool(
+    name="records_manifest", title="Manifest of a set of documents",
+    summary=("For up to 50 Bates numbers, one row each with collection, box, folder, pages, file size and "
+             "PDF link from the local catalog, the total pages and bytes, the numbers not found, and the "
+             "same rows as CSV for a records request or a shared reading list."),
+    schema=_schema({"bates": {"type": "array", "minItems": 1, "maxItems": MAX_MANIFEST,
+                              "items": {"type": "string", "maxLength": 80},
+                              "description": "Bates numbers, e.g. [\"NYC-WTC_000138296\"]."}}, ["bates"]),
+    handler=records_manifest))

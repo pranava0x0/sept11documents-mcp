@@ -16,6 +16,12 @@ its Bates number in the top five.
     python3 scripts/mcp_evals.py --live     # also search the live portal (opt-in)
     python3 scripts/mcp_evals.py --selftest
 
+The same run checks the curated files the 0.3.0 tools serve: every timeline entry and
+every sampling result with a portal citation must come back `found` from
+`citations_verify` at its Bates page, and each golden address in `ADDRESSES` must
+return, from `building_lookup`, the folder that holds a document known to be filed
+under it.
+
 A failing anchor blocks a release. Zero anchors examined exits 2, not 0.
 """
 from __future__ import annotations
@@ -36,6 +42,10 @@ from sept11.mcp.context import Context  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 ANCHORS = ROOT / "review" / "anchors.json"
 MAX_LIVE_REQUESTS = 20
+
+# An address, and a captured document the catalog files under that address's folder.
+ADDRESSES = [("15 John Street", "NYC-WTC_000094256"), ("17 John Street", "NYC-WTC_000094298"),
+             ("345 Chambers Street", "NYC-WTC_000106411"), ("Stuyvesant", "NYC-WTC_000106848")]
 
 
 def seed(anchors: dict) -> dict:
@@ -104,6 +114,44 @@ def run(golden: dict, anchors: dict, server: Server, live: bool = False, log=pri
     return examined, failures
 
 
+def run_curated(server: Server, addresses: list[tuple[str, str]], log=print) -> tuple[int, list[str]]:
+    """Timeline and readings quotes at their pages; addresses to the folders that hold known documents."""
+    failures: list[str] = []
+    examined = 0
+    for name, key in (("timeline_lookup", "events"), ("readings_lookup", "readings")):
+        arguments = {"include_unreviewed": True} if name == "readings_lookup" else {}
+        result = call(server, name, arguments)
+        if result["isError"]:
+            failures.append(f"{name}: {result['structuredContent']['error']['message']}")
+            continue
+        rows = result["structuredContent"]["data"][key]
+        if not rows:
+            failures.append(f"{name}: returned no rows")
+        for row in rows:
+            citation = row["citation"]
+            if citation["type"] != "portal":
+                continue  # URL sources are located by build_site.py against their captured text
+            examined += 1
+            verified = call(server, "citations_verify", {"claims": [
+                {"id": row["id"], "claim": row["claim_id"], "quote": row["quote"],
+                 "source": {"type": "portal", "bates": citation["bates"], "page": citation["page"]}}]})
+            outcome = None if verified["isError"] else verified["structuredContent"]["data"]["results"][0]
+            if outcome is None or outcome["match"] != "found":
+                failures.append(f"{name} {row['id']}: quote not located at {citation['bates']} p.{citation['page']}")
+    for address, bates in addresses:
+        examined += 1
+        doc = call(server, "portal_get_document", {"bates": bates})
+        found = call(server, "building_lookup", {"address": address})
+        if doc["isError"] or found["isError"]:
+            failures.append(f"{address!r}: lookup failed")
+            continue
+        folder = doc["structuredContent"]["data"]["folder"]
+        if folder not in [f["folder"] for f in found["structuredContent"]["data"]["folders"]]:
+            failures.append(f"{address!r}: did not return {folder!r}, the folder holding {bates}")
+    log(f"examined {examined} curated rows and addresses: {len(failures)} failures")
+    return examined, failures
+
+
 def selftest() -> int:
     from mcp_checks import build_fixture  # the shared serving fixture: captures, snapshot, allowlist
     failures = []
@@ -133,6 +181,12 @@ def selftest() -> int:
         _, found = run(drift, anchors, server, log=lambda *_: None)
         if not any("drifted" in f for f in found):
             failures.append("a golden row that no longer matches the anchor must fail")
+        examined, found = run_curated(server, [("15 John Street", "NYC-WTC_000000003")], log=lambda *_: None)
+        if examined != 5 or found:  # three events, one reading, one address
+            failures.append(f"curated rows and a filed address must pass: {found}")
+        _, found = run_curated(server, [("115 John Street", "NYC-WTC_000000003")], log=lambda *_: None)
+        if not any("did not return" in f for f in found):
+            failures.append("an address that misses the known folder must fail")
         stamp = json.loads(json.dumps(golden))
         stamp["rows"][0]["stamp"] = "NYC-WTC_000000009"
         _, found = run(stamp, anchors, server, log=lambda *_: None)
@@ -140,8 +194,8 @@ def selftest() -> int:
             failures.append("a stamp mismatch must fail the eval")
     for message in failures:
         print("FAIL:", message)
-    print(f"mcp_evals selftest: {len(failures)} failures, {4 - len(failures)}/4 checks passed "
-          "over 1 fixture anchor; network calls: 0")
+    print(f"mcp_evals selftest: {len(failures)} failures, {6 - len(failures)}/6 checks passed "
+          "over 1 fixture anchor and the fixture's curated rows; network calls: 0")
     return 1 if failures else 0
 
 
@@ -169,6 +223,9 @@ def main(argv: list[str] | None = None) -> int:
         print("mcp_evals: --live needs SEPT11_ALLOW_LIVE=1; the queries reach the City", file=sys.stderr)
         return 2
     examined, failures = run(golden, anchors, server, live=args.live)
+    curated, curated_failures = run_curated(server, ADDRESSES)
+    examined += curated
+    failures += curated_failures
     for failure in failures:
         print("FAIL:", failure)
     if examined == 0:

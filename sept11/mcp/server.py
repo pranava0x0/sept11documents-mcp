@@ -55,6 +55,75 @@ def _changes_prompt(arguments: dict) -> str:
             "for each. Make no compliance determination and give no percentage score. " + UNTRUSTED)
 
 
+def _argument(arguments: dict, name: str, limit: int, required: bool = True) -> str:
+    """A prompt argument is the caller's own words: one line, bounded, no control characters."""
+    value = str(arguments.get(name) or "").strip()
+    if required and not value:
+        raise InputError(f"`{name}` is required")
+    if len(value) > limit or re.search(r"[\x00-\x1f\x7f]", value):
+        raise InputError(f"`{name}` must be one line of at most {limit} characters")
+    return value
+
+
+def _plan_prompt(arguments: dict) -> str:
+    question = _argument(arguments, "question", 300)
+    return (f"Research question: {question!r}. Before answering, write a short plan that names the tools you "
+            "will call and why, in this order where they apply: portal_query_draft or catalog_search to find "
+            "candidate documents; building_lookup for an address; portal_get_document for a record; "
+            "portal_get_page_text to read the page; timeline_lookup and readings_lookup for statements, "
+            "records and sampling results already located; budget_lookup, doi_milestones and upcoming_dates "
+            "for money and deadlines. Then run the plan. Answer only from returned text, cite each fact as "
+            "`NYC-WTC_… p.N` or the official source, run citations_verify on every quote, and say plainly "
+            "what the archive does not show. Do not speculate about individuals. " + UNTRUSTED + " " + CITE_RULE)
+
+
+def _building_prompt(arguments: dict) -> str:
+    address = _argument(arguments, "address", 80)
+    return (f"Find what the City's archive files under {address!r}. Call building_lookup with that address and "
+            "report the folders it returns with their box, document counts and first Bates number, and the "
+            "BIN, block and lot the labels print. For the largest folder, call catalog_search with its box and "
+            "folder to list documents, then portal_get_document on one of them. Read a page with "
+            "portal_get_page_text only when it is captured, and cite it with citations_format. State that a "
+            "label match shows where paper was filed, that a document can concern the building without a "
+            "label naming it, and that the tool decides no exposure-zone question; quote each program's zone "
+            "wording from zone_definitions instead. " + UNTRUSTED + " " + CITE_RULE)
+
+
+def _presence_prompt(arguments: dict) -> str:
+    return ("Help someone see which documents the World Trade Center Health Program and the Victim "
+            "Compensation Fund accept as proof of presence. Ask only two things: which program, and whether "
+            "they were a responder or a survivor (lived, worked or went to school in the area). Do not ask for "
+            "or record a name, address, date of birth, employer or any identifier. Call presence_evidence with "
+            "those two answers and present the official rules exactly as quoted, each with its source link, "
+            "followed by the New York City offices that hold records. Say that this is not legal advice and "
+            "does not decide eligibility, and give the helplines from the result. " + UNTRUSTED)
+
+
+def _statements_prompt(arguments: dict) -> str:
+    topic = _argument(arguments, "topic", 20, required=False) or "all"
+    if topic not in ("air", "schools", "liability", "cleanup", "oversight", "all"):
+        raise InputError("`topic` must be air, schools, liability, cleanup, oversight or all")
+    return (f"Call timeline_lookup with topic={topic!r} and present the entries in date order in two columns: "
+            "what officials said in public, and what the City's records show, with the later reviews after "
+            "them. Quote each entry exactly as returned with its citation and the basis for its date. If the "
+            "topic is air or schools, call readings_lookup with include_unreviewed=true and list the sampling "
+            "results with their units as printed, labelled unreviewed. Draw no conclusion about what any "
+            "person knew or intended: placement side by side is not a finding, and Council Resolution 560-A "
+            "assigns that analysis to the Department of Investigation. " + UNTRUSTED + " " + CITE_RULE)
+
+
+def _money_prompt(arguments: dict) -> str:
+    topic = _argument(arguments, "topic", 20, required=False) or "all"
+    if topic not in ("portal", "doi", "education", "all"):
+        raise InputError("`topic` must be portal, doi, education or all")
+    return (f"Call budget_lookup with topic={topic!r}. For each commitment, give the announced amount with its "
+            "source and the state of each stage: announcement, adopted line, contract, payment, delivery. Say "
+            "`not linked` where a stage has no evidence; an unknown amount is not zero. Never add the amounts "
+            "together: their fiscal periods differ and none of them is spending. Then call upcoming_dates and "
+            "doi_milestones and list the dated obligations ahead that bear on these commitments, with what "
+            "was last observed. Make no compliance determination. " + CITE_RULE)
+
+
 # Prompts are fixed text with validated arguments; nothing from a document reaches them.
 PROMPTS = {
     "research-assistant": {
@@ -74,6 +143,38 @@ PROMPTS = {
         "description": "Compare captures since a date and place the dated obligations beside the result.",
         "arguments": [{"name": "since", "description": "ISO-8601 date, e.g. 2026-09-09", "required": True}],
         "render": _changes_prompt,
+    },
+    "research-plan": {
+        "title": "Plan the tool calls for a question",
+        "description": "Name the tools a question needs, run them, and answer only from cited text.",
+        "arguments": [{"name": "question", "description": "The research question, one line", "required": True}],
+        "render": _plan_prompt,
+    },
+    "building-records": {
+        "title": "Records filed under an address",
+        "description": "Folders whose labels name an address, their documents, and a cited page.",
+        "arguments": [{"name": "address", "description": "e.g. 15 John Street, or a seven-digit BIN",
+                       "required": True}],
+        "render": _building_prompt,
+    },
+    "proof-of-presence": {
+        "title": "Proof-of-presence documents, without personal details",
+        "description": "Walk through the programs' quoted rules after asking only program and role.",
+        "arguments": [],
+        "render": _presence_prompt,
+    },
+    "statements-and-records": {
+        "title": "Public statements beside City records",
+        "description": "The timeline in two columns, with sampling results, and no finding drawn.",
+        "arguments": [{"name": "topic", "description": "air, schools, liability, cleanup, oversight or all",
+                       "required": False}],
+        "render": _statements_prompt,
+    },
+    "follow-the-money": {
+        "title": "Announced funding and its evidence",
+        "description": "Each commitment's stages and the dated obligations ahead, never summed.",
+        "arguments": [{"name": "topic", "description": "portal, doi, education or all", "required": False}],
+        "render": _money_prompt,
     },
 }
 
