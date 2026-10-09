@@ -25,13 +25,15 @@ _WORDS = {
 _ORDINAL = re.compile(r"\b(\d+)(ST|ND|RD|TH)\b")
 _TOKEN = re.compile(r"[A-Z0-9]+(?:-[A-Z0-9]+)?")
 _NUMBER = re.compile(r"^(\d+)(?:-(\d+))?[A-Z]?$")
-_BIN = re.compile(r"\bBIN[:;#\s]*\s*(\d{7})\b")
+# Labels print the BIN as `BIN: 1000859`, `BIN# 1000859`, `BN# 1001215` or `BN # 1079039`.
+_BIN_WORD = re.compile(r"\bBI?N\b")
+_BIN = re.compile(r"\bBI?N[:;#\s]*\s*(\d{7})\b")
 _BLOCK = re.compile(r"\bBLOCK[:;#\s]*\s*(\d{1,5})\b")
 _LOT = re.compile(r"\bLOT[:;#\s]*\s*(\d{1,4})\b")
 # Many DEP labels print "BIN, block/lot" without the words: `15 JOHN STREET 1001217, 79/14`.
 _BIN_PAIR = re.compile(r"\b(\d{7}),\s*(\d{1,5})/(\d{1,4})\b")
 # Some print a space for the comma: `17 JOHN STREET 1001216 79/10`. Read only in labels without the
-# word BIN, where `BIN: 1001396 26/42 PARK PL` shows the pair can be a house-number range instead.
+# word BIN or BN, where `BIN: 1001396 26/42 PARK PL` shows the pair can be a house-number range instead.
 _BIN_PAIR_SPACED = re.compile(r"\b(\d{7})\s+(\d{1,5})/(\d{1,4})\b(?![/\d])")
 
 # Street-type words; a query made only of these names no street ("West Street" is a street).
@@ -86,7 +88,7 @@ def parse_query(address: str) -> Query:
     if len(address) > MAX_ADDRESS_CHARS:
         raise ValueError(f"address is {len(address)} characters; the limit is {MAX_ADDRESS_CHARS}")
     raw = address.strip()
-    bin_only = re.fullmatch(r"(?:BIN[:\s#]*)?(\d{7})", raw.upper())
+    bin_only = re.fullmatch(r"(?:BI?N[:\s#]*)?(\d{7})", raw.upper())
     if bin_only:
         return Query(number=None, street=(), bin=bin_only.group(1))
     tokens = normalize(raw)
@@ -105,7 +107,7 @@ def parse_query(address: str) -> Query:
 def identifiers(label: str) -> dict:
     """BIN, block and lot where the label prints them; never inferred."""
     upper = (label or "").upper()
-    pair = _BIN_PAIR.search(upper) or (None if "BIN" in upper else _BIN_PAIR_SPACED.search(upper))
+    pair = _BIN_PAIR.search(upper) or (None if _BIN_WORD.search(upper) else _BIN_PAIR_SPACED.search(upper))
     return {"bins": sorted(set(_BIN.findall(upper)) | ({pair.group(1)} if pair else set())),
             "block": (_BLOCK.search(upper) or [None, None])[1] or (pair.group(2) if pair else None),
             "lot": (_LOT.search(upper) or [None, None])[1] or (pair.group(3) if pair else None)}
@@ -159,6 +161,12 @@ def selftest() -> list[str]:
         failures.append("the 'BIN, block/lot' label form must be read")
     if identifiers("17 JOHN STREET 1001216 79/10") != {"bins": ["1001216"], "block": "79", "lot": "10"}:
         failures.append("the 'BIN block/lot' label form without a comma must be read")
+    if identifiers("29 JOHN STREET BN# 1001215")["bins"] != ["1001215"] or identifiers("4-6 LIBERTY PLACE BN # 1079039")["bins"] != ["1079039"]:
+        failures.append("the 'BN#' and 'BN #' label forms must be read as a BIN")
+    if parse_query("BN# 1001215").bin != "1001215":
+        failures.append("a query written 'BN# 1001215' must be read as a BIN")
+    if identifiers("BN: 1001396 26/42 PARK PL")["block"] is not None:
+        failures.append("a range after a BIN labelled BN must not be read as block and lot")
     if identifiers("BIN: 1001396 26/42 PARK PL")["block"] is not None:
         failures.append("a range after a labelled BIN must not be read as block and lot")
     if identifiers("REPORT 1001216 10/16/01")["bins"]:
