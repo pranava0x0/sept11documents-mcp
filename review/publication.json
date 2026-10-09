@@ -58,9 +58,39 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "f3f95aba6dd7cecc3c536e623727620cd240eacb52b306e4159c1ba9231aeb36",
+      "sha256": "7d96934e7230118ec25766551593742e3ac8bc5fded25f16f37874ea38ef3326",
       "freshness_policy": "on-change",
       "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
+    },
+    {
+      "path": "docs/data/obligations.ics",
+      "resource": null,
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "9991b2d0a6b034a3e0da2fd70b9807aab7e75b3b51e28097e27e2503a70fe110",
+      "freshness_policy": "on-change",
+      "notes": "Dated settlement and Res. 560-A obligations as an iCalendar file, written by build_site.py from the scorecard; recurring obligations are left out because no dates are stated."
+    },
+    {
+      "path": "docs/data/reading-list.csv",
+      "resource": null,
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "327b7742e00d1d467d0ac4a13d9771bac535eff7cd3ef91047c345c430bbe8a5",
+      "freshness_policy": "on-change",
+      "notes": "Catalog rows for the research-example documents, the CSV output of the recorded records_manifest call; written by build_site.py."
+    },
+    {
+      "path": "docs/data/readings.json",
+      "resource": "sept11://readings",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "86ca3e150af71f8f8f323e3c0d559c9d0976f449f138c4c2bd552687ce431f67",
+      "freshness_policy": "on-change",
+      "notes": "Sampling results printed in located City records, value, unit, medium and location as printed; each row quotes a registered claim at its Bates page."
     },
     {
       "path": "docs/data/release-context.json",
@@ -68,7 +98,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "7d33965ffa51e0d2d7a40218969cd273ee7ee20ce092bc4e32341622fb7c4f43",
+      "sha256": "fb871c0d63b67d16bcbcb713147f2f62f8d14e2eb183d871031714e424f0d271",
       "freshness_policy": "weekly",
       "notes": "Dated, source-linked context scan for the Examples page; official, independent, and federal record systems remain separate."
     },
@@ -80,7 +110,17 @@
       "reviewed_at": null,
       "sha256": "bac5cfa2d0e379b09d1e4b61e430adb830d7b26cad071581c8880eca1ee7702b",
       "freshness_policy": "monthly",
-      "notes": "Settlement and Res. 560-A obligation rows with observation vocabulary and structured due dates; DOI updates of 2025-12-31 and 2026-06-30 observed; no compliance score."
+      "notes": "Settlement and Res. 560-A obligations with observation vocabulary and structured due dates; DOI updates of 2025-12-31 and 2026-06-30 observed; no compliance score."
+    },
+    {
+      "path": "docs/data/timeline.json",
+      "resource": "sept11://timeline",
+      "review_status": "unreviewed",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "sha256": "f41ab972cbc494e706455b53fb244fb46cbc09f22f773b966884dd0a505b112c",
+      "freshness_policy": "on-change",
+      "notes": "Statements and records timeline: each entry quotes a registered claim, located in its captured source by build_site.py; dates with their stated basis."
     },
     {
       "path": "docs/data/watchdog/latest.json",

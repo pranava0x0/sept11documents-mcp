@@ -5,10 +5,11 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
 <title>Examples built on the MCP · September 11th Documents Toolkit</title>
-<meta name="description" content="Ten examples using the local MCP data: locate a record, find official help, track commitments, inspect catalog captures, and explore the City release.">
+<meta name="description" content="Examples built on the MCP: find records by building, read public statements beside City records, cite pages, track dates and funding, and follow the City release.">
 <link rel="canonical" href="https://pranava0x0.github.io/sept11documents-mcp/examples.html">
-<link rel="stylesheet" href="assets/site.css?v=9fe77cd5">
+<link rel="stylesheet" href="assets/site.css?v=fef4ee3e">
 </head>
 <body class="demo-home">
 <a class="skip" href="#main">Skip to main content</a>
@@ -21,20 +22,14 @@
 <main id="main">
 <header class="workspace-intro">
 <h1 id="top">Examples</h1>
-<p>Ten ways to use the MCP with the City release.</p>
+<p>Each example is built on the MCP. The panel names the tools behind it, the command that reproduces it and the recorded response.</p>
 </header>
 <div class="workspace">
 <nav class="demo-tabs" aria-label="Choose a demo">
-<a id="tab-records" href="#demo-records">Find a record</a>
-<a id="tab-help" href="#demo-help">Get official help</a>
-<a id="tab-budget" href="#demo-budget">Follow the money</a>
-<a id="tab-releases" href="#demo-releases">Check releases</a>
-<a id="tab-context" href="#demo-context">What changed</a>
-<a id="tab-paths" href="#demo-paths">Research paths</a>
-<a id="tab-footprint" href="#demo-footprint">Release footprint</a>
-<a id="tab-tracker" href="#demo-tracker">Release tracker</a>
-<a id="tab-collections" href="#demo-collections">Collections</a>
-<a id="tab-timeline" href="#demo-timeline">Document timeline</a>
+<div class="tab-group"><p class="tab-group-label" id="tabs-0">Find records</p><div class="tab-links" data-tablist aria-labelledby="tabs-0"><a id="tab-records" href="#demo-records">Find a record</a><a id="tab-address" href="#demo-address">Buildings</a><a id="tab-search" href="#demo-search">Write a search</a><a id="tab-collections" href="#demo-collections">Collections</a><a id="tab-paths" href="#demo-paths">Research paths</a></div></div>
+<div class="tab-group"><p class="tab-group-label" id="tabs-1">Read and cite</p><div class="tab-links" data-tablist aria-labelledby="tabs-1"><a id="tab-timeline" href="#demo-timeline">Statements and records</a><a id="tab-readings" href="#demo-readings">Sampling results</a><a id="tab-cite" href="#demo-cite">Cite a page</a><a id="tab-manifest" href="#demo-manifest">Reading list</a></div></div>
+<div class="tab-group"><p class="tab-group-label" id="tabs-2">Help and money</p><div class="tab-links" data-tablist aria-labelledby="tabs-2"><a id="tab-help" href="#demo-help">Get official help</a><a id="tab-budget" href="#demo-budget">Follow the money</a><a id="tab-dates" href="#demo-dates">Key dates</a></div></div>
+<div class="tab-group"><p class="tab-group-label" id="tabs-3">Releases</p><div class="tab-links" data-tablist aria-labelledby="tabs-3"><a id="tab-releases" href="#demo-releases">Check releases</a><a id="tab-tracker" href="#demo-tracker">Release tracker</a><a id="tab-footprint" href="#demo-footprint">Release footprint</a><a id="tab-context" href="#demo-context">What changed</a></div></div>
 </nav>
 <section id="demo-records" class="demo-panel" aria-labelledby="tab-records">
 <div class="demo-heading"><h2>Open a cited record</h2><span class="demo-label">Saved examples</span></div>
@@ -79,11 +74,276 @@
 <ol id="folder-results" class="folder-results" hidden></ol>
 <noscript><p class="result-note">Folder search needs JavaScript. The labels are in <a href="data/folders.json">folders.json</a>.</p></noscript>
 </div>
-<aside class="demo-context"><h3>With the MCP</h3>
+<aside class="demo-context"><h3>MCP calls</h3>
 <p class="tool-path"><code>catalog_search</code> → <code>portal_get_page_text</code> → <code>citations_verify</code></p>
-<p><a href="toolkit.html#example-catalog_search">View sample result ↗</a></p>
-<a href="records.html">More research examples ↗</a></aside>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call catalog_search --args '{"folder":"JOHN STREET","count":5}'</code></p>
+<p><a href="toolkit.html#example-catalog_search">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p><a href="records.html">More research examples ↗</a></p></aside>
 </div>
+</section>
+<section id="demo-address" class="demo-panel" aria-labelledby="tab-address">
+<div class="demo-heading"><h2>Look up a building</h2><span class="demo-label">Folder labels</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:address-demo -->
+<label for="address-choice">Choose an address</label>
+<select id="address-choice"><option value="building_lookup">15 John Street</option><option value="building_lookup-chambers">345 Chambers Street</option><option value="building_lookup-broadway">120 Broadway</option></select>
+<article class="address-result" data-address="building_lookup">
+<p class="eyebrow">Read as 15 JOHN STREET · catalog captured 2026-09-11</p>
+<h3>1 folder, 81 documents</h3>
+<div class="tw"><table><colgroup><col class="w40"><col class="w15"><col class="w20"><col class="w25"></colgroup><thead><tr><th>Folder label</th><th>Documents</th><th>Printed on the label</th><th>First document</th></tr></thead><tbody><tr><td data-label="Folder label">15 JOHN STREET 1001217, 79/14<span class="cellnote">DEP Hard Copies (68 Boxes) · DEP Box 01</span></td><td data-label="Documents">81</td><td data-label="Printed on the label">BIN 1001217, block 79, lot 14</td><td data-label="First document"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094197.pdf">NYC-WTC_000094197</a></td></tr></tbody></table></div>
+<p class="result-note">Recorded output of <code>building_lookup</code> <code>{&quot;address&quot;: &quot;15 John Street&quot;}</code>. <a href="toolkit.html#example-building_lookup">Full response ↗</a></p></article>
+<article class="address-result" data-address="building_lookup-chambers">
+<p class="eyebrow">Read as 345 CHAMBERS STREET · catalog captured 2026-09-11</p>
+<h3>3 folders, 11 documents</h3>
+<div class="tw"><table><colgroup><col class="w40"><col class="w15"><col class="w20"><col class="w25"></colgroup><thead><tr><th>Folder label</th><th>Documents</th><th>Printed on the label</th><th>First document</th></tr></thead><tbody><tr><td data-label="Folder label">345 CHAMBERS STREET; Block: 16; Stuyvesant HS<span class="cellnote">DEP Hard Copies (68 Boxes) · DEP Box 37</span></td><td data-label="Documents">5</td><td data-label="Printed on the label">block 16</td><td data-label="First document"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106763.pdf">NYC-WTC_000106763</a></td></tr><tr><td data-label="Folder label">345 CHAMBERS STREET; 16/1<span class="cellnote">DEP Hard Copies (68 Boxes) · DEP Box 37</span></td><td data-label="Documents">4</td><td data-label="Printed on the label">no identifiers</td><td data-label="First document"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106409.pdf">NYC-WTC_000106409</a></td></tr><tr><td data-label="Folder label">345 CHAMBERS ST.<span class="cellnote">DEP Hard Copies (68 Boxes) · DEP Box 51</span></td><td data-label="Documents">2</td><td data-label="Printed on the label">no identifiers</td><td data-label="First document"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000126990.pdf">NYC-WTC_000126990</a></td></tr></tbody></table></div>
+<p class="result-note">Recorded output of <code>building_lookup</code> <code>{&quot;address&quot;: &quot;345 Chambers Street&quot;}</code>. <a href="toolkit.html#example-building_lookup-chambers">Full response ↗</a></p></article>
+<article class="address-result" data-address="building_lookup-broadway">
+<p class="eyebrow">Read as 120 BROADWAY · catalog captured 2026-09-11</p>
+<h3>2 folders, 5 documents</h3>
+<div class="tw"><table><colgroup><col class="w40"><col class="w15"><col class="w20"><col class="w25"></colgroup><thead><tr><th>Folder label</th><th>Documents</th><th>Printed on the label</th><th>First document</th></tr></thead><tbody><tr><td data-label="Folder label">120 BROADWAY Block: 47 Lot: 7501 BIN: 1001026 70-84 CEDAR ST. 15-25 NASSAU ST. 2-16 PINE ST<span class="cellnote">DEP Hard Copies (68 Boxes) · DEP Box 50</span></td><td data-label="Documents">3</td><td data-label="Printed on the label">BIN 1001026, block 47, lot 7501</td><td data-label="First document"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000123774.pdf">NYC-WTC_000123774</a></td></tr><tr><td data-label="Folder label">120 BROADWAY 1001026, 47/7501<span class="cellnote">DEP Hard Copies (68 Boxes) · DEP Box 49</span></td><td data-label="Documents">2</td><td data-label="Printed on the label">BIN 1001026, block 47, lot 7501</td><td data-label="First document"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000122511.pdf">NYC-WTC_000122511</a></td></tr></tbody></table></div>
+<p class="result-note">Recorded output of <code>building_lookup</code> <code>{&quot;address&quot;: &quot;120 Broadway&quot;}</code>. <a href="toolkit.html#example-building_lookup-broadway">Full response ↗</a></p></article>
+<p class="result-note">A label match shows where the City filed paper. A document can concern a building whose address is not on its folder. The lookup does not decide whether an address is inside a program’s exposure zone; each program decides that, and the response quotes its definition.</p>
+<!-- /BUILD:address-demo -->
+<p class="result-note">For another address, run the call beside this panel, or search the folder labels under <a href="#demo-records">Find a record</a>.</p>
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>building_lookup</code> → <code>catalog_search</code> → <code>portal_get_page_text</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call building_lookup --args '{"address":"15 John Street"}'</code></p>
+<p><a href="toolkit.html#example-building_lookup">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p>The <code>building-records</code> prompt walks from an address to cited pages.</p></aside></div>
+</section>
+<section id="demo-search" class="demo-panel" aria-labelledby="tab-search">
+<div class="demo-heading"><h2>Write a portal search</h2><span class="demo-label">Query builder</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<p>The City&#x27;s portal search matches a quoted phrase word for word and loose words anywhere. This builder writes the query; it sends nothing.</p>
+<form id="query-builder" class="query-builder">
+<div><label for="qb-phrase">Exact phrase</label><input id="qb-phrase" type="text" autocomplete="off" spellcheck="false" maxlength="120" value="Re-Occupying Stuyvesant High School"></div>
+<div><label for="qb-words">Other words</label><input id="qb-words" type="text" autocomplete="off" spellcheck="false" maxlength="120" placeholder="asbestos sampling"></div>
+<div><label for="qb-box">Box, to search the catalog on this machine</label><input id="qb-box" type="text" autocomplete="off" spellcheck="false" maxlength="40" value="DEP Box 37"></div>
+</form>
+<h3>Paste into the portal search box</h3>
+<pre class="request" id="qb-query">&quot;Re-Occupying Stuyvesant High School&quot; extension:pdf</pre>
+<p class="result-actions"><button type="button" class="quiet copy-citation" id="qb-copy" data-status="qb-status" data-copy="&quot;Re-Occupying Stuyvesant High School&quot; extension:pdf" hidden>Copy query</button> <a class="btn" href="https://sept11documents.cityofnewyork.us/">Open the City portal ↗</a></p>
+<h3>The same request to the MCP</h3>
+<pre class="request" id="qb-call">portal_query_draft {&quot;phrase&quot;: &quot;Re-Occupying Stuyvesant High School&quot;, &quot;box&quot;: &quot;DEP Box 37&quot;}</pre>
+<p id="qb-status" class="result-note" role="status">A quoted phrase matches those words in that order. extension:pdf keeps results to the documents themselves.</p>
+<noscript><p class="result-note">The builder needs JavaScript. The example above shows the form of a query: a phrase in double quotation marks, then any loose words, then extension:pdf.</p></noscript>
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>portal_query_draft</code> → <code>catalog_search</code> · <code>portal_search</code> (opt-in)</p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call portal_query_draft --args '{"phrase":"Re-Occupying Stuyvesant High School","box":"DEP Box 37"}'</code></p>
+<p><a href="toolkit.html#example-portal_query_draft">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p>Live search stays off unless the operator turns it on, because the words searched reach the City.</p></aside></div>
+</section>
+<section id="demo-collections" class="demo-panel" aria-labelledby="tab-collections">
+<div class="demo-heading"><h2>Catalog collections</h2><span class="demo-label">Local catalog</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:collection-explorer -->
+<label for="collection-choice">Choose a City collection</label>
+<select id="collection-choice"><option value="DEP Hard Copies (68 Boxes)">DEP Hard Copies (68 Boxes) · 21,395 documents</option><option value="WTC 7">WTC 7 · 3,025 documents</option><option value="DORIS Giuliani">DORIS Giuliani · 21 documents</option></select>
+<article class="collection-result" data-collection="DEP Hard Copies (68 Boxes)">
+<p class="eyebrow">21,395 documents in saved catalog</p><h3>DEP Hard Copies (68 Boxes)</h3>
+<p>DEP hard-copy production. The summary reports 21,395 documents for Environmental Protection, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
+<pre class="request">catalog_search {&quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;, &quot;count&quot;: 10}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
+<article class="collection-result" data-collection="WTC 7">
+<p class="eyebrow">3,025 documents in saved catalog</p><h3>WTC 7</h3>
+<p>WTC 7 collection label. The summary reports 2,915 documents for Citywide Administrative Services, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
+<pre class="request">catalog_search {&quot;source&quot;: &quot;WTC 7&quot;, &quot;count&quot;: 10}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
+<article class="collection-result" data-collection="DORIS Giuliani">
+<p class="eyebrow">21 documents in saved catalog</p><h3>DORIS Giuliani</h3>
+<p>DORIS Giuliani collection label. The summary reports 21 documents for Records and Information Services, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
+<pre class="request">catalog_search {&quot;source&quot;: &quot;DORIS Giuliani&quot;, &quot;count&quot;: 10}</pre>
+<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
+<!-- /BUILD:collection-explorer -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>catalog_search</code> → <code>portal_browse</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call portal_browse --args '{"source":"DEP Hard Copies (68 Boxes)","box":"DEP Box 31"}'</code></p>
+<p><a href="toolkit.html#example-portal_browse">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p></aside></div>
+</section>
+<section id="demo-paths" class="demo-panel" aria-labelledby="tab-paths">
+<div class="demo-heading"><h2>Research routes</h2><span class="demo-label">MCP tools</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:research-paths -->
+<label for="path-choice">Choose a research question</label>
+<select id="path-choice"><option value="catalog-change">Did the City catalog change after this toolkit’s saved capture?</option><option value="source-page">What does a cited City page say?</option><option value="project-compare">Why might an independent project show more search detail?</option><option value="separate-records">Are City portal documents the same as newly declassified federal records?</option></select>
+<article class="research-path" data-path="catalog-change">
+<h3>Catalog changes after the saved capture</h3><p class="tool-path"><code>portal_changes_since → portal_get_document</code></p>
+<p>Use two accepted local captures. The result can report observed additions, absences, or changed metadata; it does not prove why a record changed or that a City release is complete.</p><p class="result-note"><b>Boundary:</b> This checkout’s published capture is dated 2026-09-11. A current comparison needs a newer accepted capture.</p></article>
+<article class="research-path" data-path="source-page">
+<h3>The text of a cited City page</h3><p class="tool-path"><code>catalog_search → portal_get_document → portal_get_page_text → citations_verify</code></p>
+<p>Find the local catalog entry, open its record, read the specific Bates page, then verify the exact quotation. Page text may be withheld when the PII screen flags it.</p><p class="result-note"><b>Boundary:</b> A located phrase is evidence location, not a finding about exposure, health, liability, or program eligibility.</p></article>
+<article class="research-path" data-path="project-compare">
+<h3>Search detail in independent projects</h3><p class="tool-path"><code>portal_catalog_stats → portal_browse</code></p>
+<p>This MCP reports its own snapshot, catalog structure, and evidence warnings. Another project can have a later capture or different OCR. Compare source PDF, Bates page, capture date, and stated method.</p><p class="result-note"><b>Boundary:</b> Do not combine counts, map pins, OCR, or tags across projects as if they were one verified dataset.</p></article>
+<article class="research-path" data-path="separate-records">
+<h3>City portal documents and federal records</h3><p class="tool-path"><code>citations_verify</code></p>
+<p>No. This MCP can verify registered City-portal pages and its registered sources; it does not search or interpret the federal release.</p><p class="result-note"><b>Boundary:</b> Use the National Archives source directly for federal records and identify the record system in every citation.</p></article>
+<!-- /BUILD:research-paths -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>portal_changes_since</code> · <code>portal_get_page_text</code> · <code>citations_verify</code></p>
+<p>Each route names the tools in the order an assistant calls them. The <code>research-plan</code> prompt builds a route like these for any question.</p></aside></div>
+</section>
+<section id="demo-timeline" class="demo-panel" aria-labelledby="tab-timeline">
+<div class="demo-heading"><h2>Statements beside the records</h2><span class="demo-label">Timeline</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:timeline-demo -->
+<p class="result-note">Public statements and City records about the air, the schools and the City&#x27;s liability after September 11, 2001, in date order. Each entry quotes a registered claim, located in its captured source by scripts/build_site.py before the site shows it. A date is the date printed on or stated for the source, with its basis; a month or year means the source gives no closer date.</p>
+<div class="filters"><div><label for="timeline-side">Show</label><select id="timeline-side"><option value="all">All entries</option><option value="public_statement">What officials said in public at the time</option><option value="city_record">Records in the City&#x27;s portal</option><option value="later_review">Later reviews and oversight</option></select></div><div><label for="timeline-topic">Topic</label><select id="timeline-topic"><option value="all">All topics</option><option value="air">Air</option><option value="schools">Schools</option><option value="liability">Liability</option><option value="cleanup">Cleanup</option><option value="oversight">Oversight</option></select></div></div>
+<p id="timeline-count" class="result-note" role="status"></p>
+<ol class="statement-timeline"><li data-side="public_statement" data-topic="air">
+<p class="eyebrow"><time datetime="2001-09-13">September 13, 2001</time> · Public statement · air</p>
+<h3>EPA release on asbestos monitoring in Lower Manhattan</h3>
+<p><span class="muted">EPA press release:</span> <q>there appears to be no significant levels of asbestos dust in the air in New York City</q> <a class="cite" href="https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/d7ada9cf2d39c0a185256acc007c097f.html">EPA release, 2001-09-13</a></p>
+<p class="date-basis"><b>Date basis:</b> date of the release</p></li>
+<li data-side="public_statement" data-topic="air">
+<p class="eyebrow"><time datetime="2001-09-16">September 16, 2001</time> · Public statement · air</p>
+<h3>Mayor&#x27;s Office release on reopening buildings</h3>
+<p><span class="muted">Mayor&#x27;s Office press release:</span> <q>air quality has been tested and deemed safe</q> <a class="cite" href="https://www.nyc.gov/html/om/html/2001b/pr315-01b.html">Mayor’s Office release, 2001-09-16</a></p>
+<p class="date-basis"><b>Date basis:</b> date of the release</p></li>
+<li data-side="public_statement" data-topic="air">
+<p class="eyebrow"><time datetime="2001-09-18">September 18, 2001</time> · Public statement · air</p>
+<h3>EPA Administrator Whitman on air and water in New York</h3>
+<p><span class="muted">EPA press release:</span> <q>their air is safe to breath</q> <a class="cite" href="https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/ed368f43303656488525744e00039488.html">EPA release, 2001-09-18</a></p>
+<p class="muted">The spelling follows the published text.</p><p class="date-basis"><b>Date basis:</b> date of the release</p></li>
+<li data-side="public_statement" data-topic="air">
+<p class="eyebrow"><time datetime="2001-09-21">September 21, 2001</time> · Public statement · air</p>
+<h3>EPA release on monitoring results</h3>
+<p><span class="muted">EPA press release:</span> <q>are not being exposed to contaminants such as asbestos, radiation, mercury and other metals</q> <a class="cite" href="https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/1dcfffa0c895910885256ace0082cdeb.html">EPA release, 2001-09-21</a></p>
+<p class="date-basis"><b>Date basis:</b> date of the release</p></li>
+<li data-side="city_record" data-topic="liability">
+<p class="eyebrow"><time datetime="2001-10">October 2001</time> · City record · liability</p>
+<h3>Memo to Deputy Mayor Harding on limiting the City&#x27;s liability</h3>
+<p><span class="muted">Memo to the Deputy Mayor:</span> <q>Health advisories caused individuals either to return to the area too soon</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1">NYC-WTC_000138296 · p.1</a></p>
+<p class="date-basis"><b>Date basis:</b> The memo is undated on its page. The FOIL request describes it as an October 2001 memorandum, and an email filed in the same portal document as another copy was sent on October 16, 2001. <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000136670.pdf#page=58">NYC-WTC_000136670 · p.58</a></p></li>
+<li data-side="public_statement" data-topic="air">
+<p class="eyebrow"><time datetime="2001-10-03">October 3, 2001</time> · Public statement · air</p>
+<h3>OSHA sampling beyond the disaster site</h3>
+<p><span class="muted">EPA and OSHA press release:</span> <q>no evidence of significant levels of airborne asbestos or other contaminants beyond the disaster site itself</q> <a class="cite" href="https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/a58e3e62ff609f5185256ada00729977.html">EPA and OSHA release, 2001-10-03</a></p>
+<p class="date-basis"><b>Date basis:</b> date of the release</p></li>
+<li data-side="city_record" data-topic="schools">
+<p class="eyebrow"><time datetime="2001-10-09">October 9, 2001</time> · City record · schools</p>
+<h3>UFT memo on re-occupying Stuyvesant High School</h3>
+<p><span class="muted">UFT memo in the City&#x27;s files:</span> <q>1 sample tested positive for asbestos</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf#page=2">NYC-WTC_000106411 · p.2</a></p>
+<p class="date-basis"><b>Date basis:</b> printed on the memo <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf#page=1">NYC-WTC_000106411 · p.1</a></p></li>
+<li data-side="city_record" data-topic="air">
+<p class="eyebrow"><time datetime="2001-10-20">October 20, 2001</time> · City record · air</p>
+<h3>EPA air, bulk, wipe and water sampling situation report</h3>
+<p><span class="muted">EPA sampling situation report in the City&#x27;s files:</span> <q>Exceedances occurred at Sift Location</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000154488.pdf#page=3">NYC-WTC_000154488 · p.3</a></p>
+<p class="date-basis"><b>Date basis:</b> printed in the report header</p></li>
+<li data-side="city_record" data-topic="air">
+<p class="eyebrow"><time datetime="2001-11-20">November 20, 2001</time> · City record · air</p>
+<h3>Special Investigative Audit #14, environmental data trend report</h3>
+<p><span class="muted">EPA-commissioned audit in the City&#x27;s files:</span> <q>38% Chrysotile from Ground Zero</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=22">NYC-WTC_000130438 · p.22</a></p>
+<p class="muted">The audit reports a bulk dust sample collected at Ground Zero on September 19, 2001.</p><p class="date-basis"><b>Date basis:</b> printed on the cover <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=1">NYC-WTC_000130438 · p.1</a></p></li>
+<li data-side="city_record" data-topic="air">
+<p class="eyebrow"><time datetime="2002-02-14">February 14, 2002</time> · City record · air</p>
+<h3>Health Commissioner Frieden to EPA Administrator Whitman</h3>
+<p><span class="muted">Letter from the Health Commissioner:</span> <q>disseminated by Ms. Cate Jenkins publicly criticizing</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000151604.pdf#page=1">NYC-WTC_000151604 · p.1</a></p>
+<p class="date-basis"><b>Date basis:</b> dated on the letter</p></li>
+<li data-side="city_record" data-topic="air">
+<p class="eyebrow"><time datetime="2002-02-28">February 28, 2002</time> · City record · air</p>
+<h3>Fuchs memo on Congressman Nadler&#x27;s indoor air concerns</h3>
+<p><span class="muted">Memo from a mayoral advisor:</span> <q>real health risks in lower Manhattan</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2">NYC-WTC_000147320 · p.2</a></p>
+<p class="date-basis"><b>Date basis:</b> printed on the memo</p></li>
+<li data-side="city_record" data-topic="cleanup">
+<p class="eyebrow"><time datetime="2002-05-16">May 16, 2002</time> · City record · cleanup</p>
+<h3>Clean Up Initiative note</h3>
+<p><span class="muted">Handwritten note in the City&#x27;s files:</span> <q>we would not use the word &#x27;risk&#x27; in any letters as it would defeat the purpose of creating public confidence</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf#page=1">NYC-WTC_000153130 · p.1</a></p>
+<p class="date-basis"><b>Date basis:</b> the note&#x27;s header reads 5/16/02</p></li>
+<li data-side="city_record" data-topic="schools">
+<p class="eyebrow"><time datetime="2002-08-07">August 7, 2002</time> · City record · schools</p>
+<h3>Concerned Stuyvesant Parents release on dust testing</h3>
+<p><span class="muted">Parents&#x27; association release, faxed through DEP:</span> <q>asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000144518.pdf#page=2">NYC-WTC_000144518 · p.2</a></p>
+<p class="muted">A parents&#x27; group statement found in DEP&#x27;s files; the figure is the group&#x27;s report of a consultant&#x27;s test.</p><p class="date-basis"><b>Date basis:</b> printed on the release</p></li>
+<li data-side="later_review" data-topic="air">
+<p class="eyebrow"><time datetime="2003-08-21">August 21, 2003</time> · Later review · air</p>
+<h3>EPA Inspector General on the September 18 statement</h3>
+<p><span class="muted">EPA Office of Inspector General report:</span> <q>the Agency did not have sufficient data and analyses to make the statement</q> <a class="cite" href="https://19january2021snapshot.epa.gov/sites/static/files/2015-10/documents/wtc_report_20030821.pdf">EPA OIG report 2003-P-00012</a></p>
+<p class="date-basis"><b>Date basis:</b> date of the report</p></li>
+<li data-side="later_review" data-topic="oversight">
+<p class="eyebrow"><time datetime="2025-07-14">July 14, 2025</time> · Later review · oversight</p>
+<h3>Council asks DOI to compare what was known with what was said</h3>
+<p><span class="muted">City Council Resolution 560-A:</span> <q>An analysis of the contrast between the knowledge mayoral administrations possessed on these toxins and the information the administrations conveyed to the public</q> <a class="cite" href="https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&amp;ID=6860206">Res. 560-A</a></p>
+<p class="date-basis"><b>Date basis:</b> date the Council adopted the resolution</p></li></ol>
+<p class="result-note"><b>Boundary:</b> Placing a statement beside a record is not a finding about what any official knew or intended. Council Resolution 560-A gives that analysis to the Department of Investigation.</p>
+<!-- /BUILD:timeline-demo -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>timeline_lookup</code> → <code>citations_verify</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call timeline_lookup --args '{"side":"city_record","topic":"air"}'</code></p>
+<p><a href="toolkit.html#example-timeline_lookup">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p>The <code>statements-and-records</code> prompt asks an assistant to keep the two sides apart.</p></aside></div>
+</section>
+<section id="demo-readings" class="demo-panel" aria-labelledby="tab-readings">
+<div class="demo-heading"><h2>Sampling results in the records</h2><span class="demo-label">As printed</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:readings-demo -->
+<p class="result-note">Sampling results printed in located City records, transcribed with the value, unit, medium and location as the document prints them. Each row quotes a registered claim at its Bates page. Units are not converted: percent asbestos in bulk dust, structures per square millimetre on an air filter and parts per billion of a gas measure different things.</p>
+<div class="tw"><table class="readings">
+<colgroup><col class="w20"><col class="w25"><col class="w20"><col class="w35"></colgroup>
+<thead><tr><th>Result as printed</th><th>Location as printed</th><th>Sampled</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td data-label="Result as printed"><b>4.5 %</b><span class="cellnote">asbestos (chrysotile), bulk dust</span></td><td data-label="Location as printed">Murray Street and West Side Highway</td><td data-label="Sampled">September 11, 2001<span class="cellnote">stated in the audit text</span></td><td data-label="Source"><q>The highest result, 4.5% Chrysotile, was reported from a sample collected at Murray Street and West Side Highway</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=22">NYC-WTC_000130438 · p.22</a><span class="cellnote">Special Investigative Audit #14, November 20, 2001; IT Corporation for EPA</span><span class="cellnote">The audit calls this the highest of 59 Lower Manhattan bulk dust results.</span></td></tr>
+<tr><td data-label="Result as printed"><b>38 %</b><span class="cellnote">asbestos (chrysotile), bulk dust</span></td><td data-label="Location as printed">Ground Zero</td><td data-label="Sampled">September 19, 2001<span class="cellnote">stated in the audit text</span></td><td data-label="Source"><q>38% Chrysotile from Ground Zero</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=22">NYC-WTC_000130438 · p.22</a><span class="cellnote">Special Investigative Audit #14, November 20, 2001; IT Corporation for EPA</span></td></tr>
+<tr><td data-label="Result as printed"><b>88 to 128 S/mm2</b><span class="cellnote">asbestos (TEM), air filter (TEM analysis)</span></td><td data-label="Location as printed">Fresh Kills Landfill, Screening Operations (Locations 09-A and 09-B) and Location 12-A</td><td data-label="Sampled">October 2001<span class="cellnote">audit text: between October 8 and October 31</span></td><td data-label="Source"><q>were measured at the Screening Operations</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=21">NYC-WTC_000130438 · p.21</a><span class="cellnote">Special Investigative Audit #14, November 20, 2001; IT Corporation for EPA</span><span class="cellnote">The audit compares these with 70 S/mm2, the screening level it uses for TEM results.</span></td></tr>
+<tr><td data-label="Result as printed"><b>180,000 ppb</b><span class="cellnote">benzene, VOC sample; the quoted sentence does not name the medium</span></td><td data-label="Location as printed">WTC North Tower Center (the sentence continues on p.8)</td><td data-label="Sampled">November 8, 2001<span class="cellnote">stated in the audit text</span></td><td data-label="Source"><q>The recent high value for benzene of 180,000 ppb on November 8th</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=7">NYC-WTC_000130438 · p.7</a><span class="cellnote">Special Investigative Audit #14, November 20, 2001; IT Corporation for EPA</span><span class="cellnote">The audit says VOC concentrations outside the WTC sites were much lower or undetected.</span></td></tr>
+<tr><td data-label="Result as printed"><b>97.78 S/mm2</b><span class="cellnote">asbestos (TEM), air (fixed ambient sampling)</span></td><td data-label="Location as printed">Sift Location 9C</td><td data-label="Sampled">October 20, 2001<span class="cellnote">report date; the sampling period is in the report header</span></td><td data-label="Source"><q>Exceedances occurred at Sift Location</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000154488.pdf#page=3">NYC-WTC_000154488 · p.3</a><span class="cellnote">EPA sampling situation report, October 20, 2001; EPA</span><span class="cellnote">The report records 2 of 19 samples above the TEM AHERA standard; the text layer misreads some characters.</span></td></tr>
+<tr><td data-label="Result as printed"><b>1 of 3 samples positive (greater than 1%)</b><span class="cellnote">asbestos, bulk debris</span></td><td data-label="Location as printed">Stuyvesant High School, southeast roof</td><td data-label="Sampled">October 9, 2001<span class="cellnote">date of the memo; the sample date is not stated</span></td><td data-label="Source"><q>1 sample tested positive for asbestos</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf#page=2">NYC-WTC_000106411 · p.2</a><span class="cellnote">UFT memo, Re-Occupying Stuyvesant High School, October 9, 2001; UFT</span></td></tr>
+<tr><td data-label="Result as printed"><b>1 %</b><span class="cellnote">asbestos (chrysotile), bulk sample</span></td><td data-label="Location as printed">15 John Street, west facade ledge</td><td data-label="Sampled">July 13, 2002<span class="cellnote">&#x27;Date Collected: 07/13/02&#x27; on the report</span></td><td data-label="Source"><q>Asbestos Present: Yes</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1">NYC-WTC_000094256 · p.1</a><span class="cellnote">DEP Asbestos Control Program laboratory report, July 13, 2002; DEP laboratory</span></td></tr>
+<tr><td data-label="Result as printed"><b>as much as 2.5 million structures per square centimeter</b><span class="cellnote">asbestos, dust (ultrasonication test, as described)</span></td><td data-label="Location as printed">Stuyvesant High School, one sample</td><td data-label="Sampled">August 2002<span class="cellnote">the release of August 7, 2002 describes recent testing</span></td><td data-label="Source"><q>asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample</q> <a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000144518.pdf#page=2">NYC-WTC_000144518 · p.2</a><span class="cellnote">Concerned Stuyvesant Parents release, August 7, 2002; Parents&#x27; association consultant, as reported by the parents&#x27; group</span></td></tr>
+</tbody></table></div>
+<p class="result-note"><b>Boundary:</b> This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states.</p>
+<!-- /BUILD:readings-demo -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>readings_lookup</code> → <code>portal_get_page_text</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call readings_lookup --args '{"analyte":"asbestos","include_unreviewed":true}'</code></p>
+<p><a href="toolkit.html#example-readings_lookup">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p>Rows are withheld until reviewed unless the call asks for them; the response says how many.</p></aside></div>
+</section>
+<section id="demo-cite" class="demo-panel" aria-labelledby="tab-cite">
+<div class="demo-heading"><h2>Cite a page</h2><span class="demo-label">Three formats</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:cite-demo -->
+<label for="cite-choice">Choose a page</label>
+<select id="cite-choice"><option value="citations_format">NYC-WTC_000138296 p.1</option><option value="citations_format-fuchs">NYC-WTC_000147320 p.2</option><option value="citations_format-15-john">NYC-WTC_000094256 p.1</option></select>
+<article class="cite-result" data-cite="citations_format">
+<p class="eyebrow">DORIS Giuliani · Folder 140</p>
+<h3><a href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1">NYC-WTC_000138296 p.1 ↗</a></h3>
+<dl class="facts"><div><dt>Short</dt><dd><code class="citation-text">NYC-WTC_000138296 p.1</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="NYC-WTC_000138296 p.1" hidden>Copy</button></dd></div><div><dt>Full</dt><dd><code class="citation-text">City of New York, September 11th Document Portal, DORIS Giuliani, Folder 140, NYC-WTC_000138296, PDF page 1 (page stamp NYC-WTC 000138296), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1; catalog captured 2026-09-11.</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="City of New York, September 11th Document Portal, DORIS Giuliani, Folder 140, NYC-WTC_000138296, PDF page 1 (page stamp NYC-WTC 000138296), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1; catalog captured 2026-09-11." hidden>Copy</button></dd></div><div><dt>Markdown</dt><dd><code class="citation-text">[NYC-WTC_000138296 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1)</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="[NYC-WTC_000138296 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1)" hidden>Copy</button></dd></div></dl>
+<p class="result-note">The Bates stamp printed on the page was read and matches the number.</p>
+<p class="result-note">Recorded output of <code>citations_format</code> <code>{&quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 1}</code>. <a href="toolkit.html#example-citations_format">Full response ↗</a></p></article>
+<article class="cite-result" data-cite="citations_format-fuchs">
+<p class="eyebrow">DEP Hard Copies (68 Boxes) · DEP Box 09</p>
+<h3><a href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2">NYC-WTC_000147320 p.2 ↗</a></h3>
+<dl class="facts"><div><dt>Short</dt><dd><code class="citation-text">NYC-WTC_000147320 p.2</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="NYC-WTC_000147320 p.2" hidden>Copy</button></dd></div><div><dt>Full</dt><dd><code class="citation-text">City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 09, NYC-WTC_000147320, PDF page 2 (page stamp NYC-WTC 000147321), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2; catalog captured 2026-09-11.</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 09, NYC-WTC_000147320, PDF page 2 (page stamp NYC-WTC 000147321), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2; catalog captured 2026-09-11." hidden>Copy</button></dd></div><div><dt>Markdown</dt><dd><code class="citation-text">[NYC-WTC_000147320 p.2](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2)</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="[NYC-WTC_000147320 p.2](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2)" hidden>Copy</button></dd></div></dl>
+<p class="result-note">The Bates stamp printed on the page was read and matches the number.</p>
+<p class="result-note">Recorded output of <code>citations_format</code> <code>{&quot;bates&quot;: &quot;NYC-WTC_000147320&quot;, &quot;page&quot;: 2}</code>. <a href="toolkit.html#example-citations_format-fuchs">Full response ↗</a></p></article>
+<article class="cite-result" data-cite="citations_format-15-john">
+<p class="eyebrow">DEP Hard Copies (68 Boxes) · DEP Box 01 · 15 JOHN STREET 1001217, 79/14</p>
+<h3><a href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1">NYC-WTC_000094256 p.1 ↗</a></h3>
+<dl class="facts"><div><dt>Short</dt><dd><code class="citation-text">NYC-WTC_000094256 p.1</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="NYC-WTC_000094256 p.1" hidden>Copy</button></dd></div><div><dt>Full</dt><dd><code class="citation-text">City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 01, 15 JOHN STREET 1001217, 79/14, NYC-WTC_000094256, PDF page 1, https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1; catalog captured 2026-09-11.</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 01, 15 JOHN STREET 1001217, 79/14, NYC-WTC_000094256, PDF page 1, https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1; catalog captured 2026-09-11." hidden>Copy</button></dd></div><div><dt>Markdown</dt><dd><code class="citation-text">[NYC-WTC_000094256 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1)</code> <button type="button" class="quiet copy-citation" data-status="cite-status" data-copy="[NYC-WTC_000094256 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1)" hidden>Copy</button></dd></div></dl>
+<p class="result-note">The page text was not read, so the printed stamp was not checked.</p>
+<p class="result-note">Recorded output of <code>citations_format</code> <code>{&quot;bates&quot;: &quot;NYC-WTC_000094256&quot;, &quot;page&quot;: 1}</code>. <a href="toolkit.html#example-citations_format-15-john">Full response ↗</a></p></article>
+<p id="cite-status" class="result-note" role="status"></p>
+<!-- /BUILD:cite-demo -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>citations_format</code> · <code>citations_verify</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call citations_format --args '{"bates":"NYC-WTC_000138296","page":1}'</code></p>
+<p><a href="toolkit.html#example-citations_format">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p></aside></div>
+</section>
+<section id="demo-manifest" class="demo-panel" aria-labelledby="tab-manifest">
+<div class="demo-heading"><h2>Build a reading list</h2><span class="demo-label">Records manifest</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:manifest-demo -->
+<p class="result-note">10 of 10 requested documents found in the catalog captured 2026-09-11.</p>
+<div class="tw"><table><colgroup><col class="w25"><col class="w45"><col class="w15"><col class="w15"></colgroup><thead><tr><th>Bates</th><th>Collection, box, folder</th><th>Pages</th><th>PDF size</th></tr></thead><tbody><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf">NYC-WTC_000138296</a></td><td data-label="Collection, box, folder">DORIS Giuliani · Folder 140</td><td data-label="Pages">2</td><td data-label="PDF size">0.1 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf">NYC-WTC_000147320</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 09</td><td data-label="Pages">2</td><td data-label="PDF size">0.1 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf">NYC-WTC_000153130</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 26</td><td data-label="Pages">1</td><td data-label="PDF size">0.0 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf">NYC-WTC_000130438</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 53 · E-Mail 1/2/02</td><td data-label="Pages">78</td><td data-label="PDF size">53.6 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000154488.pdf">NYC-WTC_000154488</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 26 · DEP OEM Reports to Commissioner</td><td data-label="Pages">8</td><td data-label="PDF size">0.7 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf">NYC-WTC_000094256</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 01 · 15 JOHN STREET 1001217, 79/14</td><td data-label="Pages">1</td><td data-label="PDF size">0.0 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000144518.pdf">NYC-WTC_000144518</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 08 · SCHOOLS</td><td data-label="Pages">4</td><td data-label="PDF size">0.3 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf">NYC-WTC_000106411</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 37 · 345 CHAMBERS STREET; 16/1</td><td data-label="Pages">7</td><td data-label="PDF size">0.4 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000148621.pdf">NYC-WTC_000148621</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 10 · DEP - BEC  ACTIVITIES  WTC</td><td data-label="Pages">120</td><td data-label="PDF size">22.4 MB</td></tr><tr><td data-label="Bates"><a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000151604.pdf">NYC-WTC_000151604</a></td><td data-label="Collection, box, folder">DEP Hard Copies (68 Boxes) · DEP Box 11 · WTC DC TO RC LETTERS CALLEHAN WHITMAN ETC. WARD DOCTOROFF KENNY</td><td data-label="Pages">3</td><td data-label="PDF size">0.3 MB</td></tr></tbody></table></div>
+<p class="result-actions"><a class="btn" href="data/reading-list.csv" download>Download as CSV</a></p>
+<p class="result-note">Recorded output of <code>records_manifest</code> <code>{&quot;bates&quot;: [&quot;NYC-WTC_000138296&quot;, &quot;NYC-WTC_000147320&quot;, &quot;NYC-WTC_000153130&quot;, &quot;NYC-WTC_000130438&quot;, &quot;NYC-WTC_000154488&quot;, &quot;NYC-WTC_000094256&quot;, &quot;NYC-WTC_000144518&quot;, &quot;NYC-WTC_000106411&quot;, &quot;NYC-WTC_000148621&quot;, &quot;NYC-WTC_000151604&quot;]}</code>. <a href="toolkit.html#example-records_manifest">Full response ↗</a></p>
+<!-- /BUILD:manifest-demo -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>records_manifest</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call records_manifest --args '{"bates":["NYC-WTC_000138296","NYC-WTC_000147320"]}'</code></p>
+<p><a href="toolkit.html#example-records_manifest">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p>Up to 50 Bates numbers per call. Spreadsheet formulas are neutralized in the CSV.</p></aside></div>
 </section>
 <section id="demo-help" class="demo-panel" aria-labelledby="tab-help">
 <div class="demo-heading"><h2>Find proof-of-presence records</h2><span class="demo-label">Official directory</span></div>
@@ -126,10 +386,11 @@
 <p class="result-note">This directory quotes official rules with their sources. It does not decide eligibility, calculate a deadline or file anything. Rules change; read the linked official page before acting. Not legal advice.</p>
 <!-- /BUILD:help-demo -->
 </div>
-<aside class="demo-context"><h3>With the MCP</h3>
-<p class="tool-path">resource <code>sept11://help-directory</code> · <code>citations_verify</code></p>
-<p class="tool-path"><code>evidence.checklist</code> · interactive routing held for practitioner review</p>
-<a href="index.html#obligations">Settlement commitments ↗</a></aside>
+<aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>presence_evidence</code> · resource <code>sept11://help-directory</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call presence_evidence --args '{"program":"vcf","who":"survivors"}'</code></p>
+<p><a href="toolkit.html#example-presence_evidence">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p><a href="index.html#obligations">Settlement commitments ↗</a></p></aside>
 </div>
 </section>
 <section id="demo-budget" class="demo-panel" aria-labelledby="tab-budget">
@@ -144,9 +405,9 @@
 <p class="amount">$34.2 million</p><p>Portal creation, maintenance and Law Department document review.</p>
 <a class="source-link" href="https://www.nyc.gov/mayors-office/news/2026/06/mayor-mamdani--speaker-menin-reach-handshake-agreement-on-balanc">Mayor’s budget announcement ↗</a>
 
-<h4>Evidence by stage</h4>
+<h4>Evidence for each stage</h4>
 <div class="evidence-stages" role="group" aria-label="Evidence stages"><button type="button" data-stage="announcement" aria-pressed="true">Announcement<span class="state">located</span></button><button type="button" data-stage="adopted_line" aria-pressed="false">Adopted budget line<span class="state">not linked</span></button><button type="button" data-stage="contract" aria-pressed="false">Contract<span class="state">not linked</span></button><button type="button" data-stage="payment" aria-pressed="false">Payments<span class="state">not linked</span></button><button type="button" data-stage="delivery" aria-pressed="false">Delivery<span class="state">observed</span></button></div>
-<dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The handshake release of June 30, 2026 names $34.2 million in FY27 for the portal. An announcement records the promise. Appropriation, contracting and payment are separate stages.</dd></div><div data-stage="adopted_line"><dt>Adopted line not linked yet</dt><dd>The OMB Adopted Budget FY2027 (Expense, Revenue, Contract; 845 pages, captured 2026-09-11) contains no line naming the portal. The terms “September 11”, “9/11”, “portal” and “World Trade” do not occur in it, and the Law Department and Department of Investigation entries are agency totals. The amount remains an announced commitment. <span class="next">Next: Search the Supporting Schedules and the Law Department’s units of appropriation in the adopted expense schedules, or ask OMB which unit of appropriation carries the $34.2 million.</span></dd></div><div data-stage="contract"><dt>Contract not linked yet</dt><dd>No registered contract has been confirmed as delivering this work. A vendor name matched by keyword is only a candidate. The portal’s software fingerprint does not identify a procurement. <span class="next">Next: Query Checkbook NYC by agency and period for review, redaction, scanning and hosting scopes; promote a candidate only with reviewed scope evidence.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. It must not appear as zero or as the announced amount. Fiscal-year cash payments are separate from lifetime contract totals. <span class="next">Next: Obtain payments and amendments for any confirmed contract and reconcile them on a matching period basis.</span></dd></div><div data-stage="delivery"><dt>Delivery observed on the portal</dt><dd>The portal launched September 8, 2026. The catalog capture of September 9, 2026 holds 24,441 documents and 173,299 pages. Observation of the portal establishes nothing about the money. <a href="index.html#obligations">Obligation rows ↗</a></dd></div></dl>
+<dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The handshake release of June 30, 2026 names $34.2 million in FY27 for the portal. An announcement records the promise. Appropriation, contracting and payment are separate stages.</dd></div><div data-stage="adopted_line"><dt>Adopted line not linked yet</dt><dd>The OMB Adopted Budget FY2027 (Expense, Revenue, Contract; 845 pages, captured 2026-09-11) contains no line naming the portal. The terms “September 11”, “9/11”, “portal” and “World Trade” do not occur in it, and the Law Department and Department of Investigation entries are agency totals. The amount remains an announced commitment. <span class="next">Next: Search the Supporting Schedules and the Law Department’s units of appropriation in the adopted expense schedules, or ask OMB which unit of appropriation carries the $34.2 million.</span></dd></div><div data-stage="contract"><dt>Contract not linked yet</dt><dd>No registered contract has been confirmed as delivering this work. A vendor name matched by keyword is only a candidate. The portal’s software fingerprint does not identify a procurement. <span class="next">Next: Query Checkbook NYC by agency and period for review, redaction, scanning and hosting scopes; promote a candidate only with reviewed scope evidence.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. It must not appear as zero or as the announced amount. Fiscal-year cash payments are separate from lifetime contract totals. <span class="next">Next: Obtain payments and amendments for any confirmed contract and reconcile them on a matching period basis.</span></dd></div><div data-stage="delivery"><dt>Delivery observed on the portal</dt><dd>The portal launched September 8, 2026. The catalog capture of September 9, 2026 holds 24,441 documents and 173,299 pages. Observation of the portal establishes nothing about the money. <a href="index.html#obligations">Dated obligations ↗</a></dd></div></dl>
 
 <h4>Open questions</h4>
 <ul class="plain"><li>Which adopted unit of appropriation carries the $34.2 million, and in which agency?</li><li>Which registered contracts deliver document review, redaction and hosting?</li><li>What has been paid to date in each fiscal year?</li></ul>
@@ -156,9 +417,9 @@
 <p class="amount">$4 million</p><p>Funding for DOI to complete and release its report on 9/11 environmental toxins, which the Council announced on September 3, 2026.</p>
 <a class="source-link" href="https://council.nyc.gov/press/2026/09/03/3231/">Council announcement ↗</a>
 <p class="result-note">The Council release does not allocate the $4 million between fiscal years. DOI’s own page says the City allocated $3.81 million over fiscal years 2026 and 2027; DOI’s June 29, 2026 letter says it requested $4 million over two fiscal years. The figures are listed beside each other; none is substituted for another.</p>
-<h4>Evidence by stage</h4>
+<h4>Evidence for each stage</h4>
 <div class="evidence-stages" role="group" aria-label="Evidence stages"><button type="button" data-stage="announcement" aria-pressed="true">Announcement<span class="state">located</span></button><button type="button" data-stage="adopted_line" aria-pressed="false">Adopted budget line<span class="state">partially observed</span></button><button type="button" data-stage="contract" aria-pressed="false">Contract<span class="state">not observed</span></button><button type="button" data-stage="payment" aria-pressed="false">Payments<span class="state">not linked</span></button><button type="button" data-stage="delivery" aria-pressed="false">Delivery<span class="state">partially observed</span></button></div>
-<dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The Council&#x27;s September 3, 2026 release records $4 million in additional funding for DOI to complete and release its report. The annual split is not stated there.</dd></div><div data-stage="adopted_line"><dt>Allocation stated by DOI; no line identifier</dt><dd>DOI’s investigation page states that in June 2026 the City allocated $3.81 million over fiscal years 2026 and 2027 for the investigative firm. No unit of appropriation or budget code has been located: the OMB Adopted Budget FY2027 names no such line (845 pages searched 2026-09-11), and the DOI entries there are agency totals. <span class="next">Next: Locate the DOI unit of appropriation that carries the FY2026 and FY2027 amounts, or a budget modification naming it.</span></dd></div><div data-stage="contract"><dt>DOI reports no contract yet</dt><dd>DOI’s June 29, 2026 letter says a team of two firms was selected after a Request for Information to six firms. DOI will enter a contract once funding is secured from OMB. DOI’s page, read September 11, 2026, says DOI is in the procurement process. No registered contract has been located. <span class="next">Next: Query Checkbook NYC for a DOI contract with an investigation or public-health scope registered after June 2026.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. <span class="next">Next: Obtain payments for any confirmed contract by fiscal year.</span></dd></div><div data-stage="delivery"><dt>Two written updates observed; the report is dated</dt><dd>DOI’s written updates for December 31, 2025 and June 30, 2026 are posted on DOI’s page as letters dated December 31, 2025 and June 29, 2026. A video update from the Commissioner is dated September 1, 2026. The next updates are due December 31, 2026 and June 30, 2027; the report is due by July 14, 2027. Nothing is inferred as delivered before it is published. <a href="index.html#obligations">Obligation rows ↗</a></dd></div></dl>
+<dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The Council&#x27;s September 3, 2026 release records $4 million in additional funding for DOI to complete and release its report. The annual split is not stated there.</dd></div><div data-stage="adopted_line"><dt>Allocation stated by DOI; no line identifier</dt><dd>DOI’s investigation page states that in June 2026 the City allocated $3.81 million over fiscal years 2026 and 2027 for the investigative firm. No unit of appropriation or budget code has been located: the OMB Adopted Budget FY2027 names no such line (845 pages searched 2026-09-11), and the DOI entries there are agency totals. <span class="next">Next: Locate the DOI unit of appropriation that carries the FY2026 and FY2027 amounts, or a budget modification naming it.</span></dd></div><div data-stage="contract"><dt>DOI reports no contract yet</dt><dd>DOI’s June 29, 2026 letter says a team of two firms was selected after a Request for Information to six firms. DOI will enter a contract once funding is secured from OMB. DOI’s page, read September 11, 2026, says DOI is in the procurement process. No registered contract has been located. <span class="next">Next: Query Checkbook NYC for a DOI contract with an investigation or public-health scope registered after June 2026.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. <span class="next">Next: Obtain payments for any confirmed contract by fiscal year.</span></dd></div><div data-stage="delivery"><dt>Two written updates observed; the report is dated</dt><dd>DOI’s written updates for December 31, 2025 and June 30, 2026 are posted on DOI’s page as letters dated December 31, 2025 and June 29, 2026. A video update from the Commissioner is dated September 1, 2026. The next updates are due December 31, 2026 and June 30, 2027; the report is due by July 14, 2027. Nothing is inferred as delivered before it is published. <a href="index.html#obligations">Dated obligations ↗</a></dd></div></dl>
 <h4>Also on record</h4><ul class="statements"><li><b>2026-03-18</b> <q>DOI has requested $3 million in funding in FY27 to hire an outside firm</q> <a class="cite" href="https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf">DOI testimony, March 18, 2026, p.5</a></li><li><b>2026-03-18</b> <q>DOI now estimates that the cost of the overall investigation will total between $4 and $5 million</q> <a class="cite" href="https://www.nyc.gov/assets/doi/Testimony/2026/DOIPrelimBudgetTestimony.CYend.03.18.2026FINAL.pdf">DOI testimony, March 18, 2026, p.5</a></li><li><b>2025-12-31</b> DOI requested <q>a total of over $3 million over two fiscal years</q> <a class="cite" href="https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/12_31_2025Councilupdate.pdf">DOI letter, December 31, 2025, p.2</a></li><li><b>2026-06-29</b> <q>DOI requested a total of $4 million over the course of two fiscal years to hire a third-party firm</q> <a class="cite" href="https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf">DOI letter, June 29, 2026, p.2</a></li><li><b>2026-06-29</b> OMB <q>has not yet approved DOI’s request</q> <a class="cite" href="https://www.nyc.gov/assets/doi/downloads/Sept_11_Investigation/06_29_2026Council_update.pdf">DOI letter, June 29, 2026, p.2</a></li><li><b>2026-09-11</b> <q>In June 2026, the City allocated $3.81 million over fiscal years 2026 and 2027 to fund this investigative firm</q> <a class="cite" href="https://www.nyc.gov/site/doi/newsroom/9-11-investigation.page">DOI investigation page, read 2026-09-11</a></li></ul>
 <h4>Open questions</h4>
 <ul class="plain"><li>Which unit of appropriation carries the $3.81 million, and how is it split between FY2026 and FY2027?</li><li>Which two firms were selected, and when is the contract registered?</li><li>What does the December 31, 2026 update say?</li></ul>
@@ -168,7 +429,7 @@
 <p class="amount">$1 million</p><p>Free field trips for New York City students, with a focus on eighth graders, and expanded educational programming.</p>
 <a class="source-link" href="https://council.nyc.gov/press/2026/09/03/3231/">Council announcement ↗</a>
 
-<h4>Evidence by stage</h4>
+<h4>Evidence for each stage</h4>
 <div class="evidence-stages" role="group" aria-label="Evidence stages"><button type="button" data-stage="announcement" aria-pressed="true">Announcement<span class="state">located</span></button><button type="button" data-stage="adopted_line" aria-pressed="false">Adopted budget line<span class="state">located</span></button><button type="button" data-stage="contract" aria-pressed="false">Contract<span class="state">not linked</span></button><button type="button" data-stage="payment" aria-pressed="false">Payments<span class="state">not linked</span></button><button type="button" data-stage="delivery" aria-pressed="false">Delivery<span class="state">not linked</span></button></div>
 <dl class="stage-notes"><div data-stage="announcement"><dt>Announcement located</dt><dd>The Council&#x27;s September 3, 2026 release announces $1 million for the 9/11 Memorial &amp; Museum for free student field trips and educational programming.</dd></div><div data-stage="adopted_line"><dt>Adopted lines located in the Council’s Schedule C</dt><dd>The Council’s Fiscal 2027 Schedule C (June 30, 2026) lists two DYCD lines to the National September 11 Memorial and Museum. Page 281: $750,000 for museum field trips, stated as funding for 8th grade students to visit free of charge. Page 280: $250,000 for 9/11 Memorial Museum programming, covering in-person and virtual field trips. The two lines add to $1,000,000, the amount the Council announced; the sum is arithmetic and the lines stay separate. Smaller member and delegation items to the same organization in Schedule C ($50,000 p.134, $12,000 p.28, $10,000 p.110) are outside this commitment. <span class="next">Next: Confirm the DYCD contract registrations that carry the two lines.</span></dd></div><div data-stage="contract"><dt>Grant or contract not linked yet</dt><dd>No DYCD contract or grant registration to the Memorial has been located for FY2027. <span class="next">Next: Query Checkbook NYC for DYCD contracts with the National September 11 Memorial and Museum (Tax ID 611745872) registered in FY2027.</span></dd></div><div data-stage="payment"><dt>Payments not checked</dt><dd>No payment records have been checked. Spending is unknown. <span class="next">Next: Record any FY27 disbursement with its transaction identifier.</span></dd></div><div data-stage="delivery"><dt>Delivery not linked yet</dt><dd>No participation report has been published. The count of student visits, the period and the population definition are unknown. Unknown service output is not zero delivery. Student records stay aggregate.</dd></div></dl>
 <h4>Also on record</h4><ul class="statements"><li><b>2026-06-30</b> National September 11 Memorial and Museum at the World Trade Center – <q>Museum Field Trips 611745872 $750,000 DYCD</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.281, p.281</a></li><li><b>2026-06-30</b> <q>To provide funding support for 8th grade students to visit the museum free of charge.</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.281, p.281</a></li><li><b>2026-06-30</b> National September 11 Memorial and Museum at the World Trade Center – <q>9/11 Memorial Museum Programming 611745872 $250,000 DYCD</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.280, p.280</a></li><li><b>2026-06-30</b> <q>Funds will be used to cover the costs of in-person and virtual field trips</q> <a class="cite" href="https://council.nyc.gov/budget/wp-content/uploads/sites/54/2026/06/Fiscal-2027-Schedule-C-Final-3.pdf">Council Fiscal 2027 Schedule C, p.280, p.280</a></li></ul>
@@ -178,11 +439,27 @@
 <!-- /BUILD:budget-demo -->
 <noscript><p class="result-note">Every stage is shown. The adopted line, contract and payment stages are unresolved; an unknown amount is not zero.</p></noscript>
 </div>
-<aside class="demo-context"><h3>With the MCP</h3>
+<aside class="demo-context"><h3>MCP calls</h3>
 <p class="tool-path"><code>budget_lookup</code> → <code>doi_milestones</code></p>
-<p><a href="toolkit.html#example-budget_lookup">View sample result ↗</a></p>
-<a href="index.html#obligations">View related obligations ↗</a></aside>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call budget_lookup --args '{"topic":"doi"}'</code></p>
+<p><a href="toolkit.html#example-budget_lookup">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p><a href="index.html#obligations">Related obligations ↗</a></p></aside>
 </div>
+</section>
+<section id="demo-dates" class="demo-panel" aria-labelledby="tab-dates">
+<div class="demo-heading"><h2>Key dates</h2><span class="demo-label">Settlement and Res. 560-A</span></div>
+<div class="demo-grid"><div class="demo-primary">
+<!-- BUILD:dates-demo -->
+<ol class="plain due-list"><li><b><time datetime="2025-12-31">December 31, 2025</time></b> <span>DOI written status update to the Speaker</span> <span class="badge met">observed</span> <span class="days" data-date="2025-12-31"></span><span class="cellnote">Res. 560-A §1 · checked 2026-09-11</span></li><li><b><time datetime="2026-06-30">June 30, 2026</time></b> <span>DOI written status update to the Speaker</span> <span class="badge met">observed</span> <span class="days" data-date="2026-06-30"></span><span class="cellnote">Res. 560-A §1 · checked 2026-09-11</span></li><li><b><time datetime="2026-12-31">December 31, 2026</time></b> <span>DOI written status update to the Speaker</span> <span class="badge upcoming">upcoming</span> <span class="days" data-date="2026-12-31"></span><span class="cellnote">Res. 560-A §1 · checked 2026-09-09</span></li><li><b><time datetime="2027-06-30">June 30, 2027</time></b> <span>DOI written status update to the Speaker</span> <span class="badge upcoming">upcoming</span> <span class="days" data-date="2027-06-30"></span><span class="cellnote">Res. 560-A §1 · checked 2026-09-09</span></li><li><b><time datetime="2027-07-14">July 14, 2027</time></b> <span>DOI report: knowledge assessment, timeline of awareness, public-vs-internal contrast analysis</span> <span class="badge upcoming">upcoming</span> <span class="days" data-date="2027-07-14"></span><span class="cellnote">Res. 560-A §2 · checked 2026-09-09</span></li><li><b><time datetime="2027-09-08">September 8, 2027</time></b> <span>Twelve months of good-faith performance; then dismissal with prejudice</span> <span class="badge upcoming">upcoming</span> <span class="days" data-date="2027-09-08"></span><span class="cellnote">Settlement ¶ 7–8 · checked 2026-09-09</span></li></ol>
+<h3>Recurring obligations</h3>
+<ul class="plain due-list"><li><b>monthly through 2027-08</b> <span>Monthly Law Department meetings with 9/11 Health Watch, Sept 2026 – Aug 2027 (documents, pages, sources, subjects)</span><span class="cellnote">Settlement ¶ 1</span></li></ul>
+<p class="result-note">Recurring obligations state no dates, so none are added to the calendar. Status is what was observed on public pages when checked, with no legal determination.</p>
+<p class="result-actions"><a class="btn" href="data/obligations.ics" download>Add the dated obligations to a calendar (.ics)</a></p>
+<!-- /BUILD:dates-demo -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>upcoming_dates</code> · <code>doi_milestones</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call upcoming_dates --args '{"as_of":"2026-10-08"}'</code></p>
+<p><a href="toolkit.html#example-upcoming_dates">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p></aside></div>
 </section>
 <section id="demo-releases" class="demo-panel" aria-labelledby="tab-releases">
 <div class="demo-heading"><h2>Check catalog changes</h2><span class="demo-label">Saved capture</span></div>
@@ -191,79 +468,16 @@
 <div id="watchdog-live" class="ledger"><p>Loading the saved capture. <a href="data/watchdog/latest.json">Open the source data</a>.</p></div>
 <p id="watchdog-note" class="result-note">A comparison needs two accepted captures.</p>
 <p><a class="source-link" href="data/watchdog/latest.json">Inspect capture and provenance ↗</a></p>
+<p class="result-note">Dated obligations are under <a href="#demo-dates">Key dates</a>.</p>
 <noscript><p>JavaScript is off. The source data link includes the capture time, totals and comparison status.</p></noscript>
 <h3>Dated obligations ahead</h3>
-<!-- BUILD:due-next -->
-<ul class="plain due-list"><li><b>2026-12-31</b> <span>DOI written status update to the Speaker</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Res. 560-A §1</a></li><li><b>2027-06-30</b> <span>DOI written status update to the Speaker</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Res. 560-A §1</a></li><li><b>2027-07-14</b> <span>DOI report: knowledge assessment, timeline of awareness, public-vs-internal contrast analysis</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Res. 560-A §2</a></li><li><b>2027-09-08</b> <span>Twelve months of good-faith performance; then dismissal with prejudice</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Settlement ¶ 7–8</a></li><li><b>monthly through 2027-08</b> <span>Monthly Law Department meetings with 9/11 Health Watch, Sept 2026 – Aug 2027 (documents, pages, sources, subjects)</span> <span class="badge upcoming">upcoming</span> <a class="cite" href="index.html#obligations">Settlement ¶ 1</a></li></ul>
-<!-- /BUILD:due-next -->
 </div>
-<aside class="demo-context"><h3>With the MCP</h3>
+<aside class="demo-context"><h3>MCP calls</h3>
 <p class="tool-path"><code>portal_catalog_stats</code> → <code>portal_changes_since</code></p>
-<p><a href="toolkit.html#example-portal_changes_since">View sample result ↗</a></p>
-<a href="index.html#watchdog">Watchdog methods ↗</a></aside>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call portal_changes_since --args '{"since":"2026-09-09"}'</code></p>
+<p><a href="toolkit.html#example-portal_changes_since">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p>
+<p><a href="index.html#watchdog">Watchdog methods ↗</a></p></aside>
 </div>
-</section>
-<section id="demo-context" class="demo-panel" aria-labelledby="tab-context">
-<div class="demo-heading"><h2>Recent coverage and projects</h2><span class="demo-label">Dated reading list</span></div>
-<div class="demo-grid"><div class="demo-primary">
-<!-- BUILD:current-context -->
-<p class="result-note">As of 2026-09-21 · 2026-09-11 through 2026-09-21. Recent, source-linked developments around the City release.</p><article class="context-item">
-<p class="eyebrow">2026-09-19 · Independent project</p><h3>911records.org moved domains and publishes a change log</h3>
-<p>Cleartext Labs says its independent mirror now uses 911records.org, with prior 911records.nyc links redirecting. Its release notes also describe OCR and search changes. Treat its extracted text and tags as research aids; check the City PDF before relying on a result.</p><a class="source-link" href="https://911records.org/releases">911 City Records release notes ↗</a>
-<p class="result-note"><b>How to use it:</b> Compare a finding with this toolkit’s locally captured catalog. Differences can reflect capture time, OCR, tagging, or a changed City record.</p></article>
-<article class="context-item">
-<p class="eyebrow">2026-09-17 · Independent project</p><h3>A public mirror and MCP were announced for the City release</h3>
-<p>The project describes a map, record search, saved case files, exports, and an MCP endpoint. The operator says it is independent and not a City or benefits-program service.</p><a class="source-link" href="https://www.reddit.com/r/newyorkcity/comments/1wiu6bd/a_new_resource_for_911_wtc_survivors_and_their/">Project announcement ↗</a>
-<p class="result-note"><b>How to use it:</b> Useful for discovery and comparison, not proof of exposure, eligibility, illness, liability, or wrongdoing.</p></article>
-<article class="context-item">
-<p class="eyebrow">2026-09-11 · Federal records</p><h3>National Archives announced declassification of separate federal 9/11 records</h3>
-<p>The Public Interest Declassification Board says presidential briefing material and 9/11 Commission interview memoranda were released. These are separate from New York City’s post-attack air-quality portal.</p><a class="source-link" href="https://transforming-classification.blogs.archives.gov/2026/09/11/long-sought-9-11-records-now-declassified-and-available-to-the-public/">National Archives announcement ↗</a>
-<p class="result-note"><b>How to use it:</b> Keep federal pre-attack records separate from City post-attack records when framing a question or citation.</p></article>
-<!-- /BUILD:current-context -->
-</div><aside class="demo-context"><h3>Scope</h3>
-<p>Official City records, independent tools, and federal records are separate systems.</p>
-<p><a href="https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records">City release announcement ↗</a></p>
-</aside></div>
-</section>
-<section id="demo-paths" class="demo-panel" aria-labelledby="tab-paths">
-<div class="demo-heading"><h2>Turn a question into an MCP query</h2><span class="demo-label">MCP routes</span></div>
-<div class="demo-grid"><div class="demo-primary">
-<!-- BUILD:research-paths -->
-<label for="path-choice">Choose a research question</label>
-<select id="path-choice"><option value="catalog-change">Did the City catalog change after this toolkit’s saved capture?</option><option value="source-page">What does a cited City page actually say?</option><option value="project-compare">Why might an independent project show more search detail?</option><option value="separate-records">Are City portal documents the same as newly declassified federal records?</option></select>
-<article class="research-path" data-path="catalog-change">
-<h3>Did the City catalog change after this toolkit’s saved capture?</h3><p class="tool-path"><code>portal_changes_since → portal_get_document</code></p>
-<p>Use two accepted local captures. The result can report observed additions, absences, or changed metadata; it does not prove why a record changed or that a City release is complete.</p><p class="result-note"><b>Boundary:</b> This checkout’s published capture is dated 2026-09-11. A current comparison needs a newer accepted capture.</p></article>
-<article class="research-path" data-path="source-page">
-<h3>What does a cited City page actually say?</h3><p class="tool-path"><code>catalog_search → portal_get_document → portal_get_page_text → citations_verify</code></p>
-<p>Find the local catalog entry, open its record, read the specific Bates page, then verify the exact quotation. Page text may be withheld when the PII screen flags it.</p><p class="result-note"><b>Boundary:</b> A located phrase is evidence location, not a finding about exposure, health, liability, or program eligibility.</p></article>
-<article class="research-path" data-path="project-compare">
-<h3>Why might an independent project show more search detail?</h3><p class="tool-path"><code>portal_catalog_stats → portal_browse</code></p>
-<p>This MCP reports its own snapshot, catalog structure, and evidence warnings. Another project can have a later capture or different OCR. Compare source PDF, Bates page, capture date, and stated method.</p><p class="result-note"><b>Boundary:</b> Do not combine counts, map pins, OCR, or tags across projects as if they were one verified dataset.</p></article>
-<article class="research-path" data-path="separate-records">
-<h3>Are City portal documents the same as newly declassified federal records?</h3><p class="tool-path"><code>citations_verify</code></p>
-<p>No. This MCP can verify registered City-portal pages and its registered sources; it does not search or interpret the federal release.</p><p class="result-note"><b>Boundary:</b> Use the National Archives source directly for federal records and identify the record system in every citation.</p></article>
-<!-- /BUILD:research-paths -->
-</div><aside class="demo-context"><h3>With the MCP</h3>
-<p class="tool-path"><code>portal_changes_since</code> · <code>portal_get_page_text</code> · <code>citations_verify</code></p>
-<p>Each route states what the result cannot establish.</p>
-</aside></div>
-</section>
-<section id="demo-footprint" class="demo-panel" aria-labelledby="tab-footprint">
-<div class="demo-heading"><h2>Release snapshot</h2><span class="demo-label">Catalog snapshot</span></div>
-<div class="demo-grid"><div class="demo-primary">
-<!-- BUILD:release-footprint -->
-<div class="release-metrics" aria-label="Saved catalog footprint">
-<div><b>24,441</b><span>documents</span></div><div><b>173,299</b><span>pages</span></div>
-<div><b>74</b><span>boxes</span></div><div><b>4,173</b><span>folder labels</span></div></div>
-<p class="result-note">Catalog captured 2026-09-09.</p>
-<div class="tw"><table><colgroup><col class="w50"><col class="w25"><col class="w25"></colgroup>
-<thead><tr><th>Collection</th><th>Documents</th><th>Share of saved catalog</th></tr></thead><tbody><tr><td data-label="Collection">DEP Hard Copies (68 Boxes)</td><td data-label="Documents">21,395</td><td data-label="Share of saved catalog">87.5%</td></tr><tr><td data-label="Collection">WTC 7</td><td data-label="Documents">3,025</td><td data-label="Share of saved catalog">12.4%</td></tr><tr><td data-label="Collection">DORIS Giuliani</td><td data-label="Documents">21</td><td data-label="Share of saved catalog">0.1%</td></tr></tbody></table></div>
-<!-- /BUILD:release-footprint -->
-</div><aside class="demo-context"><h3>With the MCP</h3>
-<p class="tool-path"><code>portal_catalog_stats</code> · <code>portal_browse</code></p>
-<p>Use the local snapshot to inspect collections. Capture time matters.</p>
-</aside></div>
 </section>
 <section id="demo-tracker" class="demo-panel" aria-labelledby="tab-tracker">
 <div class="demo-heading"><h2>Track release commitments</h2><span class="demo-label">Dated observations</span></div>
@@ -297,55 +511,47 @@
 <p class="result-note"><b>Source:</b> Settlement ¶ (b); Mayor&#x27;s press release. Observation only.</p>
 </article>
 <!-- /BUILD:release-tracker -->
-</div><aside class="demo-context"><h3>With the MCP</h3>
+</div><aside class="demo-context"><h3>MCP calls</h3>
 <p class="tool-path"><code>doi_milestones</code> · resource <code>sept11://scorecard</code></p>
-<p>Observed, not observed, and unable to check are evidence states, not verdicts.</p>
-</aside></div>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call doi_milestones --args '{}'</code></p>
+<p><a href="toolkit.html#example-doi_milestones">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p></aside></div>
 </section>
-<section id="demo-collections" class="demo-panel" aria-labelledby="tab-collections">
-<div class="demo-heading"><h2>Browse the catalog by collection</h2><span class="demo-label">Local catalog</span></div>
+<section id="demo-footprint" class="demo-panel" aria-labelledby="tab-footprint">
+<div class="demo-heading"><h2>Release snapshot</h2><span class="demo-label">Catalog snapshot</span></div>
 <div class="demo-grid"><div class="demo-primary">
-<!-- BUILD:collection-explorer -->
-<label for="collection-choice">Choose a City collection</label>
-<select id="collection-choice"><option value="DEP Hard Copies (68 Boxes)">DEP Hard Copies (68 Boxes) · 21,395 documents</option><option value="WTC 7">WTC 7 · 3,025 documents</option><option value="DORIS Giuliani">DORIS Giuliani · 21 documents</option></select>
-<article class="collection-result" data-collection="DEP Hard Copies (68 Boxes)">
-<p class="eyebrow">21,395 documents in saved catalog</p><h3>DEP Hard Copies (68 Boxes)</h3>
-<p>DEP hard-copy production. The summary reports 21,395 documents for Environmental Protection, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
-<pre class="request">catalog_search {&quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;, &quot;count&quot;: 10}</pre>
-<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
-<article class="collection-result" data-collection="WTC 7">
-<p class="eyebrow">3,025 documents in saved catalog</p><h3>WTC 7</h3>
-<p>WTC 7 collection label. The summary reports 2,915 documents for Citywide Administrative Services, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
-<pre class="request">catalog_search {&quot;source&quot;: &quot;WTC 7&quot;, &quot;count&quot;: 10}</pre>
-<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
-<article class="collection-result" data-collection="DORIS Giuliani">
-<p class="eyebrow">21 documents in saved catalog</p><h3>DORIS Giuliani</h3>
-<p>DORIS Giuliani collection label. The summary reports 21 documents for Records and Information Services, Dept. of across the saved catalog; it is not a one-to-one collection total.</p>
-<pre class="request">catalog_search {&quot;source&quot;: &quot;DORIS Giuliani&quot;, &quot;count&quot;: 10}</pre>
-<p class="result-note">Local metadata only. Use a page tool for page text.</p></article>
-<!-- /BUILD:collection-explorer -->
-</div><aside class="demo-context"><h3>With the MCP</h3>
-<p class="tool-path"><code>catalog_search</code> → <code>portal_browse</code></p>
-<p>Collection labels are City metadata, not a topic classification.</p>
-</aside></div>
+<!-- BUILD:release-footprint -->
+<div class="release-metrics" aria-label="Saved catalog footprint">
+<div><b>24,441</b><span>documents</span></div><div><b>173,299</b><span>pages</span></div>
+<div><b>74</b><span>boxes</span></div><div><b>4,173</b><span>folder labels</span></div></div>
+<p class="result-note">Catalog captured 2026-09-09.</p>
+<div class="tw"><table><colgroup><col class="w50"><col class="w25"><col class="w25"></colgroup>
+<thead><tr><th>Collection</th><th>Documents</th><th>Share of saved catalog</th></tr></thead><tbody><tr><td data-label="Collection">DEP Hard Copies (68 Boxes)</td><td data-label="Documents">21,395</td><td data-label="Share of saved catalog">87.5%</td></tr><tr><td data-label="Collection">WTC 7</td><td data-label="Documents">3,025</td><td data-label="Share of saved catalog">12.4%</td></tr><tr><td data-label="Collection">DORIS Giuliani</td><td data-label="Documents">21</td><td data-label="Share of saved catalog">0.1%</td></tr></tbody></table></div>
+<!-- /BUILD:release-footprint -->
+</div><aside class="demo-context"><h3>MCP calls</h3>
+<p class="tool-path"><code>portal_catalog_stats</code> · <code>portal_browse</code></p>
+<p class="cli"><code>python3 scripts/sept11_mcp.py call portal_catalog_stats --args '{}'</code></p>
+<p><a href="toolkit.html#example-portal_catalog_stats">Recorded response ↗</a> · <a href="toolkit.html#watch">See a call happen ↗</a></p></aside></div>
 </section>
-<section id="demo-timeline" class="demo-panel" aria-labelledby="tab-timeline">
-<div class="demo-heading"><h2>Read a short document timeline</h2><span class="demo-label">Located anchors</span></div>
+<section id="demo-context" class="demo-panel" aria-labelledby="tab-context">
+<div class="demo-heading"><h2>Recent coverage and projects</h2><span class="demo-label">Dated reading list</span></div>
 <div class="demo-grid"><div class="demo-primary">
-<!-- BUILD:release-timeline -->
-<p class="result-note">Four located documents. Dates use each anchor’s stated basis.</p><ol class="release-timeline"><li><b>2001-10</b><span>Harding memo (Legislative Alternatives to Limit the City&#x27;s Liability)</span>
-<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1">NYC-WTC_000138296 · p.1</a>
-<span class="muted">portal &#x27;Documents of Interest&#x27; label; Oct 16, 2001 email at NYC-WTC_000136670 p.58</span></li><li><b>2001-11-20</b><span>EPA Special Investigative Audit #14, Environmental Data Trend Report (IT Corporation for EPA)</span>
-<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf#page=1">NYC-WTC_000130438 · p.1</a>
-<span class="muted">printed on the cover</span></li><li><b>2002-02-28</b><span>Fuchs memo re Congressman Nadler&#x27;s concerns about indoor air quality</span>
-<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2">NYC-WTC_000147320 · p.2</a>
-<span class="muted">printed on the memo</span></li><li><b>2002-05-16</b><span>Clean Up Initiative note (conversation with Kathy Callahan)</span>
-<a class="cite" href="https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf#page=1">NYC-WTC_000153130 · p.1</a>
-<span class="muted">header &#x27;5/16/02 Clean-up Initiative&#x27;</span></li></ol>
-<!-- /BUILD:release-timeline -->
-</div><aside class="demo-context"><h3>With the MCP</h3>
-<p class="tool-path"><code>portal_get_document</code> → <code>portal_get_page_text</code></p>
-<p>Open the Bates page before quoting. Dates are not catalog fields.</p>
+<!-- BUILD:current-context -->
+<p class="result-note">As of 2026-09-21 · 2026-09-11 through 2026-09-21. Recent, source-linked developments around the City release.</p><article class="context-item">
+<p class="eyebrow">2026-09-19 · Independent project</p><h3>911records.org moved domains and publishes a change log</h3>
+<p>Cleartext Labs says its independent mirror now uses 911records.org, with prior 911records.nyc links redirecting. Its release notes also describe OCR and search changes. Treat its extracted text and tags as research aids; check the City PDF before relying on a result.</p><a class="source-link" href="https://911records.org/releases">911 City Records release notes ↗</a>
+<p class="result-note"><b>How to use it:</b> Compare a finding with this toolkit’s locally captured catalog. Differences can reflect capture time, OCR, tagging, or a changed City record.</p></article>
+<article class="context-item">
+<p class="eyebrow">2026-09-17 · Independent project</p><h3>A public mirror and MCP were announced for the City release</h3>
+<p>The project describes a map, record search, saved case files, exports, and an MCP endpoint. The operator says it is independent and not a City or benefits-program service.</p><a class="source-link" href="https://www.reddit.com/r/newyorkcity/comments/1wiu6bd/a_new_resource_for_911_wtc_survivors_and_their/">Project announcement ↗</a>
+<p class="result-note"><b>How to use it:</b> Useful for discovery and comparison, not proof of exposure, eligibility, illness, liability, or wrongdoing.</p></article>
+<article class="context-item">
+<p class="eyebrow">2026-09-11 · Federal records</p><h3>National Archives announced declassification of separate federal 9/11 records</h3>
+<p>The Public Interest Declassification Board says presidential briefing material and 9/11 Commission interview memoranda were released. These are separate from New York City’s post-attack air-quality portal.</p><a class="source-link" href="https://transforming-classification.blogs.archives.gov/2026/09/11/long-sought-9-11-records-now-declassified-and-available-to-the-public/">National Archives announcement ↗</a>
+<p class="result-note"><b>How to use it:</b> Keep federal pre-attack records separate from City post-attack records when framing a question or citation.</p></article>
+<!-- /BUILD:current-context -->
+</div><aside class="demo-context"><h3>Scope</h3>
+<p>Official City records, independent tools, and federal records are separate systems.</p>
+<p><a href="https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records">City release announcement ↗</a></p>
 </aside></div>
 </section>
 </div>
@@ -356,6 +562,6 @@
 <p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot catalog_2026-09-09_pdf.csv. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · <a href="llms.txt">For agents</a> · <a href="#top">Back to top ↑</a></p>
 </div></footer>
 <!-- /BUILD:footer -->
-<script src="assets/site.js?v=ef2e5dd4" defer></script>
+<script src="assets/site.js?v=b0768544" defer></script>
 </body>
 </html>

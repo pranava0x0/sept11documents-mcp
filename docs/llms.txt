@@ -5,8 +5,8 @@ Independent research tools for New York City’s September 11th Document Portal.
 ## Pages
 
 - [Overview](https://pranava0x0.github.io/sept11documents-mcp/): City records, release commitments, dated obligations, and saved catalog captures.
-- [The MCP](https://pranava0x0.github.io/sept11documents-mcp/toolkit.html): ten read-only tools, resources, prompts, and recorded calls.
-- [Examples](https://pranava0x0.github.io/sept11documents-mcp/examples.html): ten browser demos using local, allowlisted data. They show the tool route and its limits.
+- [The MCP](https://pranava0x0.github.io/sept11documents-mcp/toolkit.html): read-only tools, resources, prompts, recorded calls, and how to watch a call happen.
+- [Examples](https://pranava0x0.github.io/sept11documents-mcp/examples.html): browser demos built on the MCP, grouped as find records, read and cite, help and money, and releases. Each names its tool route, the command that reproduces it, and its limits.
 - [Records](https://pranava0x0.github.io/sept11documents-mcp/records.html): located records with cited quotations and Bates pages.
 - [Community support](https://pranava0x0.github.io/sept11documents-mcp/community.html): direct links to organizations serving the 9/11 community.
 
@@ -14,13 +14,17 @@ Independent research tools for New York City’s September 11th Document Portal.
 
 The server is local and read-only. `portal_search` is the only tool that contacts the City and requires opt-in. Other tools use saved catalog metadata, captured page text, or allowlisted JSON.
 
-Tools: `portal_search`, `catalog_search`, `portal_get_document`, `portal_get_page_text`, `portal_catalog_stats`, `portal_browse`, `portal_changes_since`, `citations_verify`, `doi_milestones`, `budget_lookup`.
+Tools: `portal_search`, `catalog_search`, `portal_get_document`, `portal_get_page_text`, `portal_catalog_stats`, `portal_browse`, `portal_changes_since`, `citations_verify`, `doi_milestones`, `budget_lookup`, `timeline_lookup`, `readings_lookup`, `building_lookup`, `presence_evidence`, `upcoming_dates`, `portal_query_draft`, `citations_format`, `records_manifest`.
 
-Use `citations_verify` before repeating a quote. A `found` result locates text; it is not a legal, medical, or factual conclusion beyond that text.
+Prompts: `research-assistant`, `verify-before-publishing`, `what-changed`, `research-plan`, `building-records`, `proof-of-presence`, `statements-and-records`, `follow-the-money`.
+
+Skills for assistants that load them are in the repository's `skills/` folder: verify a quote, building records, statements and records, proof of presence, follow the money, release watch.
+
+Use `citations_verify` before repeating a quote. A `found` result locates the text on the page and makes no legal, medical or factual finding beyond it.
 
 ## Data limits
 
-Catalog totals and changes describe saved captures. A missing record in a later capture is not proof of removal or withholding. Announced amounts are not summed and are not transaction records. Current service rules and eligibility belong to the organizations and official programs linked on the site.
+Catalog totals and changes describe saved captures. A missing record in a later capture is not proof of removal or withholding. Announced amounts are never summed, and an announcement is not a transaction record. `building_lookup` reads folder labels and decides no exposure-zone membership. `readings_lookup` lists results located so far, as printed. The timeline places statements beside records and draws no finding about what anyone knew. Current service rules and eligibility belong to the organizations and official programs linked on the site.
 
 ## Source and code
 

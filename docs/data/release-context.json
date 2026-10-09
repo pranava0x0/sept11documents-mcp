@@ -34,6 +34,7 @@
   "paths": [
     {
       "id": "catalog-change",
+      "title": "Catalog changes after the saved capture",
       "question": "Did the City catalog change after this toolkit’s saved capture?",
       "tools": "portal_changes_since → portal_get_document",
       "answer": "Use two accepted local captures. The result can report observed additions, absences, or changed metadata; it does not prove why a record changed or that a City release is complete.",
@@ -41,13 +42,15 @@
     },
     {
       "id": "source-page",
-      "question": "What does a cited City page actually say?",
+      "title": "The text of a cited City page",
+      "question": "What does a cited City page say?",
       "tools": "catalog_search → portal_get_document → portal_get_page_text → citations_verify",
       "answer": "Find the local catalog entry, open its record, read the specific Bates page, then verify the exact quotation. Page text may be withheld when the PII screen flags it.",
       "boundary": "A located phrase is evidence location, not a finding about exposure, health, liability, or program eligibility."
     },
     {
       "id": "project-compare",
+      "title": "Search detail in independent projects",
       "question": "Why might an independent project show more search detail?",
       "tools": "portal_catalog_stats → portal_browse",
       "answer": "This MCP reports its own snapshot, catalog structure, and evidence warnings. Another project can have a later capture or different OCR. Compare source PDF, Bates page, capture date, and stated method.",
@@ -55,6 +58,7 @@
     },
     {
       "id": "separate-records",
+      "title": "City portal documents and federal records",
       "question": "Are City portal documents the same as newly declassified federal records?",
       "tools": "citations_verify",
       "answer": "No. This MCP can verify registered City-portal pages and its registered sources; it does not search or interpret the federal release.",

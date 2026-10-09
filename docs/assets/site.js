@@ -12,10 +12,15 @@ function activateDemo(id, focus = false) {
     t.setAttribute("aria-selected", String(selected));
     t.tabIndex = selected ? 0 : -1;
     if (selected && focus) t.focus({ preventScroll: true });
+    // On a phone each group is one scrolling row; bring the selected tab into it without moving the page.
+    const row = t.parentElement;
+    if (selected && row.scrollWidth > row.clientWidth) row.scrollLeft = Math.max(0, t.offsetLeft - 24);
   });
 }
 if (tabs.length) {
-  document.querySelector(".demo-tabs").setAttribute("role", "tablist");
+  // Tabs come in labelled groups; each group is a tablist, and the arrow keys move across all of them.
+  const lists = document.querySelectorAll(".demo-tabs [data-tablist]");
+  (lists.length ? lists : [document.querySelector(".demo-tabs")]).forEach((list) => list.setAttribute("role", "tablist"));
   tabs.forEach((tab, i) => {
     tab.setAttribute("role", "tab");
     tab.setAttribute("aria-controls", tab.hash.slice(1));
@@ -65,6 +70,74 @@ bindChoice("example-choice", "data-example");
 bindChoice("path-choice", "data-path");
 bindChoice("release-choice", "data-release");
 bindChoice("collection-choice", "data-collection");
+bindChoice("address-choice", "data-address");
+bindChoice("cite-choice", "data-cite");
+
+// Timeline filters: two selects narrow one list. "all" shows every row.
+const timelineSide = document.getElementById("timeline-side");
+const timelineTopic = document.getElementById("timeline-topic");
+if (timelineSide && timelineTopic) {
+  const rows = Array.from(document.querySelectorAll(".statement-timeline > li"));
+  const count = document.getElementById("timeline-count");
+  const filter = () => {
+    let shown = 0;
+    rows.forEach((row) => {
+      const visible = (timelineSide.value === "all" || row.dataset.side === timelineSide.value)
+        && (timelineTopic.value === "all" || row.dataset.topic === timelineTopic.value);
+      row.hidden = !visible;
+      if (visible) shown += 1;
+    });
+    if (count) count.textContent = "Showing " + shown + " of " + rows.length + " entries.";
+  };
+  timelineSide.addEventListener("change", filter);
+  timelineTopic.addEventListener("change", filter);
+  filter();
+}
+
+// Key dates: the page states each date; the reader's own clock supplies the distance to it.
+document.querySelectorAll(".days[data-date]").forEach((span) => {
+  const parts = span.dataset.date.split("-").map(Number);
+  if (parts.length !== 3 || parts.some((n) => !Number.isInteger(n))) return;
+  const now = new Date();
+  const today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const days = Math.round((Date.UTC(parts[0], parts[1] - 1, parts[2]) - today) / 86400000);
+  span.textContent = days === 0 ? "today" : days > 0
+    ? "in " + days + (days === 1 ? " day" : " days")
+    : -days + (days === -1 ? " day ago" : " days ago");
+});
+
+// Query builder: the rules portal_query_draft applies, run on the reader's input. Nothing is sent.
+const builder = document.getElementById("query-builder");
+if (builder) {
+  const phrase = document.getElementById("qb-phrase");
+  const words = document.getElementById("qb-words");
+  const box = document.getElementById("qb-box");
+  const out = document.getElementById("qb-query");
+  const call = document.getElementById("qb-call");
+  const copy = document.getElementById("qb-copy");
+  const status = document.getElementById("qb-status");
+  const update = () => {
+    const p = phrase.value.replace(/["\u201c\u201d]/g, "").replace(/\s+/g, " ").trim();
+    const w = words.value.split(/\s+/).map((t) => t.replace(/["\u201c\u201d]/g, "")).filter((t) => t && !t.includes(":"));
+    const b = box.value.replace(/\s+/g, " ").trim();
+    const terms = (p ? ['"' + p + '"'] : []).concat(w);
+    const query = terms.length ? terms.concat(["extension:pdf"]).join(" ") : "";
+    out.textContent = query || "(give a phrase or some words)";
+    copy.dataset.copy = query;
+    copy.disabled = !query;
+    const args = {};
+    if (p) args.phrase = p;
+    if (w.length) args.words = w.join(" ");
+    if (b) args.box = b;
+    call.textContent = "portal_query_draft " + JSON.stringify(args);
+    status.textContent = !query ? "Give a phrase or some words to build a portal query."
+      : terms.length === 1 && !p ? "One loose word matches broadly; a quoted phrase is more precise."
+      : "A quoted phrase matches those words in that order. extension:pdf keeps results to the documents themselves.";
+  };
+  [phrase, words, box].forEach((input) => input.addEventListener("input", update));
+  builder.addEventListener("submit", (event) => event.preventDefault());
+  update();
+}
 
 function revealHash() {
   const id = location.hash.slice(1);
@@ -87,7 +160,7 @@ window.addEventListener("hashchange", revealHash);
 document.querySelectorAll(".copy-citation").forEach((button) => {
   button.hidden = false;
   button.addEventListener("click", async () => {
-    const status = document.getElementById("copy-status");
+    const status = document.getElementById(button.dataset.status || "copy-status");
     try {
       await navigator.clipboard.writeText(button.dataset.copy);
       status.textContent = "Citation copied.";
@@ -221,14 +294,14 @@ if (watchdogPanel) {
       }
     })
     .catch(() => {
-      watchdogPanel.replaceChildren(cell("Unavailable", "the saved capture could not be read"));
+      watchdogPanel.replaceChildren(cell("Unavailable", "saved capture missing or unreadable"));
     });
 }
 
 let printState = [];
 window.addEventListener("beforeprint", () => {
   printState = Array.from(document.querySelectorAll(
-    ".demo-panel, [data-record], [data-help], [data-budget], [data-example], [data-path], [data-release], [data-collection], .stage-notes > [data-stage], details.fold"))
+    ".demo-panel, [data-record], [data-help], [data-budget], [data-example], [data-path], [data-release], [data-collection], [data-address], [data-cite], .statement-timeline > li, .stage-notes > [data-stage], details.fold"))
     .map((el) => ({ el, hidden: el.hidden, open: el.open }));
   printState.forEach(({ el }) => { el.hidden = false; if (el.tagName === "DETAILS") el.open = true; });
 });

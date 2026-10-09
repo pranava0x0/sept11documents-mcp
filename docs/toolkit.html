@@ -5,10 +5,11 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
 <title>The MCP toolkit — September 11th Documents Toolkit</title>
 <meta name="description" content="A read-only Model Context Protocol server over the City's September 11th Document Portal, the commands that run it, and how the portal's own API is laid out.">
 <link rel="canonical" href="https://pranava0x0.github.io/sept11documents-mcp/toolkit.html">
-<link rel="stylesheet" href="assets/site.css?v=9fe77cd5">
+<link rel="stylesheet" href="assets/site.css?v=fef4ee3e">
 </head>
 <body>
 <a class="skip" href="#main">Skip to main content</a>
@@ -20,10 +21,10 @@
 <!-- /BUILD:mast -->
 <main id="main">
 <section id="toolkit">
-<h1 id="top">Use the tools</h1>
-<p>Search saved City catalog data, read captured pages, check quotations, and inspect commitments. Live portal search is opt-in.</p>
+<h1 id="top">The MCP server</h1>
+<p>Search saved City catalog data, look up a building, read captured pages, check and format citations, and follow commitments and dates. Live portal search is opt-in.</p>
 <p><a class="btn" href="#quickstart">Connect the local server</a> <a class="source-link" href="#examples">View sample results</a> <a class="source-link" href="examples.html">Try the examples</a></p>
-<nav class="section-nav" aria-label="On this page"><a href="#tools">Tools</a><a href="#examples">Sample calls</a><a href="#quickstart">Setup</a><a href="#planned">Planned</a><a href="#portal">Portal API</a></nav>
+<nav class="section-nav" aria-label="On this page"><a href="#tools">Tools</a><a href="#examples">Sample calls</a><a href="#quickstart">Setup</a><a href="#watch">Watch a call</a><a href="#planned">Planned</a><a href="#portal">Portal API</a></nav>
 </section>
 <section id="tools">
 <h2>Tools</h2>
@@ -31,21 +32,28 @@
 <details class="fold"><summary>Tools available in this version</summary>
 <div class="foldbody"><div class="tw"><table>
 <colgroup><col class="w22"><col class="w52"><col class="w26"></colgroup>
-<thead><tr><th>Tool</th><th>What it does</th><th>Availability</th></tr></thead>
+<thead><tr><th>Tool</th><th>Returns</th><th>Availability</th></tr></thead>
 <tbody>
 <!-- BUILD:tools -->
-<tr><td data-label="Tool"><code>portal_search</code></td><td data-label="What it does">Live portal hits with Bates, collection, box, folder, inert snippet text, and a precision warning for fuzzy queries. Off unless the operator opts in, because the words searched reach the City</td><td data-label="Availability"><span class="badge built">runs from a clone · live opt-in</span></td></tr>
-<tr><td data-label="Tool"><code>catalog_search</code></td><td data-label="What it does">The same catalog searched locally by Bates, collection, agency, box or folder label, every word matched, with facets by collection, box and folder over all matches; nothing is sent to the City</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_get_document</code></td><td data-label="What it does">Metadata, page count, PDF link, the documents filed before and after it in the same folder, and when it was first and last seen in local snapshots; no date field, because the portal publishes none</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_get_page_text</code></td><td data-label="What it does">Verbatim page text with the Bates stamp printed on that page, read from the page's own footer stamp; withheld whole when personal information is suspected</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_catalog_stats</code></td><td data-label="What it does">Totals by collection, agency and production volume, with the snapshot's SHA-256</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_browse</code></td><td data-label="What it does">The collection → box → folder tree, largest first, with counts</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>portal_changes_since</code></td><td data-label="What it does">Documents observed added, absent or changed between two accepted captures, with the interval compared</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>citations_verify</code></td><td data-label="What it does">found / not-found / no-claim / unverifiable for quotes at Bates pages or registered sources; an ellipsis marks omitted words; it accepts no URLs and no file paths</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>doi_milestones</code></td><td data-label="What it does">The dated obligations with what was observed and when it was checked, with no score and no legal determination</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>budget_lookup</code></td><td data-label="What it does">The commitment ledger: each announced amount with its source and five separately evidenced stages, unlinked stages named as such; rows are never summed</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
-<tr><td data-label="Tool"><code>evidence.checklist</code></td><td data-label="What it does">The proof-of-presence lanes for a WTCHP or VCF category, what each document must show, who issues it, and request-letter templates. The static, cited version is the official directory on the Examples page and the <code>sept11://help-directory</code> resource</td><td data-label="Availability"><span class="badge">planned · interactive routing held for practitioner review</span></td></tr>
-<tr><td data-label="Tool"><code>archive.timeline</code> · <code>archive.building_lookup</code> · <code>archive.find_readings</code></td><td data-label="What it does">Reviewed timeline events; buildings with zone flags; sampling readings with units and citations</td><td data-label="Availability"><span class="badge">planned · Phase 2–3</span></td></tr>
+<tr><td data-label="Tool"><code>portal_search</code></td><td data-label="Returns">Live portal hits with Bates, collection, box, folder, inert snippet text, and a precision warning for fuzzy queries. Off unless the operator opts in, because the words searched reach the City</td><td data-label="Availability"><span class="badge built">runs from a clone · live opt-in</span></td></tr>
+<tr><td data-label="Tool"><code>catalog_search</code></td><td data-label="Returns">The same catalog searched locally by Bates, collection, agency, box or folder label, every word matched, with facets by collection, box and folder over all matches; nothing is sent to the City</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_get_document</code></td><td data-label="Returns">Metadata, page count, PDF link, the documents filed before and after it in the same folder, and when it was first and last seen in local snapshots; no date field, because the portal publishes none</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_get_page_text</code></td><td data-label="Returns">Verbatim page text with the Bates stamp printed on that page, read from the page's own footer stamp; withheld whole when personal information is suspected</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_catalog_stats</code></td><td data-label="Returns">Totals by collection, agency and production volume, with the snapshot's SHA-256</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_browse</code></td><td data-label="Returns">The collection → box → folder tree, largest first, with counts</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_changes_since</code></td><td data-label="Returns">Documents observed added, absent or changed between two accepted captures, with the interval compared</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>citations_verify</code></td><td data-label="Returns">found / not-found / no-claim / unverifiable for quotes at Bates pages or registered sources; an ellipsis marks omitted words; it accepts no URLs and no file paths</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>doi_milestones</code></td><td data-label="Returns">The dated obligations with what was observed and when it was checked, with no score and no legal determination</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>budget_lookup</code></td><td data-label="Returns">The commitment ledger: each announced amount with its source and five separately evidenced stages, unlinked stages named as such; rows are never summed</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>timeline_lookup</code></td><td data-label="Returns">Public statements, City records and later reviews in date order, with quotes, citation and the basis for its date; filter by side, topic or dates</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>readings_lookup</code></td><td data-label="Returns">Sampling results printed in located City records: value, unit, medium and location as printed, with the quote and Bates page; never converted or compared</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>building_lookup</code></td><td data-label="Returns">Folders whose City label names an address or BIN, with the house numbers and identifiers the label prints and the follow-up catalog call; zones are quoted, not decided</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>presence_evidence</code></td><td data-label="Returns">What the WTC Health Program and the VCF accept as proof of presence, by program and applicant group, every rule quoted from the official page</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>upcoming_dates</code></td><td data-label="Returns">Dated settlement and Res. 560-A obligations with days from a given date, recurring obligations listed without invented dates, and an iCalendar file</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>portal_query_draft</code></td><td data-label="Returns">A portal search written in the syntax the City's search accepts, with the matching catalog filters; the draft is not sent anywhere</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>citations_format</code></td><td data-label="Returns">Short, full and Markdown citations for a Bates page, with the page link and whether the printed stamp was read</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool"><code>records_manifest</code></td><td data-label="Returns">A reading list for up to 50 Bates numbers: collection, box, folder, pages and PDF link, as rows and as CSV, with any number the catalog lacks</td><td data-label="Availability"><span class="badge built">runs from a clone</span></td></tr>
+<tr><td data-label="Tool">Exposure-zone check for an address</td><td data-label="Returns">Whether an address is inside a program's zone. Each program decides that; <code>building_lookup</code> quotes the definitions and links the official maps</td><td data-label="Availability"><span class="badge">not planned · the programs decide</span></td></tr>
 <!-- /BUILD:tools -->
 </tbody></table></div></div></details>
 </section>
@@ -54,15 +62,15 @@
 <p>Choose a question to see one saved request and response. Live search is off.</p>
 <!-- BUILD:examples -->
 <label for="example-choice">Choose a call</label>
-<select id="example-choice"><option value="catalog_search">catalog_search · Which folders in the archive mention John Street?</option><option value="portal_browse">portal_browse · What is inside DEP Box 31?</option><option value="portal_get_document">portal_get_document · What does the catalog hold about the Harding memo?</option><option value="portal_get_page_text">portal_get_page_text · What is printed on page 1 of the Harding memo?</option><option value="citations_verify">citations_verify · Is the Harding estimate really on page 1, and is the same quote on page 2?</option><option value="portal_search">portal_search · Can the server search the live portal?</option><option value="budget_lookup">budget_lookup · What is known about the DOI investigation&#x27;s funding?</option><option value="doi_milestones">doi_milestones · Which dated obligations are upcoming?</option><option value="portal_catalog_stats">portal_catalog_stats · How large is the captured catalog?</option><option value="portal_changes_since">portal_changes_since · What changed since September 9, 2026?</option></select>
-<p class="result-note">Recorded 2026-09-11 with server 0.2.0, schema 2026-09-11; live search off; no network calls.</p>
+<select id="example-choice"><option value="catalog_search">catalog_search · Which folders in the archive mention John Street?</option><option value="portal_browse">portal_browse · What is inside DEP Box 31?</option><option value="portal_get_document">portal_get_document · What does the catalog hold about the Harding memo?</option><option value="portal_get_page_text">portal_get_page_text · What is printed on page 1 of the Harding memo?</option><option value="citations_verify">citations_verify · Is the Harding estimate really on page 1, and is the same quote on page 2?</option><option value="portal_search">portal_search · Can the server search the live portal?</option><option value="budget_lookup">budget_lookup · What is known about the DOI investigation&#x27;s funding?</option><option value="doi_milestones">doi_milestones · Which dated obligations are upcoming?</option><option value="portal_catalog_stats">portal_catalog_stats · How large is the captured catalog?</option><option value="portal_changes_since">portal_changes_since · What changed since September 9, 2026?</option><option value="building_lookup">building_lookup · What does the archive file under 15 John Street?</option><option value="building_lookup-chambers">building_lookup · What does the archive file under 345 Chambers Street (Stuyvesant High School)?</option><option value="building_lookup-broadway">building_lookup · What does the archive file under 120 Broadway?</option><option value="timeline_lookup">timeline_lookup · What did officials say in public, and what do the City&#x27;s records show, in date order?</option><option value="readings_lookup">readings_lookup · Which sampling results have been located so far?</option><option value="readings_lookup-default">readings_lookup · What happens when unreviewed results are not requested?</option><option value="presence_evidence">presence_evidence · Which documents does the VCF accept from survivors as proof of presence?</option><option value="upcoming_dates">upcoming_dates · Which dated obligations are ahead as of October 8, 2026?</option><option value="portal_query_draft">portal_query_draft · How should a search for the Stuyvesant memo be written?</option><option value="citations_format">citations_format · How is page 1 of the Harding memo cited?</option><option value="citations_format-fuchs">citations_format · How is page 2 of the Fuchs memo cited?</option><option value="citations_format-15-john">citations_format · How is the 15 John Street lab report cited?</option><option value="records_manifest">records_manifest · What are the documents behind the research examples?</option></select>
+<p class="result-note">Recorded 2026-10-09 with server 0.3.0, schema 2026-10-08; live search off; no network calls.</p>
 <article class="example" id="example-catalog_search" data-example="catalog_search">
-<h3>Which folders in the archive mention John Street?</h3>
+<h3>Folders in the archive that mention John Street</h3>
 <pre class="request">catalog_search {&quot;folder&quot;: &quot;JOHN STREET&quot;, &quot;count&quot;: 5}</pre>
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only, physical_labels.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:53+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:05+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -241,16 +249,16 @@
       }
     ]
   },
-  &quot;next_cursor&quot;: &quot;eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc4OTE1OTYxM30uZmE5OGRlZmE2NGY1NmJiOTgzZDcxY2I0YjdlYzdkODA=&quot;
+  &quot;next_cursor&quot;: &quot;eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUxODQwNX0uZDdiMDc0NzVlOTkwMzgzMGY5ZjZkMTVmMDk1YjQzYjM=&quot;
 }</pre>
 </article>
 <article class="example" id="example-portal_browse" data-example="portal_browse">
-<h3>What is inside DEP Box 31?</h3>
+<h3>Contents of DEP Box 31</h3>
 <pre class="request">portal_browse {&quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;, &quot;box&quot;: &quot;DEP Box 31&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: physical_labels.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:53+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:05+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -333,12 +341,12 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_get_document" data-example="portal_get_document">
-<h3>What does the catalog hold about the Harding memo?</h3>
+<h3>The catalog record for the Harding memo</h3>
 <pre class="request">portal_get_document {&quot;bates&quot;: &quot;NYC-WTC_000138296&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: no_document_date_field.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:53+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:05+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -379,12 +387,12 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_get_page_text" data-example="portal_get_page_text">
-<h3>What is printed on page 1 of the Harding memo?</h3>
+<h3>Page 1 of the Harding memo</h3>
 <pre class="request">portal_get_page_text {&quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 1}</pre>
 <p class="result-note">The call returned an envelope with warnings: cached_bytes_timestamp, untrusted_source_text.</p>
 <p class="result-note">Published copy: data.text replaced by a note with its length; page text is not re-hosted on a public surface without review.</p><pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-09T15:26:08+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T03:26:16+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;local_capture:file_mtime&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -427,12 +435,12 @@
 }</pre>
 </article>
 <article class="example" id="example-citations_verify" data-example="citations_verify">
-<h3>Is the Harding estimate really on page 1, and is the same quote on page 2?</h3>
+<h3>The Harding estimate checked on pages 1 and 2</h3>
 <pre class="request">citations_verify {&quot;claims&quot;: [{&quot;id&quot;: &quot;harding-p1&quot;, &quot;claim&quot;: &quot;The memo estimates 35,000 potential plaintiffs.&quot;, &quot;quote&quot;: &quot;approximately 35,000 potential plaintiffs&quot;, &quot;source&quot;: {&quot;type&quot;: &quot;portal&quot;, &quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 1}}, {&quot;id&quot;: &quot;harding-p2&quot;, &quot;claim&quot;: &quot;The same estimate appears on page 2.&quot;, &quot;quote&quot;: &quot;approximately 35,000 potential plaintiffs&quot;, &quot;source&quot;: {&quot;type&quot;: &quot;portal&quot;, &quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 2}}]}</pre>
 <p class="result-note">The call returned an envelope with warnings: match_is_not_review.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:53+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:05+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;local captures&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -484,7 +492,7 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_search" data-example="portal_search">
-<h3>Can the server search the live portal?</h3>
+<h3>A live portal search with live access off</h3>
 <pre class="request">portal_search {&quot;query&quot;: &quot;\&quot;Clean Up Initiative\&quot;&quot;, &quot;count&quot;: 3}</pre>
 <p class="result-note">The call returned a structured error: refused.</p>
 <pre class="response">{
@@ -495,12 +503,12 @@
 }</pre>
 </article>
 <article class="example" id="example-budget_lookup" data-example="budget_lookup">
-<h3>What is known about the DOI investigation&#x27;s funding?</h3>
+<h3>Funding for the DOI investigation</h3>
 <pre class="request">budget_lookup {&quot;topic&quot;: &quot;doi&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: announcement_not_expenditure, unreviewed_artifact.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:53+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:05+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/commitments.json&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -664,12 +672,12 @@
 }</pre>
 </article>
 <article class="example" id="example-doi_milestones" data-example="doi_milestones">
-<h3>Which dated obligations are upcoming?</h3>
+<h3>Upcoming dated obligations</h3>
 <pre class="request">doi_milestones {}</pre>
 <p class="result-note">The call returned an envelope with warnings: no_compliance_determination, unreviewed_artifact.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:53+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:05+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;docs/data/scorecard.json&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -678,7 +686,7 @@
   &quot;warnings&quot;: [
     {
       &quot;code&quot;: &quot;no_compliance_determination&quot;,
-      &quot;message&quot;: &quot;obligation rows are observations of public surfaces on the date checked, with no percentage score and no legal determination. A missed check is recorded as `unable_to_check`; `not_observed` means a surface was inspected&quot;
+      &quot;message&quot;: &quot;each obligation is an observation of public surfaces on the date checked, with no percentage score and no legal determination. A missed check is recorded as `unable_to_check`; `not_observed` means a surface was inspected&quot;
     },
     {
       &quot;code&quot;: &quot;unreviewed_artifact&quot;,
@@ -847,12 +855,12 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_catalog_stats" data-example="portal_catalog_stats">
-<h3>How large is the captured catalog?</h3>
+<h3>Size of the captured catalog</h3>
 <pre class="request">portal_catalog_stats {}</pre>
 <p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:53+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:05+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;complete_for_query&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -903,12 +911,12 @@
 }</pre>
 </article>
 <article class="example" id="example-portal_changes_since" data-example="portal_changes_since">
-<h3>What changed since September 9, 2026?</h3>
+<h3>Catalog changes since September 9, 2026</h3>
 <pre class="request">portal_changes_since {&quot;since&quot;: &quot;2026-09-09&quot;}</pre>
 <p class="result-note">The call returned an envelope with warnings: interval_actually_compared, observation_not_removal, no_compliance_determination.</p>
 <pre class="response">{
-  &quot;schema_version&quot;: &quot;2026-09-11&quot;,
-  &quot;retrieved_at&quot;: &quot;2026-09-11T20:46:54+00:00&quot;,
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
   &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
   &quot;coverage&quot;: &quot;partial&quot;,
   &quot;retrieval&quot;: &quot;captured&quot;,
@@ -957,6 +965,1647 @@
   &quot;next_cursor&quot;: null
 }</pre>
 </article>
+<article class="example" id="example-building_lookup" data-example="building_lookup">
+<h3>Records filed under 15 John Street</h3>
+<pre class="request">building_lookup {&quot;address&quot;: &quot;15 John Street&quot;}</pre>
+<p class="result-note">The call returned an envelope with warnings: label_match_only, zone_not_computed, physical_labels.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/folders.json&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;label_match_only&quot;,
+      &quot;message&quot;: &quot;matched against the City&#x27;s folder labels; a document can concern this building without a label that names it, and a label can name several buildings&quot;
+    },
+    {
+      &quot;code&quot;: &quot;zone_not_computed&quot;,
+      &quot;message&quot;: &quot;no exposure-zone membership is decided here; zone_definitions quotes each program&#x27;s own wording, and the program decides&quot;
+    },
+    {
+      &quot;code&quot;: &quot;physical_labels&quot;,
+      &quot;message&quot;: &quot;labels are transcribed as the City produced them, including misspellings&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;query&quot;: {
+      &quot;as_given&quot;: &quot;15 John Street&quot;,
+      &quot;read_as&quot;: &quot;15 JOHN STREET&quot;,
+      &quot;house_number&quot;: 15,
+      &quot;street_words&quot;: [
+        &quot;JOHN&quot;,
+        &quot;STREET&quot;
+      ],
+      &quot;bin&quot;: null
+    },
+    &quot;folders_matched&quot;: 1,
+    &quot;folders_returned&quot;: 1,
+    &quot;documents_in_matched_folders&quot;: 81,
+    &quot;folders&quot;: [
+      {
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;box&quot;: &quot;DEP Box 01&quot;,
+        &quot;folder&quot;: &quot;15 JOHN STREET 1001217, 79/14&quot;,
+        &quot;documents&quot;: 81,
+        &quot;pages&quot;: 81,
+        &quot;first_bates&quot;: &quot;NYC-WTC_000094197&quot;,
+        &quot;first_pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094197.pdf&quot;,
+        &quot;matched_by&quot;: &quot;number_and_street&quot;,
+        &quot;printed_house_numbers&quot;: [
+          &quot;15&quot;
+        ],
+        &quot;printed_identifiers&quot;: {
+          &quot;bins&quot;: [
+            &quot;1001217&quot;
+          ],
+          &quot;block&quot;: &quot;79&quot;,
+          &quot;lot&quot;: &quot;14&quot;
+        }
+      }
+    ],
+    &quot;next_calls&quot;: [
+      {
+        &quot;tool&quot;: &quot;catalog_search&quot;,
+        &quot;arguments&quot;: {
+          &quot;box&quot;: &quot;DEP Box 01&quot;,
+          &quot;folder&quot;: &quot;15 JOHN STREET 1001217, 79/14&quot;
+        }
+      }
+    ],
+    &quot;zone_definitions&quot;: [
+      {
+        &quot;program&quot;: &quot;WTC Health Program&quot;,
+        &quot;name&quot;: &quot;NYC Disaster Area&quot;,
+        &quot;definition&quot;: [],
+        &quot;map_url&quot;: null,
+        &quot;definition_url&quot;: &quot;https://www.cdc.gov/wtc/eligiblegroups.html&quot;,
+        &quot;note&quot;: &quot;The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.&quot;
+      },
+      {
+        &quot;program&quot;: &quot;VCF&quot;,
+        &quot;name&quot;: &quot;VCF NYC Exposure Zone&quot;,
+        &quot;definition&quot;: [
+          {
+            &quot;text&quot;: &quot;runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway&quot;,
+            &quot;claim_id&quot;: &quot;vcf-zone-canal-street&quot;
+          },
+          {
+            &quot;text&quot;: &quot;north on East Broadway to Clinton Street, and east on Clinton Street to the East River&quot;,
+            &quot;claim_id&quot;: &quot;vcf-zone-clinton-street&quot;
+          }
+        ],
+        &quot;map_url&quot;: &quot;https://www.vcf.gov/nyc-map-exposure-zone&quot;,
+        &quot;definition_url&quot;: null,
+        &quot;note&quot;: null
+      }
+    ],
+    &quot;catalog_captured_at&quot;: &quot;2026-09-11T12:57:00+00:00&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-building_lookup-chambers" data-example="building_lookup-chambers">
+<h3>Records filed under 345 Chambers Street (Stuyvesant High School)</h3>
+<pre class="request">building_lookup {&quot;address&quot;: &quot;345 Chambers Street&quot;}</pre>
+<p class="result-note">The call returned an envelope with warnings: label_match_only, zone_not_computed, physical_labels.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/folders.json&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;label_match_only&quot;,
+      &quot;message&quot;: &quot;matched against the City&#x27;s folder labels; a document can concern this building without a label that names it, and a label can name several buildings&quot;
+    },
+    {
+      &quot;code&quot;: &quot;zone_not_computed&quot;,
+      &quot;message&quot;: &quot;no exposure-zone membership is decided here; zone_definitions quotes each program&#x27;s own wording, and the program decides&quot;
+    },
+    {
+      &quot;code&quot;: &quot;physical_labels&quot;,
+      &quot;message&quot;: &quot;labels are transcribed as the City produced them, including misspellings&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;query&quot;: {
+      &quot;as_given&quot;: &quot;345 Chambers Street&quot;,
+      &quot;read_as&quot;: &quot;345 CHAMBERS STREET&quot;,
+      &quot;house_number&quot;: 345,
+      &quot;street_words&quot;: [
+        &quot;CHAMBERS&quot;,
+        &quot;STREET&quot;
+      ],
+      &quot;bin&quot;: null
+    },
+    &quot;folders_matched&quot;: 3,
+    &quot;folders_returned&quot;: 3,
+    &quot;documents_in_matched_folders&quot;: 11,
+    &quot;folders&quot;: [
+      {
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;box&quot;: &quot;DEP Box 37&quot;,
+        &quot;folder&quot;: &quot;345 CHAMBERS STREET; Block: 16; Stuyvesant HS&quot;,
+        &quot;documents&quot;: 5,
+        &quot;pages&quot;: 134,
+        &quot;first_bates&quot;: &quot;NYC-WTC_000106763&quot;,
+        &quot;first_pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106763.pdf&quot;,
+        &quot;matched_by&quot;: &quot;number_and_street&quot;,
+        &quot;printed_house_numbers&quot;: [
+          &quot;345&quot;
+        ],
+        &quot;printed_identifiers&quot;: {
+          &quot;bins&quot;: [],
+          &quot;block&quot;: &quot;16&quot;,
+          &quot;lot&quot;: null
+        }
+      },
+      {
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;box&quot;: &quot;DEP Box 37&quot;,
+        &quot;folder&quot;: &quot;345 CHAMBERS STREET; 16/1&quot;,
+        &quot;documents&quot;: 4,
+        &quot;pages&quot;: 354,
+        &quot;first_bates&quot;: &quot;NYC-WTC_000106409&quot;,
+        &quot;first_pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106409.pdf&quot;,
+        &quot;matched_by&quot;: &quot;number_and_street&quot;,
+        &quot;printed_house_numbers&quot;: [
+          &quot;345&quot;
+        ],
+        &quot;printed_identifiers&quot;: {
+          &quot;bins&quot;: [],
+          &quot;block&quot;: null,
+          &quot;lot&quot;: null
+        }
+      },
+      {
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;box&quot;: &quot;DEP Box 51&quot;,
+        &quot;folder&quot;: &quot;345 CHAMBERS ST.&quot;,
+        &quot;documents&quot;: 2,
+        &quot;pages&quot;: 2,
+        &quot;first_bates&quot;: &quot;NYC-WTC_000126990&quot;,
+        &quot;first_pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000126990.pdf&quot;,
+        &quot;matched_by&quot;: &quot;number_and_street&quot;,
+        &quot;printed_house_numbers&quot;: [
+          &quot;345&quot;
+        ],
+        &quot;printed_identifiers&quot;: {
+          &quot;bins&quot;: [],
+          &quot;block&quot;: null,
+          &quot;lot&quot;: null
+        }
+      }
+    ],
+    &quot;next_calls&quot;: [
+      {
+        &quot;tool&quot;: &quot;catalog_search&quot;,
+        &quot;arguments&quot;: {
+          &quot;box&quot;: &quot;DEP Box 37&quot;,
+          &quot;folder&quot;: &quot;345 CHAMBERS STREET; Block: 16; Stuyvesant HS&quot;
+        }
+      },
+      {
+        &quot;tool&quot;: &quot;catalog_search&quot;,
+        &quot;arguments&quot;: {
+          &quot;box&quot;: &quot;DEP Box 37&quot;,
+          &quot;folder&quot;: &quot;345 CHAMBERS STREET; 16/1&quot;
+        }
+      },
+      {
+        &quot;tool&quot;: &quot;catalog_search&quot;,
+        &quot;arguments&quot;: {
+          &quot;box&quot;: &quot;DEP Box 51&quot;,
+          &quot;folder&quot;: &quot;345 CHAMBERS ST.&quot;
+        }
+      }
+    ],
+    &quot;zone_definitions&quot;: [
+      {
+        &quot;program&quot;: &quot;WTC Health Program&quot;,
+        &quot;name&quot;: &quot;NYC Disaster Area&quot;,
+        &quot;definition&quot;: [],
+        &quot;map_url&quot;: null,
+        &quot;definition_url&quot;: &quot;https://www.cdc.gov/wtc/eligiblegroups.html&quot;,
+        &quot;note&quot;: &quot;The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.&quot;
+      },
+      {
+        &quot;program&quot;: &quot;VCF&quot;,
+        &quot;name&quot;: &quot;VCF NYC Exposure Zone&quot;,
+        &quot;definition&quot;: [
+          {
+            &quot;text&quot;: &quot;runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway&quot;,
+            &quot;claim_id&quot;: &quot;vcf-zone-canal-street&quot;
+          },
+          {
+            &quot;text&quot;: &quot;north on East Broadway to Clinton Street, and east on Clinton Street to the East River&quot;,
+            &quot;claim_id&quot;: &quot;vcf-zone-clinton-street&quot;
+          }
+        ],
+        &quot;map_url&quot;: &quot;https://www.vcf.gov/nyc-map-exposure-zone&quot;,
+        &quot;definition_url&quot;: null,
+        &quot;note&quot;: null
+      }
+    ],
+    &quot;catalog_captured_at&quot;: &quot;2026-09-11T12:57:00+00:00&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-building_lookup-broadway" data-example="building_lookup-broadway">
+<h3>Records filed under 120 Broadway</h3>
+<pre class="request">building_lookup {&quot;address&quot;: &quot;120 Broadway&quot;}</pre>
+<p class="result-note">The call returned an envelope with warnings: label_match_only, zone_not_computed, physical_labels.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/folders.json&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;label_match_only&quot;,
+      &quot;message&quot;: &quot;matched against the City&#x27;s folder labels; a document can concern this building without a label that names it, and a label can name several buildings&quot;
+    },
+    {
+      &quot;code&quot;: &quot;zone_not_computed&quot;,
+      &quot;message&quot;: &quot;no exposure-zone membership is decided here; zone_definitions quotes each program&#x27;s own wording, and the program decides&quot;
+    },
+    {
+      &quot;code&quot;: &quot;physical_labels&quot;,
+      &quot;message&quot;: &quot;labels are transcribed as the City produced them, including misspellings&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;query&quot;: {
+      &quot;as_given&quot;: &quot;120 Broadway&quot;,
+      &quot;read_as&quot;: &quot;120 BROADWAY&quot;,
+      &quot;house_number&quot;: 120,
+      &quot;street_words&quot;: [
+        &quot;BROADWAY&quot;
+      ],
+      &quot;bin&quot;: null
+    },
+    &quot;folders_matched&quot;: 2,
+    &quot;folders_returned&quot;: 2,
+    &quot;documents_in_matched_folders&quot;: 5,
+    &quot;folders&quot;: [
+      {
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;box&quot;: &quot;DEP Box 50&quot;,
+        &quot;folder&quot;: &quot;120 BROADWAY Block: 47 Lot: 7501 BIN: 1001026 70-84 CEDAR ST. 15-25 NASSAU ST. 2-16 PINE ST&quot;,
+        &quot;documents&quot;: 3,
+        &quot;pages&quot;: 21,
+        &quot;first_bates&quot;: &quot;NYC-WTC_000123774&quot;,
+        &quot;first_pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000123774.pdf&quot;,
+        &quot;matched_by&quot;: &quot;number_and_street&quot;,
+        &quot;printed_house_numbers&quot;: [
+          &quot;120&quot;
+        ],
+        &quot;printed_identifiers&quot;: {
+          &quot;bins&quot;: [
+            &quot;1001026&quot;
+          ],
+          &quot;block&quot;: &quot;47&quot;,
+          &quot;lot&quot;: &quot;7501&quot;
+        }
+      },
+      {
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;box&quot;: &quot;DEP Box 49&quot;,
+        &quot;folder&quot;: &quot;120 BROADWAY 1001026, 47/7501&quot;,
+        &quot;documents&quot;: 2,
+        &quot;pages&quot;: 6,
+        &quot;first_bates&quot;: &quot;NYC-WTC_000122511&quot;,
+        &quot;first_pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000122511.pdf&quot;,
+        &quot;matched_by&quot;: &quot;number_and_street&quot;,
+        &quot;printed_house_numbers&quot;: [
+          &quot;120&quot;
+        ],
+        &quot;printed_identifiers&quot;: {
+          &quot;bins&quot;: [
+            &quot;1001026&quot;
+          ],
+          &quot;block&quot;: &quot;47&quot;,
+          &quot;lot&quot;: &quot;7501&quot;
+        }
+      }
+    ],
+    &quot;next_calls&quot;: [
+      {
+        &quot;tool&quot;: &quot;catalog_search&quot;,
+        &quot;arguments&quot;: {
+          &quot;box&quot;: &quot;DEP Box 50&quot;,
+          &quot;folder&quot;: &quot;120 BROADWAY Block: 47 Lot: 7501 BIN: 1001026 70-84 CEDAR ST. 15-25 NASSAU ST. 2-16 PINE ST&quot;
+        }
+      },
+      {
+        &quot;tool&quot;: &quot;catalog_search&quot;,
+        &quot;arguments&quot;: {
+          &quot;box&quot;: &quot;DEP Box 49&quot;,
+          &quot;folder&quot;: &quot;120 BROADWAY 1001026, 47/7501&quot;
+        }
+      }
+    ],
+    &quot;zone_definitions&quot;: [
+      {
+        &quot;program&quot;: &quot;WTC Health Program&quot;,
+        &quot;name&quot;: &quot;NYC Disaster Area&quot;,
+        &quot;definition&quot;: [],
+        &quot;map_url&quot;: null,
+        &quot;definition_url&quot;: &quot;https://www.cdc.gov/wtc/eligiblegroups.html&quot;,
+        &quot;note&quot;: &quot;The boundary is defined on the CDC eligible-groups page, which is not captured in this checkout, so it is linked rather than quoted.&quot;
+      },
+      {
+        &quot;program&quot;: &quot;VCF&quot;,
+        &quot;name&quot;: &quot;VCF NYC Exposure Zone&quot;,
+        &quot;definition&quot;: [
+          {
+            &quot;text&quot;: &quot;runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway&quot;,
+            &quot;claim_id&quot;: &quot;vcf-zone-canal-street&quot;
+          },
+          {
+            &quot;text&quot;: &quot;north on East Broadway to Clinton Street, and east on Clinton Street to the East River&quot;,
+            &quot;claim_id&quot;: &quot;vcf-zone-clinton-street&quot;
+          }
+        ],
+        &quot;map_url&quot;: &quot;https://www.vcf.gov/nyc-map-exposure-zone&quot;,
+        &quot;definition_url&quot;: null,
+        &quot;note&quot;: null
+      }
+    ],
+    &quot;catalog_captured_at&quot;: &quot;2026-09-11T12:57:00+00:00&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-timeline_lookup" data-example="timeline_lookup">
+<h3>Public statements and City records in date order</h3>
+<pre class="request">timeline_lookup {}</pre>
+<p class="result-note">The call returned an envelope with warnings: sequence_not_finding, no_document_date_field, unreviewed_artifact.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/timeline.json&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;sequence_not_finding&quot;,
+      &quot;message&quot;: &quot;Placing a statement beside a record is not a finding about what any official knew or intended. Council Resolution 560-A gives that analysis to the Department of Investigation.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;no_document_date_field&quot;,
+      &quot;message&quot;: &quot;each date is the one printed on or stated for its source, with its basis; the portal itself publishes no document dates&quot;
+    },
+    {
+      &quot;code&quot;: &quot;unreviewed_artifact&quot;,
+      &quot;message&quot;: &quot;no named reviewer has signed off this timeline; quotes are located in their sources, which is not review&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;filters&quot;: {
+      &quot;side&quot;: &quot;all&quot;,
+      &quot;topic&quot;: &quot;all&quot;,
+      &quot;date_from&quot;: null,
+      &quot;date_to&quot;: null
+    },
+    &quot;sides&quot;: {
+      &quot;public_statement&quot;: &quot;What officials said in public at the time&quot;,
+      &quot;city_record&quot;: &quot;Records in the City&#x27;s portal&quot;,
+      &quot;later_review&quot;: &quot;Later reviews and oversight&quot;
+    },
+    &quot;topics&quot;: [
+      &quot;air&quot;,
+      &quot;schools&quot;,
+      &quot;liability&quot;,
+      &quot;cleanup&quot;,
+      &quot;oversight&quot;
+    ],
+    &quot;events_total&quot;: 15,
+    &quot;events_returned&quot;: 15,
+    &quot;events&quot;: [
+      {
+        &quot;id&quot;: &quot;epa-2001-09-13&quot;,
+        &quot;date&quot;: &quot;2001-09-13&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;public_statement&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;EPA press release&quot;,
+        &quot;title&quot;: &quot;EPA release on asbestos monitoring in Lower Manhattan&quot;,
+        &quot;claim_id&quot;: &quot;epa-2001-09-13-no-significant-asbestos&quot;,
+        &quot;quote&quot;: &quot;there appears to be no significant levels of asbestos dust in the air in New York City&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;url&quot;,
+          &quot;url&quot;: &quot;https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/d7ada9cf2d39c0a185256acc007c097f.html&quot;
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;date of the release&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;mayor-2001-09-16&quot;,
+        &quot;date&quot;: &quot;2001-09-16&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;public_statement&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;Mayor&#x27;s Office press release&quot;,
+        &quot;title&quot;: &quot;Mayor&#x27;s Office release on reopening buildings&quot;,
+        &quot;claim_id&quot;: &quot;giuliani-2001-09-16-deemed-safe&quot;,
+        &quot;quote&quot;: &quot;air quality has been tested and deemed safe&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;url&quot;,
+          &quot;url&quot;: &quot;https://www.nyc.gov/html/om/html/2001b/pr315-01b.html&quot;
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;date of the release&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;epa-2001-09-18&quot;,
+        &quot;date&quot;: &quot;2001-09-18&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;public_statement&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;EPA press release&quot;,
+        &quot;title&quot;: &quot;EPA Administrator Whitman on air and water in New York&quot;,
+        &quot;claim_id&quot;: &quot;epa-2001-09-18-safe-to-breathe&quot;,
+        &quot;quote&quot;: &quot;their air is safe to breath&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;url&quot;,
+          &quot;url&quot;: &quot;https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/ed368f43303656488525744e00039488.html&quot;
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;date of the release&quot;
+        },
+        &quot;note&quot;: &quot;The spelling follows the published text.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;epa-2001-09-21&quot;,
+        &quot;date&quot;: &quot;2001-09-21&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;public_statement&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;EPA press release&quot;,
+        &quot;title&quot;: &quot;EPA release on monitoring results&quot;,
+        &quot;claim_id&quot;: &quot;epa-2001-09-21-not-exposed&quot;,
+        &quot;quote&quot;: &quot;are not being exposed to contaminants such as asbestos, radiation, mercury and other metals&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;url&quot;,
+          &quot;url&quot;: &quot;https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/1dcfffa0c895910885256ace0082cdeb.html&quot;
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;date of the release&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;harding-memo-2001-10&quot;,
+        &quot;date&quot;: &quot;2001-10&quot;,
+        &quot;date_precision&quot;: &quot;month&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;liability&quot;,
+        &quot;source_label&quot;: &quot;Memo to the Deputy Mayor&quot;,
+        &quot;title&quot;: &quot;Memo to Deputy Mayor Harding on limiting the City&#x27;s liability&quot;,
+        &quot;claim_id&quot;: &quot;harding-health-advisories&quot;,
+        &quot;quote&quot;: &quot;Health advisories caused individuals either to return to the area too soon&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000138296&quot;,
+          &quot;page&quot;: 1
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;The memo is undated on its page. The FOIL request describes it as an October 2001 memorandum, and an email filed in the same portal document as another copy was sent on October 16, 2001.&quot;,
+          &quot;claim_id&quot;: &quot;harding-file-email-2001-10-16&quot;,
+          &quot;citation&quot;: {
+            &quot;type&quot;: &quot;portal&quot;,
+            &quot;bates&quot;: &quot;NYC-WTC_000136670&quot;,
+            &quot;page&quot;: 58
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;epa-osha-2001-10-03&quot;,
+        &quot;date&quot;: &quot;2001-10-03&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;public_statement&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;EPA and OSHA press release&quot;,
+        &quot;title&quot;: &quot;OSHA sampling beyond the disaster site&quot;,
+        &quot;claim_id&quot;: &quot;osha-2001-10-03-no-evidence-beyond-site&quot;,
+        &quot;quote&quot;: &quot;no evidence of significant levels of airborne asbestos or other contaminants beyond the disaster site itself&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;url&quot;,
+          &quot;url&quot;: &quot;https://www.epa.gov/archive/epapages/newsroom_archive/newsreleases/a58e3e62ff609f5185256ada00729977.html&quot;
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;date of the release&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;uft-stuyvesant-2001-10-09&quot;,
+        &quot;date&quot;: &quot;2001-10-09&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;schools&quot;,
+        &quot;source_label&quot;: &quot;UFT memo in the City&#x27;s files&quot;,
+        &quot;title&quot;: &quot;UFT memo on re-occupying Stuyvesant High School&quot;,
+        &quot;claim_id&quot;: &quot;stuyvesant-roof-sample-positive&quot;,
+        &quot;quote&quot;: &quot;1 sample tested positive for asbestos&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000106411&quot;,
+          &quot;page&quot;: 2
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;printed on the memo&quot;,
+          &quot;claim_id&quot;: &quot;stuyvesant-uft-reoccupying&quot;,
+          &quot;citation&quot;: {
+            &quot;type&quot;: &quot;portal&quot;,
+            &quot;bates&quot;: &quot;NYC-WTC_000106411&quot;,
+            &quot;page&quot;: 1
+          }
+        }
+      },
+      {
+        &quot;id&quot;: &quot;epa-sitrep-2001-10-20&quot;,
+        &quot;date&quot;: &quot;2001-10-20&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;EPA sampling situation report in the City&#x27;s files&quot;,
+        &quot;title&quot;: &quot;EPA air, bulk, wipe and water sampling situation report&quot;,
+        &quot;claim_id&quot;: &quot;fresh-kills-sitrep-exceedances&quot;,
+        &quot;quote&quot;: &quot;Exceedances occurred at Sift Location&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000154488&quot;,
+          &quot;page&quot;: 3
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;printed in the report header&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;sia14-2001-11-20&quot;,
+        &quot;date&quot;: &quot;2001-11-20&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;EPA-commissioned audit in the City&#x27;s files&quot;,
+        &quot;title&quot;: &quot;Special Investigative Audit #14, environmental data trend report&quot;,
+        &quot;claim_id&quot;: &quot;audit-dust-38-chrysotile-sept19&quot;,
+        &quot;quote&quot;: &quot;38% Chrysotile from Ground Zero&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000130438&quot;,
+          &quot;page&quot;: 22
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;printed on the cover&quot;,
+          &quot;claim_id&quot;: &quot;audit-sia14-title&quot;,
+          &quot;citation&quot;: {
+            &quot;type&quot;: &quot;portal&quot;,
+            &quot;bates&quot;: &quot;NYC-WTC_000130438&quot;,
+            &quot;page&quot;: 1
+          }
+        },
+        &quot;note&quot;: &quot;The audit reports a bulk dust sample collected at Ground Zero on September 19, 2001.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;frieden-2002-02-14&quot;,
+        &quot;date&quot;: &quot;2002-02-14&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;Letter from the Health Commissioner&quot;,
+        &quot;title&quot;: &quot;Health Commissioner Frieden to EPA Administrator Whitman&quot;,
+        &quot;claim_id&quot;: &quot;frieden-to-whitman-2002-02-14&quot;,
+        &quot;quote&quot;: &quot;disseminated by Ms. Cate Jenkins publicly criticizing&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000151604&quot;,
+          &quot;page&quot;: 1
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;dated on the letter&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;fuchs-2002-02-28&quot;,
+        &quot;date&quot;: &quot;2002-02-28&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;Memo from a mayoral advisor&quot;,
+        &quot;title&quot;: &quot;Fuchs memo on Congressman Nadler&#x27;s indoor air concerns&quot;,
+        &quot;claim_id&quot;: &quot;fuchs-real-health-risks&quot;,
+        &quot;quote&quot;: &quot;real health risks in lower Manhattan&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000147320&quot;,
+          &quot;page&quot;: 2
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;printed on the memo&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;cleanup-2002-05-16&quot;,
+        &quot;date&quot;: &quot;2002-05-16&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;cleanup&quot;,
+        &quot;source_label&quot;: &quot;Handwritten note in the City&#x27;s files&quot;,
+        &quot;title&quot;: &quot;Clean Up Initiative note&quot;,
+        &quot;claim_id&quot;: &quot;cleanup-initiative-risk-word&quot;,
+        &quot;quote&quot;: &quot;we would not use the word &#x27;risk&#x27; in any letters as it would defeat the purpose of creating public confidence&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000153130&quot;,
+          &quot;page&quot;: 1
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;the note&#x27;s header reads 5/16/02&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;stuyvesant-parents-2002-08-07&quot;,
+        &quot;date&quot;: &quot;2002-08-07&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;city_record&quot;,
+        &quot;topic&quot;: &quot;schools&quot;,
+        &quot;source_label&quot;: &quot;Parents&#x27; association release, faxed through DEP&quot;,
+        &quot;title&quot;: &quot;Concerned Stuyvesant Parents release on dust testing&quot;,
+        &quot;claim_id&quot;: &quot;stuyvesant-2-5-million&quot;,
+        &quot;quote&quot;: &quot;asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000144518&quot;,
+          &quot;page&quot;: 2
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;printed on the release&quot;
+        },
+        &quot;note&quot;: &quot;A parents&#x27; group statement found in DEP&#x27;s files; the figure is the group&#x27;s report of a consultant&#x27;s test.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;oig-2003-08-21&quot;,
+        &quot;date&quot;: &quot;2003-08-21&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;later_review&quot;,
+        &quot;topic&quot;: &quot;air&quot;,
+        &quot;source_label&quot;: &quot;EPA Office of Inspector General report&quot;,
+        &quot;title&quot;: &quot;EPA Inspector General on the September 18 statement&quot;,
+        &quot;claim_id&quot;: &quot;oig-2003-sept18-insufficient-data&quot;,
+        &quot;quote&quot;: &quot;the Agency did not have sufficient data and analyses to make the statement&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;url&quot;,
+          &quot;url&quot;: &quot;https://19january2021snapshot.epa.gov/sites/static/files/2015-10/documents/wtc_report_20030821.pdf&quot;
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;date of the report&quot;
+        }
+      },
+      {
+        &quot;id&quot;: &quot;res-560a-2025-07-14&quot;,
+        &quot;date&quot;: &quot;2025-07-14&quot;,
+        &quot;date_precision&quot;: &quot;day&quot;,
+        &quot;side&quot;: &quot;later_review&quot;,
+        &quot;topic&quot;: &quot;oversight&quot;,
+        &quot;source_label&quot;: &quot;City Council Resolution 560-A&quot;,
+        &quot;title&quot;: &quot;Council asks DOI to compare what was known with what was said&quot;,
+        &quot;claim_id&quot;: &quot;res-560a-contrast-analysis&quot;,
+        &quot;quote&quot;: &quot;An analysis of the contrast between the knowledge mayoral administrations possessed on these toxins and the information the administrations conveyed to the public&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;url&quot;,
+          &quot;url&quot;: &quot;https://legistar.council.nyc.gov/LegislationDetail.aspx?GUID=E65C6055-76FF-41B9-BDC5-016ED8FF75B0&amp;ID=6860206&quot;
+        },
+        &quot;date_basis&quot;: {
+          &quot;text&quot;: &quot;date the Council adopted the resolution&quot;
+        }
+      }
+    ],
+    &quot;boundary&quot;: &quot;Placing a statement beside a record is not a finding about what any official knew or intended. Council Resolution 560-A gives that analysis to the Department of Investigation.&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-readings_lookup" data-example="readings_lookup">
+<h3>Sampling results located so far</h3>
+<pre class="request">readings_lookup {&quot;include_unreviewed&quot;: true}</pre>
+<p class="result-note">The call returned an envelope with warnings: readings_not_dataset, unreviewed_artifact.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/readings.json&quot;,
+  &quot;coverage&quot;: &quot;partial&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;readings_not_dataset&quot;,
+      &quot;message&quot;: &quot;This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states. Units are as printed and are not converted.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;unreviewed_artifact&quot;,
+      &quot;message&quot;: &quot;these rows are unreviewed: each quote is located at its Bates page, and no named reviewer has signed them off&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;filters&quot;: {
+      &quot;analyte&quot;: null,
+      &quot;location&quot;: null,
+      &quot;include_unreviewed&quot;: true
+    },
+    &quot;readings_matched&quot;: 8,
+    &quot;readings_returned&quot;: 8,
+    &quot;withheld_unreviewed&quot;: 0,
+    &quot;readings&quot;: [
+      {
+        &quot;id&quot;: &quot;sia14-dust-murray&quot;,
+        &quot;analyte&quot;: &quot;asbestos (chrysotile)&quot;,
+        &quot;value_as_printed&quot;: &quot;4.5&quot;,
+        &quot;unit_as_printed&quot;: &quot;%&quot;,
+        &quot;medium&quot;: &quot;bulk dust&quot;,
+        &quot;location_as_printed&quot;: &quot;Murray Street and West Side Highway&quot;,
+        &quot;sample_date&quot;: &quot;2001-09-11&quot;,
+        &quot;sample_date_precision&quot;: &quot;day&quot;,
+        &quot;sample_date_basis&quot;: &quot;stated in the audit text&quot;,
+        &quot;document&quot;: &quot;Special Investigative Audit #14&quot;,
+        &quot;document_date&quot;: &quot;2001-11-20&quot;,
+        &quot;reported_by&quot;: &quot;IT Corporation for EPA&quot;,
+        &quot;claim_id&quot;: &quot;audit-dust-4-5-chrysotile-sept11&quot;,
+        &quot;quote&quot;: &quot;The highest result, 4.5% Chrysotile, was reported from a sample collected at Murray Street and West Side Highway&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000130438&quot;,
+          &quot;page&quot;: 22
+        },
+        &quot;note&quot;: &quot;The audit calls this the highest of 59 Lower Manhattan bulk dust results.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;sia14-dust-ground-zero&quot;,
+        &quot;analyte&quot;: &quot;asbestos (chrysotile)&quot;,
+        &quot;value_as_printed&quot;: &quot;38&quot;,
+        &quot;unit_as_printed&quot;: &quot;%&quot;,
+        &quot;medium&quot;: &quot;bulk dust&quot;,
+        &quot;location_as_printed&quot;: &quot;Ground Zero&quot;,
+        &quot;sample_date&quot;: &quot;2001-09-19&quot;,
+        &quot;sample_date_precision&quot;: &quot;day&quot;,
+        &quot;sample_date_basis&quot;: &quot;stated in the audit text&quot;,
+        &quot;document&quot;: &quot;Special Investigative Audit #14&quot;,
+        &quot;document_date&quot;: &quot;2001-11-20&quot;,
+        &quot;reported_by&quot;: &quot;IT Corporation for EPA&quot;,
+        &quot;claim_id&quot;: &quot;audit-dust-38-chrysotile-sept19&quot;,
+        &quot;quote&quot;: &quot;38% Chrysotile from Ground Zero&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000130438&quot;,
+          &quot;page&quot;: 22
+        }
+      },
+      {
+        &quot;id&quot;: &quot;sia14-fresh-kills&quot;,
+        &quot;analyte&quot;: &quot;asbestos (TEM)&quot;,
+        &quot;value_as_printed&quot;: &quot;88 to 128&quot;,
+        &quot;unit_as_printed&quot;: &quot;S/mm2&quot;,
+        &quot;medium&quot;: &quot;air filter (TEM analysis)&quot;,
+        &quot;location_as_printed&quot;: &quot;Fresh Kills Landfill, Screening Operations (Locations 09-A and 09-B) and Location 12-A&quot;,
+        &quot;sample_date&quot;: &quot;2001-10&quot;,
+        &quot;sample_date_precision&quot;: &quot;month&quot;,
+        &quot;sample_date_basis&quot;: &quot;audit text: between October 8 and October 31&quot;,
+        &quot;document&quot;: &quot;Special Investigative Audit #14&quot;,
+        &quot;document_date&quot;: &quot;2001-11-20&quot;,
+        &quot;reported_by&quot;: &quot;IT Corporation for EPA&quot;,
+        &quot;claim_id&quot;: &quot;audit-fresh-kills-tem&quot;,
+        &quot;quote&quot;: &quot;were measured at the Screening Operations&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000130438&quot;,
+          &quot;page&quot;: 21
+        },
+        &quot;note&quot;: &quot;The audit compares these with 70 S/mm2, the screening level it uses for TEM results.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;sia14-benzene&quot;,
+        &quot;analyte&quot;: &quot;benzene&quot;,
+        &quot;value_as_printed&quot;: &quot;180,000&quot;,
+        &quot;unit_as_printed&quot;: &quot;ppb&quot;,
+        &quot;medium&quot;: &quot;VOC sample; the quoted sentence does not name the medium&quot;,
+        &quot;location_as_printed&quot;: &quot;WTC North Tower Center (the sentence continues on p.8)&quot;,
+        &quot;sample_date&quot;: &quot;2001-11-08&quot;,
+        &quot;sample_date_precision&quot;: &quot;day&quot;,
+        &quot;sample_date_basis&quot;: &quot;stated in the audit text&quot;,
+        &quot;document&quot;: &quot;Special Investigative Audit #14&quot;,
+        &quot;document_date&quot;: &quot;2001-11-20&quot;,
+        &quot;reported_by&quot;: &quot;IT Corporation for EPA&quot;,
+        &quot;claim_id&quot;: &quot;audit-benzene-180000-ppb&quot;,
+        &quot;quote&quot;: &quot;The recent high value for benzene of 180,000 ppb on November 8th&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000130438&quot;,
+          &quot;page&quot;: 7
+        },
+        &quot;note&quot;: &quot;The audit says VOC concentrations outside the WTC sites were much lower or undetected.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;sitrep-fresh-kills&quot;,
+        &quot;analyte&quot;: &quot;asbestos (TEM)&quot;,
+        &quot;value_as_printed&quot;: &quot;97.78&quot;,
+        &quot;unit_as_printed&quot;: &quot;S/mm2&quot;,
+        &quot;medium&quot;: &quot;air (fixed ambient sampling)&quot;,
+        &quot;location_as_printed&quot;: &quot;Sift Location 9C&quot;,
+        &quot;sample_date&quot;: &quot;2001-10-20&quot;,
+        &quot;sample_date_precision&quot;: &quot;day&quot;,
+        &quot;sample_date_basis&quot;: &quot;report date; the sampling period is in the report header&quot;,
+        &quot;document&quot;: &quot;EPA sampling situation report&quot;,
+        &quot;document_date&quot;: &quot;2001-10-20&quot;,
+        &quot;reported_by&quot;: &quot;EPA&quot;,
+        &quot;claim_id&quot;: &quot;fresh-kills-sitrep-exceedances&quot;,
+        &quot;quote&quot;: &quot;Exceedances occurred at Sift Location&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000154488&quot;,
+          &quot;page&quot;: 3
+        },
+        &quot;note&quot;: &quot;The report records 2 of 19 samples above the TEM AHERA standard; the text layer misreads some characters.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;stuyvesant-roof&quot;,
+        &quot;analyte&quot;: &quot;asbestos&quot;,
+        &quot;value_as_printed&quot;: &quot;1 of 3 samples positive (greater than 1%)&quot;,
+        &quot;unit_as_printed&quot;: &quot;&quot;,
+        &quot;medium&quot;: &quot;bulk debris&quot;,
+        &quot;location_as_printed&quot;: &quot;Stuyvesant High School, southeast roof&quot;,
+        &quot;sample_date&quot;: &quot;2001-10-09&quot;,
+        &quot;sample_date_precision&quot;: &quot;day&quot;,
+        &quot;sample_date_basis&quot;: &quot;date of the memo; the sample date is not stated&quot;,
+        &quot;document&quot;: &quot;UFT memo, Re-Occupying Stuyvesant High School&quot;,
+        &quot;document_date&quot;: &quot;2001-10-09&quot;,
+        &quot;reported_by&quot;: &quot;UFT&quot;,
+        &quot;claim_id&quot;: &quot;stuyvesant-roof-sample-positive&quot;,
+        &quot;quote&quot;: &quot;1 sample tested positive for asbestos&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000106411&quot;,
+          &quot;page&quot;: 2
+        }
+      },
+      {
+        &quot;id&quot;: &quot;15-john-facade&quot;,
+        &quot;analyte&quot;: &quot;asbestos (chrysotile)&quot;,
+        &quot;value_as_printed&quot;: &quot;1&quot;,
+        &quot;unit_as_printed&quot;: &quot;%&quot;,
+        &quot;medium&quot;: &quot;bulk sample&quot;,
+        &quot;location_as_printed&quot;: &quot;15 John Street, west facade ledge&quot;,
+        &quot;sample_date&quot;: &quot;2002-07-13&quot;,
+        &quot;sample_date_precision&quot;: &quot;day&quot;,
+        &quot;sample_date_basis&quot;: &quot;&#x27;Date Collected: 07/13/02&#x27; on the report&quot;,
+        &quot;document&quot;: &quot;DEP Asbestos Control Program laboratory report&quot;,
+        &quot;document_date&quot;: &quot;2002-07-13&quot;,
+        &quot;reported_by&quot;: &quot;DEP laboratory&quot;,
+        &quot;claim_id&quot;: &quot;15-john-chrysotile-1pct&quot;,
+        &quot;quote&quot;: &quot;Asbestos Present: Yes&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000094256&quot;,
+          &quot;page&quot;: 1
+        }
+      },
+      {
+        &quot;id&quot;: &quot;stuyvesant-parents&quot;,
+        &quot;analyte&quot;: &quot;asbestos&quot;,
+        &quot;value_as_printed&quot;: &quot;as much as 2.5 million&quot;,
+        &quot;unit_as_printed&quot;: &quot;structures per square centimeter&quot;,
+        &quot;medium&quot;: &quot;dust (ultrasonication test, as described)&quot;,
+        &quot;location_as_printed&quot;: &quot;Stuyvesant High School, one sample&quot;,
+        &quot;sample_date&quot;: &quot;2002-08&quot;,
+        &quot;sample_date_precision&quot;: &quot;month&quot;,
+        &quot;sample_date_basis&quot;: &quot;the release of August 7, 2002 describes recent testing&quot;,
+        &quot;document&quot;: &quot;Concerned Stuyvesant Parents release&quot;,
+        &quot;document_date&quot;: &quot;2002-08-07&quot;,
+        &quot;reported_by&quot;: &quot;Parents&#x27; association consultant, as reported by the parents&#x27; group&quot;,
+        &quot;claim_id&quot;: &quot;stuyvesant-2-5-million&quot;,
+        &quot;quote&quot;: &quot;asbestos levels of as much as 2.5 million structures per square centimeter were found in one sample&quot;,
+        &quot;citation&quot;: {
+          &quot;type&quot;: &quot;portal&quot;,
+          &quot;bates&quot;: &quot;NYC-WTC_000144518&quot;,
+          &quot;page&quot;: 2
+        }
+      }
+    ],
+    &quot;boundary&quot;: &quot;This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states.&quot;,
+    &quot;note&quot;: &quot;Sampling results printed in located City records, transcribed with the value, unit, medium and location as the document prints them. Each row quotes a registered claim at its Bates page. Units are not converted: percent asbestos in bulk dust, structures per square millimetre on an air filter and parts per billion of a gas measure different things.&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-readings_lookup-default" data-example="readings_lookup-default">
+<h3>Asbestos results without unreviewed rows</h3>
+<pre class="request">readings_lookup {&quot;analyte&quot;: &quot;asbestos&quot;}</pre>
+<p class="result-note">The call returned an envelope with warnings: readings_not_dataset, unreviewed_artifact.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/readings.json&quot;,
+  &quot;coverage&quot;: &quot;partial&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;readings_not_dataset&quot;,
+      &quot;message&quot;: &quot;This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states. Units are as printed and are not converted.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;unreviewed_artifact&quot;,
+      &quot;message&quot;: &quot;7 matching rows withheld: no named reviewer has signed off these readings. Call again with include_unreviewed=true to see them, labelled unreviewed&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;filters&quot;: {
+      &quot;analyte&quot;: &quot;asbestos&quot;,
+      &quot;location&quot;: null,
+      &quot;include_unreviewed&quot;: false
+    },
+    &quot;readings_matched&quot;: 7,
+    &quot;readings_returned&quot;: 0,
+    &quot;withheld_unreviewed&quot;: 7,
+    &quot;readings&quot;: [],
+    &quot;boundary&quot;: &quot;This short list holds the results located so far. A full sampling dataset would hold every result. The list makes no health finding and no comparison with any standard beyond what the document itself states.&quot;,
+    &quot;note&quot;: &quot;Sampling results printed in located City records, transcribed with the value, unit, medium and location as the document prints them. Each row quotes a registered claim at its Bates page. Units are not converted: percent asbestos in bulk dust, structures per square millimetre on an air filter and parts per billion of a gas measure different things.&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-presence_evidence" data-example="presence_evidence">
+<h3>Proof of presence the VCF accepts from survivors</h3>
+<pre class="request">presence_evidence {&quot;program&quot;: &quot;vcf&quot;, &quot;who&quot;: &quot;survivors&quot;}</pre>
+<p class="result-note">The call returned an envelope with warnings: directory_not_advice, unreviewed_artifact.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/help-directory.json&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;directory_not_advice&quot;,
+      &quot;message&quot;: &quot;This directory quotes official rules with their sources. It does not decide eligibility, calculate a deadline or file anything. Rules change; read the linked official page before acting. Not legal advice.&quot;
+    },
+    {
+      &quot;code&quot;: &quot;unreviewed_artifact&quot;,
+      &quot;message&quot;: &quot;no practitioner has reviewed this directory yet; read the linked official page before acting&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;filters&quot;: {
+      &quot;program&quot;: &quot;vcf&quot;,
+      &quot;who&quot;: &quot;survivors&quot;
+    },
+    &quot;disclaimer&quot;: &quot;This directory quotes official rules with their sources. It does not decide eligibility, calculate a deadline or file anything. Rules change; read the linked official page before acting. Not legal advice.&quot;,
+    &quot;programs&quot;: [
+      {
+        &quot;id&quot;: &quot;vcf&quot;,
+        &quot;name&quot;: &quot;September 11th Victim Compensation Fund&quot;,
+        &quot;short&quot;: &quot;VCF&quot;,
+        &quot;administered_by&quot;: &quot;U.S. Department of Justice&quot;,
+        &quot;what_it_is&quot;: null,
+        &quot;contact&quot;: {
+          &quot;phone&quot;: &quot;1-855-885-1555&quot;,
+          &quot;url&quot;: &quot;https://www.vcf.gov/&quot;,
+          &quot;claim_id&quot;: &quot;vcf-helpline&quot;
+        },
+        &quot;deadline&quot;: {
+          &quot;text&quot;: &quot;submit your complete claim no later than October 1, 2090&quot;,
+          &quot;claim_id&quot;: &quot;vcf-claim-deadline-2090&quot;,
+          &quot;caveat&quot;: {
+            &quot;text&quot;: &quot;deadline applicable to your individual circumstances&quot;,
+            &quot;claim_id&quot;: &quot;vcf-registration-deadline-individual&quot;,
+            &quot;lead&quot;: &quot;Registration has its own&quot;
+          }
+        },
+        &quot;window&quot;: {
+          &quot;text&quot;: &quot;between September 11, 2001, and May 30, 2002&quot;,
+          &quot;applies_to&quot;: &quot;The World Trade Center site or the NYC Exposure Zone&quot;,
+          &quot;claim_id&quot;: &quot;vcf-nyc-window&quot;
+        },
+        &quot;zone&quot;: {
+          &quot;name&quot;: &quot;VCF NYC Exposure Zone&quot;,
+          &quot;definition&quot;: [
+            {
+              &quot;text&quot;: &quot;runs south of Canal Street, river to river, and from the Hudson River to the intersection of Canal Street and East Broadway&quot;,
+              &quot;claim_id&quot;: &quot;vcf-zone-canal-street&quot;
+            },
+            {
+              &quot;text&quot;: &quot;north on East Broadway to Clinton Street, and east on Clinton Street to the East River&quot;,
+              &quot;claim_id&quot;: &quot;vcf-zone-clinton-street&quot;
+            }
+          ],
+          &quot;map_url&quot;: &quot;https://www.vcf.gov/nyc-map-exposure-zone&quot;,
+          &quot;also&quot;: {
+            &quot;text&quot;: &quot;The routes of debris removal apply only to those individuals who loaded, unloaded, or drove the trucks containing WTC debris&quot;,
+            &quot;claim_id&quot;: &quot;vcf-debris-routes&quot;
+          }
+        },
+        &quot;separate_from&quot;: {
+          &quot;text&quot;: &quot;Enrollment in the WTC Health Program does not automatically register you with the VCF&quot;,
+          &quot;claim_id&quot;: &quot;vcf-registration-separate-from-wtchp&quot;
+        },
+        &quot;rules&quot;: [
+          {
+            &quot;text&quot;: &quot;Registration is not the same as filing a claim.&quot;,
+            &quot;claim_id&quot;: &quot;vcf-registration-not-claim&quot;
+          },
+          {
+            &quot;text&quot;: &quot;There are no requirements for the minimum amount of time an individual needed to be at a site&quot;,
+            &quot;claim_id&quot;: &quot;vcf-no-minimum-time&quot;
+          }
+        ],
+        &quot;evidence&quot;: [
+          {
+            &quot;lane&quot;: &quot;Third-party verification (primary)&quot;,
+            &quot;examples&quot;: [
+              {
+                &quot;text&quot;: &quot;to the VCF from the employer or other third party, with specific dates and locations, is often sufficient to verify presence&quot;,
+                &quot;claim_id&quot;: &quot;vcf-third-party-verification&quot;,
+                &quot;lead&quot;: &quot;Sent directly&quot;
+              },
+              {
+                &quot;text&quot;: &quot;must demonstrate that he/she sought to obtain presence information from the listed&quot;,
+                &quot;claim_id&quot;: &quot;vcf-listed-employer-first&quot;,
+                &quot;lead&quot;: &quot;A claimant with a listed employer, entity or union&quot;,
+                &quot;note&quot;: &quot;before the VCF relies on witness statements&quot;
+              }
+            ]
+          },
+          {
+            &quot;lane&quot;: &quot;Contemporaneous documents (primary)&quot;,
+            &quot;examples&quot;: [
+              {
+                &quot;text&quot;: &quot;documents, whether from the list below or otherwise, are required&quot;,
+                &quot;claim_id&quot;: &quot;vcf-two-documents&quot;,
+                &quot;lead&quot;: &quot;At least two&quot;
+              },
+              {
+                &quot;text&quot;: &quot;Official personnel roster.&quot;,
+                &quot;claim_id&quot;: &quot;vcf-personnel-roster&quot;
+              },
+              {
+                &quot;text&quot;: &quot;Police memo book submitted with the front cover including supervisory signature and opening and closing dates&quot;,
+                &quot;claim_id&quot;: &quot;vcf-police-memo-book&quot;
+              }
+            ]
+          },
+          {
+            &quot;lane&quot;: &quot;Residence documents (corroborating)&quot;,
+            &quot;examples&quot;: [
+              {
+                &quot;text&quot;: &quot;The documents listed below are not sufficient on their own, but will be reviewed in conjunction with other documents&quot;,
+                &quot;claim_id&quot;: &quot;vcf-residence-not-sufficient-alone&quot;
+              }
+            ]
+          },
+          {
+            &quot;lane&quot;: &quot;School or daycare records&quot;,
+            &quot;examples&quot;: [
+              {
+                &quot;text&quot;: &quot;If you submit a certified transcript or school record as explained below, you do not need to submit any additional proof of presence&quot;,
+                &quot;claim_id&quot;: &quot;vcf-school-records-sufficient&quot;
+              },
+              {
+                &quot;text&quot;: &quot;Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email&quot;,
+                &quot;claim_id&quot;: &quot;vcf-stuyhealth&quot;,
+                &quot;note&quot;: &quot;info@stuyhealth.org&quot;,
+                &quot;contact_url&quot;: &quot;mailto:info@stuyhealth.org&quot;
+              }
+            ]
+          },
+          {
+            &quot;lane&quot;: &quot;Witness statements (secondary)&quot;,
+            &quot;examples&quot;: [
+              {
+                &quot;text&quot;: &quot;minimum of two people&quot;,
+                &quot;claim_id&quot;: &quot;vcf-witness-minimum-two&quot;,
+                &quot;lead&quot;: &quot;Statements as the only proof need a&quot;
+              },
+              {
+                &quot;text&quot;: &quot;be from an individual who is not related to you or to the Personal Representative or Guardian&quot;,
+                &quot;claim_id&quot;: &quot;vcf-witness-non-relative&quot;,
+                &quot;lead&quot;: &quot;At least one must&quot;
+              },
+              {
+                &quot;text&quot;: &quot;Effective February 1, 2023, the VCF will no longer accept affidavits as proof of presence.&quot;,
+                &quot;claim_id&quot;: &quot;vcf-affidavits-not-accepted&quot;
+              }
+            ]
+          }
+        ],
+        &quot;official_pages&quot;: [
+          {
+            &quot;label&quot;: &quot;Eligibility criteria and deadlines (Policies and Procedures, section 1)&quot;,
+            &quot;url&quot;: &quot;https://www.vcf.gov/policy/eligibility-criteria-and-deadlines&quot;
+          },
+          {
+            &quot;label&quot;: &quot;How to prove presence (Interactive Presence Guide)&quot;,
+            &quot;url&quot;: &quot;https://www.vcf.gov/how-prove-presence&quot;
+          },
+          {
+            &quot;label&quot;: &quot;NYC Exposure Zone map&quot;,
+            &quot;url&quot;: &quot;https://www.vcf.gov/nyc-map-exposure-zone&quot;
+          }
+        ]
+      }
+    ],
+    &quot;nyc_records&quot;: [
+      {
+        &quot;id&quot;: &quot;dcas&quot;,
+        &quot;who&quot;: &quot;Current and former City employees&quot;,
+        &quot;issuer&quot;: &quot;Department of Citywide Administrative Services (DCAS)&quot;,
+        &quot;commitment&quot;: {
+          &quot;text&quot;: &quot;designating personnel at the Department of Citywide Administrative Services&quot;,
+          &quot;claim_id&quot;: &quot;settlement-dcas-doe-personnel&quot;,
+          &quot;source_label&quot;: &quot;Settlement, p.3&quot;
+        },
+        &quot;status_obligation_id&quot;: &quot;dcas-doe-personnel&quot;,
+        &quot;how&quot;: &quot;Announced in the settlement and the Mayor’s release. No contact path had been published as of September 11, 2026: the DCAS home page, captured that day, does not mention September 11, the programs or an exposure zone.&quot;,
+        &quot;checked&quot;: &quot;2026-09-11&quot;,
+        &quot;checked_source_id&quot;: &quot;dcas-home-2026-09-11&quot;
+      },
+      {
+        &quot;id&quot;: &quot;nycps&quot;,
+        &quot;who&quot;: &quot;People who attended New York City public schools&quot;,
+        &quot;issuer&quot;: &quot;New York City Public Schools (the settlement names the Department of Education)&quot;,
+        &quot;commitment&quot;: {
+          &quot;text&quot;: &quot;to assist City employees and individuals who attended the New York City Public Schools&quot;,
+          &quot;claim_id&quot;: &quot;settlement-dcas-doe-beneficiaries&quot;,
+          &quot;source_label&quot;: &quot;Settlement, p.3&quot;
+        },
+        &quot;status_obligation_id&quot;: &quot;dcas-doe-personnel&quot;,
+        &quot;how&quot;: &quot;The settlement’s designated personnel are announced; no contact path had been published as of September 11, 2026. The standing route is the school itself: NYC Public Schools’ records request page (quoted here).&quot;,
+        &quot;route&quot;: [
+          {
+            &quot;text&quot;: &quot;Former students must print and fill out the Student Records Request Form&quot;,
+            &quot;claim_id&quot;: &quot;nycps-former-students-form&quot;,
+            &quot;url&quot;: &quot;https://www.schools.nyc.gov/learning/student-journey/student-records-and-transcripts/requesting-student-records-and-transcripts&quot;
+          },
+          {
+            &quot;text&quot;: &quot;When a student is 18 or older, the DOE will only honor transcript requests from the student.&quot;,
+            &quot;claim_id&quot;: &quot;nycps-18-or-older&quot;
+          },
+          {
+            &quot;text&quot;: &quot;If your former high school has closed, another school now has your transcript and can provide you with a copy.&quot;,
+            &quot;claim_id&quot;: &quot;nycps-closed-school&quot;
+          }
+        ]
+      },
+      {
+        &quot;id&quot;: &quot;comptroller&quot;,
+        &quot;who&quot;: &quot;City employees whose payroll records the Comptroller holds&quot;,
+        &quot;issuer&quot;: &quot;Office of the New York City Comptroller&quot;,
+        &quot;note&quot;: {
+          &quot;text&quot;: &quot;The VCF gets the information directly from the Office of the New York City Comptroller.&quot;,
+          &quot;claim_id&quot;: &quot;vcf-comptroller-direct&quot;
+        },
+        &quot;how&quot;: &quot;Listed by the VCF as an entity it obtains presence information from directly.&quot;
+      },
+      {
+        &quot;id&quot;: &quot;stuyhealth&quot;,
+        &quot;who&quot;: &quot;Alumni of Stuyvesant or any area school in the NYC Exposure Zone&quot;,
+        &quot;issuer&quot;: &quot;StuyHealth (an alumni organization)&quot;,
+        &quot;note&quot;: {
+          &quot;text&quot;: &quot;Alumni of Stuyvesant or any area school in the NYC Exposure Zone may email&quot;,
+          &quot;claim_id&quot;: &quot;vcf-stuyhealth&quot;
+        },
+        &quot;contact&quot;: &quot;info@stuyhealth.org&quot;,
+        &quot;how&quot;: &quot;Named on the VCF’s policy page for help acquiring proof of attendance. It is a private organization, without a City role.&quot;
+      }
+    ],
+    &quot;mayor_announcement&quot;: {
+      &quot;text&quot;: &quot;appoint dedicated personnel at the Department of Citywide Administrative Services (DCAS) and New York City Public Schools (NYCPS) to coordinate the retrieval of records&quot;,
+      &quot;claim_id&quot;: &quot;mayor-dcas-nycps-personnel&quot;,
+      &quot;url&quot;: &quot;https://www.nyc.gov/mayors-office/news/2026/09/25-years-later--mamdani-administration-opens-city-s-9-11-records&quot;,
+      &quot;label&quot;: &quot;Mayor’s Office release, 2026-09-08&quot;
+    },
+    &quot;not_personalized&quot;: true
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-upcoming_dates" data-example="upcoming_dates">
+<h3>Obligations ahead as of October 8, 2026</h3>
+<pre class="request">upcoming_dates {&quot;as_of&quot;: &quot;2026-10-08&quot;}</pre>
+<p class="result-note">The call returned an envelope with warnings: days_relative_to_as_of, no_compliance_determination.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;docs/data/scorecard.json&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;days_relative_to_as_of&quot;,
+      &quot;message&quot;: &quot;days_from_as_of counts from 2026-10-08; dates are the ones stated in the settlement and the resolution, and a rolling basis is listed without dates&quot;
+    },
+    {
+      &quot;code&quot;: &quot;no_compliance_determination&quot;,
+      &quot;message&quot;: &quot;status is what was observed on public surfaces when checked; no legal determination&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;as_of&quot;: &quot;2026-10-08&quot;,
+    &quot;as_of_source&quot;: &quot;argument&quot;,
+    &quot;ahead&quot;: [
+      {
+        &quot;id&quot;: &quot;doi-update-2026-12-31&quot;,
+        &quot;obligation&quot;: &quot;DOI written status update to the Speaker&quot;,
+        &quot;source&quot;: &quot;Res. 560-A §1&quot;,
+        &quot;status&quot;: &quot;upcoming&quot;,
+        &quot;checked&quot;: &quot;2026-09-09&quot;,
+        &quot;due_as_stated&quot;: &quot;2026-12-31&quot;,
+        &quot;date&quot;: &quot;2026-12-31&quot;,
+        &quot;days_from_as_of&quot;: 84
+      },
+      {
+        &quot;id&quot;: &quot;doi-update-2027-06-30&quot;,
+        &quot;obligation&quot;: &quot;DOI written status update to the Speaker&quot;,
+        &quot;source&quot;: &quot;Res. 560-A §1&quot;,
+        &quot;status&quot;: &quot;upcoming&quot;,
+        &quot;checked&quot;: &quot;2026-09-09&quot;,
+        &quot;due_as_stated&quot;: &quot;2027-06-30&quot;,
+        &quot;date&quot;: &quot;2027-06-30&quot;,
+        &quot;days_from_as_of&quot;: 265
+      },
+      {
+        &quot;id&quot;: &quot;doi-report-2027-07-14&quot;,
+        &quot;obligation&quot;: &quot;DOI report: knowledge assessment, timeline of awareness, public-vs-internal contrast analysis&quot;,
+        &quot;source&quot;: &quot;Res. 560-A §2&quot;,
+        &quot;status&quot;: &quot;upcoming&quot;,
+        &quot;checked&quot;: &quot;2026-09-09&quot;,
+        &quot;due_as_stated&quot;: &quot;2027-07-14&quot;,
+        &quot;date&quot;: &quot;2027-07-14&quot;,
+        &quot;days_from_as_of&quot;: 279
+      },
+      {
+        &quot;id&quot;: &quot;twelve-month-mark&quot;,
+        &quot;obligation&quot;: &quot;Twelve months of good-faith performance; then dismissal with prejudice&quot;,
+        &quot;source&quot;: &quot;Settlement ¶ 7–8&quot;,
+        &quot;status&quot;: &quot;upcoming&quot;,
+        &quot;checked&quot;: &quot;2026-09-09&quot;,
+        &quot;due_as_stated&quot;: &quot;2027-09-08&quot;,
+        &quot;date&quot;: &quot;2027-09-08&quot;,
+        &quot;days_from_as_of&quot;: 335
+      }
+    ],
+    &quot;past&quot;: [],
+    &quot;past_count&quot;: 2,
+    &quot;rolling&quot;: [
+      {
+        &quot;id&quot;: &quot;monthly-meetings&quot;,
+        &quot;obligation&quot;: &quot;Monthly Law Department meetings with 9/11 Health Watch, Sept 2026 – Aug 2027 (documents, pages, sources, subjects)&quot;,
+        &quot;source&quot;: &quot;Settlement ¶ 1&quot;,
+        &quot;status&quot;: &quot;upcoming&quot;,
+        &quot;checked&quot;: &quot;2026-09-09&quot;,
+        &quot;due_as_stated&quot;: &quot;monthly through 2027-08&quot;
+      }
+    ],
+    &quot;calendar_file&quot;: &quot;docs/data/obligations.ics&quot;,
+    &quot;basis&quot;: &quot;`due` is the date basis stated in the source; rows without one are rolling or already dated by observation.&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-portal_query_draft" data-example="portal_query_draft">
+<h3>A portal search for the Stuyvesant memo</h3>
+<pre class="request">portal_query_draft {&quot;phrase&quot;: &quot;Re-Occupying Stuyvesant High School&quot;, &quot;box&quot;: &quot;DEP Box 37&quot;}</pre>
+<p class="result-note">The call returned an envelope with warnings: query_not_sent.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: null,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;not_checked&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;query_not_sent&quot;,
+      &quot;message&quot;: &quot;this is a draft; nothing was sent to the City. portal_search sends the query only when the operator has enabled live search&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;portal_search&quot;: {
+      &quot;arguments&quot;: {
+        &quot;query&quot;: &quot;\&quot;Re-Occupying Stuyvesant High School\&quot; extension:pdf&quot;
+      }
+    },
+    &quot;catalog_search&quot;: {
+      &quot;arguments&quot;: {
+        &quot;box&quot;: &quot;DEP Box 37&quot;
+      }
+    },
+    &quot;explanation&quot;: [
+      &quot;A quoted phrase matches those words in that order; unquoted words match loosely.&quot;,
+      &quot;extension:pdf keeps results to the documents themselves.&quot;,
+      &quot;Collection, box and folder are catalog fields; catalog_search matches them on this machine without sending anything to the City.&quot;
+    ],
+    &quot;live_search_enabled&quot;: false
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-citations_format" data-example="citations_format">
+<h3>Citations for page 1 of the Harding memo</h3>
+<pre class="request">citations_format {&quot;bates&quot;: &quot;NYC-WTC_000138296&quot;, &quot;page&quot;: 1}</pre>
+<p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;local_snapshot_only&quot;,
+      &quot;message&quot;: &quot;collection, box and folder come from the local catalog snapshot&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;bates&quot;: &quot;NYC-WTC_000138296&quot;,
+    &quot;page&quot;: 1,
+    &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1&quot;,
+    &quot;stamp&quot;: &quot;NYC-WTC_000138296&quot;,
+    &quot;stamp_status&quot;: &quot;matched&quot;,
+    &quot;catalog&quot;: {
+      &quot;source&quot;: &quot;DORIS Giuliani&quot;,
+      &quot;agency&quot;: &quot;Records and Information Services, Dept. of&quot;,
+      &quot;box&quot;: &quot;&quot;,
+      &quot;folder&quot;: &quot;Folder 140&quot;,
+      &quot;page_count&quot;: 2
+    },
+    &quot;formats&quot;: {
+      &quot;short&quot;: &quot;NYC-WTC_000138296 p.1&quot;,
+      &quot;full&quot;: &quot;City of New York, September 11th Document Portal, DORIS Giuliani, Folder 140, NYC-WTC_000138296, PDF page 1 (page stamp NYC-WTC 000138296), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1; catalog captured 2026-09-11.&quot;,
+      &quot;markdown&quot;: &quot;[NYC-WTC_000138296 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf#page=1)&quot;
+    }
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-citations_format-fuchs" data-example="citations_format-fuchs">
+<h3>Citations for page 2 of the Fuchs memo</h3>
+<pre class="request">citations_format {&quot;bates&quot;: &quot;NYC-WTC_000147320&quot;, &quot;page&quot;: 2}</pre>
+<p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;local_snapshot_only&quot;,
+      &quot;message&quot;: &quot;collection, box and folder come from the local catalog snapshot&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;bates&quot;: &quot;NYC-WTC_000147320&quot;,
+    &quot;page&quot;: 2,
+    &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2&quot;,
+    &quot;stamp&quot;: &quot;NYC-WTC_000147321&quot;,
+    &quot;stamp_status&quot;: &quot;matched&quot;,
+    &quot;catalog&quot;: {
+      &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+      &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+      &quot;box&quot;: &quot;DEP Box 09&quot;,
+      &quot;folder&quot;: &quot;&quot;,
+      &quot;page_count&quot;: 2
+    },
+    &quot;formats&quot;: {
+      &quot;short&quot;: &quot;NYC-WTC_000147320 p.2&quot;,
+      &quot;full&quot;: &quot;City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 09, NYC-WTC_000147320, PDF page 2 (page stamp NYC-WTC 000147321), https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2; catalog captured 2026-09-11.&quot;,
+      &quot;markdown&quot;: &quot;[NYC-WTC_000147320 p.2](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf#page=2)&quot;
+    }
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-citations_format-15-john" data-example="citations_format-15-john">
+<h3>Citations for the 15 John Street lab report</h3>
+<pre class="request">citations_format {&quot;bates&quot;: &quot;NYC-WTC_000094256&quot;, &quot;page&quot;: 1}</pre>
+<p class="result-note">The call returned an envelope with warnings: stamp_unverified, local_snapshot_only.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;stamp_unverified&quot;,
+      &quot;message&quot;: &quot;stamp_status is unverified_stamp; the printed stamp was not read from this page, and none is computed from the document ID&quot;
+    },
+    {
+      &quot;code&quot;: &quot;local_snapshot_only&quot;,
+      &quot;message&quot;: &quot;collection, box and folder come from the local catalog snapshot&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;bates&quot;: &quot;NYC-WTC_000094256&quot;,
+    &quot;page&quot;: 1,
+    &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1&quot;,
+    &quot;stamp&quot;: null,
+    &quot;stamp_status&quot;: &quot;unverified_stamp&quot;,
+    &quot;catalog&quot;: {
+      &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+      &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+      &quot;box&quot;: &quot;DEP Box 01&quot;,
+      &quot;folder&quot;: &quot;15 JOHN STREET 1001217, 79/14&quot;,
+      &quot;page_count&quot;: 1
+    },
+    &quot;formats&quot;: {
+      &quot;short&quot;: &quot;NYC-WTC_000094256 p.1&quot;,
+      &quot;full&quot;: &quot;City of New York, September 11th Document Portal, DEP Hard Copies (68 Boxes), DEP Box 01, 15 JOHN STREET 1001217, 79/14, NYC-WTC_000094256, PDF page 1, https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1; catalog captured 2026-09-11.&quot;,
+      &quot;markdown&quot;: &quot;[NYC-WTC_000094256 p.1](https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf#page=1)&quot;
+    }
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
+<article class="example" id="example-records_manifest" data-example="records_manifest">
+<h3>Documents behind the research examples</h3>
+<pre class="request">records_manifest {&quot;bates&quot;: [&quot;NYC-WTC_000138296&quot;, &quot;NYC-WTC_000147320&quot;, &quot;NYC-WTC_000153130&quot;, &quot;NYC-WTC_000130438&quot;, &quot;NYC-WTC_000154488&quot;, &quot;NYC-WTC_000094256&quot;, &quot;NYC-WTC_000144518&quot;, &quot;NYC-WTC_000106411&quot;, &quot;NYC-WTC_000148621&quot;, &quot;NYC-WTC_000151604&quot;]}</pre>
+<p class="result-note">The call returned an envelope with warnings: local_snapshot_only.</p>
+<pre class="response">{
+  &quot;schema_version&quot;: &quot;2026-10-08&quot;,
+  &quot;retrieved_at&quot;: &quot;2026-10-09T04:00:06+00:00&quot;,
+  &quot;source_snapshot&quot;: &quot;20260911T125700Z-26f24148f199&quot;,
+  &quot;coverage&quot;: &quot;complete_for_query&quot;,
+  &quot;retrieval&quot;: &quot;captured&quot;,
+  &quot;review_status&quot;: &quot;unreviewed&quot;,
+  &quot;freshness&quot;: &quot;unknown&quot;,
+  &quot;warnings&quot;: [
+    {
+      &quot;code&quot;: &quot;local_snapshot_only&quot;,
+      &quot;message&quot;: &quot;rows come from the catalog captured 2026-09-11T12:57:00+00:00&quot;
+    }
+  ],
+  &quot;data&quot;: {
+    &quot;requested&quot;: 10,
+    &quot;found&quot;: 10,
+    &quot;missing&quot;: [],
+    &quot;pages_total&quot;: 226,
+    &quot;bytes_total&quot;: 77936391,
+    &quot;records&quot;: [
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000138296&quot;,
+        &quot;source&quot;: &quot;DORIS Giuliani&quot;,
+        &quot;agency&quot;: &quot;Records and Information Services, Dept. of&quot;,
+        &quot;box&quot;: &quot;&quot;,
+        &quot;folder&quot;: &quot;Folder 140&quot;,
+        &quot;page_count&quot;: 2,
+        &quot;pdf_size&quot;: 87751,
+        &quot;production_volume&quot;: &quot;NYC-WTC0005&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000147320&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 09&quot;,
+        &quot;folder&quot;: &quot;&quot;,
+        &quot;page_count&quot;: 2,
+        &quot;pdf_size&quot;: 115643,
+        &quot;production_volume&quot;: &quot;NYC-WTC0006&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000153130&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 26&quot;,
+        &quot;folder&quot;: &quot;&quot;,
+        &quot;page_count&quot;: 1,
+        &quot;pdf_size&quot;: 44342,
+        &quot;production_volume&quot;: &quot;NYC-WTC0006&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000130438&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 53&quot;,
+        &quot;folder&quot;: &quot;E-Mail 1/2/02&quot;,
+        &quot;page_count&quot;: 78,
+        &quot;pdf_size&quot;: 53608331,
+        &quot;production_volume&quot;: &quot;NYC-WTC0004&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000154488&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 26&quot;,
+        &quot;folder&quot;: &quot;DEP OEM Reports to Commissioner&quot;,
+        &quot;page_count&quot;: 8,
+        &quot;pdf_size&quot;: 695582,
+        &quot;production_volume&quot;: &quot;NYC-WTC0006&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000154488.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000094256&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 01&quot;,
+        &quot;folder&quot;: &quot;15 JOHN STREET 1001217, 79/14&quot;,
+        &quot;page_count&quot;: 1,
+        &quot;pdf_size&quot;: 34246,
+        &quot;production_volume&quot;: &quot;NYC-WTC0004&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000144518&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 08&quot;,
+        &quot;folder&quot;: &quot;SCHOOLS&quot;,
+        &quot;page_count&quot;: 4,
+        &quot;pdf_size&quot;: 262728,
+        &quot;production_volume&quot;: &quot;NYC-WTC0006&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000144518.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000106411&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 37&quot;,
+        &quot;folder&quot;: &quot;345 CHAMBERS STREET; 16/1&quot;,
+        &quot;page_count&quot;: 7,
+        &quot;pdf_size&quot;: 364607,
+        &quot;production_volume&quot;: &quot;NYC-WTC0004&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000148621&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 10&quot;,
+        &quot;folder&quot;: &quot;DEP - BEC  ACTIVITIES  WTC&quot;,
+        &quot;page_count&quot;: 120,
+        &quot;pdf_size&quot;: 22401495,
+        &quot;production_volume&quot;: &quot;NYC-WTC0006&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000148621.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      },
+      {
+        &quot;bates&quot;: &quot;NYC-WTC_000151604&quot;,
+        &quot;source&quot;: &quot;DEP Hard Copies (68 Boxes)&quot;,
+        &quot;agency&quot;: &quot;Environmental Protection, Dept. of&quot;,
+        &quot;box&quot;: &quot;DEP Box 11&quot;,
+        &quot;folder&quot;: &quot;WTC DC TO RC LETTERS CALLEHAN WHITMAN ETC. WARD DOCTOROFF KENNY&quot;,
+        &quot;page_count&quot;: 3,
+        &quot;pdf_size&quot;: 321666,
+        &quot;production_volume&quot;: &quot;NYC-WTC0006&quot;,
+        &quot;pdf_url&quot;: &quot;https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000151604.pdf&quot;,
+        &quot;text_cached_locally&quot;: true
+      }
+    ],
+    &quot;csv&quot;: &quot;bates,source,box,folder,page_count,pdf_size,pdf_url\nNYC-WTC_000138296,DORIS Giuliani,,Folder 140,2,87751,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000138296.pdf\nNYC-WTC_000147320,DEP Hard Copies (68 Boxes),DEP Box 09,,2,115643,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000147320.pdf\nNYC-WTC_000153130,DEP Hard Copies (68 Boxes),DEP Box 26,,1,44342,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000153130.pdf\nNYC-WTC_000130438,DEP Hard Copies (68 Boxes),DEP Box 53,E-Mail 1/2/02,78,53608331,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000130438.pdf\nNYC-WTC_000154488,DEP Hard Copies (68 Boxes),DEP Box 26,DEP OEM Reports to Commissioner,8,695582,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000154488.pdf\nNYC-WTC_000094256,DEP Hard Copies (68 Boxes),DEP Box 01,\&quot;15 JOHN STREET 1001217, 79/14\&quot;,1,34246,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000094256.pdf\nNYC-WTC_000144518,DEP Hard Copies (68 Boxes),DEP Box 08,SCHOOLS,4,262728,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000144518.pdf\nNYC-WTC_000106411,DEP Hard Copies (68 Boxes),DEP Box 37,345 CHAMBERS STREET; 16/1,7,364607,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000106411.pdf\nNYC-WTC_000148621,DEP Hard Copies (68 Boxes),DEP Box 10,DEP - BEC  ACTIVITIES  WTC,120,22401495,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000148621.pdf\nNYC-WTC_000151604,DEP Hard Copies (68 Boxes),DEP Box 11,WTC DC TO RC LETTERS CALLEHAN WHITMAN ETC. WARD DOCTOROFF KENNY,3,321666,https://sept11documents.cityofnewyork.us/apps/content/September11_MD/NYC-WTC_000151604.pdf\n&quot;,
+    &quot;catalog_captured_at&quot;: &quot;2026-09-11T12:57:00+00:00&quot;
+  },
+  &quot;next_cursor&quot;: null
+}</pre>
+</article>
 <!-- /BUILD:examples -->
 <p class="muted">The recorded calls are in <a href="data/mcp-examples.json">mcp-examples.json</a>; <code>make examples</code> re-records them.</p>
 </section>
@@ -966,8 +2615,8 @@
 <div class="foldbody"><ol class="steps">
 <li><strong>Check the local folder.</strong> Python 3.12 is required and the captured evidence must be present; repository publication and evidence restoration are pending.<pre>make check</pre></li>
 <li><strong>Search the portal with a phrase.</strong> Always add <code>extension:pdf</code>; single words are fuzzy.<pre>python3 scripts/portal_api.py search '"Legislative Alternatives to Limit the City" extension:pdf' --count 5</pre></li>
-<li><strong>Snapshot the catalog and see what changed.</strong> Each run makes one export call, stores it as an immutable capture that is accepted or held for review, and compares it with the previous accepted one.<pre>make watchdog</pre></li>
-<li><strong>Fetch a document by Bates number.</strong> The bytes are validated and cached, at one request per second.<pre>python3 scripts/portal_api.py fetch NYC-WTC_000138296 --dest data/pdf</pre></li>
+<li><strong>Snapshot the catalog and see what changed.</strong> Each run requests the catalog export once and keeps it as an immutable capture. A capture that passes review is compared with the previous accepted one.<pre>make watchdog</pre></li>
+<li><strong>Fetch a document by Bates number.</strong> The script checks each file before caching it and sends at most one request per second.<pre>python3 scripts/portal_api.py fetch NYC-WTC_000138296 --dest data/pdf</pre></li>
 <li><strong>Check the local evidence.</strong> The doctor reads the snapshot, the captured pages, the allowlist and the wire schema without touching the network.<pre>python3 scripts/sept11_mcp.py doctor</pre></li>
 <li><strong>Call a tool from the shell.</strong> The shell prints the same response an MCP client receives.<pre>python3 scripts/sept11_mcp.py call catalog_search --args '{"folder": "John Street", "count": 5}'</pre></li>
 <li><strong>Connect the MCP server.</strong> Writes one entry into the client's own config and keeps the rest; <code>--dry-run</code> shows the change first. Also <code>claude</code>, <code>cursor</code>, <code>vscode</code>, <code>codex</code>. The server is read-only and uses no API key.<pre>python3 scripts/sept11_mcp.py configure claude-code --dry-run</pre></li>
@@ -975,22 +2624,33 @@
 </ol>
 <p class="muted"><code>uv pip install .</code> installs a <code>sept11-mcp</code> command; point it at a checkout with <code>SEPT11_ROOT</code>. The registry entry is server.json.</p></div></details>
 </section>
+<section id="watch">
+<h2>See the MCP at work</h2>
+<p>Each panel on the <a href="examples.html">Examples page</a> names the tools behind it and the command that reproduces it. A call can be watched from the shell, the MCP Inspector, Claude Code or the Claude Desktop log.</p>
+<ol class="steps">
+<li><strong>From the shell.</strong> <code>call</code> prints the response an MCP client receives. The server writes one line per call to standard error, with the tool name, the time taken and the number of warnings, and never the query text.<pre>python3 scripts/sept11_mcp.py call building_lookup --args '{"address": "15 John Street"}'</pre><pre>sept11-mcp: building_lookup ok in 0.03s (3 warnings)</pre></li>
+<li><strong>In the MCP Inspector.</strong> The Inspector lists the tools, prompts and resources, and shows every request and response. It needs Node.js.<pre>npx @modelcontextprotocol/inspector python3 scripts/sept11_mcp.py serve</pre></li>
+<li><strong>In Claude Code.</strong> After <code>configure claude-code</code>, the <code>/mcp</code> command shows the <code>sept11</code> server and its tools. Each call appears in the conversation as <code>mcp__sept11__</code> followed by the tool name, with its arguments.</li>
+<li><strong>In Claude Desktop.</strong> After <code>configure claude</code>, each call appears as a tool-use block that expands to show the request and the response. On macOS the server's own log is at <code>~/Library/Logs/Claude/mcp-server-sept11.log</code>, with the same one-line entries.</li>
+</ol>
+<p>Every response states where its answer came from. <code>retrieval: captured</code> means the answer was read on this machine and nothing was sent to the City; <code>source_snapshot</code> names the capture; <code>warnings</code> lists what the answer cannot show.</p>
+</section>
 <section id="planned">
 <h2>Not built yet</h2>
 <p>Specified, not available.</p>
 <ul class="plain">
-<li><strong>Evidence-packet guide</strong> for WTC Health Program and VCF proof of presence. The official
-rules and the New York City issuers are on the <a href="examples.html#demo-help">Examples page</a> as a cited
-directory; the guide that routes a person by category waits on review by a practitioner: a clinic, a union or an alumni group.</li>
-<li><strong>Accountability timeline</strong> pairing dated internal records with public statements. The
-public side is assembled; the internal side needs dates read off the pages by a person.</li>
-<li><strong>Building and exposure index</strong> from the archive's folder labels, many of which are
-addresses, layered on the three federal zone definitions. The folder-label search on the Examples page
-is the first step: labels, counts and a first document, no geometry yet.</li>
-<li><strong>Budget and DOI tracker.</strong> The commitment ledger is on the Examples page and in
-<code>budget_lookup</code>; the adopted lines, contracts and payments are not linked, and this project will
-not publish a total it cannot source.</li>
-<li><strong>Sampling dataset</strong> from lab sheets, with nondetects, limits and methods preserved.</li>
+<li><strong>Proof-of-presence guide</strong> that routes a person by category. <code>presence_evidence</code> and the
+<a href="examples.html#demo-help">official directory</a> quote what each program accepts; a guide that recommends a
+path waits on review by a practitioner: a clinic, a union or an alumni group.</li>
+<li><strong>Dates read off every page.</strong> The <a href="examples.html#demo-timeline">statements and records
+timeline</a> holds fifteen entries, each with the basis for its date. The portal publishes no document-date field,
+so extending it means a person reading dates off pages.</li>
+<li><strong>Exposure-zone geometry.</strong> <code>building_lookup</code> reads addresses and building numbers off the
+folder labels. It does not decide whether an address is in a zone; each program decides that.</li>
+<li><strong>Adopted budget lines, contracts and payments.</strong> The commitment ledger links what has been
+located; this project will not publish a total it cannot source.</li>
+<li><strong>Sampling dataset</strong> from lab sheets, with nondetects, limits and methods preserved.
+<code>readings_lookup</code> lists results located so far, as printed.</li>
 </ul>
 </section>
 
@@ -1029,6 +2689,6 @@ not publish a total it cannot source.</li>
 <p>Independent research prototype, not affiliated with the City of New York or 9/11 Health Watch, and not legal advice. Records stay on the City's portal; this site links to them. Catalog snapshot catalog_2026-09-09_pdf.csv. <a href="https://sept11documents.cityofnewyork.us/">Original City records</a> · <a href="llms.txt">For agents</a> · <a href="#top">Back to top ↑</a></p>
 </div></footer>
 <!-- /BUILD:footer -->
-<script src="assets/site.js?v=ef2e5dd4" defer></script>
+<script src="assets/site.js?v=b0768544" defer></script>
 </body>
 </html>
