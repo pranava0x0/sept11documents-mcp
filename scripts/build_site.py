@@ -387,6 +387,23 @@ def record_demo(anchors: dict) -> str:
             '<select id="record-choice">' + ''.join(options) + '</select>\n' + '\n'.join(articles))
 
 
+def check_source_urls(document, quotes: Quotes) -> int:
+    """Every quoted object carries the URL of its registered claim, so the MCP can return the two together."""
+    checked = 0
+    stack = [document]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, dict):
+            if isinstance(node.get("claim_id"), str):
+                if node.get("source_url") != quotes.url(node["claim_id"]):
+                    raise ValueError(f"{node['claim_id']}: source_url must be the claim's registered source")
+                checked += 1
+            stack.extend(node.values())
+        elif isinstance(node, list):
+            stack.extend(node)
+    return checked
+
+
 def help_demo(directory: dict, quotes: Quotes, scorecard: dict) -> str:
     """The official directory: programs, then the New York City issuers, every rule a verified quote."""
     options, articles = [], []
@@ -979,6 +996,7 @@ def build(check: bool) -> int:
         if page == "examples.html":
             anchors, _ = publication.read_json("sept11://anchors")
             directory, _ = publication.read_json("sept11://help-directory")
+            check_source_urls(directory, quotes)
             scorecard, _ = publication.read_json("sept11://scorecard")
             commitments, _ = publication.read_json("sept11://commitments")
             summary, _ = publication.read_json("sept11://catalog/summary")
@@ -1063,6 +1081,13 @@ def selftest() -> int:
         failures.append("record demo must escape source markup and preserve page links")
 
     quotes = _fixture_quotes()
+    try:
+        check_source_urls({"rules": [{"claim_id": "q-rule", "source_url": "https://www.cdc.gov/wtc/other.html"}]}, quotes)
+        failures.append("a quote's source_url must be the URL of its registered claim")
+    except ValueError:
+        pass
+    if check_source_urls({"rules": [{"claim_id": "q-rule", "source_url": "https://www.cdc.gov/wtc/about.html"}]}, quotes) != 1:
+        failures.append("a matching source_url must pass")
     directory = {"disclaimer": "d", "programs": [{
         "id": "p", "name": "<b>P</b>", "administered_by": "a", "what_it_is": None,
         "contact": {"phone": "1-800-000-0000", "url": "https://www.cdc.gov/wtc/", "claim_id": "q-rule"},

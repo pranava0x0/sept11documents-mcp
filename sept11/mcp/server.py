@@ -31,6 +31,12 @@ SERVER_INFO = {"name": "sept11", "title": "September 11th Documents", "version":
 PARSE_ERROR, INVALID_REQUEST, METHOD_NOT_FOUND, INVALID_PARAMS = -32700, -32600, -32601, -32602
 RESOURCE_NOT_FOUND = -32002
 
+# timeline_lookup and readings_lookup return curated rows whose quotes the build located at the cited page.
+CURATED_RULE = ("Quotes, dates and readings returned by timeline_lookup and readings_lookup were located at "
+                "their cited pages when the files were built; quote them as returned, with their citations. "
+                "For anything else from this archive, do not state a date, reading, name, or quote unless it "
+                "appears verbatim in `portal_get_page_text` output; label anything else as inference.")
+
 RESEARCH_PROMPT = (
     "You are assisting research in a mass-casualty archive. Search, then read pages verbatim before "
     "answering. Cite every fact as `NYC-WTC_… p.N`. If a date is not printed on the page, say so. Do not "
@@ -109,7 +115,7 @@ def _statements_prompt(arguments: dict) -> str:
             "topic is air or schools, call readings_lookup with include_unreviewed=true and list the sampling "
             "results with their units as printed, labelled unreviewed. Draw no conclusion about what any "
             "person knew or intended: placement side by side is not a finding, and Council Resolution 560-A "
-            "assigns that analysis to the Department of Investigation. " + UNTRUSTED + " " + CITE_RULE)
+            "assigns that analysis to the Department of Investigation. " + UNTRUSTED + " " + CURATED_RULE)
 
 
 def _money_prompt(arguments: dict) -> str:

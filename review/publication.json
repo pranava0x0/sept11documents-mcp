@@ -48,7 +48,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "3a865720ff13b175867dc79b207bfa6ab39a9decbb55f0e3957e1f30e30004a7",
+      "sha256": "d5bd0f6542278aa46d917fc13b776b5e1e991a94f77219b08ae755e1c9f7951c",
       "freshness_policy": "monthly",
       "notes": "Official program and records-request directory: rules quoted from captured official pages via claim ids; NYCPS records route; not personalized."
     },
@@ -58,7 +58,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "c07491411c177e489a0b6d281e699faaed8bb02291ad66ed0b7f8eb967545ca9",
+      "sha256": "cb5d6eda8162a2bb0f0e8668cd699d739e84d464c4fc7c155afb0748a662f982",
       "freshness_policy": "on-change",
       "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
     },
