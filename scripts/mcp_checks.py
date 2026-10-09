@@ -793,6 +793,7 @@ class Toolkit(unittest.TestCase):
             {"boundary": "b", "readings": [dict(undated, sample_date_precision="day")]}))
         self.assertTrue(chronology.readings_problems(
             {"boundary": "b", "readings": [dict(row, sample_date="2001-10", sample_date_precision="day")]}))
+        self.assertEqual(chronology.readings_problems({"boundary": "b", "readings": [dict(row, document_date=None)]}), [])
 
     def test_presence_evidence_filters_without_dropping_general_rules(self):
         payload = self.ok("presence_evidence", {"program": "wtchp", "who": "survivors"})

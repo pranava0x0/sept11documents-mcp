@@ -125,6 +125,9 @@ def readings_problems(document: dict) -> list[str]:
             if (row.get("sample_date_precision") not in PRECISION or not isinstance(row["sample_date"], str)
                     or len(row["sample_date"]) != _PRECISION_LENGTH[row["sample_date_precision"]]):
                 problems.append(f"{rid}: sample_date_precision must match the sample date's length")
+        # A lab report may print only the collection date; its own date then stays null.
+        if row.get("document_date") is None:
+            dated = tuple(k for k in dated if k != "document_date")
         for key in dated:
             try:
                 check_date(row.get(key), f"{rid}.{key}")

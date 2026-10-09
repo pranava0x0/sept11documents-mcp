@@ -145,7 +145,7 @@
       "sample_date_precision": "day",
       "sample_date_basis": "'Date Collected: 07/13/02' on the report",
       "document": "DEP Asbestos Control Program laboratory report",
-      "document_date": "2002-07-13",
+      "document_date": null,
       "reported_by": "DEP laboratory",
       "claim_id": "15-john-chrysotile-1pct",
       "quote": "Asbestos Present: Yes",

@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T04:28:26+00:00",
+  "recorded_at": "2026-10-09T04:30:05+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMDEwNn0uOWZhN2IyMjg0NDdhNWJhY2QxZjI0ZGJjNjIxMjEzOWE="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMDIwNH0uYTBlMTNiNTJkMTZhYmIzYWIyNzU4YTBlOTRhN2ViOGM="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:04+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:04+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:04+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1145,7 +1145,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1305,7 +1305,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1441,7 +1441,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1704,7 +1704,12 @@
                 "page": 2
               },
               "date_basis": {
-                "text": "printed on the memo"
+                "text": "printed on the memo's first page",
+                "citation": {
+                  "type": "portal",
+                  "bates": "NYC-WTC_000147320",
+                  "page": 1
+                }
               }
             },
             {
@@ -1803,7 +1808,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1970,7 +1975,7 @@
               "sample_date_precision": "day",
               "sample_date_basis": "'Date Collected: 07/13/02' on the report",
               "document": "DEP Asbestos Control Program laboratory report",
-              "document_date": "2002-07-13",
+              "document_date": null,
               "reported_by": "DEP laboratory",
               "claim_id": "15-john-chrysotile-1pct",
               "quote": "Asbestos Present: Yes",
@@ -2023,7 +2028,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2071,7 +2076,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2336,7 +2341,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2431,7 +2436,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2480,7 +2485,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2531,7 +2536,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2582,7 +2587,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2647,7 +2652,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T04:28:26+00:00",
+        "retrieved_at": "2026-10-09T04:30:05+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

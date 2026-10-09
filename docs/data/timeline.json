@@ -237,7 +237,12 @@
         "page": 2
       },
       "date_basis": {
-        "text": "printed on the memo"
+        "text": "printed on the memo's first page",
+        "citation": {
+          "type": "portal",
+          "bates": "NYC-WTC_000147320",
+          "page": 1
+        }
       }
     },
     {

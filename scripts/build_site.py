@@ -693,6 +693,7 @@ def readings_demo(document: dict, quotes: Quotes) -> str:
         text = quotes.verify(row["claim_id"], row["quote"])
         unit = f' {e(row["unit_as_printed"])}' if row["unit_as_printed"] else ""
         note = f'<span class="cellnote">{e(row["note"])}</span>' if row.get("note") else ""
+        doc_date = f', {e(display_date(row["document_date"]))}' if row["document_date"] else ""
         rows.append(
             f'<tr><td data-label="Result as printed"><b>{e(row["value_as_printed"])}{unit}</b>'
             f'<span class="cellnote">{e(row["analyte"])}, {e(row["medium"])}</span></td>'
@@ -700,7 +701,7 @@ def readings_demo(document: dict, quotes: Quotes) -> str:
             f'<td data-label="Sampled">{e(display_date(row["sample_date"]) if row["sample_date"] else "Not stated")}'
             f'<span class="cellnote">{e(row["sample_date_basis"])}</span></td>'
             f'<td data-label="Source"><q>{e(text)}</q> {quotes.chip(row["claim_id"])}'
-            f'<span class="cellnote">{e(row["document"])}, {e(display_date(row["document_date"]))}; '
+            f'<span class="cellnote">{e(row["document"])}{doc_date}; '
             f'{e(row["reported_by"])}</span>{note}</td></tr>')
     return (f'<p class="result-note">{e(document["note"])}</p>\n'
             '<div class="tw"><table class="readings">\n'
