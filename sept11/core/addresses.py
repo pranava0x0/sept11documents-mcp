@@ -41,13 +41,15 @@ _BLOCK = re.compile(r"\b(?:BLOCK|B[LI]\.?(?=\s*\d{1,5}[\s.,;:]*LOT))[.:;#\s]*(\d
 _LOT = re.compile(r"(?<![A-Z])LOT[.:;#\s]*(\d{1,4})(?!\d)")
 # Some labels print the BIN straight after the lot: `Bl. 46 Lot 9/1001025`, `Lot: 8 1000872`.
 _BIN_AFTER_LOT = re.compile(r"(?<![A-Z])LOT[.:;#\s]*\d{1,4}(?:\s*/\s*|\s+)(\d{7})(?!\d)")
-# Many DEP labels print "BIN, block/lot" without the words: `15 JOHN STREET 1001217, 79/14`.
-_BIN_PAIR = re.compile(r"\b(\d{7}),\s*(\d{1,5})/(\d{1,4})\b")
+# Many DEP labels print "BIN, block/lot" without the words: `15 JOHN STREET 1001217, 79/14`, and a
+# few with a period for the comma: `29 WARREN ST 1001454. 134/14`.
+_BIN_PAIR = re.compile(r"\b(\d{7})[,.]\s*(\d{1,5})/(\d{1,4})\b")
 # Some print a space for the comma: `17 JOHN STREET 1001216 79/10`. Read only in labels without the
 # word BIN or BN, where `BIN: 1001396 26/42 PARK PL` shows the pair can be a house-number range instead.
 _BIN_PAIR_SPACED = re.compile(r"\b(\d{7})\s+(\d{1,5})/(\d{1,4})\b(?![/\d])")
-# A few print the pair without its slash (`113 NASSAU STREET 1001256, 90117`); the BIN before the
-# comma is read and the run-together block and lot are left unread.
+# A few print the pair without its slash (`113 NASSAU STREET 1001256, 90117`, or once beside a slashed
+# copy: `75 WARREN ST 1001431, 13726 75 WARREN STREET 1001431, 132/26`); the BIN before the comma is
+# read and the run-together block and lot are left unread.
 _BIN_COMMA = re.compile(r"\b(\d{7}),\s*\d{2,9}\b(?!/)")
 # `190 BROADWAY 1801241`: a whole label of house number, street and a trailing Manhattan BIN. Anchored
 # to the full label so project and contract numbers (`PW 3261346`, `BID # 9900814`) stay unread.
@@ -143,9 +145,7 @@ def _identifier_matches(upper: str) -> tuple[list, list]:
         pairs = list(_BIN_PAIR_SPACED.finditer(upper))
     found = pairs + [m for rx in (_BIN, _BIN_MORE, _BIN_AFTER_LOT, _BLOCK, _LOT, _BIN_TRAILING, _PAIR_AFTER_STREET)
                      for m in rx.finditer(upper)]
-    if not pairs:
-        found += list(_BIN_COMMA.finditer(upper))
-    return found, pairs
+    return found + list(_BIN_COMMA.finditer(upper)), pairs
 
 
 def identifiers(label: str) -> dict:
@@ -156,7 +156,7 @@ def identifiers(label: str) -> dict:
     after_street = _PAIR_AFTER_STREET.search(upper)
     first = (pairs[0] if pairs else after_street).group(2, 3) if pairs or after_street else None
     return {"bins": sorted(set(_BIN.findall(upper)) | set(more) | set(_BIN_AFTER_LOT.findall(upper))
-                           | (set() if pairs else set(_BIN_COMMA.findall(upper)))
+                           | set(_BIN_COMMA.findall(upper))
                            | set(_BIN_TRAILING.findall(upper)) | {m.group(1) for m in pairs}),
             "block": (_BLOCK.search(upper) or [None, None])[1] or (first[0] if first else None),
             "lot": (_LOT.search(upper) or [None, None])[1] or (first[1] if first else None)}
@@ -197,6 +197,30 @@ def _numbers_before(tokens: list[str], at: int) -> list[tuple[int, int, str]]:
     return spans
 
 
+def _join_split_numbers(tokens: list[str]) -> list[str]:
+    """`5 2 WILLIAM STREET … 52 WILLIAM STREET`: two digit runs before a street are one number split by
+    the scan when the same label also prints them joined before that street. A run printed nowhere
+    joined, such as `41 & 43 Murray Street`, stays a list."""
+    out = list(tokens)
+    i = 0
+    while i + 2 < len(out):
+        if out[i].isdigit() and out[i + 1].isdigit():
+            street = []
+            for token in out[i + 2:]:
+                if not token.isalpha() or token == "X":  # X is a blanked identifier
+                    break
+                street.append(token)
+                if token in _SUFFIXES or token == "BROADWAY":
+                    break
+            joined = out[i] + out[i + 1]
+            if street and any(out[j] == joined and out[j + 1:j + 1 + len(street)] == street
+                              for j in range(len(out)) if j not in (i, i + 1)):
+                out[i:i + 2] = [joined]
+                continue
+        i += 1
+    return out
+
+
 def _covers(span: tuple[int, int, str], query: Query) -> bool:
     """A range covers the plain numbers inside it; a lettered number matches only the same letter.
 
@@ -213,7 +237,7 @@ def match(label: str, query: Query) -> dict | None:
     if query.bin:
         ids = identifiers(label)
         return {"by": "bin", "printed_numbers": []} if query.bin in ids["bins"] else None
-    tokens = normalize(_street_text(label))
+    tokens = _join_split_numbers(normalize(_street_text(label)))
     width = len(query.street)
     starts = [i for i in range(len(tokens) - width + 1) if tuple(tokens[i:i + width]) == query.street]
     if not starts:
@@ -296,6 +320,18 @@ def selftest() -> list[str]:
         failures.append("a half number must be described as printed")
     if not match("524 2/4/02 27 Madison St", parse_query("27 Madison Street")):
         failures.append("a date is not a fraction")
+    split = "5 2 WILLIAM STREET Bl. 40Lot: 16/1001006 52 WILLIAM STREET 1001006, 40/16"
+    if match(split, parse_query("2 William Street")) or match(split, parse_query("5 William Street")):
+        failures.append("a number split by the scan (5 2) must not match its digits as house numbers")
+    hit = match(split, parse_query("52 William Street"))
+    if not hit or hit["printed_numbers"] != ["52"]:
+        failures.append(f"52 William Street must match the label that prints it split and whole, got {hit}")
+    if not match("41 MURRAY STREET 41 & 43 Murray Street", parse_query("43 Murray Street")):
+        failures.append("a list of numbers printed nowhere joined must stay a list")
+    if match("29 WARREN ST 1001454. 134/14", parse_query("134 Warren Street")):
+        failures.append("a BIN and block/lot printed with a period must not read as a house number")
+    if match("75 WARREN ST 1001431, 13726 75 WARREN STREET 1001431, 132/26", parse_query("13726 Warren Street")):
+        failures.append("an unslashed pair beside a slashed one must not read as a house number")
     suffixed = "19A SOUTH STREET"
     if match(suffixed, parse_query("19 South Street")) or match(suffixed, parse_query("19B South Street")):
         failures.append("19 and 19B South Street must not match a label printing 19A")
