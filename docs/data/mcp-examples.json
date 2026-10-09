@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T05:12:14+00:00",
+  "recorded_at": "2026-10-09T05:21:04+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:13+00:00",
+        "retrieved_at": "2026-10-09T05:21:03+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMjczM30uYWVhNTgxMGU5ZTc1NWU0Y2YzMTQyNGE0MmIxYjRhMGQ="
+        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyMzI2M30uZmMxYjllMDIyYjQ2OWMxZjFiMWEwZjU3YzdhZDc4ZDc="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:13+00:00",
+        "retrieved_at": "2026-10-09T05:21:03+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:13+00:00",
+        "retrieved_at": "2026-10-09T05:21:03+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:13+00:00",
+        "retrieved_at": "2026-10-09T05:21:03+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:13+00:00",
+        "retrieved_at": "2026-10-09T05:21:03+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:13+00:00",
+        "retrieved_at": "2026-10-09T05:21:03+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:13+00:00",
+        "retrieved_at": "2026-10-09T05:21:03+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1058,6 +1058,7 @@
             "as_given": "15 John Street",
             "read_as": "15 JOHN STREET",
             "house_number": 15,
+            "house_number_suffix": null,
             "street_words": [
               "JOHN",
               "STREET"
@@ -1147,7 +1148,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1172,6 +1173,7 @@
             "as_given": "345 Chambers Street",
             "read_as": "345 CHAMBERS STREET",
             "house_number": 345,
+            "house_number_suffix": null,
             "street_words": [
               "CHAMBERS",
               "STREET"
@@ -1214,8 +1216,8 @@
               ],
               "printed_identifiers": {
                 "bins": [],
-                "block": null,
-                "lot": null
+                "block": "16",
+                "lot": "1"
               }
             },
             {
@@ -1309,7 +1311,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1334,6 +1336,7 @@
             "as_given": "120 Broadway",
             "read_as": "120 BROADWAY",
             "house_number": 120,
+            "house_number_suffix": null,
             "street_words": [
               "BROADWAY"
             ],
@@ -1447,7 +1450,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1814,7 +1817,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2034,7 +2037,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2082,7 +2085,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2384,7 +2387,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2479,7 +2482,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2528,7 +2531,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2579,7 +2582,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2630,7 +2633,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2695,7 +2698,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:12:14+00:00",
+        "retrieved_at": "2026-10-09T05:21:04+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

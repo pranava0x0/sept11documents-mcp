@@ -24,7 +24,7 @@ _WORDS = {
 }
 _ORDINAL = re.compile(r"\b(\d+)(ST|ND|RD|TH)\b")
 _TOKEN = re.compile(r"[A-Z0-9]+(?:-[A-Z0-9]+)?")
-_NUMBER = re.compile(r"^(\d+)(?:-(\d+))?[A-Z]?$")
+_NUMBER = re.compile(r"^(\d+)(?:-(\d+))?([A-Z]?)$")
 # Labels print the BIN as `BIN: 1000859`, `BIN# 1000859`, `BN# 1001215`, `BN # 1079039` or
 # `B# 1083350`; a bare B counts only with its #, so `BID # 1234567` is not read as a BIN.
 _BIN_WORD = re.compile(r"\bBI?N\b|\bB\s?#")
@@ -45,6 +45,15 @@ _BIN_PAIR_SPACED = re.compile(r"\b(\d{7})\s+(\d{1,5})/(\d{1,4})\b(?![/\d])")
 # A few print the pair without its slash (`113 NASSAU STREET 1001256, 90117`); the BIN before the
 # comma is read and the run-together block and lot are left unread.
 _BIN_COMMA = re.compile(r"\b(\d{7}),\s*\d{2,9}\b(?!/)")
+# `190 BROADWAY 1801241`: a whole label of house number, street and a trailing Manhattan BIN. Anchored
+# to the full label so project and contract numbers (`PW 3261346`, `BID # 9900814`) stay unread.
+_BIN_TRAILING = re.compile(r"^\d+[A-Z]?(?:-\d+)?\s+[A-Z][A-Z .']*?\s(1\d{6})$")
+# `345 CHAMBERS STREET; 16/1`: a block/lot pair printed straight after the street word. Dates
+# (`9/19/01`), half numbers (`86 1/2`) and ranges (`161/167 William`) never follow a street word.
+_STREET_WORD = "|".join(sorted((k for k, v in _WORDS.items() if v in {
+    "STREET", "AVENUE", "PLACE", "SQUARE", "PLAZA", "BOULEVARD", "DRIVE", "TERRACE", "LANE", "ROAD",
+    "HIGHWAY", "SLIP", "BROADWAY"}), key=len, reverse=True))
+_PAIR_AFTER_STREET = re.compile(rf"\b(?:{_STREET_WORD})\.?[;,]?\s+(?:(\d{{6,7}}),\s*)?(\d{{1,5}})/(\d{{1,4}})(?![/\d])")
 
 # Street-type words; a query made only of these names no street ("West Street" is a street).
 _SUFFIXES = frozenset({"STREET", "AVENUE", "PLACE", "SQUARE", "PLAZA", "BOULEVARD", "DRIVE",
@@ -84,11 +93,12 @@ class Query:
     number: int | None
     street: tuple[str, ...]
     bin: str | None
+    suffix: str = ""  # `19A South Street`: the A is part of the address
 
     def describe(self) -> str:
         if self.bin:
             return f"BIN {self.bin}"
-        return " ".join(([str(self.number)] if self.number is not None else []) + list(self.street))
+        return " ".join(([f"{self.number}{self.suffix}"] if self.number is not None else []) + list(self.street))
 
 
 def parse_query(address: str) -> Query:
@@ -106,12 +116,13 @@ def parse_query(address: str) -> Query:
     # Read the house number before ordinals are normalized: `14th Street` has none.
     first = _TOKEN.findall(_upper(raw))[:1]
     if tokens and first and _NUMBER.match(first[0]) and not _ORDINAL.fullmatch(first[0]):
-        number = int(_NUMBER.match(tokens[0]).group(1))
+        read = _NUMBER.match(tokens[0])
+        number, suffix = int(read.group(1)), "" if read.group(2) else read.group(3)
         tokens = tokens[1:]
     street = tuple(_strip_city_tail(tokens))
     if not street or set(street) <= _SUFFIXES:
         raise ValueError("give a street name, e.g. 'John Street', '15 John Street' or 'Stuyvesant'")
-    return Query(number=number, street=street, bin=None)
+    return Query(number=number, street=street, bin=None, suffix=suffix if number is not None else "")
 
 
 def _identifier_matches(upper: str) -> tuple[list, list]:
@@ -119,7 +130,8 @@ def _identifier_matches(upper: str) -> tuple[list, list]:
     pairs = list(_BIN_PAIR.finditer(upper))
     if not pairs and not _BIN_WORD.search(upper):
         pairs = list(_BIN_PAIR_SPACED.finditer(upper))
-    found = pairs + [m for rx in (_BIN, _BIN_MORE, _BIN_AFTER_LOT, _BLOCK, _LOT) for m in rx.finditer(upper)]
+    found = pairs + [m for rx in (_BIN, _BIN_MORE, _BIN_AFTER_LOT, _BLOCK, _LOT, _BIN_TRAILING, _PAIR_AFTER_STREET)
+                     for m in rx.finditer(upper)]
     if not pairs:
         found += list(_BIN_COMMA.finditer(upper))
     return found, pairs
@@ -130,12 +142,13 @@ def identifiers(label: str) -> dict:
     upper = (label or "").upper()
     _, pairs = _identifier_matches(upper)
     more = [b for m in _BIN_MORE.finditer(upper) for b in re.findall(r"\d{7}", m.group(1))]
-    first = pairs[0] if pairs else None
+    after_street = _PAIR_AFTER_STREET.search(upper)
+    first = (pairs[0] if pairs else after_street).group(2, 3) if pairs or after_street else None
     return {"bins": sorted(set(_BIN.findall(upper)) | set(more) | set(_BIN_AFTER_LOT.findall(upper))
                            | (set() if pairs else set(_BIN_COMMA.findall(upper)))
-                           | {m.group(1) for m in pairs}),
-            "block": (_BLOCK.search(upper) or [None, None])[1] or (first.group(2) if first else None),
-            "lot": (_LOT.search(upper) or [None, None])[1] or (first.group(3) if first else None)}
+                           | set(_BIN_TRAILING.findall(upper)) | {m.group(1) for m in pairs}),
+            "block": (_BLOCK.search(upper) or [None, None])[1] or (first[0] if first else None),
+            "lot": (_LOT.search(upper) or [None, None])[1] or (first[1] if first else None)}
 
 
 def _street_text(label: str) -> str:
@@ -147,13 +160,19 @@ def _street_text(label: str) -> str:
     upper = (label or "").upper()
     text = list(upper)
     for found in _identifier_matches(upper)[0]:
+        # A match that begins with its street word or house number blanks only the numbers after it.
         start, end = found.span()
+        if found.re is _BIN_TRAILING:
+            start = found.start(1)
+        elif found.re is _PAIR_AFTER_STREET:
+            start = found.start(1) if found.group(1) else found.start(2)
         text[start:end] = " X" + "#" * (end - start - 2)
     return "".join(text)
 
 
-def _numbers_before(tokens: list[str], at: int) -> list[tuple[int, int]]:
-    """House numbers printed immediately before a street name, as inclusive ranges."""
+def _numbers_before(tokens: list[str], at: int) -> list[tuple[int, int, str]]:
+    """House numbers printed immediately before a street name: inclusive ranges, and the letter of a
+    single number such as `19A` (empty for a range or a plain number)."""
     spans = []
     i = at - 1
     while i >= 0:
@@ -162,9 +181,20 @@ def _numbers_before(tokens: list[str], at: int) -> list[tuple[int, int]]:
             break
         low = int(match.group(1))
         high = int(match.group(2)) if match.group(2) else low
-        spans.append((min(low, high), max(low, high)))
+        spans.append((min(low, high), max(low, high), "" if match.group(2) else match.group(3)))
         i -= 1
     return spans
+
+
+def _covers(span: tuple[int, int, str], query: Query) -> bool:
+    """A range covers the plain numbers inside it; a lettered number matches only the same letter.
+
+    `323A Greenwich Street` and `190A Duane Street` are lots of their own beside 323 and 188-190.
+    """
+    low, high, letter = span
+    if low != high:
+        return not query.suffix and low <= query.number <= high
+    return query.number == low and query.suffix == letter
 
 
 def match(label: str, query: Query) -> dict | None:
@@ -181,9 +211,10 @@ def match(label: str, query: Query) -> dict | None:
         return {"by": "street", "printed_numbers": []}
     for start in starts:
         spans = _numbers_before(tokens, start)
-        if any(low <= query.number <= high for low, high in spans):
+        if any(_covers(span, query) for span in spans):
             # A range covers both sides of a street; the label alone cannot say which side.
-            return {"by": "number_and_street", "printed_numbers": [f"{a}" if a == b else f"{a}-{b}" for a, b in spans]}
+            return {"by": "number_and_street",
+                    "printed_numbers": [f"{a}{c}" if a == b else f"{a}-{b}" for a, b, c in spans]}
     return None
 
 
@@ -227,6 +258,28 @@ def selftest() -> list[str]:
     hit = match("112 JOHN STREET BI. 69Lot. 54/1001131 2 GOLD STREET", parse_query("2 Gold Street"))
     if not hit or hit["printed_numbers"] != ["2"]:
         failures.append(f"a run-together block and lot are not house numbers, got {hit}")
+    if identifiers("190 BROADWAY 1801241")["bins"] != ["1801241"] or identifiers("Capital Project: PW 3261346 Approved")["bins"]:
+        failures.append("a trailing BIN after an address must be read and a project number must not")
+    for label, pair in (("345 CHAMBERS STREET; 16/1", ("16", "1")), ("51 HARRISON ST 142/50", ("142", "50")),
+                        ("320 ALBANY STREET 000301, 16/7502", ("16", "7502"))):
+        got = identifiers(label)
+        if (got["block"], got["lot"]) != pair:
+            failures.append(f"the block/lot pair after the street in {label!r} must be read, got {got}")
+    for label in ("508 9/19/01 Extract 9/27 Analysis", "86 1/2 Nassau St", "161/167 William Street"):
+        if identifiers(label)["block"] is not None:
+            failures.append(f"{label!r} prints a date, a half number or a range, and no block")
+    if match("320 ALBANY STREET 000301, 16/7502 1 X STREET", parse_query("301 X Street")):
+        failures.append("the number printed before a block/lot pair is not a house number")
+    if not match("345 CHAMBERS STREET; 16/1", parse_query("345 Chambers Street")):
+        failures.append("blanking a block/lot pair must keep the street it follows")
+    suffixed = "19A SOUTH STREET"
+    if match(suffixed, parse_query("19 South Street")) or match(suffixed, parse_query("19B South Street")):
+        failures.append("19 and 19B South Street must not match a label printing 19A")
+    hit = match(suffixed, parse_query("19A South Street"))
+    if not hit or hit["printed_numbers"] != ["19A"] or parse_query("19A South Street").describe() != "19A SOUTH STREET":
+        failures.append(f"19A South Street must match 19A and report it with its letter, got {hit}")
+    if match("188-190 DUANE STREET", parse_query("190A Duane Street")) or not match("188-190 DUANE STREET", parse_query("189 Duane Street")):
+        failures.append("a printed range covers its plain numbers and no lettered number")
     got = identifiers("113 NASSAU STREET 1001256, 90117")
     if (got["bins"], got["block"], got["lot"]) != (["1001256"], None, None):
         failures.append(f"a BIN before an unslashed block and lot must be read, the pair left unread, got {got}")

@@ -186,7 +186,8 @@ class Gate(unittest.TestCase):
             with self.subTest(tool=definition["name"]):
                 self.assertRegex(definition["name"], r"^[A-Za-z0-9_-]{1,64}$")
                 self.assertFalse(definition["inputSchema"]["additionalProperties"])
-                self.assertTrue(definition["description"].endswith(tools.CITE_RULE))
+                rule = tools.CURATED_RULE if tools.TOOLS[definition["name"]].curated else tools.CITE_RULE
+                self.assertTrue(definition["description"].endswith(rule))
                 self.assertTrue(definition["annotations"]["readOnlyHint"])
 
     def test_protocol_errors(self):
