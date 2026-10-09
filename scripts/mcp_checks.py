@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -849,6 +850,22 @@ class Toolkit(unittest.TestCase):
         self.refused("citations_format", {"bates": "NYC-WTC_000000001", "page": 4}, "does not exist")
         absent = self.ok("citations_format", {"bates": "NYC-WTC_000999999", "page": 1})
         self.assertIn("missing_from_snapshot", codes(absent))
+
+    def test_a_damaged_catalog_stays_an_integrity_failure(self):
+        damaged = build_fixture(Path(tempfile.mkdtemp()))
+        stored = damaged.snapshots.latest_accepted().path / "catalog.csv"
+        os.chmod(stored, 0o644)
+        stored.write_bytes(stored.read_bytes() + b"\n")
+        for name, arguments in (("citations_format", {"bates": "NYC-WTC_000000001", "page": 1}),
+                                ("portal_catalog_stats", {})):
+            result = call(Server(ctx=damaged), name, arguments)
+            self.assertTrue(result["isError"], f"{name} must not answer over a damaged catalog")
+            self.assertEqual(result["structuredContent"]["error"]["code"], "integrity_failure")
+        empty = build_fixture(Path(tempfile.mkdtemp()))
+        empty.snapshots = SnapshotStore(empty.cfg.root / "no-snapshots")
+        absent = call(Server(ctx=empty), "citations_format", {"bates": "NYC-WTC_000000001", "page": 1})
+        self.assertFalse(absent["isError"], "with no snapshot at all a citation is still formatted")
+        self.assertIn("missing_from_snapshot", codes(absent["structuredContent"]))
 
     def test_manifest_names_missing_numbers_and_guards_csv(self):
         payload = self.ok("records_manifest", {"bates": ["NYC-WTC_000000001", "NYC-WTC_000000001",

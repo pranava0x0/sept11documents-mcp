@@ -58,7 +58,7 @@
       "review_status": "unreviewed",
       "reviewed_by": null,
       "reviewed_at": null,
-      "sha256": "f52d7b5e393cf5976b28e1eac68cc1bb0416568bbe17ca772274e974cfa9d78c",
+      "sha256": "f73e176d455de338a4579439469cdb9fc7eb0a683921bf5ec57c20f9224b9de2",
       "freshness_policy": "on-change",
       "notes": "Recorded tool exchanges from the local server for the site; page text elided as the record states."
     },

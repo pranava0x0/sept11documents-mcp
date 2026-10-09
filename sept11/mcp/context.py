@@ -8,7 +8,7 @@ from pathlib import Path
 
 from .. import config
 from ..adapters import portal
-from ..core.errors import DeadlineError, IntegrityError
+from ..core.errors import DeadlineError, IntegrityError, NoSnapshotError
 from ..storage.budget import Budget
 from ..storage.cache import EvidenceStore
 from ..storage.publication import Publication
@@ -61,7 +61,7 @@ class Context:
         if self._catalog is None:
             snapshot = self.snapshots.latest_accepted()
             if snapshot is None:
-                raise IntegrityError(
+                raise NoSnapshotError(
                     "no accepted catalog snapshot on this machine. Run "
                     "`python3 scripts/watchdog.py run` (one export), or import an existing capture with "
                     "`python3 scripts/watchdog.py import <catalog.csv> --captured-at <ISO-8601>`.")

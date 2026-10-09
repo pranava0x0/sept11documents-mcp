@@ -29,6 +29,8 @@ _NUMBER = re.compile(r"^(\d+)(?:-(\d+))?[A-Z]?$")
 # `B# 1083350`; a bare B counts only with its #, so `BID # 1234567` is not read as a BIN.
 _BIN_WORD = re.compile(r"\bBI?N\b|\bB\s?#")
 _BIN = re.compile(r"\b(?:BI?N[:;#\s]*|B\s?#\s*)(\d{7})\b")
+# A second BIN can follow the first after a slash: `BN# 1001269 / 1001268`.
+_BIN_MORE = re.compile(r"\b(?:BI?N[:;#\s]*|B\s?#\s*)\d{7}((?:\s*/\s*\d{7}(?!\d))+)")
 # Block is also printed `Bl. 46`, or `BI 69` where the scan reads l as I; the short forms count only
 # when a lot follows. `69Lot.` runs the words together, so LOT is bounded by letters only.
 _BLOCK = re.compile(r"\b(?:BLOCK|B[LI]\.?(?=\s*\d{1,5}[\s.,;:]*LOT))[.:;#\s]*(\d{1,5})(?!\d)")
@@ -112,15 +114,42 @@ def parse_query(address: str) -> Query:
     return Query(number=number, street=street, bin=None)
 
 
+def _identifier_matches(upper: str) -> tuple[list, list]:
+    """Every BIN, block and lot match in an upper-cased label, and the `BIN, block/lot` pairs among them."""
+    pairs = list(_BIN_PAIR.finditer(upper))
+    if not pairs and not _BIN_WORD.search(upper):
+        pairs = list(_BIN_PAIR_SPACED.finditer(upper))
+    found = pairs + [m for rx in (_BIN, _BIN_MORE, _BIN_AFTER_LOT, _BLOCK, _LOT) for m in rx.finditer(upper)]
+    if not pairs:
+        found += list(_BIN_COMMA.finditer(upper))
+    return found, pairs
+
+
 def identifiers(label: str) -> dict:
     """BIN, block and lot where the label prints them; never inferred."""
     upper = (label or "").upper()
-    pair = _BIN_PAIR.search(upper) or (None if _BIN_WORD.search(upper) else _BIN_PAIR_SPACED.search(upper))
-    return {"bins": sorted(set(_BIN.findall(upper)) | set(_BIN_AFTER_LOT.findall(upper))
-                           | (set() if pair else set(_BIN_COMMA.findall(upper)))
-                           | ({pair.group(1)} if pair else set())),
-            "block": (_BLOCK.search(upper) or [None, None])[1] or (pair.group(2) if pair else None),
-            "lot": (_LOT.search(upper) or [None, None])[1] or (pair.group(3) if pair else None)}
+    _, pairs = _identifier_matches(upper)
+    more = [b for m in _BIN_MORE.finditer(upper) for b in re.findall(r"\d{7}", m.group(1))]
+    first = pairs[0] if pairs else None
+    return {"bins": sorted(set(_BIN.findall(upper)) | set(more) | set(_BIN_AFTER_LOT.findall(upper))
+                           | (set() if pairs else set(_BIN_COMMA.findall(upper)))
+                           | {m.group(1) for m in pairs}),
+            "block": (_BLOCK.search(upper) or [None, None])[1] or (first.group(2) if first else None),
+            "lot": (_LOT.search(upper) or [None, None])[1] or (first.group(3) if first else None)}
+
+
+def _street_text(label: str) -> str:
+    """The label with its BIN, block and lot blanked, so a house-number scan stops at them.
+
+    Each match becomes ` X###…` of the same length (every match is at least three characters): the
+    space keeps `69LOT` from reading as house number 69X, and the X token ends the scan.
+    """
+    upper = (label or "").upper()
+    text = list(upper)
+    for found in _identifier_matches(upper)[0]:
+        start, end = found.span()
+        text[start:end] = " X" + "#" * (end - start - 2)
+    return "".join(text)
 
 
 def _numbers_before(tokens: list[str], at: int) -> list[tuple[int, int]]:
@@ -143,7 +172,7 @@ def match(label: str, query: Query) -> dict | None:
     if query.bin:
         ids = identifiers(label)
         return {"by": "bin", "printed_numbers": []} if query.bin in ids["bins"] else None
-    tokens = normalize(label)
+    tokens = normalize(_street_text(label))
     width = len(query.street)
     starts = [i for i in range(len(tokens) - width + 1) if tuple(tokens[i:i + width]) == query.street]
     if not starts:
@@ -185,6 +214,19 @@ def selftest() -> list[str]:
         got = identifiers(label)
         if (got["bins"], got["block"], got["lot"]) != want:
             failures.append(f"block, lot and BIN must be read from {label!r}, got {got}")
+    if identifiers("52 CHAMBERS STREET 1079146, 122/1 52 CHAMBERS STREET 1079147, 122/1")["bins"] != ["1079146", "1079147"]:
+        failures.append("every 'BIN, block/lot' pair in a label must be read")
+    if identifiers("161/167 William Street; BN# 1001269 / 1001268")["bins"] != ["1001268", "1001269"]:
+        failures.append("a second BIN after a slash must be read")
+    hit = match("50 BROADWAY; Block: 22 Lot: 28 BIN: 1000813 47 New Street", parse_query("47 New Street"))
+    if not hit or hit["printed_numbers"] != ["47"]:
+        failures.append(f"a BIN before an alternate address is not a house number, got {hit}")
+    hit = match("110 WALL STREET; Block: 37 Lot: 8 1000872 119-127 Front Street", parse_query("120 Front Street"))
+    if not hit or hit["printed_numbers"] != ["119-127"]:
+        failures.append(f"a lot and BIN before an address are not house numbers, got {hit}")
+    hit = match("112 JOHN STREET BI. 69Lot. 54/1001131 2 GOLD STREET", parse_query("2 Gold Street"))
+    if not hit or hit["printed_numbers"] != ["2"]:
+        failures.append(f"a run-together block and lot are not house numbers, got {hit}")
     got = identifiers("113 NASSAU STREET 1001256, 90117")
     if (got["bins"], got["block"], got["lot"]) != (["1001256"], None, None):
         failures.append(f"a BIN before an unslashed block and lot must be read, the pair left unread, got {got}")

@@ -25,7 +25,7 @@ from ..adapters import portal
 from ..core import addresses, calendar, chronology
 from ..core import citations as cite
 from ..core import commitments as ledger
-from ..core.errors import InputError, IntegrityError, PolicyError, Sept11Error
+from ..core.errors import InputError, IntegrityError, NoSnapshotError, PolicyError, Sept11Error
 from ..core.evidence import Envelope, OBLIGATION_STATUS, cached_envelope, envelope_schema
 from ..core.pii import PORTAL_PII_FORM, screen
 from ..core.text import quote_hits, split_pages, truncate
@@ -347,7 +347,7 @@ def portal_get_page_text(ctx, args: dict, deadline) -> Envelope:
 def portal_catalog_stats(ctx, args: dict, deadline) -> Envelope:
     try:
         rows, snapshot = ctx.catalog()
-    except IntegrityError:
+    except NoSnapshotError:
         summary, artifact = ctx.publication().read_json("sept11://catalog/summary")
         envelope = Envelope(data=summary, source_snapshot=artifact.path, coverage="unknown",
                             review_status=artifact.review_status, retrieval="captured", freshness="unknown")
@@ -822,7 +822,7 @@ def citations_format(ctx, args: dict, deadline) -> Envelope:
     try:
         rows, snapshot = ctx.catalog()
         row = next((r for r in rows if r["bates"] == bates), None)
-    except IntegrityError:
+    except NoSnapshotError:
         rows, snapshot, row = None, None, None
     if row and row.get("page_count") and page > row["page_count"]:
         raise InputError(f"{bates} has {row['page_count']} pages in the catalog; page {page} does not exist")
