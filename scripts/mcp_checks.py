@@ -389,7 +389,9 @@ class Gate(unittest.TestCase):
             return call(self.server, "catalog_search", arguments)["structuredContent"]["data"]["total_matches"]
         self.assertEqual(total({"folder": "15 JOHN STREET"}), 2)
         self.assertEqual(total({"folder": "15 JOHN STREET", "exact": True}), 0)
-        self.assertEqual(total({"box": "dep box 31", "folder": "15 john street 1001217, 79/14", "exact": True}), 2)
+        self.assertEqual(total({"box": "DEP Box 31", "folder": "15 JOHN STREET 1001217, 79/14", "exact": True}), 2)
+        self.assertEqual(total({"folder": "15 john street 1001217, 79/14", "exact": True}), 0)  # case kept
+        self.assertEqual(total({"folder": "15 john street 1001217, 79/14"}), 2)
         self.assertEqual(total({"box": "DEP Box 3", "exact": True}), 0)
 
     def test_a_number_matches_whole_not_inside_a_bates_id(self):

@@ -221,12 +221,14 @@ def _facet(rows: list[dict], field: str) -> dict:
 def catalog_search(ctx, args: dict, deadline) -> Envelope:
     rows, snapshot = ctx.catalog()
     tokens = _optional_text(args.get("text"), "text").lower().split()
-    filters = {f: _optional_text(args.get(f), f).lower() for f in _FILTERS}
-    if not tokens and not any(filters.values()):
-        raise InputError("give `text` or at least one of source, agency, box, folder, production_volume")
     exact = args.get("exact", False)
     if not isinstance(exact, bool):
         raise InputError("`exact` must be true or false")
+    # An exact filter keeps case: some boxes hold two folders whose labels differ only in case.
+    filters = {f: _optional_text(args.get(f), f) if exact else _optional_text(args.get(f), f).lower()
+               for f in _FILTERS}
+    if not tokens and not any(filters.values()):
+        raise InputError("give `text` or at least one of source, agency, box, folder, production_volume")
     sort = args.get("sort") or "bates"
     if sort not in _SORTS:
         raise InputError(f"sort must be one of {sorted(_SORTS)}")
@@ -236,8 +238,8 @@ def catalog_search(ctx, args: dict, deadline) -> Envelope:
 
     def matches(row: dict) -> bool:
         for name, wanted in filters.items():
-            label = str(row.get(name) or "").lower()
-            if wanted and (label.strip() != wanted.strip() if exact else wanted not in label):
+            label = str(row.get(name) or "")
+            if wanted and (label != wanted if exact else wanted not in label.lower()):
                 return False
         if tokens:
             haystack = " ".join(str(row.get(f) or "") for f in _FIELDS).lower()
@@ -990,8 +992,9 @@ _register(Tool(
         "folder": _string("Folder label filter (substring); many labels are building addresses."),
         "production_volume": _string("Production volume filter, e.g. 'NYC-WTC0005'."),
         "exact": {"type": "boolean",
-                  "description": "When true, each filter must equal the whole label, ignoring case, so one "
-                                 "folder's call lists that folder alone. Default false matches part of a label."},
+                  "description": "When true, each filter must equal the whole label as printed, case included, "
+                                 "so one folder's call lists that folder alone. Default false matches part of a "
+                                 "label, ignoring case."},
         "sort": {"type": "string", "enum": sorted(_SORTS),
                  "description": "bates (default), pages_desc or size_desc."},
         "count": {"type": "integer", "minimum": 1, "maximum": MAX_RESULTS,
