@@ -1,5 +1,5 @@
 {
-  "recorded_at": "2026-10-09T05:44:41+00:00",
+  "recorded_at": "2026-10-09T05:52:56+00:00",
   "server_version": "0.3.0",
   "protocol_version": "2025-11-25",
   "schema_version": "2026-10-08",
@@ -20,7 +20,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:55+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -199,7 +199,7 @@
             }
           ]
         },
-        "next_cursor": "eyJmIjogIjI1OWI4ZWExYWFkNDZiNWMiLCAibyI6IDUsICJ0IjogMTc5MTUyNDY4MH0uMTcwZWM0ZTFiN2MyMjBkNDY3YTlhYmJhNmNlNDkxYjk="
+        "next_cursor": "eyJmIjogIjU2NTMwNmQ5ZDdjOWYwYWYiLCAibyI6IDUsICJ0IjogMTc5MTUyNTE3NX0uNzM1NWU4NDdiNDFmMWYyYTZjNzlhMzk2ZTAxYmU0Y2U="
       },
       "redactions": []
     },
@@ -218,7 +218,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:55+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -315,7 +315,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:55+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -451,7 +451,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:55+00:00",
         "source_snapshot": "local captures",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -538,7 +538,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:55+00:00",
         "source_snapshot": "docs/data/commitments.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -714,7 +714,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:55+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -904,7 +904,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:55+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -969,7 +969,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "partial",
         "retrieval": "captured",
@@ -1033,7 +1033,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:40+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1095,7 +1095,8 @@
               "tool": "catalog_search",
               "arguments": {
                 "box": "DEP Box 01",
-                "folder": "15 JOHN STREET 1001217, 79/14"
+                "folder": "15 JOHN STREET 1001217, 79/14",
+                "exact": true
               }
             }
           ],
@@ -1155,7 +1156,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1251,21 +1252,24 @@
               "tool": "catalog_search",
               "arguments": {
                 "box": "DEP Box 37",
-                "folder": "345 CHAMBERS STREET; Block: 16; Stuyvesant HS"
+                "folder": "345 CHAMBERS STREET; Block: 16; Stuyvesant HS",
+                "exact": true
               }
             },
             {
               "tool": "catalog_search",
               "arguments": {
                 "box": "DEP Box 37",
-                "folder": "345 CHAMBERS STREET; 16/1"
+                "folder": "345 CHAMBERS STREET; 16/1",
+                "exact": true
               }
             },
             {
               "tool": "catalog_search",
               "arguments": {
                 "box": "DEP Box 51",
-                "folder": "345 CHAMBERS ST."
+                "folder": "345 CHAMBERS ST.",
+                "exact": true
               }
             }
           ],
@@ -1325,7 +1329,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/folders.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1406,14 +1410,16 @@
               "tool": "catalog_search",
               "arguments": {
                 "box": "DEP Box 50",
-                "folder": "120 BROADWAY Block: 47 Lot: 7501 BIN: 1001026 70-84 CEDAR ST. 15-25 NASSAU ST. 2-16 PINE ST"
+                "folder": "120 BROADWAY Block: 47 Lot: 7501 BIN: 1001026 70-84 CEDAR ST. 15-25 NASSAU ST. 2-16 PINE ST",
+                "exact": true
               }
             },
             {
               "tool": "catalog_search",
               "arguments": {
                 "box": "DEP Box 49",
-                "folder": "120 BROADWAY 1001026, 47/7501"
+                "folder": "120 BROADWAY 1001026, 47/7501",
+                "exact": true
               }
             }
           ],
@@ -1471,7 +1477,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/timeline.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -1838,7 +1844,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2058,7 +2064,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/readings.json",
         "coverage": "partial",
         "retrieval": "captured",
@@ -2106,7 +2112,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/help-directory.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2410,7 +2416,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "docs/data/scorecard.json",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2505,7 +2511,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": null,
         "coverage": "complete_for_query",
         "retrieval": "not_checked",
@@ -2554,7 +2560,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2605,7 +2611,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2656,7 +2662,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",
@@ -2721,7 +2727,7 @@
       "is_error": false,
       "response": {
         "schema_version": "2026-10-08",
-        "retrieved_at": "2026-10-09T05:44:41+00:00",
+        "retrieved_at": "2026-10-09T05:52:56+00:00",
         "source_snapshot": "20260911T125700Z-26f24148f199",
         "coverage": "complete_for_query",
         "retrieval": "captured",

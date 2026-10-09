@@ -23,7 +23,7 @@ from .. import SCHEMA_VERSION, __version__
 from ..config import TOOL_DEADLINE_SECONDS
 from ..core.errors import InputError, IntegrityError, NotCachedError, Sept11Error
 from .context import Context, Deadline
-from .tools import CITE_RULE, CURATED_RULE, TOOLS, UNTRUSTED, resolve_name
+from .tools import CITE_RULE, CURATED_RULE, LEDGER_RULE, TOOLS, UNTRUSTED, resolve_name
 
 PROTOCOL_VERSION = "2025-11-25"
 SERVER_INFO = {"name": "sept11", "title": "September 11th Documents", "version": __version__}
@@ -122,7 +122,7 @@ def _money_prompt(arguments: dict) -> str:
             "`not linked` where a stage has no evidence; an unknown amount is not zero. Never add the amounts "
             "together: their fiscal periods differ and none of them is spending. Then call upcoming_dates and "
             "doi_milestones and list the dated obligations ahead that bear on these commitments, with what "
-            "was last observed. Make no compliance determination. " + CITE_RULE)
+            "was last observed. Make no compliance determination. " + LEDGER_RULE)
 
 
 # Prompts are fixed text with validated arguments; nothing from a document reaches them.

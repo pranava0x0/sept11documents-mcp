@@ -43,6 +43,12 @@ CURATED_RULE = ("Quotes, dates and readings returned by timeline_lookup and read
                 "their cited pages when the files were built; quote them as returned, with their citations. "
                 "For anything else from this archive, do not state a date, reading, name, or quote unless it "
                 "appears verbatim in `portal_get_page_text` output; label anything else as inference.")
+# budget_lookup, upcoming_dates and doi_milestones return rows from the commitment ledger and obligation table.
+LEDGER_RULE = ("Amounts, dates and statuses returned by budget_lookup, upcoming_dates and doi_milestones come "
+               "from the curated commitment ledger and obligation table; report them as returned, each with the "
+               "source it carries and the date it was last checked. For anything else from this archive, do not "
+               "state a date, reading, name, or quote unless it appears verbatim in `portal_get_page_text` output; "
+               "label anything else as inference.")
 
 _TAG_RE = re.compile(r"<[^>]+>")
 
@@ -71,11 +77,16 @@ class Tool:
     open_world: bool = False  # true when the call reaches the City's servers
     needs_catalog: bool = False  # true when the call reads the accepted catalog snapshot, which a clone lacks
     curated: bool = False  # true when the rows were located at their cited pages when the files were built
+    ledger: bool = False  # true when the rows come from the commitment ledger or the obligation table
     contract_version: str = "1"
 
     @property
+    def rule(self) -> str:
+        return CURATED_RULE if self.curated else LEDGER_RULE if self.ledger else CITE_RULE
+
+    @property
     def description(self) -> str:
-        return f"{self.summary}\n\n{UNTRUSTED}\n\n{CURATED_RULE if self.curated else CITE_RULE}"
+        return f"{self.summary}\n\n{UNTRUSTED}\n\n{self.rule}"
 
     def definition(self) -> dict:
         return {
@@ -213,16 +224,20 @@ def catalog_search(ctx, args: dict, deadline) -> Envelope:
     filters = {f: _optional_text(args.get(f), f).lower() for f in _FILTERS}
     if not tokens and not any(filters.values()):
         raise InputError("give `text` or at least one of source, agency, box, folder, production_volume")
+    exact = args.get("exact", False)
+    if not isinstance(exact, bool):
+        raise InputError("`exact` must be true or false")
     sort = args.get("sort") or "bates"
     if sort not in _SORTS:
         raise InputError(f"sort must be one of {sorted(_SORTS)}")
     count = _require_count(args.get("count"))
-    key = repr(sorted({**filters, "text": " ".join(tokens), "sort": sort}.items()))
+    key = repr(sorted({**filters, "text": " ".join(tokens), "sort": sort, "exact": exact}.items()))
     offset = cursors.parse(args["cursor"], key, snapshot.snapshot_id) if args.get("cursor") else 0
 
     def matches(row: dict) -> bool:
         for name, wanted in filters.items():
-            if wanted and wanted not in str(row.get(name) or "").lower():
+            label = str(row.get(name) or "").lower()
+            if wanted and (label.strip() != wanted.strip() if exact else wanted not in label):
                 return False
         if tokens:
             haystack = " ".join(str(row.get(f) or "") for f in _FIELDS).lower()
@@ -684,7 +699,7 @@ def building_lookup(ctx, args: dict, deadline) -> Envelope:
               "folders_matched": len(hits), "folders_returned": len(shown),
               "documents_in_matched_folders": sum(h["documents"] for h in hits),
               "folders": shown,
-              "next_calls": [{"tool": "catalog_search", "arguments": {"box": h["box"], "folder": h["folder"]}}
+              "next_calls": [{"tool": "catalog_search", "arguments": {"box": h["box"], "folder": h["folder"], "exact": True}}
                              for h in shown[:3]],
               "zone_definitions": _zone_definitions(ctx),
               "catalog_captured_at": index.get("captured_at")},
@@ -974,6 +989,9 @@ _register(Tool(
         "box": _string("Box label filter (substring), e.g. 'DEP Box 31'."),
         "folder": _string("Folder label filter (substring); many labels are building addresses."),
         "production_volume": _string("Production volume filter, e.g. 'NYC-WTC0005'."),
+        "exact": {"type": "boolean",
+                  "description": "When true, each filter must equal the whole label, ignoring case, so one "
+                                 "folder's call lists that folder alone. Default false matches part of a label."},
         "sort": {"type": "string", "enum": sorted(_SORTS),
                  "description": "bates (default), pages_desc or size_desc."},
         "count": {"type": "integer", "minimum": 1, "maximum": MAX_RESULTS,
@@ -1056,14 +1074,14 @@ _register(Tool(
     handler=citations_verify))
 
 _register(Tool(
-    name="doi_milestones", title="Settlement and DOI obligations",
+    name="doi_milestones", ledger=True, title="Settlement and DOI obligations",
     summary=("The dated obligations from the settlement and Council Resolution 560-A with what was "
              "observed on the public surfaces, when it was checked, and what remains upcoming."),
     schema=_schema({}),
     handler=doi_milestones))
 
 _register(Tool(
-    name="budget_lookup", title="Announced commitments and their evidence stages",
+    name="budget_lookup", ledger=True, title="Announced commitments and their evidence stages",
     summary=("The curated commitment ledger: the FY27 portal amount, the DOI investigation support and "
              "the Memorial education line, each with its announcement source and five independently "
              "evidenced stages (announcement, adopted line, contract, payment, delivery). Stages "
@@ -1131,7 +1149,7 @@ _register(Tool(
     handler=presence_evidence))
 
 _register(Tool(
-    name="upcoming_dates", title="Dated obligations ahead",
+    name="upcoming_dates", ledger=True, title="Dated obligations ahead",
     summary=("The settlement's and Council Resolution 560-A's dated obligations in date order, with days "
              "from a given date, the status last observed, and the rows whose basis is rolling rather than "
              "dated. The same dates are published as an iCalendar file at docs/data/obligations.ics."),

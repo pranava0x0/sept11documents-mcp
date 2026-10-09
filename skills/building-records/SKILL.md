@@ -14,8 +14,8 @@ block and lot.
 1. Call `building_lookup` with the address as the user gives it, or with a seven-digit BIN.
 2. If no folder matches, try the street name alone (`John Street`) and then a landmark name
    (`Stuyvesant`). Report each attempt.
-3. For each folder worth reading, run the `next_calls` entry it returns (`catalog_search` with box
-   and folder) to list its documents.
+3. For each folder worth reading, run the `next_calls` entry it returns (`catalog_search` with box,
+   folder and `exact: true`) to list that folder's documents alone.
 4. Read one or two documents with `portal_get_page_text`. Sampling results may already be listed in
    `readings_lookup`; check with the street name as `location`.
 5. Answer with the folder labels as printed, the document count, and any quoted finding with its
